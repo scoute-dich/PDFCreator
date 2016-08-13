@@ -6,7 +6,7 @@
     <string name="app_permissions">You must grant \"Access Storage Permission\" to save pdf files. After that you should
         completely close the app or restart the phone. If you don\'t permit the storage access but want to use the
         screenshot function at a later time, you can grant the permission later. Please open then: system settings - apps -
-        weather. In the permissions section you can grant the \"write storage permission\".</string>
+        PDFCreator. In the permissions section you can grant the \"write storage permission\".</string>
     <string name="app_portrait">Portrait</string>
     <string name="app_landscape">Landscape</string>
 
