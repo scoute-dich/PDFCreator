@@ -1,0 +1,170 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    // App
+
+    <string name="app_name">PDF Creator</string>
+    <string name="app_permissions">PDF ファイルを保存するために \"ストレージのアクセス許可\" を付与する必要があります。 その後
+        アプリを完全に閉じるか、電話を再起動する必要があります。 ストレージのアクセスを許可しないで、スクリーンショットの機能を
+        後で使用する場合は、後でアクセス許可を付与することもできます。 システム設定 - アプリ - weather を開いて、
+        アクセス許可のセクションで \"ストレージの書き込みアクセス許可\" 付与することができます。</string>
+    <string name="app_portrait">縦向き</string>
+    <string name="app_landscape">横向き</string>
+
+
+    // App titles
+
+    <string name="create_image">画像から PDF</string>
+    <string name="create_text">テキストから PDF</string>
+    <string name="add_image">+ 画像</string>
+    <string name="add_text">+ テキスト | …</string>
+    <string name="app_title_edit">画像を編集</string>
+    <string name="app_title_crop">画像をトリミング</string>
+
+
+    // Snackbar // Toasts
+
+    <string name="toast_yes">OK</string>
+    <string name="toast_cancel">キャンセル</string>
+    <string name="toast_successfully">PDF を正常に作成しました。</string>
+    <string name="toast_wait">画像を正常に作成しました。フォルダーを開きますか?</string>
+    <string name="toast_successfully_not">エラーが発生しました。</string>
+    <string name="toast_open">開きますか?</string>
+    <string name="toast_install_pdf">PDF リーダーをインストールしてください。</string>
+    <string name="toast_install_folder">ファイルマネージャーをインストールしてください。</string>
+    <string name="toast_noImage">画像を選択してください。</string>
+    <string name="toast_noPDF">PDF ファイルを選択または作成してください。</string>
+    <string name="toast_noText">テキストを入力してください。</string>
+    <string name="toast_savedImage">しばらくお待ちください。画像の保存中。</string>
+    <string name="toast_notAgain">今後表示しない</string>
+
+
+    // Main menu
+
+    <string name="action_share">PDF を共有</string>
+    <string name="action_open">PDF を開く</string>
+    <string name="action_folder">アプリフォルダーを開く</string>
+    <string name="action_settings">設定</string>
+    <string name="action_save">保存</string>
+    <string name="action_share_with">次で PDF を共有:</string>
+    <string name="action_share_Text">添付に PDF ファイルがあります:</string>
+    <string name="action_help">ヘルプ</string>
+
+
+    // Fragments
+
+    <string name="app_title">タイトルを入力してください:</string>
+    <string name="app_title_date">日付</string>
+    <string name="app_hint" tools:ignore="TypographyEllipsis">自由に入力してください ...</string>
+
+
+    // Text fragment
+
+    <string name="add_text_delete">ページを削除</string>
+    <string name="add_text_delete_hint">どのページを残しますか?</string>
+    <string name="add_text_hint_enterText">テキストを入力するか貼り付けてください</string>
+    <string name="add_text_PW">新しいユーザーパスワードを入力</string>
+    <string name="add_text_PW_hint">暗号化 PDF ファイルを開くために必要。</string>
+
+
+    // Image fragment
+
+    <string name="goal_gallery">ギャラリーから選択</string>
+    <string name="goal_camera">写真を撮影</string>
+    <string name="goal_cancel">キャンセル</string>
+
+
+    // Editor
+
+    <string name="filter_1">コントラスト</string>
+    <string name="filter_2">色相</string>
+    <string name="filter_3">輝度</string>
+    <string name="filter_4">シャープネス</string>
+    <string name="filter_5">彩度</string>
+
+    <string name="filter_6">露出</string>
+    <string name="filter_7">ハイライトシャドウ</string>
+    <string name="filter_8">ホワイトバランス</string>
+    <string name="filter_9">カラーバランス</string>
+    <string name="filter_10">レベル Min (Mid アジャスト)</string>
+
+
+    // Settings
+
+    <string name="settings_prefApp">アプリについて</string>
+    <string name="settings_prefDir">アプリ ディレクトリー</string>
+    <string name="settings_prefEnc">暗号化</string>
+    <string name="settings_prefData">文書データ</string>
+
+    <string name="pref_license">ライセンス</string>
+    <string name="pref_license_summary">アプリは完全にオープンソースで GPL3 の下でライセンスされます。</string>
+
+    <string name="pref_lib">ライブラリー</string>
+    <string name="pref_lib_summary">アプリは、以下のオープンソース ライブラリーを使用しています。</string>
+
+    <string name="pref_imageQuality">画像の品質</string>
+    <string name="pref_imageQuality_summary">画像の品質を設定します。 高品質にすると PDF サイズは大きくなります。</string>
+
+    <string name="pref_backup">バックアップ</string>
+    <string name="pref_backup_summary">操作の前に PDF ファイルをバックアップしますか。例えば、ページの削除または追加?</string>
+
+    <string name="pref_folderDef">デフォルト ディレクトリー</string>
+    <string name="pref_folderDef_summary">デフォルトディレクトリー: \"/Android/data/de.baumann.pdf/\" を使用します。</string>
+
+    <string name="pref_folder">カスタム ディレクトリー</string>
+    <string name="pref_folder_summary">新しい PDF ファイルやバックアップを保存するデフォルトのアプリディレクトリーを変更します。
+        SD カードの希望のフォルダーへのパスを入力してください。 パスは \"/Download/PDF/\" のように \"/\" で開始および終了する必要があります。
+        希望のディレクトリーが存在しない場合は、自動的に作成されます。</string>
+    <string name="pref_folder_hint">/Download/PDF/…</string>
+
+    <string name="pref_pwUSER">ユーザー パスワード</string>
+    <string name="pref_pwUSER_summary">PDF ファイルのユーザーパスワードを設定します。 暗号化後に、PDF ファイルを開くために使用します。
+        復号化後にコピーおよび印刷することができます。 \"+テキスト | …\" タブの、暗号化アイコンを長押しして変更することができます。
+        </string>
+
+    <string name="pref_pwOWNER">所有者パスワード</string>
+    <string name="pref_pwOWNER_summary">暗号化 PDF ファイルの所有者パスワードを設定します。 後でファイルを編集したい人は
+        このパスワードが必要になります。</string>
+
+    <string name="pref_metaAuthor">著者</string>
+    <string name="pref_metaAuthor_summary">PDF の著者は誰ですか? 例えばあなたの名前を入力することができます:
+        \"Max Mustermann\"。 \"+テキスト | …\" タブの、タグアイコンを長押しして変更することができます。</string>
+
+    <string name="pref_metaCreator">作成者</string>
+    <string name="pref_metaCreator_summary">PDF を作成したのは誰ですか? おそらくこのアプリ: \"PDF Creator using iText\"?
+        \"+テキスト | …\" タブの、タグアイコンを長押しして変更することができます。</string>
+
+    <string name="pref_metaKeywords">キーワード</string>
+    <string name="pref_metaKeywords_summary">PDF のキーワードを、カンマ区切りで設定します: \"Metadata, iText, PDF\"。
+        \"+テキスト | …\" タブの、タグアイコンを長押しして変更することができます。</string>
+
+    <string name="pref_metaSubject">主題</string>
+    <string name="pref_metaSubject_summary">PDF ファイルの主題: \"この例はメタデータの追加方法を示します\"。
+        \"+テキスト| …\" タブの、タグアイコンを長押しして変更することができます。</string>
+
+    <string name="pref_rotate">縦向き</string>
+    <string name="pref_rotate_summary">PDF ページに縦向き（ポートレート）形式を使用します。 画面下部の表示された PDF 名をクリックして、
+        縦向きと横向きを簡単に切り替えることができます。 実際の形式も表示されます。</string>
+
+    <string name="pref_notShow_title">ヘルプ ダイアログ</string>
+    <string name="pref_notShow_title_summary">開始時にヘルプダイアログを表示します。</string>
+
+    <string-array name="listArrayImage">
+        <item>高 (100%)</item>
+        <item>通常 (80%)</item>
+        <item>低 (60%)</item>
+    </string-array>
+
+    <string-array name="listValuesImage">
+        <item>100</item>
+        <item>80</item>
+        <item>60</item>
+    </string-array>
+
+
+    //Image cropper
+
+    <string name="app_title_2">画像の保存中 …</string>
+    <string name="crop_image_menu_rotate_left">左に回転</string>
+    <string name="crop_image_menu_rotate_right">右に回転</string>
+
+</resources>
