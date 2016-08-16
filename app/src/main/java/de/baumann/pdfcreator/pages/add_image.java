@@ -22,7 +22,6 @@ import android.text.SpannableString;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;

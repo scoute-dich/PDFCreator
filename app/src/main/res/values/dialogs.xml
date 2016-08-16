@@ -107,7 +107,7 @@
     <string name="dialog_createText" translatable="false">
 
         &lt;b>What can I do here?&lt;/b>&lt;br>
-         Here you can create a single PDF page from text. You have also severasl options to edit existing PDF files.&lt;br>&lt;br>
+         Here you can create a single PDF page from text. You have also several options to edit existing PDF files.&lt;br>&lt;br>
 
         &lt;b>Buttons&lt;/b>&lt;br>
         &#8226; &lt;i>FAB (pink):&lt;/i> create the PDF.&lt;br>&lt;br>

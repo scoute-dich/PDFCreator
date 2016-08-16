@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     //License Dialog
 
-    <string name="about_title" translatable="false">Copyright © 2016  by Gaukler Faun</string>
-    <string name="about_text" translatable="false">
+    <string name="about_title" translatable="false" tools:ignore="ExtraTranslation">Copyright © 2016  by Gaukler Faun</string>
+    <string name="about_text" translatable="false" tools:ignore="ExtraTranslation">
         &lt;i>Besuche für mehr Informationen die Projektseite auf Github:&lt;br>
         https://github.com/scoute-dich/PDFCreator&lt;/i>&lt;br>&lt;br>
 
@@ -22,27 +22,9 @@
         along with this program.  If not, see http://www.gnu.org/licenses.
     </string>
 
-
-    //Library Dialog
-
-    <string name="lib_text" translatable="false">
-        &lt;b>Android-Image-Cropper&lt;/b>&lt;br>
-        https://github.com/ArthurHub/Android-Image-Cropper&lt;br>&lt;br>
-
-        &lt;b>Android PDFView&lt;/b>&lt;br>
-        https://github.com/JoanZapata/android-pdfview&lt;br>&lt;br>
-
-        &lt;b>GPUImage for Android&lt;/b>&lt;br>
-        https://github.com/CyberAgent/android-gpuimage&lt;br>&lt;br>
-
-        &lt;b>iText&lt;/b>&lt;br>
-        https://github.com/itext/itextpdf
-    </string>
-
-
     //Help Dialog
 
-    <string name="dialog_help" translatable="false">
+    <string name="dialog_help" translatable="false" tools:ignore="ExtraTranslation">
         Du erreichst einen Hilfe Dialog in jedem Tab, indem du \"Menu -> Hilfe\" drückst.&lt;br>&lt;br>
 
         &lt;b>Menu&lt;/b>&lt;br>
@@ -61,7 +43,7 @@
 
     //Create image Dialog
 
-    <string name="dialog_createImage" translatable="false">
+    <string name="dialog_createImage" translatable="false" tools:ignore="ExtraTranslation">
 
         &lt;b>Was kann ich hier tun?&lt;/b>&lt;br>
         Hier kannst du eine PDF-Datei von einem Bild erstellen.&lt;br>&lt;br>
@@ -82,7 +64,7 @@
 
     //Add image Dialog
 
-    <string name="dialog_addImage" translatable="false">
+    <string name="dialog_addImage" translatable="false" tools:ignore="ExtraTranslation">
 
         &lt;b>Was kann ich hier tun?&lt;/b>&lt;br>
         Hier kannst du Bilder zu einer bestehenden PDF-Datei hinzufügen.&lt;br>&lt;br>
@@ -104,7 +86,7 @@
 
     //Create text Dialog
 
-    <string name="dialog_createText" translatable="false">
+    <string name="dialog_createText" translatable="false" tools:ignore="ExtraTranslation">
 
         &lt;b>Was kann ich hier tun?&lt;/b>&lt;br>
          Hier kannst du eine PDF-Datei mit Text als Inhalt erstellen.&lt;br>&lt;br>
@@ -120,7 +102,7 @@
 
     //Add text Dialog
 
-    <string name="dialog_addText" translatable="false">
+    <string name="dialog_addText" translatable="false" tools:ignore="ExtraTranslation">
 
         &lt;b>Was kann ich hier tun?&lt;/b>&lt;br>
         Hier kannst du eine PDF-Seite mit Text zu einer bestehenden PDF-Datei hinzufügen.
