@@ -103,11 +103,6 @@
             android:summary="@string/pref_license_summary"
             android:key="license" />
 
-        <Preference
-            android:title="@string/pref_lib"
-            android:summary="@string/pref_lib_summary"
-            android:key="lib" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

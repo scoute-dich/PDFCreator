@@ -19,25 +19,21 @@
         GNU General Public License for more details.
 
         You should have received a copy of the GNU General Public License
-        along with this program.  If not, see http://www.gnu.org/licenses.
-    </string>
+        along with this program.  If not, see http://www.gnu.org/licenses.&lt;br>&lt;br>&lt;br>
 
+        &lt;b>Used open source projects:&lt;/b>&lt;br>&lt;br>
 
-    //Library Dialog
-
-    <string name="lib_text" translatable="false">
-        &lt;b>Android-Image-Cropper&lt;/b>&lt;br>
+        &lt;i>Android-Image-Cropper&lt;/i>&lt;br>
         https://github.com/ArthurHub/Android-Image-Cropper&lt;br>&lt;br>
 
-        &lt;b>Android PDFView&lt;/b>&lt;br>
+        &lt;i>Android PDFView&lt;/i>&lt;br>
         https://github.com/JoanZapata/android-pdfview&lt;br>&lt;br>
 
-        &lt;b>GPUImage for Android&lt;/b>&lt;br>
+        &lt;i>GPUImage for Android&lt;/i>&lt;br>
         https://github.com/CyberAgent/android-gpuimage&lt;br>&lt;br>
 
-        &lt;b>iText&lt;/b>&lt;br>
-        https://github.com/itext/itextpdf
-    </string>
+        &lt;i>iText&lt;/i>&lt;br>
+        https://github.com/itext/itextpdf</string>
 
 
     //Help Dialog

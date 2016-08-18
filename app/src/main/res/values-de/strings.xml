@@ -92,16 +92,13 @@
 
     // Settings
 
-    <string name="settings_prefApp">About the app</string>
+    <string name="settings_prefApp">Über die App</string>
     <string name="settings_prefDir">Anwendungsverzeichnis</string>
     <string name="settings_prefEnc">Verschlüsselung</string>
     <string name="settings_prefData">Metadaten</string>
 
     <string name="pref_license">Lizenz</string>
     <string name="pref_license_summary">Die App ist komplett frei (Open Source) und unter der GPL3-Lizenz lizenziert.</string>
-
-    <string name="pref_lib">Bibliotheken</string>
-    <string name="pref_lib_summary">Die folgenden quelloffenen Bibliotheken werden in der App benutzt.</string>
 
     <string name="pref_imageQuality">Bildqualität</string>
     <string name="pref_imageQuality_summary">Bestimme die Bildqualität. Je höher die Bildqualität umso größer werden die PDF-Dateien.</string>

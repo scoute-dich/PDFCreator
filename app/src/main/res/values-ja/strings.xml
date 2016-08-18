@@ -98,9 +98,6 @@
     <string name="pref_license">ライセンス</string>
     <string name="pref_license_summary">アプリは完全にオープンソースで GPL3 の下でライセンスされます。</string>
 
-    <string name="pref_lib">ライブラリー</string>
-    <string name="pref_lib_summary">アプリは、以下のオープンソース ライブラリーを使用しています。</string>
-
     <string name="pref_imageQuality">画像の品質</string>
     <string name="pref_imageQuality_summary">画像の品質を設定します。 高品質にすると PDF サイズは大きくなります。</string>
 
