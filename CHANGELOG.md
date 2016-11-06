@@ -1,5 +1,10 @@
 ### v 1.0.3
 
+- updated iText
+- maintenance release
+
+### v 1.0.3
+
 - Japanese translation (Thanks to naofum)
 
 
