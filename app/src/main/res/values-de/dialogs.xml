@@ -70,11 +70,13 @@
 
         &#8226; &lt;i>Kamera:&lt;/i> du kannst ein Bild  aus der Gallerie aussuchen oder ein neues mit der Kamera machen.&lt;br>
         &#8226; &lt;i>Zuschneiden:&lt;/i> du kannst das Bild zuschneiden oder drehen.&lt;br>
-        &#8226; &lt;i>Bearbeiten:&lt;/i> mache ein paar kleine Verbesserungen.&lt;br>
+        &#8226; &lt;i>Bearbeiten:&lt;/i> mache ein paar kleine Verbesserungen. Nachdem du einen Effekt angewendet hast, must du
+        jedesmal speichern. Nach dem Bearbeiten den FAB-Knopf drücken um zum Hauptschirm zurück zu kehren.&lt;br>
         &#8226; &lt;i>FAB (pink):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
-        Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
+        Nachdem du ein Bild bearbeitet oder zugeschnitten hast, musst du auf dem Bild nach unten wischen, um die Ansicht zu
+        aktualisieren. Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
         Wenn du dort klickst, kannst du schnell zwischen Hoch- und Querformat für eine neue PDF-Seite wechseln.
     </string>
 
@@ -91,12 +93,14 @@
 
         &#8226; &lt;i>Kamera:&lt;/i> du kannst ein Bild  aus der Gallerie aussuchen oder ein neues mit der Kamera machen.&lt;br>
         &#8226; &lt;i>Zuschneiden:&lt;/i> du kannst das Bild zuschneiden oder drehen.&lt;br>
-        &#8226; &lt;i>Bearbeiten:&lt;/i> mache ein paar kleine Verbesserungen.&lt;br>
+        &#8226; &lt;i>Bearbeiten:&lt;/i> mache ein paar kleine Verbesserungen. Nachdem du einen Effekt angewendet hast, must du
+        jedesmal speichern. Nach dem Bearbeiten den FAB-Knopf drücken um zum Hauptschirm zurück zu kehren.&lt;br>
         &#8226; &lt;i>PDF:&lt;/i> suche dir eine PDF-Datei zum Bearbeiten aus.&lt;br>
         &#8226; &lt;i>FAB (pink):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
-        Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
+        Nachdem du ein Bild bearbeitet oder zugeschnitten hast, musst du auf dem Bild nach unten wischen, um die Ansicht zu
+        aktualisieren. Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
         Wenn du dort klickst, kannst du schnell zwischen Hoch- und Querformat für eine neue PDF-Seite wechseln.
     </string>
 
