@@ -2,7 +2,6 @@ package de.baumann.pdfcreator;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,24 +20,17 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.util.Linkify;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.baumann.pdfcreator.helper.Helper;
+import de.baumann.pdfcreator.helper.UserSettingsActivity;
 import de.baumann.pdfcreator.pages.add_text;
 import de.baumann.pdfcreator.pages.create_image;
 import de.baumann.pdfcreator.pages.add_image;
@@ -49,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
     private String folder;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         assert tabLayout != null;
@@ -99,12 +93,9 @@ public class MainActivity extends AppCompatActivity {
 
         boolean show = sharedPref.getBoolean("help_notShow", true);
         if (show){
-            final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.dialog_help)));
-            Linkify.addLinks(s, Linkify.WEB_URLS);
-
             final AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this)
                     .setTitle(R.string.app_name)
-                    .setMessage(s)
+                    .setMessage(Helper.textSpannable(getString(R.string.dialog_help)))
                     .setPositiveButton(getString(R.string.toast_yes), null)
                     .setNegativeButton(getString(R.string.toast_notAgain), new DialogInterface.OnClickListener() {
                         @Override
@@ -241,19 +232,7 @@ public class MainActivity extends AppCompatActivity {
                 sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(Intent.createChooser(sharingIntent, getString(R.string.action_share_with)));
             } else {
-                LayoutInflater inflater = getLayoutInflater();
-
-                View toastLayout = inflater.inflate(R.layout.toast,
-                        (ViewGroup) findViewById(R.id.toast_root_view));
-
-                TextView header = (TextView) toastLayout.findViewById(R.id.toast_message);
-                header.setText(R.string.toast_noPDF);
-
-                Toast toast = new Toast(getApplicationContext());
-                toast.setGravity(Gravity.FILL_HORIZONTAL | Gravity.BOTTOM, 0, 0);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.setView(toastLayout);
-                toast.show();
+                Snackbar.make(viewPager, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
             }
         }
 
@@ -268,77 +247,18 @@ public class MainActivity extends AppCompatActivity {
             File pdfFile = new File(path);
 
             if (pdfFile.exists()) {
-
                 File file = new File(path);
-                Intent target = new Intent(Intent.ACTION_VIEW);
-                target.setDataAndType(Uri.fromFile(file),"application/pdf");
-                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-
-                try {
-                    startActivity(target);
-                } catch (ActivityNotFoundException e) {
-                    // Instruct the user to install a PDF reader here, or something
-                    LayoutInflater inflater = getLayoutInflater();
-
-                    View toastLayout = inflater.inflate(R.layout.toast,
-                            (ViewGroup) findViewById(R.id.toast_root_view));
-
-                    TextView header = (TextView) toastLayout.findViewById(R.id.toast_message);
-                    header.setText(R.string.toast_install_pdf);
-
-                    Toast toast = new Toast(getApplicationContext());
-                    toast.setGravity(Gravity.FILL_HORIZONTAL | Gravity.BOTTOM, 0, 0);
-                    toast.setDuration(Toast.LENGTH_LONG);
-                    toast.setView(toastLayout);
-                    toast.show();
-                }
+                Helper.openFile(MainActivity.this, file, "application/pdf", viewPager);
             } else {
-                LayoutInflater inflater = getLayoutInflater();
-
-                View toastLayout = inflater.inflate(R.layout.toast,
-                        (ViewGroup) findViewById(R.id.toast_root_view));
-
-                TextView header = (TextView) toastLayout.findViewById(R.id.toast_message);
-                header.setText(R.string.toast_noPDF);
-
-                Toast toast = new Toast(getApplicationContext());
-                toast.setGravity(Gravity.FILL_HORIZONTAL | Gravity.BOTTOM, 0, 0);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.setView(toastLayout);
-                toast.show();
+                Snackbar.make(viewPager, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
             }
         }
 
         if (id == R.id.action_folder) {
-
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-            File directory = new File(Environment.getExternalStorageDirectory() + folder);
-
-            Intent target = new Intent(Intent.ACTION_VIEW);
-            target.setDataAndType(Uri.fromFile(directory), "resource/folder");
-
-            try {
-                startActivity (target);
-            } catch (ActivityNotFoundException e) {
-                LayoutInflater inflater = getLayoutInflater();
-
-                View toastLayout = inflater.inflate(R.layout.toast,
-                        (ViewGroup) findViewById(R.id.toast_root_view));
-
-                TextView header = (TextView) toastLayout.findViewById(R.id.toast_message);
-                header.setText(R.string.toast_install_folder);
-
-                Toast toast = new Toast(getApplicationContext());
-                toast.setGravity(Gravity.FILL_HORIZONTAL | Gravity.BOTTOM, 0, 0);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.setView(toastLayout);
-                toast.show();
-            }
+            Helper.openFilePicker(MainActivity.this, viewPager);
         }
 
         if (id == R.id.action_settings) {
-
             Intent intent = new Intent(this, UserSettingsActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);

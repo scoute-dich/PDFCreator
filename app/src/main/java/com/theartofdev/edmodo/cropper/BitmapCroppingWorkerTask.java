@@ -97,12 +97,12 @@ final class BitmapCroppingWorkerTask extends AsyncTask<Void, Void, BitmapCroppin
     private final Uri mSaveUri;
 
     /**
-     * the compression format to use when writting the image
+     * the compression format to use when writing the image
      */
     private final Bitmap.CompressFormat mSaveCompressFormat;
 
     /**
-     * the quility (if applicable) to use when writting the image (0 - 100)
+     * the quality (if applicable) to use when writing the image (0 - 100)
      */
     private final int mSaveCompressQuality;
     //endregion

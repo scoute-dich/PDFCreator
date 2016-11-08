@@ -49,7 +49,7 @@ final class BitmapUtils {
     static final RectF EMPTY_RECT_F = new RectF();
 
     /**
-     * Reusable rectengale for general internal usage
+     * Reusable rectangle for general internal usage
      */
     static final RectF RECT = new RectF();
 
@@ -149,7 +149,7 @@ final class BitmapUtils {
     public static Bitmap cropBitmap(Bitmap bitmap, float[] points,
                                     int degreesRotated, boolean fixAspectRatio, int aspectRatioX, int aspectRatioY) {
 
-        // get the rectangle in original image that contains the required cropped area (larger for non rectengular crop)
+        // get the rectangle in original image that contains the required cropped area (larger for non rectangular crop)
         Rect rect = getRectFromPoints(points, bitmap.getWidth(), bitmap.getHeight(), fixAspectRatio, aspectRatioX, aspectRatioY);
 
         // crop and rotate the cropped image in one operation
@@ -165,7 +165,7 @@ final class BitmapUtils {
         // rotating by 0, 90, 180 or 270 degrees doesn't require extra cropping
         if (degreesRotated % 90 != 0) {
 
-            // extra crop because non rectengular crop cannot be done directly on the image without rotating first
+            // extra crop because non rectangular crop cannot be done directly on the image without rotating first
             result = cropForRotatedImage(result, points, rect, degreesRotated, fixAspectRatio, aspectRatioX, aspectRatioY);
         }
 
@@ -179,7 +179,7 @@ final class BitmapUtils {
                                     int degreesRotated, int orgWidth, int orgHeight, boolean fixAspectRatio,
                                     int aspectRatioX, int aspectRatioY, int reqWidth, int reqHeight) {
 
-        // get the rectangle in original image that contains the required cropped area (larger for non rectengular crop)
+        // get the rectangle in original image that contains the required cropped area (larger for non rectangular crop)
         Rect rect = getRectFromPoints(points, orgWidth, orgHeight, fixAspectRatio, aspectRatioX, aspectRatioY);
 
         int width = reqWidth > 0 ? reqWidth : rect.width();
@@ -199,7 +199,7 @@ final class BitmapUtils {
             // rotating by 0, 90, 180 or 270 degrees doesn't require extra cropping
             if (degreesRotated % 90 != 0) {
 
-                // extra crop because non rectengular crop cannot be done directly on the image without rotating first
+                // extra crop because non rectangular crop cannot be done directly on the image without rotating first
                 result = cropForRotatedImage(result, points, rect, degreesRotated, fixAspectRatio, aspectRatioX, aspectRatioY);
             }
         } else {
@@ -272,7 +272,7 @@ final class BitmapUtils {
     }
 
     /**
-     * Get verical center value of the bounding rectangle of the given points.
+     * Get vertical center value of the bounding rectangle of the given points.
      */
     public static float getRectCenterY(float[] points) {
         return (getRectBottom(points) + getRectTop(points)) / 2f;
@@ -280,7 +280,7 @@ final class BitmapUtils {
 
     /**
      * Get a rectangle for the given 4 points (x0,y0,x1,y1,x2,y2,x3,y3) by finding the min/max 2 points that
-     * contains the given 4 points and is a stright rectangle.
+     * contains the given 4 points and is a rectangle.
      */
     public static Rect getRectFromPoints(float[] points, int imageWidth, int imageHeight, boolean fixAspectRatio, int aspectRatioX, int aspectRatioY) {
         int left = Math.round(Math.max(0, getRectLeft(points)));
@@ -392,7 +392,7 @@ final class BitmapUtils {
     }
 
     /**
-     * Special crop of bitmap rotated by not stright angle, in this case the original crop bitmap contains parts
+     * Special crop of bitmap rotated by not angle, in this case the original crop bitmap contains parts
      * beyond the required crop area, this method crops the already cropped and rotated bitmap to the final
      * rectangle.<br>
      * Note: rotating by 0, 90, 180 or 270 degrees doesn't require extra cropping.

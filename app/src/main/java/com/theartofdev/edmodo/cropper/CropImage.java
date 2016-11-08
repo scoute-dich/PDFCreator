@@ -28,9 +28,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
- * Helper to simplify crop image work like starting pick-image acitvity and handling camera/gallery intents.<br>
+ * Helper to simplify crop image work like starting pick-image activity and handling camera/gallery intents.<br>
  * The goal of the helper is to simplify the starting and most-common usage of image cropping and not
- * all porpose all possible scenario one-to-rule-them-all code base. So feel free to use it as is and as
+ * all purpose all possible scenario one-to-rule-them-all code base. So feel free to use it as is and as
  * a wiki to make your own.<br>
  * Added value you get out-of-the-box is some edge case handling that you may miss otherwise, like the
  * stupid-ass Android camera result URI that may differ from version to version and from device to device.

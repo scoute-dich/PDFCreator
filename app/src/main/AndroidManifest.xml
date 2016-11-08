@@ -47,13 +47,13 @@
         </activity>
 
         <activity
-            android:name=".ActivityEditor"
+            android:name=".helper.ActivityEditor"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
 
         <activity
-            android:name=".UserSettingsActivity" />
+            android:name=".helper.UserSettingsActivity" />
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.sample.MainActivity" />
@@ -63,6 +63,16 @@
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="de.baumann.pdfcreator.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
 
     </application>
 

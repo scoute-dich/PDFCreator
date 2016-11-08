@@ -12,7 +12,6 @@
 
 package com.theartofdev.edmodo.cropper.sample;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -69,9 +68,6 @@ public final class CropResultActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Intent intent = new Intent(CropResultActivity.this, de.baumann.pdfcreator.MainActivity.class);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
         if (mImage != null) {
             mImage.recycle();
             mImage = null;

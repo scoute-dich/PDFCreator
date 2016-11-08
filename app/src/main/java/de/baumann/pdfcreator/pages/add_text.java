@@ -2,7 +2,6 @@ package de.baumann.pdfcreator.pages;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,10 +14,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.text.InputType;
-import android.text.SpannableString;
-import android.text.util.Linkify;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -50,6 +46,7 @@ import java.io.OutputStream;
 import java.util.Locale;
 
 import de.baumann.pdfcreator.R;
+import de.baumann.pdfcreator.helper.Helper;
 
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -615,19 +612,7 @@ public class add_text extends Fragment {
                 .setAction(getString(R.string.toast_yes), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                        File directory = new File(Environment.getExternalStorageDirectory() + folder);
-
-                        Intent target = new Intent(Intent.ACTION_VIEW);
-                        target.setDataAndType(Uri.fromFile(directory), "resource/folder");
-
-                        try {
-                            startActivity (target);
-                        } catch (ActivityNotFoundException e) {
-                            Snackbar.make(edit, getString(R.string.toast_install_folder), Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
-                        }
+                        Helper.openFilePicker(getActivity(), edit);
                     }
                 });
         snackbar.show();
@@ -926,17 +911,7 @@ public class add_text extends Fragment {
                                 folder + title + ".pdf");
 
                         File file = new File(path);
-                        Intent target = new Intent(Intent.ACTION_VIEW);
-                        target.setDataAndType(Uri.fromFile(file),"application/pdf");
-                        target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-
-                        try {
-                            startActivity(target);
-                        } catch (ActivityNotFoundException e) {
-                            // Instruct the user to install a PDF reader here, or something
-                            Snackbar.make(edit, getString(R.string.toast_install_pdf), Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
-                        }
+                        Helper.openFile(getActivity(), file, "application/pdf", edit);
                     }
                 });
         snackbar.show();
@@ -983,12 +958,9 @@ public class add_text extends Fragment {
         switch (item.getItemId()) {
             case R.id.action_help:
 
-                final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.dialog_addText)));
-                Linkify.addLinks(s, Linkify.WEB_URLS);
-
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.add_text)
-                        .setMessage(s)
+                        .setMessage(Helper.textSpannable(getString(R.string.dialog_addText)))
                         .setPositiveButton(getString(R.string.toast_yes), null);
                 dialog.show();
                 return true;

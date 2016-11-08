@@ -35,12 +35,12 @@ public class CropOverlayView extends View {
     //region: Fields and Consts
 
     /**
-     * Handler from crop window stuff, moving and knowing possition.
+     * Handler from crop window stuff, moving and knowing position.
      */
     private final CropWindowHandler mCropWindowHandler = new CropWindowHandler();
 
     /**
-     * Listener to publicj crop window changes
+     * Listener to public crop window changes
      */
     private CropWindowChangeListener mCropWindowChangeListener;
 
@@ -95,7 +95,7 @@ public class CropOverlayView extends View {
     private int mViewHeight;
 
     /**
-     * The offset to draw the border corener from the border
+     * The offset to draw the border corner from the border
      */
     private float mBorderCornerOffset;
 
@@ -370,7 +370,7 @@ public class CropOverlayView extends View {
     }
 
     /**
-     * set the max width/height and scale factor of the showen image to original image to scale the limits
+     * set the max width/height and scale factor of the shown image to original image to scale the limits
      * appropriately.
      */
     public void setCropWindowLimits(float maxWidth, float maxHeight, float scaleFactorWidth, float scaleFactorHeight) {
@@ -576,7 +576,7 @@ public class CropOverlayView extends View {
     }
 
     /**
-     * Draw crop overview by drawing background over image not in the cripping area, then borders and guidelines.
+     * Draw crop overview by drawing background over image not in the cropping area, then borders and guidelines.
      */
     @Override
     protected void onDraw(Canvas canvas) {
@@ -649,7 +649,7 @@ public class CropOverlayView extends View {
     }
 
     /**
-     * Draw 2 veritcal and 2 horizontal guidelines inside the cropping area to split it into 9 equal parts.
+     * Draw 2 vertical and 2 horizontal guidelines inside the cropping area to split it into 9 equal parts.
      */
     private void drawGuidelines(Canvas canvas) {
         if (mGuidelinePaint != null) {
@@ -798,7 +798,7 @@ public class CropOverlayView extends View {
     }
 
     /**
-     * On press down start crop window movment depending on the location of the press.<br>
+     * On press down start crop window movement depending on the location of the press.<br>
      * if press is far from crop window then no move handler is returned (null).
      */
     private void onActionDown(float x, float y) {
@@ -842,9 +842,9 @@ public class CropOverlayView extends View {
     /**
      * Calculate the bounding rectangle for current crop window, handle non-straight rotation angles.<br>
      * If the rotation angle is straight then the bounds rectangle is the bitmap rectangle,
-     * otherwsie we find the max rectangle that is within the image bounds starting from the crop window rectangle.
+     * otherwise we find the max rectangle that is within the image bounds starting from the crop window rectangle.
      *
-     * @param rect the crop window rectangle to start finsing bounded rectangle from
+     * @param rect the crop window rectangle to start finishing bounded rectangle from
      * @return true - non straight rotation in place, false - otherwise.
      */
     private boolean calculateBounds(RectF rect) {

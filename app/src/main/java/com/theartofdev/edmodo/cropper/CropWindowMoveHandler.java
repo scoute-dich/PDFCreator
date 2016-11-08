@@ -69,8 +69,8 @@ final class CropWindowMoveHandler {
      * Updates the crop window by change in the toch location.<br>
      * Move type handled by this instance, as initialized in creation, affects how the change in toch location
      * changes the crop window position and size.<br>
-     * After the crop window position/size is changed by toch move it may result in values that vialate contraints:
-     * outside the bounds of the shown bitmap, smaller/larger than min/max size or missmatch in aspect ratio.
+     * After the crop window position/size is changed by toch move it may result in values that violate constraints:
+     * outside the bounds of the shown bitmap, smaller/larger than min/max size or miss match in aspect ratio.
      * So a series of fixes is executed on "secondary" edges to adjust it by the "primary" edge movement.<br>
      * Primary is the edge directly affected by move type, secondary is the other edge.<br>
      * The crop window is changed by directly setting the Edge coordinates.
@@ -589,7 +589,7 @@ final class CropWindowMoveHandler {
 
     /**
      * Adjust left edge by current crop window height and the given aspect ratio,
-     * the right edge remains in possition while the left adjusts to keep aspect ratio to the height.
+     * the right edge remains in position while the left adjusts to keep aspect ratio to the height.
      */
     private void adjustLeftByAspectRatio(RectF rect, float aspectRatio) {
         rect.left = rect.right - rect.height() * aspectRatio;
@@ -597,7 +597,7 @@ final class CropWindowMoveHandler {
 
     /**
      * Adjust top edge by current crop window width and the given aspect ratio,
-     * the bottom edge remains in possition while the top adjusts to keep aspect ratio to the width.
+     * the bottom edge remains in position while the top adjusts to keep aspect ratio to the width.
      */
     private void adjustTopByAspectRatio(RectF rect, float aspectRatio) {
         rect.top = rect.bottom - rect.width() / aspectRatio;
@@ -605,7 +605,7 @@ final class CropWindowMoveHandler {
 
     /**
      * Adjust right edge by current crop window height and the given aspect ratio,
-     * the left edge remains in possition while the left adjusts to keep aspect ratio to the height.
+     * the left edge remains in position while the left adjusts to keep aspect ratio to the height.
      */
     private void adjustRightByAspectRatio(RectF rect, float aspectRatio) {
         rect.right = rect.left + rect.height() * aspectRatio;
@@ -613,7 +613,7 @@ final class CropWindowMoveHandler {
 
     /**
      * Adjust bottom edge by current crop window width and the given aspect ratio,
-     * the top edge remains in possition while the top adjusts to keep aspect ratio to the width.
+     * the top edge remains in position while the top adjusts to keep aspect ratio to the width.
      */
     private void adjustBottomByAspectRatio(RectF rect, float aspectRatio) {
         rect.bottom = rect.top + rect.width() / aspectRatio;

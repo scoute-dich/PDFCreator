@@ -203,12 +203,12 @@ public class CropImageOptions implements Parcelable {
     private final Uri outputUri;
 
     /**
-     * the compression format to use when writting the image
+     * the compression format to use when writing the image
      */
     private final Bitmap.CompressFormat outputCompressFormat;
 
     /**
-     * the quility (if applicable) to use when writting the image (0 - 100)
+     * the quality (if applicable) to use when writing the image (0 - 100)
      */
     private final int outputCompressQuality;
 
@@ -248,7 +248,7 @@ public class CropImageOptions implements Parcelable {
     private final boolean allowCounterRotation;
 
     /**
-     * the amount of degreees to rotate clockwise or counter-clockwise
+     * the amount of degrees to rotate clockwise or counter-clockwise
      */
     private final int rotationDegrees;
 

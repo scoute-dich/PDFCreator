@@ -12,16 +12,4 @@
         android:title="@string/crop_image_menu_rotate_left"
         app:showAsAction="ifRoom"/>
 
-    <item
-        android:id="@+id/action_folder"
-        android:orderInCategory="100"
-        android:title="@string/action_folder"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-
 </menu>

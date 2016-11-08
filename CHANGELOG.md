@@ -1,4 +1,10 @@
-### v 1.0.3
+### v 2.0
+- Android N support
+- File chooser dialog
+- lint corrections
+- xml icons
+
+### v 1.1
 
 - updated iText
 - maintenance release

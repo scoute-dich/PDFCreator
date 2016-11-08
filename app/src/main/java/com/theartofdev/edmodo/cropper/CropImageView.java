@@ -57,7 +57,7 @@ public class CropImageView extends FrameLayout {
     private final CropOverlayView mCropOverlayView;
 
     /**
-     * The matrix used to transform the cripping image in the image view
+     * The matrix used to transform the cropping image in the image view
      */
     private final Matrix mImageMatrix = new Matrix();
 
@@ -72,7 +72,7 @@ public class CropImageView extends FrameLayout {
     private final ProgressBar mProgressBar;
 
     /**
-     * Rectengale used in image matrix transformation calculation (reusing rect instance)
+     * Rectangle used in image matrix transformation calculation (reusing rect instance)
      */
     private final float[] mImagePoints = new float[8];
 
@@ -266,7 +266,7 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Get the amount of degrees the cropping image is rotated cloackwise.<br>
+     * Get the amount of degrees the cropping image is rotated clockwise.<br>
      *
      * @return 0-360
      */
@@ -275,7 +275,7 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Set the amount of degrees the cropping image is rotated cloackwise.<br>
+     * Set the amount of degrees the cropping image is rotated clockwise.<br>
      *
      * @param degrees 0-360
      */
@@ -980,7 +980,7 @@ public class CropImageView extends FrameLayout {
 
     /**
      * Adjust the given image rectangle by image transformation matrix to know the final rectangle of the image.<br>
-     * To get the proper rectangle it must be first reset to orginal image rectangle.
+     * To get the proper rectangle it must be first reset to original image rectangle.
      */
     private void mapImagePointsByImageMatrix() {
         mImagePoints[0] = 0;
@@ -1077,7 +1077,7 @@ public class CropImageView extends FrameLayout {
 
         /**
          * Scale the image uniformly (maintain the image's aspect ratio) to fit in crop image view.<br>
-         * The largest dimension will be equals to crop image viee and the second dimension will be smaller.
+         * The largest dimension will be equals to crop image view and the second dimension will be smaller.
          */
         FIT_CENTER,
 

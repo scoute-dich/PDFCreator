@@ -29,13 +29,14 @@
     <string name="toast_wait">Images successfully created. Open folder?</string>
     <string name="toast_successfully_not">An error occurred.</string>
     <string name="toast_open">Open?</string>
-    <string name="toast_install_pdf">Please install a PDF reader.</string>
-    <string name="toast_install_folder">Please install a file manager.</string>
+    <string name="toast_install_app">Please install an app to perform action.</string>
     <string name="toast_noImage">Please choose an image.</string>
-    <string name="toast_noPDF">Please choose or create a PDF file.</string>
+    <string name="toast_noPDF">Choose or create a PDF file.</string>
     <string name="toast_noText">Please enter text.</string>
     <string name="toast_savedImage">Please wait. Saving image.</string>
     <string name="toast_notAgain">Do not show again</string>
+    <string name="toast_extension">No supported file extension.</string>
+    <string name="toast_file">Please select a file.</string>
 
 
     // Main menu

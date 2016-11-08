@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -17,9 +18,8 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.util.Linkify;
+import android.support.v4.content.FileProvider;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -43,8 +43,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import de.baumann.pdfcreator.ActivityEditor;
+import de.baumann.pdfcreator.helper.ActivityEditor;
 import de.baumann.pdfcreator.R;
+import de.baumann.pdfcreator.helper.Helper;
 
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -67,6 +68,24 @@ public class add_image extends Fragment {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         final String imgQuality = sharedPref.getString("imageQuality", "80");
         imgquality_int = Integer.parseInt(imgQuality);
+
+        final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
+        assert swipeView != null;
+        swipeView.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent);
+        swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
+                if(imgFile.exists()){
+                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                    img.setImageBitmap(myBitmap);
+                    swipeView.setRefreshing(false);
+                } else {
+                    img.setImageResource(R.drawable.image);
+                    swipeView.setRefreshing(false);
+                }
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setImageResource(R.drawable.ic_plus_white_48dp);
@@ -133,7 +152,6 @@ public class add_image extends Fragment {
                     Intent intent = new Intent(getActivity(), com.theartofdev.edmodo.cropper.sample.MainActivity.class);
                     startActivity(intent);
                     getActivity().overridePendingTransition(0, 0);
-                    getActivity().finish();
                 } else {
                     Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
@@ -157,7 +175,6 @@ public class add_image extends Fragment {
                     Intent intent = new Intent(getActivity(), ActivityEditor.class);
                     startActivity(intent);
                     getActivity().overridePendingTransition(0, 0);
-                    getActivity().finish();
                 } else {
                     Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
@@ -278,17 +295,7 @@ public class add_image extends Fragment {
                                     folder + title + ".pdf");
 
                             File file = new File(path);
-                            Intent target = new Intent(Intent.ACTION_VIEW);
-                            target.setDataAndType(Uri.fromFile(file),"application/pdf");
-                            target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-
-                            try {
-                                startActivity(target);
-                            } catch (ActivityNotFoundException e) {
-                                // Instruct the user to install a PDF reader here, or something
-                                Snackbar.make(img, getString(R.string.toast_install_pdf), Snackbar.LENGTH_LONG)
-                                        .setAction("Action", null).show();
-                            }
+                            Helper.openFile(getActivity(), file, "application/pdf", img);
                         }
                     });
             snackbar.show();
@@ -408,17 +415,7 @@ public class add_image extends Fragment {
                                 folder + title + ".pdf");
 
                         File file = new File(path);
-                        Intent target = new Intent(Intent.ACTION_VIEW);
-                        target.setDataAndType(Uri.fromFile(file),"application/pdf");
-                        target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-
-                        try {
-                            startActivity(target);
-                        } catch (ActivityNotFoundException e) {
-                            // Instruct the user to install a PDF reader here, or something
-                            Snackbar.make(img, getString(R.string.toast_install_pdf), Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
-                        }
+                        Helper.openFile(getActivity(), file, "application/pdf", img);
                     }
                 });
         snackbar.show();
@@ -436,8 +433,19 @@ public class add_image extends Fragment {
                 if (options[item].equals(getString(R.string.goal_camera))) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     File f = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-                    startActivityForResult(intent, 1);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        Uri contentUri = FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", f);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+                    } else {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                    }
+
+                    try {
+                        startActivityForResult(intent, 1);
+                    } catch (ActivityNotFoundException e) {
+                        Snackbar.make(img, R.string.toast_install_app, Snackbar.LENGTH_LONG).show();
+                    }
 
                 } else if (options[item].equals(getString(R.string.goal_gallery))) {
                     Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -663,12 +671,9 @@ public class add_image extends Fragment {
         switch (item.getItemId()) {
             case R.id.action_help:
 
-                final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.dialog_addImage)));
-                Linkify.addLinks(s, Linkify.WEB_URLS);
-
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.add_image)
-                        .setMessage(s)
+                        .setMessage(Helper.textSpannable(getString(R.string.dialog_addImage)))
                         .setPositiveButton(getString(R.string.toast_yes), null);
                 dialog.show();
                 return true;

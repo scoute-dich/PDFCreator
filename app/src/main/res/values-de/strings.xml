@@ -30,13 +30,14 @@
     <string name="toast_wait">Bilder erstellt. Ordner öffnen?</string>
     <string name="toast_successfully_not">Es ist ein Fehler passiert.</string>
     <string name="toast_open">Öffnen?</string>
-    <string name="toast_install_pdf">Bitte einen PDF Reader installieren.</string>
-    <string name="toast_install_folder">Bitte einen Dateimanager installieren..</string>
+    <string name="toast_install_app">Bitte eine App installieren um die Aktion auszuführen.</string>
     <string name="toast_noImage">Bitte ein Bild auswählen.</string>
-    <string name="toast_noPDF">Bitte eine PDF-Datei auswählen oder erstellen.</string>
+    <string name="toast_noPDF">PDF-Datei auswählen oder erstellen.</string>
     <string name="toast_noText">Bitte Text eingeben.</string>
     <string name="toast_savedImage">Bitte warten. Bild wird gespeichert.</string>
     <string name="toast_notAgain">Nicht mehr anzeigen</string>
+    <string name="toast_extension">Keine unterstützte Dateiendung.</string>
+    <string name="toast_file">Bitte eine Datei auswählen.</string>
 
 
     // Main menu

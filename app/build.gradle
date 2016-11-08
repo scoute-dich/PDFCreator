@@ -7,9 +7,9 @@ android {
     defaultConfig {
         applicationId "de.baumann.pdfcreator"
         minSdkVersion 19
-        targetSdkVersion 23
-        versionCode 5
-        versionName "1.1"
+        targetSdkVersion 25
+        versionCode 6
+        versionName "2.0"
     }
     buildTypes {
         release {
@@ -30,4 +30,5 @@ dependencies {
     compile 'com.itextpdf:itextpdf:5.5.10'
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+    compile 'com.4ert:sfcdialog:0.1.1'
 }
