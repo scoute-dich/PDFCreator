@@ -1,3 +1,6 @@
+### v 2.1
+- file chooser
+
 ### v 2.0
 - Android N support
 - File chooser dialog

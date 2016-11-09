@@ -16,11 +16,11 @@ import android.text.util.Linkify;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 
-import com.keenfin.sfcdialog.SimpleFileChooser;
 
 import java.io.File;
 
 import de.baumann.pdfcreator.R;
+import filechooser.ChooserDialog;
 
 public class Helper {
 
@@ -51,56 +51,137 @@ public class Helper {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         String folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
 
-        SimpleFileChooser sfcDialog = new SimpleFileChooser();
-        sfcDialog.setRootPath(Environment.getExternalStorageDirectory() + folder);
+        new ChooserDialog().with(activity)
+                .withStartFile(Environment.getExternalStorageDirectory() + folder)
+                .withChosenListener(new ChooserDialog.Result() {
+                    @Override
+                    public void onChoosePath(File pathFile) {
+                        String fileExtension = MimeTypeMap.getFileExtensionFromUrl(pathFile.toString().replace(" ", ""));
+                        String text = (activity.getString(R.string.toast_extension) + ": " + fileExtension);
 
-        sfcDialog.setOnChosenListener(new SimpleFileChooser.SimpleFileChooserListener() {
-            @Override
-            public void onFileChosen(File file) {
-                // File is chosen
+                        if(fileExtension != null) {
+                            //do something else
+                            switch (fileExtension) {
+                                case "gif":
+                                case "bmp":
+                                case "tiff":
+                                case "svg":
+                                case "png":
+                                case "jpg":
+                                case "jpeg":
+                                    Helper.openFile(activity, pathFile, "image/*", view);
+                                    break;
+                                case "m3u8":
+                                case "mp3":
+                                case "wma":
+                                case "midi":
+                                case "wav":
+                                case "aac":
+                                case "aif":
+                                case "amp3":
+                                case "weba":
+                                    Helper.openFile(activity, pathFile, "audio/*", view);
+                                    break;
+                                case "mpeg":
+                                case "mp4":
+                                case "ogg":
+                                case "webm":
+                                case "qt":
+                                case "3gp":
+                                case "3g2":
+                                case "avi":
+                                case "f4v":
+                                case "flv":
+                                case "h261":
+                                case "h263":
+                                case "h264":
+                                case "asf":
+                                case "wmv":
+                                    Helper.openFile(activity, pathFile, "video/*", view);
+                                    break;
+                                case "rtx":
+                                case "csv":
+                                case "txt":
+                                case "vcs":
+                                case "vcf":
+                                case "css":
+                                case "html":
+                                case "ics":
+                                case "conf":
+                                case "java":
+                                    Helper.openFile(activity, pathFile, "text/*", view);
+                                    break;
+                                case "apk":
+                                    Helper.openFile(activity, pathFile, "application/vnd.android.package-archive", view);
+                                    break;
+                                case "pdf":
+                                    Helper.openFile(activity, pathFile, "application/pdf", view);
+                                    break;
+                                case "doc":
+                                    Helper.openFile(activity, pathFile, "application/msword", view);
+                                    break;
+                                case "xls":
+                                    Helper.openFile(activity, pathFile, "application/vnd.ms-excel", view);
+                                    break;
+                                case "ppt":
+                                    Helper.openFile(activity, pathFile, "application/vnd.ms-powerpoint", view);
+                                    break;
+                                case "docx":
+                                    Helper.openFile(activity, pathFile, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", view);
+                                    break;
+                                case "pptx":
+                                    Helper.openFile(activity, pathFile, "application/vnd.openxmlformats-officedocument.presentationml.presentation", view);
+                                    break;
+                                case "xlsx":
+                                    Helper.openFile(activity, pathFile, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", view);
+                                    break;
+                                case "odt":
+                                    Helper.openFile(activity, pathFile, "application/vnd.oasis.opendocument.text", view);
+                                    break;
+                                case "ods":
+                                    Helper.openFile(activity, pathFile, "application/vnd.oasis.opendocument.spreadsheet", view);
+                                    break;
+                                case "odp":
+                                    Helper.openFile(activity, pathFile, "application/vnd.oasis.opendocument.presentation", view);
+                                    break;
+                                case "zip":
+                                    Helper.openFile(activity, pathFile, "application/zip", view);
+                                    break;
+                                case "rar":
+                                    Helper.openFile(activity, pathFile, "application/x-rar-compressed", view);
+                                    break;
+                                case "epub":
+                                    Helper.openFile(activity, pathFile, "application/epub+zip", view);
+                                    break;
+                                case "cbz":
+                                    Helper.openFile(activity, pathFile, "application/x-cbz", view);
+                                    break;
+                                case "cbr":
+                                    Helper.openFile(activity, pathFile, "application/x-cbr", view);
+                                    break;
+                                case "fb2":
+                                    Helper.openFile(activity, pathFile, "application/x-fb2", view);
+                                    break;
+                                case "rtf":
+                                    Helper.openFile(activity, pathFile, "application/rtf", view);
+                                    break;
+                                case "opml":
+                                    Helper.openFile(activity, pathFile, "application/opml", view);
+                                    break;
 
-                String fileExtension = MimeTypeMap.getFileExtensionFromUrl(file.toString().replace(" ", ""));
+                                default:
+                                    Snackbar.make(view, text, Snackbar.LENGTH_LONG).show();
+                                    break;
+                            }
+                        } else {
+                            //do something else
+                            Snackbar.make(view, R.string.toast_extension, Snackbar.LENGTH_LONG).show();
+                        }
 
-                switch (fileExtension) {
-                    case "pdf":
-                        Helper.openFile(activity, file, "application/pdf", view);
-                        break;
-                    case "jpeg":
-                    case "jpg":
-                    case "png":
-                        Helper.openFile(activity, file, "image/*", view);
-                        break;
-                    case "odt":
-                    case "txt":
-                    case "html":
-                    case "docx":
-                    case "doc":
-                        Helper.openFile(activity, file, "text/*", view);
-                        break;
-                    case "ogg":
-                    case "wav":
-                    case "mp3":
-                        Helper.openFile(activity, file, "audio/*", view);
-                        break;
-                    default:
-                        Snackbar.make(view, R.string.toast_extension, Snackbar.LENGTH_LONG).show();
-                        break;
-                }
-            }
-
-            @Override
-            public void onDirectoryChosen(File directory) {
-                // Directory is chosen
-                Snackbar.make(view, R.string.toast_file, Snackbar.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onCancel() {
-                // onCancel
-            }
-        });
-
-        sfcDialog.show(activity.getFragmentManager(), "SimpleFileChooserDialog");
+                    }
+                })
+                .build()
+                .show();
     }
 
     public static SpannableString textSpannable (String text) {

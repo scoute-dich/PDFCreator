@@ -37,7 +37,6 @@
     <string name="toast_savedImage">Bitte warten. Bild wird gespeichert.</string>
     <string name="toast_notAgain">Nicht mehr anzeigen</string>
     <string name="toast_extension">Keine unterstützte Dateiendung.</string>
-    <string name="toast_file">Bitte eine Datei auswählen.</string>
 
 
     // Main menu
@@ -167,5 +166,12 @@
     <string name="app_title_2">Speichere Bild …</string>
     <string name="crop_image_menu_rotate_left">Nach links drehen</string>
     <string name="crop_image_menu_rotate_right">Nch rechts drehen</string>
+
+
+    //File chooser
+
+    <string name="title_choose">Auswählen</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="choose_file">Datei auswählen</string>
 
 </resources>

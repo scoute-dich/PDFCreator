@@ -36,7 +36,6 @@
     <string name="toast_savedImage">しばらくお待ちください。画像の保存中。</string>
     <string name="toast_notAgain">今後表示しない</string>
     <string name="toast_extension">No supported file extension.</string>
-    <string name="toast_file">Please select a file.</string>
 
 
     // Main menu
@@ -164,5 +163,12 @@
     <string name="app_title_2">画像の保存中 …</string>
     <string name="crop_image_menu_rotate_left">左に回転</string>
     <string name="crop_image_menu_rotate_right">右に回転</string>
+
+
+    //File chooser
+
+    <string name="title_choose">Choose</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="choose_file">Select a file</string>
 
 </resources>

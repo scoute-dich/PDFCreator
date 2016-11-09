@@ -36,7 +36,6 @@
     <string name="toast_savedImage">Please wait. Saving image.</string>
     <string name="toast_notAgain">Do not show again</string>
     <string name="toast_extension">No supported file extension.</string>
-    <string name="toast_file">Please select a file.</string>
 
 
     // Main menu
@@ -164,5 +163,12 @@
     <string name="app_title_2">Saving image …</string>
     <string name="crop_image_menu_rotate_left">Rotate left</string>
     <string name="crop_image_menu_rotate_right">Rotate right</string>
+
+
+    //File chooser
+
+    <string name="title_choose">Choose</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="choose_file">Select a file</string>
 
 </resources>
