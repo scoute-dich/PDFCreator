@@ -612,7 +612,9 @@ public class add_text extends Fragment {
                 .setAction(getString(R.string.toast_yes), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Helper.openFilePicker(getActivity(), edit);
+                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                        String folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
+                        Helper.openFilePicker(getActivity(), edit, Environment.getExternalStorageDirectory() + folder);
                     }
                 });
         snackbar.show();

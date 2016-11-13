@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     //License Dialog
 
-    <string name="about_title" translatable="false" tools:ignore="ExtraTranslation">Copyright © 2016  by Gaukler Faun</string>
-    <string name="about_text" translatable="false" tools:ignore="ExtraTranslation">
+    <string name="about_title">Copyright © 2016  by Gaukler Faun</string>
+    <string name="about_text" >
         &lt;i>Besuche für mehr Informationen die Projektseite auf Github:&lt;br>
         https://github.com/scoute-dich/PDFCreator&lt;/i>&lt;br>&lt;br>
 
@@ -42,7 +42,7 @@
 
     //Help Dialog
 
-    <string name="dialog_help" translatable="false" tools:ignore="ExtraTranslation">
+    <string name="dialog_help">
         Du erreichst einen Hilfe Dialog in jedem Tab, indem du \"Menu -> Hilfe\" drückst.&lt;br>&lt;br>
 
         &lt;b>Menu&lt;/b>&lt;br>
@@ -61,7 +61,7 @@
 
     //Create image Dialog
 
-    <string name="dialog_createImage" translatable="false" tools:ignore="ExtraTranslation">
+    <string name="dialog_createImage">
 
         &lt;b>Was kann ich hier tun?&lt;/b>&lt;br>
         Hier kannst du eine PDF-Datei von einem Bild erstellen.&lt;br>&lt;br>
@@ -69,10 +69,10 @@
         &lt;b>Knöpfe&lt;/b>&lt;br>
         &lt;i>Von oben nach unten auf der rechten Seite.&lt;/i>&lt;br>&lt;br>
 
-        &#8226; &lt;i>Kamera:&lt;/i> du kannst ein Bild  aus der Gallerie aussuchen oder ein neues mit der Kamera machen.&lt;br>
+        &#8226; &lt;i>Kamera:&lt;/i> du kannst ein Bild  aus der Galerie aussuchen oder ein neues mit der Kamera machen.&lt;br>
         &#8226; &lt;i>Zuschneiden:&lt;/i> du kannst das Bild zuschneiden oder drehen.&lt;br>
         &#8226; &lt;i>Bearbeiten:&lt;/i> mache ein paar kleine Verbesserungen. Nachdem du einen Effekt angewendet hast, must du
-        jedesmal speichern. Nach dem Bearbeiten den FAB-Knopf drücken um zum Hauptschirm zurück zu kehren.&lt;br>
+        jedesmal speichern. Nach dem Bearbeiten den FAB-Knopf drücken um zum Hauptschirm zurückzukehren.&lt;br>
         &#8226; &lt;i>FAB (pink):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
@@ -84,7 +84,7 @@
 
     //Add image Dialog
 
-    <string name="dialog_addImage" translatable="false" tools:ignore="ExtraTranslation">
+    <string name="dialog_addImage">
 
         &lt;b>Was kann ich hier tun?&lt;/b>&lt;br>
         Hier kannst du Bilder zu einer bestehenden PDF-Datei hinzufügen.&lt;br>&lt;br>
@@ -92,10 +92,10 @@
         &lt;b>Knöpfe&lt;/b>&lt;br>
         &lt;i>Von oben nach unten auf der rechten Seite.&lt;/i>&lt;br>&lt;br>
 
-        &#8226; &lt;i>Kamera:&lt;/i> du kannst ein Bild  aus der Gallerie aussuchen oder ein neues mit der Kamera machen.&lt;br>
+        &#8226; &lt;i>Kamera:&lt;/i> du kannst ein Bild  aus der Galerie aussuchen oder ein neues mit der Kamera machen.&lt;br>
         &#8226; &lt;i>Zuschneiden:&lt;/i> du kannst das Bild zuschneiden oder drehen.&lt;br>
         &#8226; &lt;i>Bearbeiten:&lt;/i> mache ein paar kleine Verbesserungen. Nachdem du einen Effekt angewendet hast, must du
-        jedesmal speichern. Nach dem Bearbeiten den FAB-Knopf drücken um zum Hauptschirm zurück zu kehren.&lt;br>
+        jedesmal speichern. Nach dem Bearbeiten den FAB-Knopf drücken um zum Hauptschirm zurückzukehren.&lt;br>
         &#8226; &lt;i>PDF:&lt;/i> suche dir eine PDF-Datei zum Bearbeiten aus.&lt;br>
         &#8226; &lt;i>FAB (pink):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
@@ -108,7 +108,7 @@
 
     //Create text Dialog
 
-    <string name="dialog_createText" translatable="false" tools:ignore="ExtraTranslation">
+    <string name="dialog_createText">
 
         &lt;b>Was kann ich hier tun?&lt;/b>&lt;br>
          Hier kannst du eine PDF-Datei mit Text als Inhalt erstellen.&lt;br>&lt;br>
@@ -124,7 +124,7 @@
 
     //Add text Dialog
 
-    <string name="dialog_addText" translatable="false" tools:ignore="ExtraTranslation">
+    <string name="dialog_addText">
 
         &lt;b>Was kann ich hier tun?&lt;/b>&lt;br>
         Hier kannst du eine PDF-Seite mit Text zu einer bestehenden PDF-Datei hinzufügen.

@@ -1,5 +1,9 @@
-### v 2.1
-- file chooser
+### v 2.2
+- file chooser improvements
+- mind SDK 17
+
+### v 2.1/2.1.1
+- file chooser improvements
 
 ### v 2.0
 - Android N support

@@ -3,12 +3,17 @@
     // App
 
     <string name="app_name">PDF Creator</string>
-    <string name="app_permissions">PDF ファイルを保存するために \"ストレージのアクセス許可\" を付与する必要があります。 その後
-        アプリを完全に閉じるか、電話を再起動する必要があります。 ストレージのアクセスを許可しないで、スクリーンショットの機能を
-        後で使用する場合は、後でアクセス許可を付与することもできます。 システム設定 - アプリ - weather を開いて、
-        アクセス許可のセクションで \"ストレージの書き込みアクセス許可\" 付与することができます。</string>
+    <string name="app_permissions_title">Used permissions</string>
+    <string name="app_permissions">
+
+        &lt;i>Access Storage Permission:&lt;/i>&lt;br>
+        Used to read files (images) from sd-card and save pdf-files.&lt;br>&lt;br>
+
+        &lt;i>Grant permission later:&lt;/i>&lt;br>
+        If you don\'t permit this now, you can do it later. Please open then \"Settings -> App info\" and choose \"Permissions\".</string>
     <string name="app_portrait">縦向き</string>
     <string name="app_landscape">横向き</string>
+    <string name="app_share_file">Choose file with:</string>
 
 
     // App titles
@@ -35,7 +40,7 @@
     <string name="toast_noText">テキストを入力してください。</string>
     <string name="toast_savedImage">しばらくお待ちください。画像の保存中。</string>
     <string name="toast_notAgain">今後表示しない</string>
-    <string name="toast_extension">No supported file extension.</string>
+    <string name="toast_extension">No supported file extension</string>
 
 
     // Main menu
@@ -169,6 +174,13 @@
 
     <string name="title_choose">Choose</string>
     <string name="dialog_cancel">Cancel</string>
-    <string name="choose_file">Select a file</string>
+
+    <string name="choose_menu_1">Open</string>
+    <string name="choose_menu_2">Share</string>
+    <string name="choose_menu_3">Rename</string>
+    <string name="choose_menu_4">Delete</string>
+
+    <string name="choose_hint">New filename (without file extension)</string>
+    <string name="choose_delete">Do you really want to delete the file?</string>
 
 </resources>

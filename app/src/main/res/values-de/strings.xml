@@ -3,13 +3,18 @@
     // App
 
     <string name="app_name">PDF Creator</string>
-    <string name="app_permissions">Du musst der App Zugriff auf den Gerätespeicher gewähren, um PDF-DAteien zu
-        speichern. Danach solltest du die Anwendung komplett schließen oder das Telefon neu starten.
-        Wenn du den Zugriff verweigerst und die Funktion später doch nutzen willst, kannst du die Berechtigung
-        nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - Wetter. Im Bereich Berechtigungen kannst
-        dann die entsprechende Einstellung vornehmen..</string>
+    <string name="app_permissions_title">Verlangte Berechtigungen</string>
+    <string name="app_permissions">
+
+        &lt;i>Zugriff auf SD Karte:&lt;/i>&lt;br>
+        Wird gebraucht um Dateien (Bilder) von der SD-Karte zu lesen und PDF-Dateien zu speichern.&lt;br>&lt;br>
+
+        &lt;i>Berechtigung nachträglich erteilen:&lt;/i>&lt;br>
+        Wenn du die Brechtigung verweigerst, kannst du sie nachträglich erteilen, indem du \"Einstellungen -> App Info\" öffnest und
+        dort den Bereich \"Berechtigungen\" auswählst.</string>
     <string name="app_portrait">Hochformat</string>
     <string name="app_landscape">Querformat</string>
+    <string name="app_share_file">Datei teilen mit:</string>
 
 
     // App titles
@@ -36,7 +41,7 @@
     <string name="toast_noText">Bitte Text eingeben.</string>
     <string name="toast_savedImage">Bitte warten. Bild wird gespeichert.</string>
     <string name="toast_notAgain">Nicht mehr anzeigen</string>
-    <string name="toast_extension">Keine unterstützte Dateiendung.</string>
+    <string name="toast_extension">Keine unterstützte Dateiendung</string>
 
 
     // Main menu
@@ -147,7 +152,6 @@
     <string name="pref_notShow_title">Hilfe Dialog</string>
     <string name="pref_notShow_title_summary">Hilfe Dialog beim Start anzeigen.</string>
 
-
     <string-array name="listArrayImage">
         <item>Hoch (100%)</item>
         <item>Normal (80%)</item>
@@ -165,13 +169,20 @@
 
     <string name="app_title_2">Speichere Bild …</string>
     <string name="crop_image_menu_rotate_left">Nach links drehen</string>
-    <string name="crop_image_menu_rotate_right">Nch rechts drehen</string>
+    <string name="crop_image_menu_rotate_right">Nach rechts drehen</string>
 
 
     //File chooser
 
     <string name="title_choose">Auswählen</string>
     <string name="dialog_cancel">Abbrechen</string>
-    <string name="choose_file">Datei auswählen</string>
+
+    <string name="choose_menu_1">Öffnen</string>
+    <string name="choose_menu_2">Teilen</string>
+    <string name="choose_menu_3">Umbenennen</string>
+    <string name="choose_menu_4">Löschen</string>
+
+    <string name="choose_hint">Neuer Dateiname (ohne Dateiendung)</string>
+    <string name="choose_delete">Möchtest du die Datei wirklich löschen?</string>
 
 </resources>

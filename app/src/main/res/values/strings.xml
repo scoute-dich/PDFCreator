@@ -3,12 +3,16 @@
     // App
 
     <string name="app_name">PDF Creator</string>
-    <string name="app_permissions">You must grant \"Access Storage Permission\" to save pdf files. After that you should
-        completely close the app or restart the phone. If you don\'t permit the storage access but want to use the
-        screenshot function at a later time, you can grant the permission later. Please open then: system settings - apps -
-        PDFCreator. In the permissions section you can grant the \"write storage permission\".</string>
-    <string name="app_portrait">Portrait</string>
+    <string name="app_permissions_title">Used permissions</string>
+    <string name="app_permissions">
+
+        &lt;i>Access Storage Permission:&lt;/i>&lt;br>
+        Used to read files (images) from sd-card and save pdf-files.&lt;br>&lt;br>
+
+        &lt;i>Grant permission later:&lt;/i>&lt;br>
+        If you don\'t permit this now, you can do it later. Please open then \"Settings -> App info\" and choose \"Permissions\".</string>
     <string name="app_landscape">Landscape</string>
+    <string name="app_share_file">Choose file with:</string>
 
 
     // App titles
@@ -19,6 +23,7 @@
     <string name="add_text">+ text | …</string>
     <string name="app_title_edit">Edit image</string>
     <string name="app_title_crop">Crop image</string>
+    <string name="app_portrait">Portrait</string>
 
 
     // Snackbar // Toasts
@@ -35,7 +40,7 @@
     <string name="toast_noText">Please enter text.</string>
     <string name="toast_savedImage">Please wait. Saving image.</string>
     <string name="toast_notAgain">Do not show again</string>
-    <string name="toast_extension">No supported file extension.</string>
+    <string name="toast_extension">No supported file extension</string>
 
 
     // Main menu
@@ -145,6 +150,10 @@
     <string name="pref_notShow_title">Help dialog</string>
     <string name="pref_notShow_title_summary">Show the help dialog on start.</string>
 
+    <string name="action_openSettings" translatable="false">App info</string>
+    <string name="action_openSettings_summary" translatable="false">Open via the system settings the app info of the app. There you can,
+        depending on your Android version, manage several things (Storage, network traffic, permissions, …).</string>
+
     <string-array name="listArrayImage">
         <item>High (100%)</item>
         <item>Normal (80%)</item>
@@ -160,7 +169,7 @@
 
     //Image cropper
 
-    <string name="app_title_2">Saving image …</string>
+    <string name="app_title_2">Saving picture …</string>
     <string name="crop_image_menu_rotate_left">Rotate left</string>
     <string name="crop_image_menu_rotate_right">Rotate right</string>
 
@@ -169,6 +178,13 @@
 
     <string name="title_choose">Choose</string>
     <string name="dialog_cancel">Cancel</string>
-    <string name="choose_file">Select a file</string>
+
+    <string name="choose_menu_1">Open</string>
+    <string name="choose_menu_2">Share</string>
+    <string name="choose_menu_3">Rename</string>
+    <string name="choose_menu_4">Delete</string>
+
+    <string name="choose_hint">New filename (without file extension)</string>
+    <string name="choose_delete">Do you really want to delete the file?</string>
 
 </resources>

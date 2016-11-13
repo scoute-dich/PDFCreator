@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         String action = intent.getAction();
         String type = intent.getType();
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         boolean appStarted = sharedPref.getBoolean("appStarted", true);
 
         if (appStarted) {
@@ -111,24 +111,35 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (android.os.Build.VERSION.SDK_INT >= 23) {
-            int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            int hasWRITE_EXTERNAL_STORAGE = MainActivity.this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
-                if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                if (!MainActivity.this.shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
                     new AlertDialog.Builder(MainActivity.this)
-                            .setMessage(R.string.app_permissions)
-                            .setPositiveButton(getString(R.string.toast_yes), new DialogInterface.OnClickListener() {
+                            .setTitle(R.string.app_permissions_title)
+                            .setMessage(Helper.textSpannable(MainActivity.this.getString(R.string.app_permissions)))
+                            .setNeutralButton(R.string.toast_notAgain, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                    sharedPref.edit()
+                                            .putBoolean("perm_notShow", false)
+                                            .apply();
+                                }
+                            })
+                            .setPositiveButton(MainActivity.this.getString(R.string.toast_yes), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (android.os.Build.VERSION.SDK_INT >= 23)
-                                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        MainActivity.this.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                                 REQUEST_CODE_ASK_PERMISSIONS);
                                 }
                             })
-                            .setNegativeButton(getString(R.string.toast_cancel), null)
+                            .setNegativeButton(MainActivity.this.getString(R.string.toast_cancel), null)
                             .show();
                     return;
                 }
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                MainActivity.this.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQUEST_CODE_ASK_PERMISSIONS);
             }
         }
@@ -255,7 +266,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_folder) {
-            Helper.openFilePicker(MainActivity.this, viewPager);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            String folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
+            Helper.openFilePicker(MainActivity.this, viewPager, Environment.getExternalStorageDirectory() + folder);
         }
 
         if (id == R.id.action_settings) {

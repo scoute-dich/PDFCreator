@@ -1,11 +1,14 @@
 package de.baumann.pdfcreator.helper;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
@@ -34,6 +37,27 @@ public class UserSettingsActivity extends AppCompatActivity {
     }
 
     public static class SettingsFragment extends PreferenceFragment {
+
+        private void addOpenSettingsListener() {
+
+            final Activity activity = getActivity();
+            Preference reset = findPreference("settings");
+
+            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
+            {
+                public boolean onPreferenceClick(Preference pref)
+                {
+
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", activity.getPackageName(), null);
+                    intent.setData(uri);
+                    getActivity().startActivity(intent);
+
+                    return true;
+                }
+            });
+        }
 
         private void addLicenseListener() {
             Preference reset = findPreference("license");
@@ -64,6 +88,7 @@ public class UserSettingsActivity extends AppCompatActivity {
 
             addPreferencesFromResource(R.xml.user_settings);
             addLicenseListener();
+            addOpenSettingsListener();
         }
     }
 

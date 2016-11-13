@@ -30,6 +30,11 @@
             android:key="help_notShow"
             android:defaultValue="true" />
 
+        <Preference
+            android:title="@string/action_openSettings"
+            android:summary="@string/action_openSettings_summary"
+            android:key="settings" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
