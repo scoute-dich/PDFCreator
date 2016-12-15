@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         applicationId "de.baumann.pdfcreator"
+        vectorDrawables.useSupportLibrary = true
         minSdkVersion 17
         targetSdkVersion 25
         versionCode 8
@@ -25,8 +26,8 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:design:25.1.0'
     compile 'com.itextpdf:itextpdf:5.5.10'
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'

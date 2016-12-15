@@ -6,12 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,7 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.baumann.pdfcreator.helper.Helper;
+import de.baumann.pdfcreator.helper.helper_main;
 import de.baumann.pdfcreator.helper.UserSettingsActivity;
 import de.baumann.pdfcreator.pages.add_text;
 import de.baumann.pdfcreator.pages.create_image;
@@ -41,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
-    private String folder;
     private ViewPager viewPager;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,23 +59,18 @@ public class MainActivity extends AppCompatActivity {
         String action = intent.getAction();
         String type = intent.getType();
 
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        PreferenceManager.setDefaultValues(this, R.xml.user_settings, false);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         boolean appStarted = sharedPref.getBoolean("appStarted", true);
 
         if (appStarted) {
             if (Intent.ACTION_SEND.equals(action) && type != null) {
-                if (type.startsWith("image/")) {
-                    sharedPref.edit()
-                            .putInt("startFragment", 0)
-                            .apply(); // Handle single image being sent
+                if (type.startsWith("image2/")) {
+                    sharedPref.edit().putInt("startFragment", 0).apply();
                 } if (type.startsWith("text/")) {
-                    sharedPref.edit()
-                            .putInt("startFragment", 1)
-                            .apply(); // Handle text being sent
+                    sharedPref.edit().putInt("startFragment", 1).apply();
                 } else if (type.startsWith("application/pdf")) {
-                    sharedPref.edit()
-                            .putInt("startFragment", 3)
-                            .apply(); // Handle PDF being sent
+                    sharedPref.edit().putInt("startFragment", 3).apply();
                 }
             }
         }
@@ -95,16 +88,13 @@ public class MainActivity extends AppCompatActivity {
         if (show){
             final AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this)
                     .setTitle(R.string.app_name)
-                    .setMessage(Helper.textSpannable(getString(R.string.dialog_help)))
+                    .setMessage(helper_main.textSpannable(getString(R.string.dialog_help)))
                     .setPositiveButton(getString(R.string.toast_yes), null)
                     .setNegativeButton(getString(R.string.toast_notAgain), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplication());
                             dialog.cancel();
-                            sharedPref.edit()
-                                    .putBoolean("help_notShow", false)
-                                    .apply();
+                            sharedPref.edit().putBoolean("help_notShow", false).apply();
                         }
                     });
             dialog.show();
@@ -117,14 +107,12 @@ public class MainActivity extends AppCompatActivity {
 
                     new AlertDialog.Builder(MainActivity.this)
                             .setTitle(R.string.app_permissions_title)
-                            .setMessage(Helper.textSpannable(MainActivity.this.getString(R.string.app_permissions)))
+                            .setMessage(helper_main.textSpannable(MainActivity.this.getString(R.string.app_permissions)))
                             .setNeutralButton(R.string.toast_notAgain, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.cancel();
-                                    sharedPref.edit()
-                                            .putBoolean("perm_notShow", false)
-                                            .apply();
+                                    sharedPref.edit().putBoolean("perm_notShow", false).apply();
                                 }
                             })
                             .setPositiveButton(MainActivity.this.getString(R.string.toast_yes), new DialogInterface.OnClickListener() {
@@ -145,12 +133,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (sharedPref.getBoolean ("folderDef", false)){
-            sharedPref.edit()
-                    .putString("folder", "/Android/data/de.baumann.pdf/")
-                    .apply();
+            sharedPref.edit().putString("folder", "/Android/data/de.baumann.pdf/").apply();
         }
 
-        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
+        String folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
         File directory = new File(Environment.getExternalStorageDirectory() + folder + "/pdf_backups/");
         if (!directory.exists()) {
             directory.mkdirs();
@@ -163,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         int startFragment = sharedPref.getInt("startFragment", 0);
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -218,57 +203,9 @@ public class MainActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-        String title;
-        if (id == R.id.action_share) {
-
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            title = sharedPref.getString("title", null);
-            folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-            String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                    folder + title + ".pdf");
-
-            File pdfFile = new File(path);
-
-            if (pdfFile.exists()) {
-
-                String FileTitle = path.substring(path.lastIndexOf("/")+1);
-                String text = getString(R.string.action_share_Text);
-
-                Uri myUri= Uri.fromFile(new File(path));
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("application/pdf");
-                sharingIntent.putExtra(Intent.EXTRA_STREAM, myUri);
-                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, FileTitle);
-                sharingIntent.putExtra(Intent.EXTRA_TEXT, text + " " + FileTitle);
-                sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                startActivity(Intent.createChooser(sharingIntent, getString(R.string.action_share_with)));
-            } else {
-                Snackbar.make(viewPager, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
-            }
-        }
-
-        if (id == R.id.action_open) {
-
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            title = sharedPref.getString("title", null);
-            folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-            String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                    folder + title + ".pdf");
-
-            File pdfFile = new File(path);
-
-            if (pdfFile.exists()) {
-                File file = new File(path);
-                Helper.openFile(MainActivity.this, file, "application/pdf", viewPager);
-            } else {
-                Snackbar.make(viewPager, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
-            }
-        }
-
         if (id == R.id.action_folder) {
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
             String folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-            Helper.openFilePicker(MainActivity.this, viewPager, Environment.getExternalStorageDirectory() + folder);
+            helper_main.openFilePicker(MainActivity.this, viewPager, Environment.getExternalStorageDirectory() + folder);
         }
 
         if (id == R.id.action_settings) {
@@ -295,12 +232,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPref.edit()
-                .putInt("startFragment", 0)
-                .putBoolean("appStarted", true)
-                .apply();
+        sharedPref.edit().putInt("startFragment", 0).putBoolean("appStarted", true).apply();
         super.onBackPressed();
     }
 }

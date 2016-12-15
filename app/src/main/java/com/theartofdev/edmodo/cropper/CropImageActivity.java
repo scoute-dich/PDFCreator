@@ -23,12 +23,12 @@ import de.baumann.pdfcreator.R;
 public class CropImageActivity extends AppCompatActivity implements CropImageView.OnSetImageUriCompleteListener, CropImageView.OnSaveCroppedImageCompleteListener {
 
     /**
-     * The crop image view library widget used in the activity
+     * The crop image2 view library widget used in the activity
      */
     private CropImageView mCropImageView;
 
     /**
-     * the options that were set for the crop image
+     * the options that were set for the crop image2
      */
     private CropImageOptions mOptions;
 
@@ -102,7 +102,7 @@ public class CropImageActivity extends AppCompatActivity implements CropImageVie
 
 
     /**
-     * Result with cropped image data or error if failed.
+     * Result with cropped image2 data or error if failed.
      */
     private void setResult(Uri uri, Exception error) {
         int resultCode = error == null ? RESULT_OK : CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE;

@@ -12,7 +12,6 @@
 
 package com.theartofdev.edmodo.cropper.sample;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -65,13 +64,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .replace(R.id.container, MainFragment.newInstance())
                 .commit();
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, de.baumann.pdfcreator.MainActivity.class);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
-        finish();
     }
 }

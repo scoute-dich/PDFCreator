@@ -1,3 +1,8 @@
+### v 2.3 (WIP)
+- improved: Ui (dialogs, theme, icon)
+- improved: settings screen
+- added: automatically save edited pictures
+
 ### v 2.2
 - file chooser improvements
 - mind SDK 17

@@ -1,10 +1,30 @@
-package filechooser.internals;
+package de.baumann.pdfcreator.filechooser.internals;
 
+import java.io.File;
 import java.text.DecimalFormat;
 
+/**
+ * Created by coco on 6/7/15.
+ * Part of "android-file-chooser"
+ * modified by Gaukler Faun
+ */
 
 class FileUtil {
 
+
+    public static String getExtension(File file) {
+        if (file == null) {
+            return null;
+        }
+
+        int dot = file.getName().lastIndexOf(".");
+        if (dot >= 0) {
+            return file.getName().substring(dot);
+        } else {
+            // No extension.
+            return "";
+        }
+    }
 
     public static String getReadableFileSize(long size) {
         final int BYTES_IN_KILOBYTES = 1024;

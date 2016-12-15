@@ -30,7 +30,7 @@ import de.baumann.pdfcreator.*;
 public final class CropResultActivity extends AppCompatActivity {
 
     /**
-     * The image to show in the activity.
+     * The image2 to show in the activity.
      */
     static Bitmap mImage;
 
@@ -55,7 +55,7 @@ public final class CropResultActivity extends AppCompatActivity {
 
         File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
 
-        // Encode the file as a JPEG image.
+        // Encode the file as a JPEG image2.
         FileOutputStream outStream;
         try {
 

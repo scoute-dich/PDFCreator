@@ -52,36 +52,36 @@ final class CropWindowHandler {
     private float mMaxCropWindowHeight;
 
     /**
-     * Minimum width in pixels that the result of cropping an image can get,
+     * Minimum width in pixels that the result of cropping an image2 can get,
      * affects crop window width adjusted by width scale factor.
      */
     private float mMinCropResultWidth;
 
     /**
-     * Minimum height in pixels that the result of cropping an image can get,
+     * Minimum height in pixels that the result of cropping an image2 can get,
      * affects crop window height adjusted by height scale factor.
      */
     private float mMinCropResultHeight;
 
     /**
-     * Maximum width in pixels that the result of cropping an image can get,
+     * Maximum width in pixels that the result of cropping an image2 can get,
      * affects crop window width adjusted by width scale factor.
      */
     private float mMaxCropResultWidth;
 
     /**
-     * Maximum height in pixels that the result of cropping an image can get,
+     * Maximum height in pixels that the result of cropping an image2 can get,
      * affects crop window height adjusted by height scale factor.
      */
     private float mMaxCropResultHeight;
 
     /**
-     * The width scale factor of shown image and actual image
+     * The width scale factor of shown image2 and actual image2
      */
     private float mScaleFactorWidth = 1;
 
     /**
-     * The height scale factor of shown image and actual image
+     * The height scale factor of shown image2 and actual image2
      */
     private float mScaleFactorHeight = 1;
     //endregion
@@ -123,21 +123,21 @@ final class CropWindowHandler {
     }
 
     /**
-     * get the scale factor (on width) of the shown image to original image.
+     * get the scale factor (on width) of the shown image2 to original image2.
      */
     public float getScaleFactorWidth() {
         return mScaleFactorWidth;
     }
 
     /**
-     * get the scale factor (on height) of the shown image to original image.
+     * get the scale factor (on height) of the shown image2 to original image2.
      */
     public float getScaleFactorHeight() {
         return mScaleFactorHeight;
     }
 
     /**
-     * set the max width/height and scale factor of the shown image to original image to scale the limits
+     * set the max width/height and scale factor of the shown image2 to original image2 to scale the limits
      * appropriately.
      */
     public void setCropWindowLimits(float maxWidth, float maxHeight, float scaleFactorWidth, float scaleFactorHeight) {
@@ -348,8 +348,8 @@ final class CropWindowHandler {
 
     /**
      * Determines if the cropper should focus on the center handle or the side
-     * handles. If it is a small image, focus on the center handle so the user
-     * can move it. If it is a large image, focus on the side handles so user
+     * handles. If it is a small image2, focus on the center handle so the user
+     * can move it. If it is a large image2, focus on the side handles so user
      * can grab them. Corresponds to the appearance of the
      * RuleOfThirdsGuidelines.
      *

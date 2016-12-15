@@ -46,6 +46,7 @@ public class GPUImageFilterTools {
         filters.addFilter(context.getString(R.string.filter_10), FilterType.LEVELS_FILTER_MIN);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.choose_filter);
         builder.setItems(filters.names.toArray(new String[filters.names.size()]),
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -54,6 +55,7 @@ public class GPUImageFilterTools {
                                 createFilterForType(filters.filters.get(item)));
                     }
                 });
+        builder.setPositiveButton(context.getString(R.string.dialog_cancel), null);
         builder.create().show();
     }
 

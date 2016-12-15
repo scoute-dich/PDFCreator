@@ -41,6 +41,8 @@
     <string name="toast_savedImage">Please wait. Saving image.</string>
     <string name="toast_notAgain">Do not show again</string>
     <string name="toast_extension">No supported file extension</string>
+    <string name="toast_edited">Image was edited. Saving?</string>
+    <string name="toast_no">No</string>
 
 
     // Main menu
@@ -67,15 +69,12 @@
     <string name="add_text_delete">Delete pages</string>
     <string name="add_text_delete_hint">Which pages do you want to keep?</string>
     <string name="add_text_hint_enterText">Write or paste text</string>
-    <string name="add_text_PW">Enter new user password</string>
-    <string name="add_text_PW_hint">Needed to open the encrypted PDF file.</string>
 
 
     // Image fragment
 
     <string name="goal_gallery">Choose from gallery</string>
     <string name="goal_camera">Take photo</string>
-    <string name="goal_cancel">Cancel</string>
 
 
     // Editor
@@ -93,12 +92,25 @@
     <string name="filter_10">Levels Min (Mid Adjust)</string>
 
 
+    // Dialogs
+
+    <string name="dialog_encryption_hint_ownerPW">Owner password</string>
+    <string name="dialog_encryption_hint_userPW">User password</string>
+    <string name="choose_file">Choose file</string>
+    <string name="choose_title">Edit filename</string>
+    <string name="confirm">Confirmation</string>
+    <string name="choose_filter">Choose filter</string>
+    <string name="choose_chooser">Open file chooser</string>
+
+
+
     // Settings
 
     <string name="settings_prefApp">About the app</string>
     <string name="settings_prefDir">App directory</string>
     <string name="settings_prefEnc">Encryption</string>
     <string name="settings_prefData">Document data</string>
+    <string name="settings_prefMeta">Metadata</string>
 
     <string name="pref_license">License</string>
     <string name="pref_license_summary">The app is completely open source and licensed under GPL3.</string>
@@ -109,39 +121,32 @@
     <string name="pref_backup">Backup</string>
     <string name="pref_backup_summary">Do you want to backup pdf files before manipulating, e.g. deleting or adding pages?</string>
 
-    <string name="pref_folderDef">Default directory</string>
-    <string name="pref_folderDef_summary">Use the default directory: \"/Android/data/de.baumann.pdf/\".</string>
-
     <string name="pref_folder">Custom directory</string>
-    <string name="pref_folder_summary">Change the default app directory, where new PDF files and backups will be saved. Enter the path
+    <string name="pref_folder_summary">Let empty to use the default directory (\"/Android/data/de.baumann.pdf/\").
+        Change the default app directory, where new PDF files and backups will be saved. Enter the path
         to your desired folder on your sdcard. The path must begin and end with \"/\" like \"/Download/PDF/\".
         If the desired directory does not exist, it will be generated automatically.</string>
-    <string name="pref_folder_hint">/Download/PDF/…</string>
 
-    <string name="pref_pwUSER">User password</string>
-    <string name="pref_pwUSER_summary">Set the user password for PDF files. It is used to open the PDF file after
-        encryption. Copy and printing is still allowed after decryption. It can be changed by long pressing the encryption icon
-        in the \"+text | …\" tab.</string>
+    <string name="pref_pwOWNER_summary">Set the owner and user password to encrypt PDF files. If somebody wants to edit the file
+        later, he needs the owner password. The user password is used to open the PDF file after encryption. Copy and printing is
+        still allowed after decryption. Both passwords can be changed by long pressing the encryption icon in the \"+text | …\"
+        tab.</string>
 
-    <string name="pref_pwOWNER">Owner password</string>
-    <string name="pref_pwOWNER_summary">Set the owner password for encrypted PDF files. If somebody wants to edit the file
-        later he needs this password.</string>
+    <string name="action_donate">Donate</string>
+    <string name="action_donate_summary">If you like the app, you can donate to me via Paypal.</string>
+
+    <string name="action_changelog">Changelog</string>
+    <string name="action_changelog_summary">See what\'s new … (will open a website)</string>
 
     <string name="pref_metaAuthor">Author</string>
-    <string name="pref_metaAuthor_summary">Who is the author of the PDF? You can enter for example your name:
-        \"Max Mustermann\". Can be changed by long pressing the tag icon in the \"+text | …\" tab.</string>
+    <string name="pref_metaAuthor_summary">Here you can edit the metadata of the document: author, creator, subject and keywords. It
+        can also be edited by long pressing the \"tag-icon\" in the \"+text | …\" tab.</string>
 
     <string name="pref_metaCreator">Creator</string>
-    <string name="pref_metaCreator_summary">Who created the PDF? Perhaps this app: \"PDF Creator using iText\"?  Can be changed
-        by long pressing the tag icon in the \"+text | …\" tab.</string>
 
     <string name="pref_metaKeywords">Keywords</string>
-    <string name="pref_metaKeywords_summary">Set keywords for your PDFs, separated by commas: \"Metadata, iText, PDF\".  Can
-        be changed by long pressing the tag icon in the \"+text | …\" tab.</string>
 
     <string name="pref_metaSubject">Subject</string>
-    <string name="pref_metaSubject_summary">Subject of your PDF file: \"This example shows how to add metadata\".  Can be changed
-        by long pressing the tag icon in the \"+text | …\" tab.</string>
 
     <string name="pref_rotate">Portrait</string>
     <string name="pref_rotate_summary">Use portrait format for PDF pages. You can easily switch between portrait and landscape by

@@ -37,12 +37,12 @@ final class BitmapCroppingWorkerTask extends AsyncTask<Void, Void, BitmapCroppin
     private final Bitmap mBitmap;
 
     /**
-     * The Android URI of the image to load
+     * The Android URI of the image2 to load
      */
     private final Uri mUri;
 
     /**
-     * The context of the crop image view widget used for loading of bitmap by Android URI
+     * The context of the crop image2 view widget used for loading of bitmap by Android URI
      */
     private final Context mContext;
 
@@ -52,17 +52,17 @@ final class BitmapCroppingWorkerTask extends AsyncTask<Void, Void, BitmapCroppin
     private final float[] mCropPoints;
 
     /**
-     * Degrees the image was rotated after loading
+     * Degrees the image2 was rotated after loading
      */
     private final int mDegreesRotated;
 
     /**
-     * the original width of the image to be cropped (for image loaded from URI)
+     * the original width of the image2 to be cropped (for image2 loaded from URI)
      */
     private final int mOrgWidth;
 
     /**
-     * the original height of the image to be cropped (for image loaded from URI)
+     * the original height of the image2 to be cropped (for image2 loaded from URI)
      */
     private final int mOrgHeight;
 
@@ -82,27 +82,27 @@ final class BitmapCroppingWorkerTask extends AsyncTask<Void, Void, BitmapCroppin
     private final int mAspectRatioY;
 
     /**
-     * required width of the cropping image
+     * required width of the cropping image2
      */
     private final int mReqWidth;
 
     /**
-     * required height of the cropping image
+     * required height of the cropping image2
      */
     private final int mReqHeight;
 
     /**
-     * the Android Uri to save the cropped image to
+     * the Android Uri to save the cropped image2 to
      */
     private final Uri mSaveUri;
 
     /**
-     * the compression format to use when writing the image
+     * the compression format to use when writing the image2
      */
     private final Bitmap.CompressFormat mSaveCompressFormat;
 
     /**
-     * the quality (if applicable) to use when writing the image (0 - 100)
+     * the quality (if applicable) to use when writing the image2 (0 - 100)
      */
     private final int mSaveCompressQuality;
     //endregion
@@ -152,7 +152,7 @@ final class BitmapCroppingWorkerTask extends AsyncTask<Void, Void, BitmapCroppin
     }
 
     /**
-     * Crop image in background.
+     * Crop image2 in background.
      *
      * @param params ignored
      * @return the decoded bitmap data

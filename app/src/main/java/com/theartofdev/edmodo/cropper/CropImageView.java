@@ -39,7 +39,7 @@ import java.util.UUID;
 import de.baumann.pdfcreator.R;
 
 /**
- * Custom view that provides cropping capabilities to an image.
+ * Custom view that provides cropping capabilities to an image2.
  */
 @SuppressWarnings("SameParameterValue")
 public class CropImageView extends FrameLayout {
@@ -47,17 +47,17 @@ public class CropImageView extends FrameLayout {
     //region: Fields and Consts
 
     /**
-     * Image view widget used to show the image for cropping.
+     * Image view widget used to show the image2 for cropping.
      */
     private final ImageView mImageView;
 
     /**
-     * Overlay over the image view to show cropping UI.
+     * Overlay over the image2 view to show cropping UI.
      */
     private final CropOverlayView mCropOverlayView;
 
     /**
-     * The matrix used to transform the cropping image in the image view
+     * The matrix used to transform the cropping image2 in the image2 view
      */
     private final Matrix mImageMatrix = new Matrix();
 
@@ -67,12 +67,12 @@ public class CropImageView extends FrameLayout {
     private final Matrix mImageInverseMatrix = new Matrix();
 
     /**
-     * Progress bar widget to show progress bar on async image loading and cropping.
+     * Progress bar widget to show progress bar on async image2 loading and cropping.
      */
     private final ProgressBar mProgressBar;
 
     /**
-     * Rectangle used in image matrix transformation calculation (reusing rect instance)
+     * Rectangle used in image2 matrix transformation calculation (reusing rect instance)
      */
     private final float[] mImagePoints = new float[8];
 
@@ -92,19 +92,19 @@ public class CropImageView extends FrameLayout {
     private int mImageResource;
 
     /**
-     * The initial scale type of the image in the crop image view
+     * The initial scale type of the image2 in the crop image2 view
      */
     private ScaleType mScaleType;
 
     /**
      * if to show crop overlay UI what contains the crop window UI surrounded by background over the cropping
-     * image.<br>
+     * image2.<br>
      * default: true, may disable for animation or frame transition.
      */
     private boolean mShowCropOverlay = true;
 
     /**
-     * if to show progress bar when image async loading/cropping is in progress.<br>
+     * if to show progress bar when image2 async loading/cropping is in progress.<br>
      * default: true, disable to provide custom progress bar UI.
      */
     private boolean mShowProgressBar = true;
@@ -121,42 +121,42 @@ public class CropImageView extends FrameLayout {
     private int mMaxZoom;
 
     /**
-     * callback to be invoked when image async loading is complete
+     * callback to be invoked when image2 async loading is complete
      */
     private OnSetImageUriCompleteListener mOnSetImageUriCompleteListener;
 
     /**
-     * callback to be invoked when image async cropping is complete (get bitmap)
+     * callback to be invoked when image2 async cropping is complete (get bitmap)
      */
     private OnGetCroppedImageCompleteListener mOnGetCroppedImageCompleteListener;
 
     /**
-     * callback to be invoked when image async cropping is complete (save to uri)
+     * callback to be invoked when image2 async cropping is complete (save to uri)
      */
     private OnSaveCroppedImageCompleteListener mOnSaveCroppedImageCompleteListener;
 
     /**
-     * The URI that the image was loaded from (if loaded from URI)
+     * The URI that the image2 was loaded from (if loaded from URI)
      */
     private Uri mLoadedImageUri;
 
     /**
-     * The sample size the image was loaded by if was loaded by URI
+     * The sample size the image2 was loaded by if was loaded by URI
      */
     private int mLoadedSampleSize = 1;
 
     /**
-     * The current zoom level to to scale the cropping image
+     * The current zoom level to to scale the cropping image2
      */
     private float mZoom = 1;
 
     /**
-     * The X offset that the cropping image was translated after zooming
+     * The X offset that the cropping image2 was translated after zooming
      */
     private float mZoomOffsetX;
 
     /**
-     * The Y offset that the cropping image was translated after zooming
+     * The Y offset that the cropping image2 was translated after zooming
      */
     private float mZoomOffsetY;
 
@@ -266,7 +266,7 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Get the amount of degrees the cropping image is rotated clockwise.<br>
+     * Get the amount of degrees the cropping image2 is rotated clockwise.<br>
      *
      * @return 0-360
      */
@@ -275,7 +275,7 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Set the amount of degrees the cropping image is rotated clockwise.<br>
+     * Set the amount of degrees the cropping image2 is rotated clockwise.<br>
      *
      * @param degrees 0-360
      */
@@ -286,8 +286,8 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Gets the crop window's position relative to the source Bitmap (not the image
-     * displayed in the CropImageView) using the original image rotation.
+     * Gets the crop window's position relative to the source Bitmap (not the image2
+     * displayed in the CropImageView) using the original image2 rotation.
      *
      * @return a Rect instance containing cropped area boundaries of the source Bitmap
      */
@@ -309,15 +309,15 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Gets the 4 points of crop window's position relative to the source Bitmap (not the image
-     * displayed in the CropImageView) using the original image rotation.<br>
-     * Note: the 4 points may not be a rectangle if the image was rotates to NOT stright angle (!= 90/180/270).
+     * Gets the 4 points of crop window's position relative to the source Bitmap (not the image2
+     * displayed in the CropImageView) using the original image2 rotation.<br>
+     * Note: the 4 points may not be a rectangle if the image2 was rotates to NOT stright angle (!= 90/180/270).
      *
      * @return 4 points (x0,y0,x1,y1,x2,y2,x3,y3) of cropped area boundaries
      */
     public float[] getCropPoints() {
 
-        // Get crop window position relative to the displayed image.
+        // Get crop window position relative to the displayed image2.
         RectF cropWindowRect = mCropOverlayView.getCropWindowRect();
 
         float[] points = new float[]{
@@ -352,7 +352,7 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Gets the cropped image based on the current crop window.<br>
+     * Gets the cropped image2 based on the current crop window.<br>
      * The result will be invoked to listener set by {@link #setOnGetCroppedImageCompleteListener(OnGetCroppedImageCompleteListener)}.
      */
     public void getCroppedImageAsync() {
@@ -360,15 +360,15 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Gets the cropped image based on the current crop window.<br>
-     * If (reqWidth,reqHeight) is given AND image is loaded from URI cropping will try to use sample size to fit in
+     * Gets the cropped image2 based on the current crop window.<br>
+     * If (reqWidth,reqHeight) is given AND image2 is loaded from URI cropping will try to use sample size to fit in
      * the requested width and height down-sampling if possible - optimization to get best size to quality.<br>
-     * NOTE: resulting image will not be exactly (reqWidth, reqHeight)
+     * NOTE: resulting image2 will not be exactly (reqWidth, reqHeight)
      * see: <a href="http://developer.android.com/training/displaying-bitmaps/load-bitmap.html">Loading Large
      * Bitmaps Efficiently</a><br>
      * The result will be invoked to listener set by {@link #setOnGetCroppedImageCompleteListener(OnGetCroppedImageCompleteListener)}.
      *
-     * @param reqHeight the height to downsample the cropped image to
+     * @param reqHeight the height to downsample the cropped image2 to
      */
     private void getCroppedImageAsync(@SuppressWarnings("UnusedParameters") int reqHeight) {
         if (mOnGetCroppedImageCompleteListener == null) {
@@ -380,7 +380,7 @@ public class CropImageView extends FrameLayout {
 
 
     /**
-     * Set the callback to be invoked when image async loading ({@link #setImageUriAsync(Uri)})
+     * Set the callback to be invoked when image2 async loading ({@link #setImageUriAsync(Uri)})
      * is complete (successful or failed).
      */
     public void setOnSetImageUriCompleteListener(OnSetImageUriCompleteListener listener) {
@@ -388,7 +388,7 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Set the callback to be invoked when image async get cropping image ({@link #getCroppedImageAsync()})
+     * Set the callback to be invoked when image2 async get cropping image2 ({@link #getCroppedImageAsync()})
      * is complete (successful or failed).
      */
     public void setOnGetCroppedImageCompleteListener(OnGetCroppedImageCompleteListener listener) {
@@ -425,9 +425,9 @@ public class CropImageView extends FrameLayout {
     /**
      * Sets a bitmap loaded from the given Android URI as the content of the CropImageView.<br>
      * Can be used with URI from gallery or camera source.<br>
-     * Will rotate the image by exif data.<br>
+     * Will rotate the image2 by exif data.<br>
      *
-     * @param uri the URI to load the image from
+     * @param uri the URI to load the image2 from
      */
     public void setImageUriAsync(Uri uri) {
         if (uri != null) {
@@ -448,7 +448,7 @@ public class CropImageView extends FrameLayout {
 
 
     /**
-     * Rotates image by the specified number of degrees clockwise.<br>
+     * Rotates image2 by the specified number of degrees clockwise.<br>
      * Cycles from 0 to 360 degrees.
      *
      * @param degrees Integer specifying the number of degrees to rotate.
@@ -476,7 +476,7 @@ public class CropImageView extends FrameLayout {
 
             applyImageMatrix(getWidth(), getHeight(), true, false);
 
-            // adjust the zoom so the crop window size remains the same even after image scale change
+            // adjust the zoom so the crop window size remains the same even after image2 scale change
             mImageMatrix.mapPoints(BitmapUtils.POINTS2, BitmapUtils.POINTS);
             mZoom /= Math.sqrt(Math.pow(BitmapUtils.POINTS2[4] - BitmapUtils.POINTS2[2], 2) + Math.pow(BitmapUtils.POINTS2[5] - BitmapUtils.POINTS2[3], 2));
             mZoom = Math.max(mZoom, 1);
@@ -485,7 +485,7 @@ public class CropImageView extends FrameLayout {
 
             mImageMatrix.mapPoints(BitmapUtils.POINTS2, BitmapUtils.POINTS);
 
-            // adjust the width/height by the changes in scaling to the image
+            // adjust the width/height by the changes in scaling to the image2
             double change = Math.sqrt(Math.pow(BitmapUtils.POINTS2[4] - BitmapUtils.POINTS2[2], 2) + Math.pow(BitmapUtils.POINTS2[5] - BitmapUtils.POINTS2[3], 2));
             halfWidth *= change;
             halfHeight *= change;
@@ -499,7 +499,7 @@ public class CropImageView extends FrameLayout {
             applyImageMatrix(getWidth(), getHeight(), true, false);
             handleCropWindowChanged(false, false);
 
-            // make sure the crop window rectangle is within the cropping image bounds after all the changes
+            // make sure the crop window rectangle is within the cropping image2 bounds after all the changes
             mCropOverlayView.fixCurrentCropWindowRect();
         }
     }
@@ -600,8 +600,8 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Clear the current image set for cropping.<br>
-     * Full clear will also clear the data of the set image like Uri or Resource id while partial clear
+     * Clear the current image2 set for cropping.<br>
+     * Full clear will also clear the data of the set image2 like Uri or Resource id while partial clear
      * will only clear the bitmap and recycle if required.
      */
     private void clearImageInt() {
@@ -612,7 +612,7 @@ public class CropImageView extends FrameLayout {
         }
         mBitmap = null;
 
-        // clean the loaded image flags for new image
+        // clean the loaded image2 flags for new image2
         mImageResource = 0;
         mLoadedImageUri = null;
         mLoadedSampleSize = 1;
@@ -628,12 +628,12 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Gets the cropped image based on the current crop window.<br>
-     * If (reqWidth,reqHeight) is given AND image is loaded from URI cropping will try to use sample size to fit in
+     * Gets the cropped image2 based on the current crop window.<br>
+     * If (reqWidth,reqHeight) is given AND image2 is loaded from URI cropping will try to use sample size to fit in
      * the requested width and height down-sampling if possible - optimization to get best size to quality.<br>
      * The result will be invoked to listener set by {@link #setOnGetCroppedImageCompleteListener(OnGetCroppedImageCompleteListener)}.
-     * @param reqWidth optional: the width to downsample the cropped image to
-     * @param reqHeight optional: the height to downsample the cropped image to
+     * @param reqWidth optional: the width to downsample the cropped image2 to
+     * @param reqHeight optional: the height to downsample the cropped image2 to
      */
     private void startCropWorkerTask(int reqWidth, int reqHeight) {
         if (mBitmap != null) {
@@ -852,7 +852,7 @@ public class CropImageView extends FrameLayout {
      * 2. Slide the zoomed sub-area if the cropping window is outside of the visible view sub-area.<br>
      *
      * @param inProgress is the crop window change is still in progress by the user
-     * @param animate if to animate the change to the image matrix, or set it directly
+     * @param animate if to animate the change to the image2 matrix, or set it directly
      */
     private void handleCropWindowChanged(boolean inProgress, boolean animate) {
         int width = getWidth();
@@ -910,27 +910,27 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Apply matrix to handle the image inside the image view.
+     * Apply matrix to handle the image2 inside the image2 view.
      *
-     * @param width the width of the image view
-     * @param height the height of the image view
+     * @param width the width of the image2 view
+     * @param height the height of the image2 view
      */
     private void applyImageMatrix(float width, float height, boolean center, boolean animate) {
         if (mBitmap != null && width > 0 && height > 0) {
 
             mImageMatrix.reset();
 
-            // move the image to the center of the image view first so we can manipulate it from there
+            // move the image2 to the center of the image2 view first so we can manipulate it from there
             mImageMatrix.postTranslate((width - mBitmap.getWidth()) / 2, (height - mBitmap.getHeight()) / 2);
             mapImagePointsByImageMatrix();
 
-            // rotate the image the required degrees from center of image
+            // rotate the image2 the required degrees from center of image2
             if (mDegreesRotated > 0) {
                 mImageMatrix.postRotate(mDegreesRotated, BitmapUtils.getRectCenterX(mImagePoints), BitmapUtils.getRectCenterY(mImagePoints));
                 mapImagePointsByImageMatrix();
             }
 
-            // scale the image to the image view, image rect transformed to know new width/height
+            // scale the image2 to the image2 view, image2 rect transformed to know new width/height
             float scale = Math.min(width / BitmapUtils.getRectWidth(mImagePoints), height / BitmapUtils.getRectHeight(mImagePoints));
             if (mScaleType == ScaleType.FIT_CENTER || (mScaleType == ScaleType.CENTER_INSIDE && scale < 1) || (scale > 1 && mAutoZoomEnabled)) {
                 mImageMatrix.postScale(scale, scale, BitmapUtils.getRectCenterX(mImagePoints), BitmapUtils.getRectCenterY(mImagePoints));
@@ -973,14 +973,14 @@ public class CropImageView extends FrameLayout {
                 mImageView.setImageMatrix(mImageMatrix);
             }
 
-            // update the image rectangle in the crop overlay
+            // update the image2 rectangle in the crop overlay
             updateImageBounds(false);
         }
     }
 
     /**
-     * Adjust the given image rectangle by image transformation matrix to know the final rectangle of the image.<br>
-     * To get the proper rectangle it must be first reset to original image rectangle.
+     * Adjust the given image2 rectangle by image2 transformation matrix to know the final rectangle of the image2.<br>
+     * To get the proper rectangle it must be first reset to original image2 rectangle.
      */
     private void mapImagePointsByImageMatrix() {
         mImagePoints[0] = 0;
@@ -1022,7 +1022,7 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Set visibility of crop overlay to hide it when there is no image or specificly set by client.
+     * Set visibility of crop overlay to hide it when there is no image2 or specificly set by client.
      */
     private void setCropOverlayVisibility() {
         if (mCropOverlayView != null) {
@@ -1040,7 +1040,7 @@ public class CropImageView extends FrameLayout {
     }
 
     /**
-     * Update the scale factor between the actual image bitmap and the shown image.<br>
+     * Update the scale factor between the actual image2 bitmap and the shown image2.<br>
      */
     private void updateImageBounds(boolean clear) {
         if (mBitmap != null && !clear) {
@@ -1070,39 +1070,39 @@ public class CropImageView extends FrameLayout {
     //region: Inner class: ScaleType
 
     /**
-     * Options for scaling the bounds of cropping image to the bounds of Crop Image View.<br>
+     * Options for scaling the bounds of cropping image2 to the bounds of Crop Image View.<br>
      * Note: Some options are affected by auto-zoom, if enabled.
      */
     public enum ScaleType {
 
         /**
-         * Scale the image uniformly (maintain the image's aspect ratio) to fit in crop image view.<br>
-         * The largest dimension will be equals to crop image view and the second dimension will be smaller.
+         * Scale the image2 uniformly (maintain the image2's aspect ratio) to fit in crop image2 view.<br>
+         * The largest dimension will be equals to crop image2 view and the second dimension will be smaller.
          */
         FIT_CENTER,
 
         /**
-         * Center the image in the view, but perform no scaling.<br>
-         * Note: If auto-zoom is enabled and the source image is smaller than crop image view then it will be
-         * scaled uniformly to fit the crop image view.
+         * Center the image2 in the view, but perform no scaling.<br>
+         * Note: If auto-zoom is enabled and the source image2 is smaller than crop image2 view then it will be
+         * scaled uniformly to fit the crop image2 view.
          */
         CENTER,
 
         /**
-         * Scale the image uniformly (maintain the image's aspect ratio) so that both
-         * dimensions (width and height) of the image will be equal to or <b>larger</b> than the
+         * Scale the image2 uniformly (maintain the image2's aspect ratio) so that both
+         * dimensions (width and height) of the image2 will be equal to or <b>larger</b> than the
          * corresponding dimension of the view (minus padding).<br>
-         * The image is then centered in the view.
+         * The image2 is then centered in the view.
          */
         CENTER_CROP,
 
         /**
-         * Scale the image uniformly (maintain the image's aspect ratio) so that both
-         * dimensions (width and height) of the image will be equal to or <b>less</b> than the
+         * Scale the image2 uniformly (maintain the image2's aspect ratio) so that both
+         * dimensions (width and height) of the image2 will be equal to or <b>less</b> than the
          * corresponding dimension of the view (minus padding).<br>
-         * The image is then centered in the view.<br>
-         * Note: If auto-zoom is enabled and the source image is smaller than crop image view then it will be
-         * scaled uniformly to fit the crop image view.
+         * The image2 is then centered in the view.<br>
+         * Note: If auto-zoom is enabled and the source image2 is smaller than crop image2 view then it will be
+         * scaled uniformly to fit the crop image2 view.
          */
         CENTER_INSIDE
     }
@@ -1134,17 +1134,17 @@ public class CropImageView extends FrameLayout {
     //region: Inner class: OnSetImageUriCompleteListener
 
     /**
-     * Interface definition for a callback to be invoked when image async loading is complete.
+     * Interface definition for a callback to be invoked when image2 async loading is complete.
      */
     @SuppressWarnings("UnusedParameters")
     public interface OnSetImageUriCompleteListener {
 
         /**
-         * Called when a crop image view has completed loading image for cropping.<br>
+         * Called when a crop image2 view has completed loading image2 for cropping.<br>
          * If loading failed error parameter will contain the error.
          *
-         * @param view The crop image view that loading of image was complete.
-         * @param uri the URI of the image that was loading
+         * @param view The crop image2 view that loading of image2 was complete.
+         * @param uri the URI of the image2 that was loading
          * @param error if error occurred during loading will contain the error, otherwise null.
          */
         void onSetImageUriComplete(CropImageView view, Uri uri, Exception error);
@@ -1154,14 +1154,14 @@ public class CropImageView extends FrameLayout {
     //region: Inner class: OnGetCroppedImageCompleteListener
 
     /**
-     * Interface definition for a callback to be invoked when image async cropping is complete.
+     * Interface definition for a callback to be invoked when image2 async cropping is complete.
      */
     public interface OnGetCroppedImageCompleteListener {
 
         /**
-         * Called when a crop image view has completed cropping image.<br>
+         * Called when a crop image2 view has completed cropping image2.<br>
          * If cropping failed error parameter will contain the error.
-         *  @param bitmap the cropped image bitmap (null if failed)
+         *  @param bitmap the cropped image2 bitmap (null if failed)
          * @param error if error occurred during cropping will contain the error, otherwise null.
          */
         void onGetCroppedImageComplete(Bitmap bitmap, Exception error);
@@ -1171,14 +1171,14 @@ public class CropImageView extends FrameLayout {
     //region: Inner class: OnSaveCroppedImageCompleteListener
 
     /**
-     * Interface definition for a callback to be invoked when image async cropping is complete.
+     * Interface definition for a callback to be invoked when image2 async cropping is complete.
      */
     public interface OnSaveCroppedImageCompleteListener {
 
         /**
-         * Called when a crop image view has completed cropping image.<br>
+         * Called when a crop image2 view has completed cropping image2.<br>
          * If cropping failed error parameter will contain the error.
-         *  @param uri the cropped image uri (null if failed)
+         *  @param uri the cropped image2 uri (null if failed)
          * @param error if error occurred during cropping will contain the error, otherwise null.
          */
         void onSaveCroppedImageComplete(Uri uri, Exception error);

@@ -6,6 +6,7 @@
 
         <ListPreference
             android:title="@string/pref_imageQuality"
+            android:icon="@drawable/file_image"
             android:summary="@string/pref_imageQuality_summary"
             android:key="imageQuality"
             android:defaultValue="80"
@@ -14,89 +15,55 @@
 
         <CheckBoxPreference
             android:title="@string/pref_backup"
+            android:icon="@drawable/backup_restore"
             android:summary="@string/pref_backup_summary"
             android:key="backup"
             android:defaultValue="true" />
 
         <CheckBoxPreference
             android:title="@string/pref_rotate"
+            android:icon="@drawable/crop_portrait"
             android:summary="@string/pref_rotate_summary"
             android:key="rotate"
             android:defaultValue="true" />
 
+        <Preference
+            android:title="@string/pref_folder"
+            android:icon="@drawable/folder"
+            android:summary="@string/pref_folder_summary"
+            android:key="folder" />
+
         <CheckBoxPreference
             android:title="@string/pref_notShow_title"
+            android:icon="@drawable/information_outline"
             android:summary="@string/pref_notShow_title_summary"
             android:key="help_notShow"
             android:defaultValue="true" />
 
         <Preference
             android:title="@string/action_openSettings"
+            android:icon="@drawable/settings"
             android:summary="@string/action_openSettings_summary"
             android:key="settings" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/settings_prefDir">
-
-        <CheckBoxPreference
-            android:title="@string/pref_folderDef"
-            android:summary="@string/pref_folderDef_summary"
-            android:key="folderDef"
-            android:defaultValue="true" />
-
-        <EditTextPreference
-            android:title="@string/pref_folder"
-            android:summary="@string/pref_folder_summary"
-            android:hint="@string/pref_folder_hint"
-            android:key="folder" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:title="@string/settings_prefData">
 
-        <EditTextPreference
-            android:title="@string/pref_metaAuthor"
-            android:summary="@string/pref_metaAuthor_summary"
-            android:defaultValue=""
-            android:key="metaAuthor" />
-
-        <EditTextPreference
-            android:title="@string/pref_metaCreator"
-            android:summary="@string/pref_metaCreator_summary"
-            android:defaultValue="PDF Creator using iText"
-            android:key="metaCreator" />
-
-        <EditTextPreference
-            android:title="@string/pref_metaSubject"
-            android:summary="@string/pref_metaSubject_summary"
-            android:defaultValue=""
-            android:key="metaSubject" />
-
-        <EditTextPreference
-            android:title="@string/pref_metaKeywords"
-            android:summary="@string/pref_metaKeywords_summary"
-            android:defaultValue=""
-            android:key="metaKeywords" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/settings_prefEnc">
-
-        <EditTextPreference
-            android:title="@string/pref_pwOWNER"
+        <Preference
+            android:title="@string/settings_prefEnc"
+            android:icon="@drawable/ic_security_white_48dp2"
             android:summary="@string/pref_pwOWNER_summary"
             android:defaultValue="OWNER"
             android:key="pwOWNER" />
 
-        <EditTextPreference
-            android:title="@string/pref_pwUSER"
-            android:summary="@string/pref_pwUSER_summary"
-            android:defaultValue="USER"
-            android:key="pwUSER" />
+        <Preference
+            android:title="@string/settings_prefMeta"
+            android:icon="@drawable/ic_pound_white_48dp2"
+            android:summary="@string/pref_metaAuthor_summary"
+            android:defaultValue=""
+            android:key="metaAuthor" />
 
     </PreferenceCategory>
 
@@ -105,8 +72,21 @@
 
         <Preference
             android:title="@string/pref_license"
+            android:icon="@drawable/copyright"
             android:summary="@string/pref_license_summary"
             android:key="license" />
+
+        <Preference
+            android:title="@string/action_changelog"
+            android:icon="@drawable/format_list_bulleted"
+            android:summary="@string/action_changelog_summary"
+            android:key="changelog" />
+
+        <Preference
+            android:title="@string/action_donate"
+            android:icon="@drawable/coin"
+            android:summary="@string/action_donate_summary"
+            android:key="donate" />
 
     </PreferenceCategory>
 

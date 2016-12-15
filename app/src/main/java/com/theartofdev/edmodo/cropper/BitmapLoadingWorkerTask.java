@@ -33,22 +33,22 @@ final class BitmapLoadingWorkerTask extends AsyncTask<Void, Void, BitmapLoadingW
     private final WeakReference<CropImageView> mCropImageViewReference;
 
     /**
-     * The Android URI of the image to load
+     * The Android URI of the image2 to load
      */
     private final Uri mUri;
 
     /**
-     * The context of the crop image view widget used for loading of bitmap by Android URI
+     * The context of the crop image2 view widget used for loading of bitmap by Android URI
      */
     private final Context mContext;
 
     /**
-     * required width of the cropping image after density adjustment
+     * required width of the cropping image2 after density adjustment
      */
     private final int mWidth;
 
     /**
-     * required height of the cropping image after density adjustment
+     * required height of the cropping image2 after density adjustment
      */
     private final int mHeight;
     //endregion
@@ -73,7 +73,7 @@ final class BitmapLoadingWorkerTask extends AsyncTask<Void, Void, BitmapLoadingW
     }
 
     /**
-     * Decode image in background.
+     * Decode image2 in background.
      *
      * @param params ignored
      * @return the decoded bitmap data
@@ -131,7 +131,7 @@ final class BitmapLoadingWorkerTask extends AsyncTask<Void, Void, BitmapLoadingW
     public static final class Result {
 
         /**
-         * The Android URI of the image to load
+         * The Android URI of the image2 to load
          */
         public final Uri uri;
 
@@ -146,7 +146,7 @@ final class BitmapLoadingWorkerTask extends AsyncTask<Void, Void, BitmapLoadingW
         public final int loadSampleSize;
 
         /**
-         * The degrees the image was rotated
+         * The degrees the image2 was rotated
          */
         public final int degreesRotated;
 

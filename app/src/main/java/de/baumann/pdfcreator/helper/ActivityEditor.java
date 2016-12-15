@@ -1,6 +1,5 @@
 package de.baumann.pdfcreator.helper;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -20,7 +19,6 @@ import android.widget.SeekBar;
 
 import java.io.File;
 
-import de.baumann.pdfcreator.MainActivity;
 import de.baumann.pdfcreator.R;
 import jp.co.cyberagent.android.gpuimage.GPUImage;
 import jp.co.cyberagent.android.gpuimage.GPUImageFilter;
@@ -39,6 +37,8 @@ public class ActivityEditor extends AppCompatActivity implements SeekBar.OnSeekB
     private int h;
     private int w;
 
+    private boolean edited;
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +53,8 @@ public class ActivityEditor extends AppCompatActivity implements SeekBar.OnSeekB
         setSupportActionBar(toolbar);
         setTitle(R.string.app_title_edit);
 
+        edited = false;
+
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -64,7 +66,21 @@ public class ActivityEditor extends AppCompatActivity implements SeekBar.OnSeekB
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                if (edited) {
+                    Snackbar snackbar = Snackbar
+                            .make(mGPUImageView, getString(R.string.toast_edited), Snackbar.LENGTH_LONG)
+                            .setAction(getString(R.string.toast_no), new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    edited = false;
+                                    finish();
+                                }
+                            });
+                    snackbar.show();
+                } else {
+                    edited = false;
+                    finish();
+                }
             }
         });
 
@@ -95,6 +111,8 @@ public class ActivityEditor extends AppCompatActivity implements SeekBar.OnSeekB
 
         Snackbar.make(mGPUImageView, getString(R.string.toast_savedImage), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+
+        edited = false;
 
         String folder = "/.pdf_temp/";
         String fileName = "pdf_temp.jpg";
@@ -128,6 +146,25 @@ public class ActivityEditor extends AppCompatActivity implements SeekBar.OnSeekB
     }
 
     @Override
+    public void onBackPressed() {
+        if (edited) {
+            Snackbar snackbar = Snackbar
+                    .make(mGPUImageView, getString(R.string.toast_successfully), Snackbar.LENGTH_LONG)
+                    .setAction(getString(R.string.toast_no), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            edited = false;
+                            finish();
+                        }
+                    });
+            snackbar.show();
+        } else {
+            edited = false;
+            finish();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_editor, menu);
@@ -150,6 +187,7 @@ public class ActivityEditor extends AppCompatActivity implements SeekBar.OnSeekB
 
                 @Override
                 public void onGpuImageFilterChosenListener(final GPUImageFilter filter) {
+                    edited = true;
                     switchFilterTo(filter);
                     mGPUImageView.requestRender();
                 }
@@ -158,26 +196,27 @@ public class ActivityEditor extends AppCompatActivity implements SeekBar.OnSeekB
         }
 
         if (id == R.id.save) {
-
             saveImage();
         }
 
         if (id == android.R.id.home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
-            finish();
+            if (edited) {
+                Snackbar snackbar = Snackbar
+                        .make(mGPUImageView, getString(R.string.toast_successfully), Snackbar.LENGTH_LONG)
+                        .setAction(getString(R.string.toast_no), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                edited = false;
+                                finish();
+                            }
+                        });
+                snackbar.show();
+            } else {
+                edited = false;
+                finish();
+            }
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
-        finish();
-    }
-
 }

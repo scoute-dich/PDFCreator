@@ -1,16 +1,16 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    tools:keep="@layout/activity_crop">
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- menu_crop content view. -->
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/cropImageView"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/fab_margin"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -20,9 +20,12 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="false"
+        android:layout_margin="@dimen/fab_margin"
         tools:ignore="RelativeOverlap" />
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
+
+
 
 
 

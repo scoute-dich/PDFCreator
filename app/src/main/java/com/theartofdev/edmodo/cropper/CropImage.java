@@ -28,8 +28,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
- * Helper to simplify crop image work like starting pick-image activity and handling camera/gallery intents.<br>
- * The goal of the helper is to simplify the starting and most-common usage of image cropping and not
+ * helper_main to simplify crop image2 work like starting pick-image2 activity and handling camera/gallery intents.<br>
+ * The goal of the helper is to simplify the starting and most-common usage of image2 cropping and not
  * all purpose all possible scenario one-to-rule-them-all code base. So feel free to use it as is and as
  * a wiki to make your own.<br>
  * Added value you get out-of-the-box is some edge case handling that you may miss otherwise, like the
@@ -40,17 +40,17 @@ public final class CropImage {
     //region: Fields and Consts
 
     /**
-     * The key used to pass crop image source URI to {@link CropImageActivity}.
+     * The key used to pass crop image2 source URI to {@link CropImageActivity}.
      */
     public static final String CROP_IMAGE_EXTRA_SOURCE = "CROP_IMAGE_EXTRA_SOURCE";
 
     /**
-     * The key used to pass crop image options to {@link CropImageActivity}.
+     * The key used to pass crop image2 options to {@link CropImageActivity}.
      */
     public static final String CROP_IMAGE_EXTRA_OPTIONS = "CROP_IMAGE_EXTRA_OPTIONS";
 
     /**
-     * The key used to pass crop image result data back from {@link CropImageActivity}.
+     * The key used to pass crop image2 result data back from {@link CropImageActivity}.
      */
     public static final String CROP_IMAGE_EXTRA_RESULT = "CROP_IMAGE_EXTRA_RESULT";
 
@@ -100,7 +100,7 @@ public final class CropImage {
 
 
     /**
-     * Get {@link CropImageActivity} result data object for crop image activity started using {@link #(Uri)}.
+     * Get {@link CropImageActivity} result data object for crop image2 activity started using {@link #(Uri)}.
      *
      * @param data result data intent as received in {@link Activity#onActivityResult(int, int, Intent)}.
      * @return Crop Image Activity Result object or null if none exists
@@ -127,7 +127,7 @@ public final class CropImage {
         };
 
         /**
-         * The Android uri of the saved cropped image result
+         * The Android uri of the saved cropped image2 result
          */
         private final Uri mUri;
 
@@ -137,17 +137,17 @@ public final class CropImage {
         private final Exception mError;
 
         /**
-         * The 4 points of the cropping window in the source image
+         * The 4 points of the cropping window in the source image2
          */
         private final float[] mCropPoints;
 
         /**
-         * The rectangle of the cropping window in the source image
+         * The rectangle of the cropping window in the source image2
          */
         private final Rect mCropRect;
 
         /**
-         * The final rotation of the cropped image relative to source
+         * The final rotation of the cropped image2 relative to source
          */
         private final int mRotation;
 
@@ -182,7 +182,7 @@ public final class CropImage {
         }
 
         /**
-         * The Android uri of the saved cropped image result
+         * The Android uri of the saved cropped image2 result
          */
         public Uri getUri() {
             return mUri;

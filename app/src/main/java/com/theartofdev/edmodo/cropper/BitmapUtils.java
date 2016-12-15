@@ -74,8 +74,8 @@ final class BitmapUtils {
     static Pair<String, WeakReference<Bitmap>> mStateBitmap;
 
     /**
-     * Rotate the given image by reading the Exif value of the image (uri).<br>
-     * If no rotation is required the image will not be rotated.<br>
+     * Rotate the given image2 by reading the Exif value of the image2 (uri).<br>
+     * If no rotation is required the image2 will not be rotated.<br>
      * New bitmap is created and the old one is recycled.
      */
     public static RotateBitmapResult rotateBitmapByExif(Bitmap bitmap, Context context, Uri uri) {
@@ -91,8 +91,8 @@ final class BitmapUtils {
     }
 
     /**
-     * Rotate the given image by given Exif value.<br>
-     * If no rotation is required the image will not be rotated.<br>
+     * Rotate the given image2 by given Exif value.<br>
+     * If no rotation is required the image2 will not be rotated.<br>
      * New bitmap is created and the old one is recycled.
      */
     private static RotateBitmapResult rotateBitmapByExif(Bitmap bitmap, ExifInterface exif) {
@@ -142,17 +142,17 @@ final class BitmapUtils {
     }
 
     /**
-     * Crop image bitmap from given bitmap using the given points in the original bitmap and the given rotation.<br>
-     * if the rotation is not 0,90,180 or 270 degrees then we must first crop a larger area of the image that
+     * Crop image2 bitmap from given bitmap using the given points in the original bitmap and the given rotation.<br>
+     * if the rotation is not 0,90,180 or 270 degrees then we must first crop a larger area of the image2 that
      * contains the requires rectangle, rotate and then crop again a sub rectangle.
      */
     public static Bitmap cropBitmap(Bitmap bitmap, float[] points,
                                     int degreesRotated, boolean fixAspectRatio, int aspectRatioX, int aspectRatioY) {
 
-        // get the rectangle in original image that contains the required cropped area (larger for non rectangular crop)
+        // get the rectangle in original image2 that contains the required cropped area (larger for non rectangular crop)
         Rect rect = getRectFromPoints(points, bitmap.getWidth(), bitmap.getHeight(), fixAspectRatio, aspectRatioX, aspectRatioY);
 
-        // crop and rotate the cropped image in one operation
+        // crop and rotate the cropped image2 in one operation
         Matrix matrix = new Matrix();
         matrix.setRotate(degreesRotated, bitmap.getWidth() / 2, bitmap.getHeight() / 2);
         Bitmap result = Bitmap.createBitmap(bitmap, rect.left, rect.top, rect.width(), rect.height(), matrix, true);
@@ -165,7 +165,7 @@ final class BitmapUtils {
         // rotating by 0, 90, 180 or 270 degrees doesn't require extra cropping
         if (degreesRotated % 90 != 0) {
 
-            // extra crop because non rectangular crop cannot be done directly on the image without rotating first
+            // extra crop because non rectangular crop cannot be done directly on the image2 without rotating first
             result = cropForRotatedImage(result, points, rect, degreesRotated, fixAspectRatio, aspectRatioX, aspectRatioY);
         }
 
@@ -173,13 +173,13 @@ final class BitmapUtils {
     }
 
     /**
-     * Crop image bitmap from URI by decoding it with specific width and height to down-sample if required.
+     * Crop image2 bitmap from URI by decoding it with specific width and height to down-sample if required.
      */
     public static Bitmap cropBitmap(Context context, Uri loadedImageUri, float[] points,
                                     int degreesRotated, int orgWidth, int orgHeight, boolean fixAspectRatio,
                                     int aspectRatioX, int aspectRatioY, int reqWidth, int reqHeight) {
 
-        // get the rectangle in original image that contains the required cropped area (larger for non rectangular crop)
+        // get the rectangle in original image2 that contains the required cropped area (larger for non rectangular crop)
         Rect rect = getRectFromPoints(points, orgWidth, orgHeight, fixAspectRatio, aspectRatioX, aspectRatioY);
 
         int width = reqWidth > 0 ? reqWidth : rect.width();
@@ -187,7 +187,7 @@ final class BitmapUtils {
 
         Bitmap result = null;
         try {
-            // decode only the required image from URI, optionally sub-sampling if reqWidth/reqHeight is given.
+            // decode only the required image2 from URI, optionally sub-sampling if reqWidth/reqHeight is given.
             result = decodeSampledBitmapRegion(context, loadedImageUri, rect, width, height);
         } catch (Exception ignored) {
         }
@@ -199,7 +199,7 @@ final class BitmapUtils {
             // rotating by 0, 90, 180 or 270 degrees doesn't require extra cropping
             if (degreesRotated % 90 != 0) {
 
-                // extra crop because non rectangular crop cannot be done directly on the image without rotating first
+                // extra crop because non rectangular crop cannot be done directly on the image2 without rotating first
                 result = cropForRotatedImage(result, points, rect, degreesRotated, fixAspectRatio, aspectRatioX, aspectRatioY);
             }
         } else {
@@ -326,7 +326,7 @@ final class BitmapUtils {
     //region: Private methods
 
     /**
-     * Decode image from uri using "inJustDecodeBounds" to get the image dimensions.
+     * Decode image2 from uri using "inJustDecodeBounds" to get the image2 dimensions.
      */
     private static BitmapFactory.Options decodeImageForOption(ContentResolver resolver, Uri uri) throws FileNotFoundException {
         InputStream stream = null;
@@ -343,7 +343,7 @@ final class BitmapUtils {
     }
 
     /**
-     * Decode image from uri using given "inSampleSize", but if failed due to out-of-memory then raise
+     * Decode image2 from uri using given "inSampleSize", but if failed due to out-of-memory then raise
      * the inSampleSize until success.
      */
     private static Bitmap decodeImage(ContentResolver resolver, Uri uri, BitmapFactory.Options options) throws FileNotFoundException {
@@ -358,7 +358,7 @@ final class BitmapUtils {
                 closeSafe(stream);
             }
         } while (options.inSampleSize <= 512);
-        throw new RuntimeException("Failed to decode image: " + uri);
+        throw new RuntimeException("Failed to decode image2: " + uri);
     }
 
     /**
@@ -609,7 +609,7 @@ final class BitmapUtils {
         public final Bitmap bitmap;
 
         /**
-         * The degrees the image was rotated
+         * The degrees the image2 was rotated
          */
         public final int degrees;
 

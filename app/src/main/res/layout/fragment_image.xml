@@ -1,105 +1,126 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:layout_above="@+id/textTitle">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#e0e0e0"
+        tools:context=".MainActivity">
 
-        <ImageView
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/imageView"
-            android:src="@drawable/image"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentEnd="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_above="@+id/textTitle">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageView"
+                android:src="@drawable/image"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentEnd="false"
+                android:scaleType="fitCenter"
+                tools:ignore="ContentDescription" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+        <android.support.design.widget.FloatingActionButton
+            app:fabSize="mini"
+            app:backgroundTint="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:id="@+id/fab_1"
+            app:srcCompat="@drawable/ic_camera_iris_white_48dp"
             android:scaleType="fitCenter"
-            tools:ignore="ContentDescription" />
+            android:layout_marginRight="@dimen/fab_margin"
+            tools:ignore="ContentDescription,RelativeOverlap"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin" />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+        <android.support.design.widget.FloatingActionButton
+            app:fabSize="mini"
+            app:backgroundTint="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:id="@+id/fab_2"
+            app:srcCompat="@drawable/ic_crop_white_48dp"
+            android:scaleType="fitCenter"
+            android:layout_marginRight="@dimen/fab_margin"
+            tools:ignore="ContentDescription"
+            android:layout_below="@+id/fab_1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/fab_margin" />
 
+        <android.support.design.widget.FloatingActionButton
+            app:fabSize="mini"
+            app:backgroundTint="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:id="@+id/fab_3"
+            app:srcCompat="@drawable/ic_auto_fix_white_48dp"
+            android:scaleType="fitCenter"
+            android:layout_marginRight="@dimen/fab_margin"
+            tools:ignore="ContentDescription"
+            android:layout_below="@+id/fab_2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/fab_margin" />
 
-    <android.support.design.widget.FloatingActionButton
-        app:fabSize="mini"
-        app:backgroundTint="@color/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:id="@+id/fab_1"
-        android:src="@drawable/ic_camera_iris_white_48dp"
-        android:scaleType="fitCenter"
-        android:layout_marginRight="@dimen/fab_margin"
-        tools:ignore="ContentDescription,RelativeOverlap"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin" />
+        <android.support.design.widget.FloatingActionButton
+            app:fabSize="mini"
+            app:backgroundTint="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:id="@+id/fab_4"
+            app:srcCompat="@drawable/ic_file_pdf_white_48dp"
+            android:scaleType="fitCenter"
+            android:layout_marginRight="@dimen/fab_margin"
+            tools:ignore="ContentDescription"
+            android:layout_below="@+id/fab_3"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/fab_margin" />
 
-    <android.support.design.widget.FloatingActionButton
-        app:fabSize="mini"
-        app:backgroundTint="@color/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:id="@+id/fab_2"
-        android:src="@drawable/ic_crop_white_48dp"
-        android:scaleType="fitCenter"
-        android:layout_marginRight="@dimen/fab_margin"
-        tools:ignore="ContentDescription"
-        android:layout_below="@+id/fab_1"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="@dimen/fab_margin" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textTitle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:layout_toStartOf="@+id/fab_4" />
 
-    <android.support.design.widget.FloatingActionButton
-        app:fabSize="mini"
-        app:backgroundTint="@color/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:id="@+id/fab_3"
-        android:src="@drawable/ic_auto_fix_white_48dp"
-        android:scaleType="fitCenter"
-        android:layout_marginRight="@dimen/fab_margin"
-        tools:ignore="ContentDescription"
-        android:layout_below="@+id/fab_2"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="@dimen/fab_margin" />
-
-    <android.support.design.widget.FloatingActionButton
-        app:fabSize="mini"
-        app:backgroundTint="@color/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:id="@+id/fab_4"
-        android:src="@drawable/ic_file_pdf_white_48dp"
-        android:scaleType="fitCenter"
-        android:layout_marginRight="@dimen/fab_margin"
-        tools:ignore="ContentDescription"
-        android:layout_below="@+id/fab_3"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="@dimen/fab_margin" />
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_file_pdf_box_white_48dp"
+        app:srcCompat="@drawable/ic_file_pdf_box_white_48dp"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_alignParentBottom="true"
@@ -107,16 +128,4 @@
         android:layout_alignParentStart="false"
         android:layout_marginBottom="@dimen/fab_margin" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textTitle"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:layout_toStartOf="@+id/fab_4" />
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

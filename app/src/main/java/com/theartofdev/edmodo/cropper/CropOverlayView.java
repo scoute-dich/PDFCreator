@@ -85,12 +85,12 @@ public class CropOverlayView extends View {
     private final RectF mCalcBounds = new RectF();
 
     /**
-     * The bounding image view width used to know the crop overlay is at view edges.
+     * The bounding image2 view width used to know the crop overlay is at view edges.
      */
     private int mViewWidth;
 
     /**
-     * The bounding image view height used to know the crop overlay is at view edges.
+     * The bounding image2 view height used to know the crop overlay is at view edges.
      */
     private int mViewHeight;
 
@@ -105,7 +105,7 @@ public class CropOverlayView extends View {
     private float mBorderCornerLength;
 
     /**
-     * The initial crop window padding from image borders
+     * The initial crop window padding from image2 borders
      */
     private float mInitialCropWindowPaddingRatio;
 
@@ -131,12 +131,12 @@ public class CropOverlayView extends View {
     private boolean mFixAspectRatio;
 
     /**
-     * save the current aspect ratio of the image
+     * save the current aspect ratio of the image2
      */
     private int mAspectRatioX;
 
     /**
-     * save the current aspect ratio of the image
+     * save the current aspect ratio of the image2
      */
     private int mAspectRatioY;
 
@@ -202,7 +202,7 @@ public class CropOverlayView extends View {
     }
 
     /**
-     * Fix the current crop window rectangle if it is outside of cropping image or view bounds.
+     * Fix the current crop window rectangle if it is outside of cropping image2 or view bounds.
      */
     public void fixCurrentCropWindowRect() {
         RectF rect = getCropWindowRect();
@@ -211,12 +211,12 @@ public class CropOverlayView extends View {
     }
 
     /**
-     * Informs the CropOverlayView of the image's position relative to the
+     * Informs the CropOverlayView of the image2's position relative to the
      * ImageView. This is necessary to call in order to draw the crop window.
      *
-     * @param boundsPoints the image's bounding points
-     * @param viewWidth The bounding image view width.
-     * @param viewHeight The bounding image view height.
+     * @param boundsPoints the image2's bounding points
+     * @param viewWidth The bounding image2 view width.
+     * @param viewHeight The bounding image2 view height.
      */
     public void setBounds(float[] boundsPoints, int viewWidth, int viewHeight) {
         if (boundsPoints == null || !Arrays.equals(mBoundsPoints, boundsPoints)) {
@@ -370,7 +370,7 @@ public class CropOverlayView extends View {
     }
 
     /**
-     * set the max width/height and scale factor of the shown image to original image to scale the limits
+     * set the max width/height and scale factor of the shown image2 to original image2 to scale the limits
      * appropriately.
      */
     public void setCropWindowLimits(float maxWidth, float maxHeight, float scaleFactorWidth, float scaleFactorHeight) {
@@ -435,7 +435,7 @@ public class CropOverlayView extends View {
 
     /**
      * Set the initial crop window size and position. This is dependent on the
-     * size and position of the image being cropped.
+     * size and position of the image2 being cropped.
      */
     private void initCropWindow() {
 
@@ -457,7 +457,7 @@ public class CropOverlayView extends View {
         float verticalPadding = mInitialCropWindowPaddingRatio * (bottomLimit - topLimit);
 
         if (mInitialCropWindowRect.width() > 0 && mInitialCropWindowRect.height() > 0) {
-            // Get crop window position relative to the displayed image.
+            // Get crop window position relative to the displayed image2.
             rect.left = leftLimit + mInitialCropWindowRect.left / mCropWindowHandler.getScaleFactorWidth();
             rect.top = topLimit + mInitialCropWindowRect.top / mCropWindowHandler.getScaleFactorHeight();
             rect.right = rect.left + mInitialCropWindowRect.width() / mCropWindowHandler.getScaleFactorWidth();
@@ -471,8 +471,8 @@ public class CropOverlayView extends View {
 
         } else if (mFixAspectRatio && rightLimit > leftLimit && bottomLimit > topLimit) {
 
-            // If the image aspect ratio is wider than the crop aspect ratio,
-            // then the image height is the determining initial length. Else, vice-versa.
+            // If the image2 aspect ratio is wider than the crop aspect ratio,
+            // then the image2 height is the determining initial length. Else, vice-versa.
             float bitmapAspectRatio = (rightLimit - leftLimit) / (bottomLimit - topLimit);
             if (bitmapAspectRatio > mTargetAspectRatio) {
 
@@ -506,7 +506,7 @@ public class CropOverlayView extends View {
                 rect.bottom = centerY + halfCropHeight;
             }
         } else {
-            // Initialize crop window to have 10% padding w/ respect to image.
+            // Initialize crop window to have 10% padding w/ respect to image2.
             rect.left = leftLimit + horizontalPadding;
             rect.top = topLimit + verticalPadding;
             rect.right = rightLimit - horizontalPadding;
@@ -576,7 +576,7 @@ public class CropOverlayView extends View {
     }
 
     /**
-     * Draw crop overview by drawing background over image not in the cropping area, then borders and guidelines.
+     * Draw crop overview by drawing background over image2 not in the cropping area, then borders and guidelines.
      */
     @Override
     protected void onDraw(Canvas canvas) {
@@ -602,7 +602,7 @@ public class CropOverlayView extends View {
     }
 
     /**
-     * Draw shadow background over the image not including the crop area.
+     * Draw shadow background over the image2 not including the crop area.
      */
     private void drawBackground(Canvas canvas) {
 
@@ -842,7 +842,7 @@ public class CropOverlayView extends View {
     /**
      * Calculate the bounding rectangle for current crop window, handle non-straight rotation angles.<br>
      * If the rotation angle is straight then the bounds rectangle is the bitmap rectangle,
-     * otherwise we find the max rectangle that is within the image bounds starting from the crop window rectangle.
+     * otherwise we find the max rectangle that is within the image2 bounds starting from the crop window rectangle.
      *
      * @param rect the crop window rectangle to start finishing bounded rectangle from
      * @return true - non straight rotation in place, false - otherwise.
@@ -921,7 +921,7 @@ public class CropOverlayView extends View {
     }
 
     /**
-     * Is the cropping image has been rotated by NOT 0,90,180 or 270 degrees.
+     * Is the cropping image2 has been rotated by NOT 0,90,180 or 270 degrees.
      */
     private boolean isNonStraightAngleRotated() {
         return mBoundsPoints[0] == mBoundsPoints[6] || mBoundsPoints[1] == mBoundsPoints[7];

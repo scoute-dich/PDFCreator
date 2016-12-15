@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -21,7 +22,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,8 +29,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -48,9 +46,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import de.baumann.pdfcreator.filechooser.ChooserDialog;
 import de.baumann.pdfcreator.helper.ActivityEditor;
 import de.baumann.pdfcreator.R;
-import de.baumann.pdfcreator.helper.Helper;
+import de.baumann.pdfcreator.helper.helper_main;
+import de.baumann.pdfcreator.helper.helper_pdf;
 
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -60,17 +60,22 @@ public class create_image extends Fragment {
     private String folder;
 
     private ImageView img;
-    private TextView textTitle;
     private int imgquality_int;
+
+    private SharedPreferences sharedPref;
+    private View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_image, container, false);
+        rootView = inflater.inflate(R.layout.fragment_image, container, false);
 
+        helper_pdf.pdf_textField(getActivity(), rootView);
         setHasOptionsMenu(true);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
         final String imgQuality = sharedPref.getString("imageQuality", "80");
         imgquality_int = Integer.parseInt(imgQuality);
 
@@ -100,100 +105,89 @@ public class create_image extends Fragment {
                 File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
                 if(imgFile.exists()){
 
-                    final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
 
-                    LinearLayout layout = new LinearLayout(getActivity());
-                    layout.setOrientation(LinearLayout.VERTICAL);
-                    layout.setGravity(Gravity.CENTER_HORIZONTAL);
-                    final EditText input = new EditText(getActivity());
-                    input.setSingleLine(true);
-                    layout.setPadding(25, 0, 50, 0);
-                    input.setHint(R.string.app_hint);
-                    layout.addView(input);
+                    android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(getActivity());
+                    View dialogView = View.inflate(getActivity(), R.layout.dialog_title, null);
 
-                    final AlertDialog d = new AlertDialog.Builder(getActivity())
-                            .setView(layout)
-                            .setTitle(R.string.app_title)
-                            .setCancelable(true)
-                            .setPositiveButton(R.string.toast_yes, new DialogInterface.OnClickListener() {
+                    final EditText editTitle = (EditText) dialogView.findViewById(R.id.title);
 
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    title = input.getText().toString().trim();
-                                    sharedPref.edit()
-                                            .putString("title", title)
-                                            .putString("pathPDF", Environment.getExternalStorageDirectory() +  folder + title + ".pdf")
-                                            .apply();
-                                    createPDF();
+                    builder.setView(dialogView);
+                    builder.setTitle(R.string.app_title);
+                    builder.setPositiveButton(R.string.toast_yes, new DialogInterface.OnClickListener() {
 
-                                    InputStream in;
-                                    OutputStream out;
+                        public void onClick(DialogInterface dialog, int whichButton) {
 
-                                    try {
+                            title = editTitle.getText().toString().trim();
+                            sharedPref.edit()
+                                    .putString("title", title)
+                                    .putString("pathPDF", Environment.getExternalStorageDirectory() +  folder + title + ".pdf")
+                                    .apply();
+                            createPDF();
 
-                                        title = sharedPref.getString("title", null);
-                                        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                                        String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                                                folder + title + ".pdf");
+                            InputStream in;
+                            OutputStream out;
 
-                                        in = new FileInputStream(Environment.getExternalStorageDirectory() +  "/" + title + ".pdf");
-                                        out = new FileOutputStream(path);
+                            try {
 
-                                        byte[] buffer = new byte[1024];
-                                        int read;
-                                        while ((read = in.read(buffer)) != -1) {
-                                            out.write(buffer, 0, read);
+                                title = sharedPref.getString("title", null);
+                                folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
+                                String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
+                                        folder + title + ".pdf");
+
+                                in = new FileInputStream(Environment.getExternalStorageDirectory() +  "/" + title + ".pdf");
+                                out = new FileOutputStream(path);
+
+                                byte[] buffer = new byte[1024];
+                                int read;
+                                while ((read = in.read(buffer)) != -1) {
+                                    out.write(buffer, 0, read);
+                                }
+                                in.close();
+
+                                // write the output file
+                                out.flush();
+                                out.close();
+                            } catch (Exception e) {
+                                Log.e("tag", e.getMessage());
+                            }
+
+                            img.setImageResource(R.drawable.image);
+                            helper_pdf.pdf_textField(getActivity(), rootView);
+
+                            File pdfFile = new File(Environment.getExternalStorageDirectory() +  "/" + title + ".pdf");
+                            if(pdfFile.exists()){
+                                pdfFile.delete();
+                            }
+
+                            Snackbar snackbar = Snackbar
+                                    .make(img, getString(R.string.toast_successfully), Snackbar.LENGTH_LONG)
+                                    .setAction(getString(R.string.toast_open), new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            File file = new File(helper_pdf.actualPath(getActivity()));
+                                            helper_main.openFile(getActivity(), file, "application/pdf", img);
                                         }
-                                        in.close();
+                                    });
+                            snackbar.show();
+                        }
+                    });
+                    builder.setNegativeButton(R.string.toast_cancel, new DialogInterface.OnClickListener() {
 
-                                        // write the output file
-                                        out.flush();
-                                        out.close();
-                                    } catch (Exception e) {
-                                        Log.e("tag", e.getMessage());
-                                    }
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.setNeutralButton(R.string.app_title_date, null);
 
-                                    img.setImageResource(R.drawable.image);
-                                    setTextField();
-
-                                    File pdfFile = new File(Environment.getExternalStorageDirectory() +  "/" + title + ".pdf");
-                                    if(pdfFile.exists()){
-                                        pdfFile.delete();
-                                    }
-
-                                    Snackbar snackbar = Snackbar
-                                            .make(img, getString(R.string.toast_successfully), Snackbar.LENGTH_LONG)
-                                            .setAction(getString(R.string.toast_open), new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View view) {
-                                                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                                                    title = sharedPref.getString("title", null);
-                                                    folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                                                    String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                                                            folder + title + ".pdf");
-
-                                                    File file = new File(path);
-                                                    Helper.openFile(getActivity(), file, "application/pdf", img);
-                                                }
-                                            });
-                                    snackbar.show();
-                                }
-                            })
-                            .setNegativeButton(R.string.toast_cancel, new DialogInterface.OnClickListener() {
-
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    dialog.cancel();
-                                }
-                            })
-                            .setNeutralButton(R.string.app_title_date, null)
-                            .create();
-
-                    d.setOnShowListener(new DialogInterface.OnShowListener() {
+                    final android.support.v7.app.AlertDialog dialog2 = builder.create();
+                    // Display the custom alert dialog on interface
+                    dialog2.setOnShowListener(new DialogInterface.OnShowListener() {
 
                         @Override
                         public void onShow(DialogInterface dialog) {
 
-                            Button b = d.getButton(AlertDialog.BUTTON_NEUTRAL);
+                            Button b = dialog2.getButton(AlertDialog.BUTTON_NEUTRAL);
                             b.setOnClickListener(new View.OnClickListener() {
 
                                 @Override
@@ -201,14 +195,19 @@ public class create_image extends Fragment {
                                     Date date = new Date();
                                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                                     String dateNow = format.format(date);
-                                    input.append(String.valueOf(dateNow));
+                                    editTitle.append(String.valueOf(dateNow));
 
                                 }
                             });
                         }
                     });
+                    dialog2.show();
 
-                    d.show();
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            helper_main.showKeyboard(getActivity(), editTitle);
+                        }
+                    }, 200);
 
                 } else {
                     Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG)
@@ -231,7 +230,6 @@ public class create_image extends Fragment {
             public void onClick(View view) {
                 File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
                 if(imgFile.exists()){
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     sharedPref.edit()
                             .putInt("startFragment", 0)
                             .putBoolean("appStarted", false)
@@ -253,7 +251,6 @@ public class create_image extends Fragment {
 
                 File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
                 if(imgFile.exists()){
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     sharedPref.edit()
                             .putInt("startFragment", 0)
                             .putBoolean("appStarted", false)
@@ -278,25 +275,6 @@ public class create_image extends Fragment {
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             img.setImageBitmap(myBitmap);
         }
-
-        textTitle = (TextView) rootView.findViewById(R.id.textTitle);
-        textTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                if (sharedPref.getBoolean ("rotate", false)) {
-                    sharedPref.edit()
-                            .putBoolean("rotate", false)
-                            .apply();
-                } else {
-                    sharedPref.edit()
-                            .putBoolean("rotate", true)
-                            .apply();
-                }
-                setTextField();
-            }
-        });
-        setTextField();
 
         // Get intent, action and MIME type
         Intent intent = getActivity().getIntent();
@@ -345,37 +323,9 @@ public class create_image extends Fragment {
 
         String FilePath = pdfUri.getPath();
         String FileTitle = FilePath.substring(FilePath.lastIndexOf("/")+1);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         sharedPref.edit().putString("pathPDF", FilePath).apply();
         sharedPref.edit().putString("title", FileTitle).apply();
-        setTextField();
-    }
-
-    private void setTextField() {
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        title = sharedPref.getString("title", null);
-        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-        String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                folder + title + ".pdf");
-
-        File pdfFile = new File(path);
-        String textRotate;
-
-        if (sharedPref.getBoolean ("rotate", false)) {
-            textRotate = getString(R.string.app_portrait);
-        } else {
-            textRotate = getString(R.string.app_landscape);
-        }
-
-        String text = title + " | " + textRotate;
-        String text2 = getString(R.string.toast_noPDF) + " | " + textRotate;
-
-        if (pdfFile.exists()) {
-            textTitle.setText(text);
-        } else {
-            textTitle.setText(text2);
-        }
+        helper_pdf.pdf_textField(getActivity(), rootView);
     }
 
     private void createPDF() {
@@ -383,7 +333,6 @@ public class create_image extends Fragment {
         String inputPath = Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg";
 
         // Output file
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         title = sharedPref.getString("title", null);
         folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
         String outputPath = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
@@ -399,14 +348,8 @@ public class create_image extends Fragment {
                     .setAction(getString(R.string.toast_open), new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                            title = sharedPref.getString("title", null);
-                            folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                            String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                                    folder + title + ".pdf");
-
-                            File file = new File(path);
-                            Helper.openFile(getActivity(), file, "application/pdf", img);
+                            File file = new File(helper_pdf.actualPath(getActivity()));
+                            helper_main.openFile(getActivity(), file, "application/pdf", img);
                         }
                     });
             snackbar.show();
@@ -426,7 +369,6 @@ public class create_image extends Fragment {
             if (!outputFile.exists()) outputFile.createNewFile();
 
             Document document;
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
             if (sharedPref.getBoolean ("rotate", false)) {
                 document = new Document(PageSize.A4);
             } else {
@@ -475,7 +417,10 @@ public class create_image extends Fragment {
 
     private void selectImage_1() {
 
-        final CharSequence[] options = {getString(R.string.goal_camera),getString(R.string.goal_gallery), getString(R.string.goal_cancel)};
+        final CharSequence[] options = {
+                getString(R.string.goal_camera),
+                getString(R.string.goal_gallery),
+                getString(R.string.choose_chooser)};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -502,12 +447,44 @@ public class create_image extends Fragment {
                 } else if (options[item].equals(getString(R.string.goal_gallery))) {
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, 2);
+                } else if (options[item].equals(getString(R.string.choose_chooser))) {
+                    folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
 
-                } else if (options[item].equals(getString(R.string.goal_cancel))) {
-                    dialog.dismiss();
+                    new ChooserDialog().with(getActivity())
+                            .withFilter(false, false, "jpg", "jpeg", "png", "pdf")
+                            .withResources()
+                            .withStartFile(Environment.getExternalStorageDirectory() + folder)
+                            .withChosenListener(new ChooserDialog.Result() {
+                                @Override
+                                public void onChoosePath(String path, final File pathFile) {
+
+                                    img.setImageURI(Uri.fromFile(pathFile));
+
+                                    BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
+                                    Bitmap bitmap = drawable.getBitmap();
+
+                                    File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
+
+                                    // Encode the file as a JPEG image.
+                                    FileOutputStream outStream;
+                                    try {
+
+                                        outStream = new FileOutputStream(imgFile);
+                                        bitmap.compress(Bitmap.CompressFormat.JPEG, imgquality_int, outStream);
+                                        outStream.flush();
+                                        outStream.close();
+
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            })
+                            .build()
+                            .show();
                 }
             }
         });
+        builder.setPositiveButton(getString(R.string.dialog_cancel), null);
         builder.show();
     }
 
@@ -579,7 +556,7 @@ public class create_image extends Fragment {
 
                     File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
 
-                    // Encode the file as a PNG image.
+                    // Encode the file as a PNG image.++
                     FileOutputStream outStream;
                     try {
 
@@ -597,17 +574,64 @@ public class create_image extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
+        if(imgFile.exists()){
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            img.setImageBitmap(myBitmap);
+        } else {
+            img.setImageResource(R.drawable.image);
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
+                folder + title + ".pdf");
+
+        File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
         switch (item.getItemId()) {
             case R.id.action_help:
 
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.create_image)
-                        .setMessage(Helper.textSpannable(getString(R.string.dialog_createImage)))
+                        .setMessage(helper_main.textSpannable(getString(R.string.dialog_createImage)))
                         .setPositiveButton(getString(R.string.toast_yes), null);
                 dialog.show();
                 return true;
+
+            case R.id.action_share:
+
+                if (pdfFile.exists()) {
+
+                    String FileTitle = path.substring(path.lastIndexOf("/")+1);
+                    String text = getString(R.string.action_share_Text);
+
+                    Uri myUri= Uri.fromFile(pdfFile);
+                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                    sharingIntent.setType("application/pdf");
+                    sharingIntent.putExtra(Intent.EXTRA_STREAM, myUri);
+                    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, FileTitle);
+                    sharingIntent.putExtra(Intent.EXTRA_TEXT, text + " " + FileTitle);
+                    sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    startActivity(Intent.createChooser(sharingIntent, getString(R.string.action_share_with)));
+                } else {
+                    Snackbar.make(img, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
+                }
+                return true;
+
+            case R.id.action_open:
+
+                if (pdfFile.exists()) {
+                    helper_main.openFile(getActivity(), pdfFile, "application/pdf", img);
+                } else {
+                    Snackbar.make(img, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
+                }
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

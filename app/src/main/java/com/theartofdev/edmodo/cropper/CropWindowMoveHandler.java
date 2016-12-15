@@ -295,11 +295,11 @@ final class CropWindowMoveHandler {
 
     /**
      * Get the resulting x-position of the left edge of the crop window given
-     * the handle's position and the image's bounding box and snap radius.
+     * the handle's position and the image2's bounding box and snap radius.
      *
      * @param left the position that the left edge is dragged to
-     * @param bounds the bounding box of the image that is being cropped
-     * @param snapMargin the snap distance to the image edge (in pixels)
+     * @param bounds the bounding box of the image2 that is being cropped
+     * @param snapMargin the snap distance to the image2 edge (in pixels)
      */
     private void adjustLeft(RectF rect, float left, RectF bounds, float snapMargin, float aspectRatio, boolean topMoves, boolean bottomMoves) {
 
@@ -370,7 +370,7 @@ final class CropWindowMoveHandler {
 
     /**
      * Get the resulting x-position of the right edge of the crop window given
-     * the handle's position and the image's bounding box and snap radius.
+     * the handle's position and the image2's bounding box and snap radius.
      */
     private void adjustRight(RectF rect, float right, RectF bounds, int viewWidth, float snapMargin, float aspectRatio, boolean topMoves, boolean bottomMoves) {
 
@@ -443,11 +443,11 @@ final class CropWindowMoveHandler {
 
     /**
      * Get the resulting y-position of the top edge of the crop window given the
-     * handle's position and the image's bounding box and snap radius.
+     * handle's position and the image2's bounding box and snap radius.
      *
      * @param top the x-position that the top edge is dragged to
-     * @param bounds the bounding box of the image that is being cropped
-     * @param snapMargin the snap distance to the image edge (in pixels)
+     * @param bounds the bounding box of the image2 that is being cropped
+     * @param snapMargin the snap distance to the image2 edge (in pixels)
      */
     private void adjustTop(RectF rect, float top, RectF bounds, float snapMargin, float aspectRatio, boolean leftMoves, boolean rightMoves) {
 
@@ -518,7 +518,7 @@ final class CropWindowMoveHandler {
 
     /**
      * Get the resulting y-position of the bottom edge of the crop window given
-     * the handle's position and the image's bounding box and snap radius.
+     * the handle's position and the image2's bounding box and snap radius.
      */
     private void adjustBottom(RectF rect, float bottom, RectF bounds, int viewHeight, float snapMargin, float aspectRatio, boolean leftMoves, boolean rightMoves) {
 

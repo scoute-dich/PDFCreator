@@ -117,9 +117,6 @@ public final class MainFragment extends Fragment
             return true;
 
         } else if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(getActivity(), de.baumann.pdfcreator.MainActivity.class);
-            startActivity(intent);
-            getActivity().overridePendingTransition(0, 0);
             getActivity().finish();
         }
 
@@ -147,7 +144,7 @@ public final class MainFragment extends Fragment
         if (error == null) {
             Toast.makeText(getActivity(), "Image load successful", Toast.LENGTH_SHORT).show();
         } else {
-            Log.e("AIC", "Failed to load image by URI", error);
+            Log.e("AIC", "Failed to load image2 by URI", error);
             Toast.makeText(getActivity(), "Image load failed: " + error.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
@@ -178,7 +175,7 @@ public final class MainFragment extends Fragment
             }
             startActivity(intent);
         } else {
-            Log.e("AIC", "Failed to crop image", error);
+            Log.e("AIC", "Failed to crop image2", error);
             Toast.makeText(getActivity(), "Image crop failed: " + error.getMessage(), Toast.LENGTH_LONG).show();
         }
     }

@@ -67,7 +67,7 @@ public class UserSettingsActivity extends AppCompatActivity {
 
                     final AlertDialog d = new AlertDialog.Builder(getActivity())
                             .setTitle(R.string.about_title)
-                            .setMessage(Helper.textSpannable(getString(R.string.about_text)))
+                            .setMessage(helper_main.textSpannable(getString(R.string.about_text)))
                             .setPositiveButton(getString(R.string.toast_yes),
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
@@ -82,6 +82,65 @@ public class UserSettingsActivity extends AppCompatActivity {
             });
         }
 
+        private void addEncryptListener() {
+            Preference reset = findPreference("pwOWNER");
+
+            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                public boolean onPreferenceClick(Preference pref) {
+                    helper_dialogs.dialog_encryption(getActivity());
+                    return true;
+                }
+            });
+        }
+
+        private void addMetaListener() {
+            Preference reset = findPreference("metaAuthor");
+
+            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                public boolean onPreferenceClick(Preference pref) {
+                    helper_dialogs.dialog_metaTags(getActivity());
+                    return true;
+                }
+            });
+        }
+
+        private void addPathListener() {
+            Preference reset = findPreference("folder");
+
+            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                public boolean onPreferenceClick(Preference pref) {
+                    helper_dialogs.dialog_path(getActivity());
+                    return true;
+                }
+            });
+        }
+
+        private void addDonateListListener() {
+
+            Preference reset = findPreference("donate");
+            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                public boolean onPreferenceClick(Preference pref) {
+                    Uri uri = Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NP6TGYDYP9SHY"); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                    return true;
+                }
+            });
+        }
+
+        private void addChangelogListener() {
+
+            Preference reset = findPreference("changelog");
+            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                public boolean onPreferenceClick(Preference pref) {
+                    Uri uri = Uri.parse("https://github.com/scoute-dich/PDFCreator/blob/master/CHANGELOG.md"); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                    return true;
+                }
+            });
+        }
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -89,6 +148,11 @@ public class UserSettingsActivity extends AppCompatActivity {
             addPreferencesFromResource(R.xml.user_settings);
             addLicenseListener();
             addOpenSettingsListener();
+            addEncryptListener();
+            addMetaListener();
+            addPathListener();
+            addChangelogListener();
+            addDonateListListener();
         }
     }
 

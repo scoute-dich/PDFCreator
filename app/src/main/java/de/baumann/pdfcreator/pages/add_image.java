@@ -20,13 +20,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -37,15 +35,14 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
+import de.baumann.pdfcreator.filechooser.ChooserDialog;
 import de.baumann.pdfcreator.helper.ActivityEditor;
 import de.baumann.pdfcreator.R;
-import de.baumann.pdfcreator.helper.Helper;
+import de.baumann.pdfcreator.helper.helper_main;
+import de.baumann.pdfcreator.helper.helper_pdf;
 
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -55,17 +52,22 @@ public class add_image extends Fragment {
     private String folder;
 
     private ImageView img;
-    private TextView textTitle;
     private int imgquality_int;
+    private View rootView;
+
+    private SharedPreferences sharedPref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_image, container, false);
+        rootView = inflater.inflate(R.layout.fragment_image, container, false);
 
+        helper_pdf.pdf_textField(getActivity(), rootView);
         setHasOptionsMenu(true);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
         final String imgQuality = sharedPref.getString("imageQuality", "80");
         imgquality_int = Integer.parseInt(imgQuality);
 
@@ -95,26 +97,19 @@ public class add_image extends Fragment {
                 File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
 
                 if(imgFile.exists()){
-
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    title = sharedPref.getString("title", null);
-                    folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                    String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                            folder + title + ".pdf");
-
-                    File pdfFile = new File(path);
+                    
+                    File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
                     if (pdfFile.exists()) {
-                        backup();
 
                         title = sharedPref.getString("title", null);
 
-                        backup();
+                        helper_pdf.pdf_backup(getActivity());
                         createPDF();
                         mergePDF();
                         success();
-                        deleteTemp();
-                        deleteTemp2();
+                        helper_pdf.pdf_deleteTemp_1(getActivity());
+                        helper_pdf.pdf_deleteTemp_2(getActivity());
 
                     } else {
                         Snackbar.make(img, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG)
@@ -143,11 +138,7 @@ public class add_image extends Fragment {
 
                 File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
                 if(imgFile.exists()){
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    sharedPref.edit()
-                            .putInt("startFragment", 2)
-                            .putBoolean("appStarted", false)
-                            .apply();
+                    sharedPref.edit().putInt("startFragment", 2).putBoolean("appStarted", false).apply();
 
                     Intent intent = new Intent(getActivity(), com.theartofdev.edmodo.cropper.sample.MainActivity.class);
                     startActivity(intent);
@@ -166,12 +157,7 @@ public class add_image extends Fragment {
 
                 File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
                 if(imgFile.exists()){
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    sharedPref.edit()
-                            .putInt("startFragment", 2)
-                            .putBoolean("appStarted", false)
-                            .apply();
-
+                    sharedPref.edit().putInt("startFragment", 2).putBoolean("appStarted", false).apply();
                     Intent intent = new Intent(getActivity(), ActivityEditor.class);
                     startActivity(intent);
                     getActivity().overridePendingTransition(0, 0);
@@ -187,9 +173,24 @@ public class add_image extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("application/pdf");
-                startActivityForResult(intent, 4);
+                folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
+
+                new ChooserDialog().with(getActivity())
+                        .withFilter(false, false, "pdf")
+                        .withResources()
+                        .withStartFile(Environment.getExternalStorageDirectory() + folder)
+                        .withChosenListener(new ChooserDialog.Result() {
+                            @Override
+                            public void onChoosePath(String path, final File pathFile) {
+
+                                final String fileName = pathFile.getAbsolutePath().substring(pathFile.getAbsolutePath().lastIndexOf("/")+1);
+                                sharedPref.edit().putString("pathPDF", pathFile.getAbsolutePath()).apply();
+                                sharedPref.edit().putString("title", fileName).apply();
+                                helper_pdf.pdf_textField(getActivity(), rootView);
+                            }
+                        })
+                        .build()
+                        .show();
             }
         });
 
@@ -199,25 +200,6 @@ public class add_image extends Fragment {
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             img.setImageBitmap(myBitmap);
         }
-
-        textTitle = (TextView) rootView.findViewById(R.id.textTitle);
-        textTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                if (sharedPref.getBoolean ("rotate", false)) {
-                    sharedPref.edit()
-                            .putBoolean("rotate", false)
-                            .apply();
-                } else {
-                    sharedPref.edit()
-                            .putBoolean("rotate", true)
-                            .apply();
-                }
-                setTextField();
-            }
-        });
-        setTextField();
 
         // Get intent, action and MIME type
         Intent intent = getActivity().getIntent();
@@ -238,37 +220,9 @@ public class add_image extends Fragment {
 
         String FilePath = pdfUri.getPath();
         String FileTitle = FilePath.substring(FilePath.lastIndexOf("/")+1);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         sharedPref.edit().putString("pathPDF", FilePath).apply();
         sharedPref.edit().putString("title", FileTitle).apply();
-        setTextField();
-    }
-
-    private void setTextField() {
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        title = sharedPref.getString("title", null);
-        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-        String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                folder + title + ".pdf");
-
-        File pdfFile = new File(path);
-        String textRotate;
-
-        if (sharedPref.getBoolean ("rotate", false)) {
-            textRotate = getString(R.string.app_portrait);
-        } else {
-            textRotate = getString(R.string.app_landscape);
-        }
-
-        String text = title + " | " + textRotate;
-        String text2 = getString(R.string.toast_noPDF) + " | " + textRotate;
-
-        if (pdfFile.exists()) {
-            textTitle.setText(text);
-        } else {
-            textTitle.setText(text2);
-        }
+        helper_pdf.pdf_textField(getActivity(), rootView);
     }
 
     private void createPDF() {
@@ -288,14 +242,8 @@ public class add_image extends Fragment {
                     .setAction(getString(R.string.toast_open), new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                            title = sharedPref.getString("title", null);
-                            folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                            String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                                    folder + title + ".pdf");
-
-                            File file = new File(path);
-                            Helper.openFile(getActivity(), file, "application/pdf", img);
+                            File file = new File(helper_pdf.actualPath(getActivity()));
+                            helper_main.openFile(getActivity(), file, "application/pdf", img);
                         }
                     });
             snackbar.show();
@@ -315,7 +263,6 @@ public class add_image extends Fragment {
             if (!outputFile.exists()) outputFile.createNewFile();
 
             Document document;
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
             if (sharedPref.getBoolean ("rotate", false)) {
                 document = new Document(PageSize.A4);
             } else {
@@ -364,8 +311,6 @@ public class add_image extends Fragment {
 
     private void mergePDF() {
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
         // Load existing PDF
         title = sharedPref.getString("title2", null);
         folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
@@ -398,7 +343,7 @@ public class add_image extends Fragment {
             Snackbar.make(img, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
-        deleteTemp();
+        helper_pdf.pdf_deleteTemp_1(getActivity());
     }
 
     private void success(){
@@ -408,14 +353,8 @@ public class add_image extends Fragment {
                 .setAction(getString(R.string.toast_open), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                        title = sharedPref.getString("title", null);
-                        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                        String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                                folder + title + ".pdf");
-
-                        File file = new File(path);
-                        Helper.openFile(getActivity(), file, "application/pdf", img);
+                        File file = new File(helper_pdf.actualPath(getActivity()));
+                        helper_main.openFile(getActivity(), file, "application/pdf", img);
                     }
                 });
         snackbar.show();
@@ -423,7 +362,10 @@ public class add_image extends Fragment {
 
     private void selectImage_1() {
 
-        final CharSequence[] options = {getString(R.string.goal_camera),getString(R.string.goal_gallery),getString(R.string.goal_cancel)};
+        final CharSequence[] options = {
+                getString(R.string.goal_camera),
+                getString(R.string.goal_gallery),
+                getString(R.string.choose_chooser)};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -451,11 +393,44 @@ public class add_image extends Fragment {
                     Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, 2);
 
-                } else if (options[item].equals(getString(R.string.goal_cancel))) {
-                    dialog.dismiss();
+                } else if (options[item].equals(getString(R.string.choose_chooser))) {
+                    folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
+
+                    new ChooserDialog().with(getActivity())
+                            .withFilter(false, false, "jpg", "jpeg", "png", "pdf")
+                            .withResources()
+                            .withStartFile(Environment.getExternalStorageDirectory() + folder)
+                            .withChosenListener(new ChooserDialog.Result() {
+                                @Override
+                                public void onChoosePath(String path, final File pathFile) {
+
+                                    img.setImageURI(Uri.fromFile(pathFile));
+
+                                    BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
+                                    Bitmap bitmap = drawable.getBitmap();
+
+                                    File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
+
+                                    // Encode the file as a JPEG image.
+                                    FileOutputStream outStream;
+                                    try {
+
+                                        outStream = new FileOutputStream(imgFile);
+                                        bitmap.compress(Bitmap.CompressFormat.JPEG, imgquality_int, outStream);
+                                        outStream.flush();
+                                        outStream.close();
+
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            })
+                            .build()
+                            .show();
                 }
             }
         });
+        builder.setPositiveButton(getString(R.string.dialog_cancel), null);
         builder.show();
     }
 
@@ -510,13 +485,6 @@ public class add_image extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else if (requestCode == 4) {
-                String FilePath = data.getData().getPath();
-                String FileTitle = FilePath.substring(FilePath.lastIndexOf("/")+1);
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                sharedPref.edit().putString("pathPDF", FilePath).apply();
-                sharedPref.edit().putString("title", FileTitle).apply();
-                setTextField();
             }
 
             int PIC_CROP = 1;
@@ -551,131 +519,62 @@ public class add_image extends Fragment {
         }
     }
 
-    private void deleteTemp(){
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        title = sharedPref.getString("title", null);
-
-        InputStream in;
-        OutputStream out;
-
-        try {
-
-            title = sharedPref.getString("title", null);
-            folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-            String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                    folder + title + ".pdf");
-
-            in = new FileInputStream(Environment.getExternalStorageDirectory() +  "/" + "123456.pdf");
-            out = new FileOutputStream(path);
-
-            byte[] buffer = new byte[1024];
-            int read;
-            while ((read = in.read(buffer)) != -1) {
-                out.write(buffer, 0, read);
-            }
-            in.close();
-
-            // write the output file
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            Log.e("tag", e.getMessage());
-        }
-
-        File pdfFile = new File(Environment.getExternalStorageDirectory() +  "/" + "123456.pdf");
-        if(pdfFile.exists()){
-            pdfFile.delete();
-        }
-    }
-
-    private void deleteTemp2(){
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        title = sharedPref.getString("title", null);
-
-        InputStream in;
-        OutputStream out;
-
-        try {
-
-            title = sharedPref.getString("title", null);
-            folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-            String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                    folder + title + ".pdf");
-
-            in = new FileInputStream(Environment.getExternalStorageDirectory() +  "/" + "1234567.pdf");
-            out = new FileOutputStream(path);
-
-            byte[] buffer = new byte[1024];
-            int read;
-            while ((read = in.read(buffer)) != -1) {
-                out.write(buffer, 0, read);
-            }
-            in.close();
-
-            // write the output file
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            Log.e("tag", e.getMessage());
-        }
-
-        File pdfFile = new File(Environment.getExternalStorageDirectory() +  "/" + "1234567.pdf");
-        if(pdfFile.exists()){
-            pdfFile.delete();
-        }
-    }
-
-    private void backup(){
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-        if (sharedPref.getBoolean ("backup", false)){
-
-            title = sharedPref.getString("title", null);
-
-            InputStream in;
-            OutputStream out;
-
-            try {
-
-                title = sharedPref.getString("title", null);
-                folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                        folder + title + ".pdf");
-
-                in = new FileInputStream(path);
-                out = new FileOutputStream(Environment.getExternalStorageDirectory() +
-                        folder + "pdf_backups/" + title + ".pdf");
-
-                byte[] buffer = new byte[1024];
-                int read;
-                while ((read = in.read(buffer)) != -1) {
-                    out.write(buffer, 0, read);
-                }
-                in.close();
-
-                // write the output file
-                out.flush();
-                out.close();
-            } catch (Exception e) {
-                Log.e("tag", e.getMessage());
-            }
+    @Override
+    public void onResume() {
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
+        if(imgFile.exists()){
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            img.setImageBitmap(myBitmap);
+        } else {
+            img.setImageResource(R.drawable.image);
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        String path = helper_pdf.actualPath(getActivity());
+
+        File pdfFile = new File(helper_pdf.actualPath(getActivity()));
+
         switch (item.getItemId()) {
             case R.id.action_help:
 
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.add_image)
-                        .setMessage(Helper.textSpannable(getString(R.string.dialog_addImage)))
+                        .setMessage(helper_main.textSpannable(getString(R.string.dialog_addImage)))
                         .setPositiveButton(getString(R.string.toast_yes), null);
                 dialog.show();
+                return true;
+
+            case R.id.action_share:
+
+                if (pdfFile.exists()) {
+
+                    String FileTitle = path.substring(path.lastIndexOf("/")+1);
+                    String text = getString(R.string.action_share_Text);
+
+                    Uri myUri= Uri.fromFile(pdfFile);
+                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                    sharingIntent.setType("application/pdf");
+                    sharingIntent.putExtra(Intent.EXTRA_STREAM, myUri);
+                    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, FileTitle);
+                    sharingIntent.putExtra(Intent.EXTRA_TEXT, text + " " + FileTitle);
+                    sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    startActivity(Intent.createChooser(sharingIntent, getString(R.string.action_share_with)));
+                } else {
+                    Snackbar.make(img, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
+                }
+                return true;
+
+            case R.id.action_open:
+
+                if (pdfFile.exists()) {
+                    helper_main.openFile(getActivity(), pdfFile, "application/pdf", img);
+                } else {
+                    Snackbar.make(img, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

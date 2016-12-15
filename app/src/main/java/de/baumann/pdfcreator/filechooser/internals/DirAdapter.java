@@ -1,4 +1,4 @@
-package filechooser.internals;
+package de.baumann.pdfcreator.filechooser.internals;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,14 +17,26 @@ import java.util.Locale;
 
 import de.baumann.pdfcreator.R;
 
+/**
+ * Created by coco on 6/7/15.
+ * Part of "android-file-chooser"
+ * modified by Gaukler Faun
+ */
+
 public class DirAdapter extends ArrayAdapter<File> {
 
-    private final static SimpleDateFormat _formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault());
+    private final static SimpleDateFormat _formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
 
     private final List<File> m_entries;
 
     public DirAdapter(Context cxt, List<File> entries) {
-        super(cxt, R.layout.li_row_textview, R.id.text1, entries);
+        super(cxt, R.layout.list_file, R.id.text1, entries);
+        m_entries = entries;
+    }
+
+    @SuppressWarnings("unused")
+    public DirAdapter(Context cxt, List<File> entries, int resource, int textViewResourceId) {
+        super(cxt, resource, textViewResourceId, entries);
         m_entries = entries;
     }
 

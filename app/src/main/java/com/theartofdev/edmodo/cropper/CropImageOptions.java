@@ -23,7 +23,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
 /**
- * All the possible options that can be set to customize crop image.<br>
+ * All the possible options that can be set to customize crop image2.<br>
  * Initialized with default values.
  */
 public class CropImageOptions implements Parcelable {
@@ -64,19 +64,19 @@ public class CropImageOptions implements Parcelable {
     public CropImageView.Guidelines guidelines;
 
     /**
-     * The initial scale type of the image in the crop image view
+     * The initial scale type of the image2 in the crop image2 view
      */
     public CropImageView.ScaleType scaleType;
 
     /**
      * if to show crop overlay UI what contains the crop window UI surrounded by background over the cropping
-     * image.<br>
+     * image2.<br>
      * default: true, may disable for animation or frame transition.
      */
     public boolean showCropOverlay;
 
     /**
-     * if to show progress bar when image async loading/cropping is in progress.<br>
+     * if to show progress bar when image2 async loading/cropping is in progress.<br>
      * default: true, disable to provide custom progress bar UI.
      */
     public boolean showProgressBar;
@@ -93,7 +93,7 @@ public class CropImageOptions implements Parcelable {
     public int maxZoom;
 
     /**
-     * The initial crop window padding from image borders in percentage of the cropping image dimensions.
+     * The initial crop window padding from image2 borders in percentage of the cropping image2 dimensions.
      */
     public float initialCropWindowPaddingRatio;
 
@@ -153,7 +153,7 @@ public class CropImageOptions implements Parcelable {
     public int guidelinesColor;
 
     /**
-     * the color of the overlay background around the crop window cover the image parts not in the crop window.
+     * the color of the overlay background around the crop window cover the image2 parts not in the crop window.
      */
     public int backgroundColor;
 
@@ -168,22 +168,22 @@ public class CropImageOptions implements Parcelable {
     public int minCropWindowHeight;
 
     /**
-     * the min width the resulting cropping image is allowed to be, affects the cropping window limits. (in pixels)
+     * the min width the resulting cropping image2 is allowed to be, affects the cropping window limits. (in pixels)
      */
     public int minCropResultWidth;
 
     /**
-     * the min height the resulting cropping image is allowed to be, affects the cropping window limits. (in pixels)
+     * the min height the resulting cropping image2 is allowed to be, affects the cropping window limits. (in pixels)
      */
     public int minCropResultHeight;
 
     /**
-     * the max width the resulting cropping image is allowed to be, affects the cropping window limits. (in pixels)
+     * the max width the resulting cropping image2 is allowed to be, affects the cropping window limits. (in pixels)
      */
     public int maxCropResultWidth;
 
     /**
-     * the max height the resulting cropping image is allowed to be, affects the cropping window limits. (in pixels)
+     * the max height the resulting cropping image2 is allowed to be, affects the cropping window limits. (in pixels)
      */
     public int maxCropResultHeight;
 
@@ -198,42 +198,42 @@ public class CropImageOptions implements Parcelable {
     private final int activityMenuIconColor;
 
     /**
-     * the Android Uri to save the cropped image to
+     * the Android Uri to save the cropped image2 to
      */
     private final Uri outputUri;
 
     /**
-     * the compression format to use when writing the image
+     * the compression format to use when writing the image2
      */
     private final Bitmap.CompressFormat outputCompressFormat;
 
     /**
-     * the quality (if applicable) to use when writing the image (0 - 100)
+     * the quality (if applicable) to use when writing the image2 (0 - 100)
      */
     private final int outputCompressQuality;
 
     /**
-     * the width to downsample the cropped image to
+     * the width to downsample the cropped image2 to
      */
     private final int outputRequestWidth;
 
     /**
-     * the height to downsample the cropped image to
+     * the height to downsample the cropped image2 to
      */
     private final int outputRequestHeight;
 
     /**
-     * if the result of crop image activity should not save the cropped image bitmap
+     * if the result of crop image2 activity should not save the cropped image2 bitmap
      */
     private final boolean noOutputImage;
 
     /**
-     * the initial rectangle to set on the cropping image after loading
+     * the initial rectangle to set on the cropping image2 after loading
      */
     public final Rect initialCropWindowRectangle;
 
     /**
-     * the initial rotation to set on the cropping image after loading (0-360 degrees clockwise)
+     * the initial rotation to set on the cropping image2 after loading (0-360 degrees clockwise)
      */
     public final int initialRotation;
 

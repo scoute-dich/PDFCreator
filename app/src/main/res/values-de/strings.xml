@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     // App
 
@@ -42,6 +42,8 @@
     <string name="toast_savedImage">Bitte warten. Bild wird gespeichert.</string>
     <string name="toast_notAgain">Nicht mehr anzeigen</string>
     <string name="toast_extension">Keine unterstützte Dateiendung</string>
+    <string name="toast_edited">Bild wurde bearbeitet. Speichern?</string>
+    <string name="toast_no">Nein</string>
 
 
     // Main menu
@@ -68,8 +70,6 @@
     <string name="add_text_delete">Seiten löschen</string>
     <string name="add_text_delete_hint">Welche Seiten möchtest du behalten?</string>
     <string name="add_text_hint_enterText">Schreiben oder Text einfügen</string>
-    <string name="add_text_PW">Neues Benutzerpasswort</string>
-    <string name="add_text_PW_hint">Wird gebraucht um die verschlüsselte PDF-Datei zu öffnen.</string>
 
 
     // Image fragment
@@ -77,7 +77,6 @@
 
     <string name="goal_gallery">Aus der Galerie aussuchen</string>
     <string name="goal_camera">Foto aufnehmen</string>
-    <string name="goal_cancel">Abbrechen</string>
 
 
     // Editor
@@ -95,12 +94,24 @@
     <string name="filter_10">Mitten ausgleichen</string>
 
 
+    // Dialogs
+
+    <string name="dialog_encryption_hint_ownerPW">Besitzerpasswort</string>
+    <string name="dialog_encryption_hint_userPW">Benutzerpasswort</string>
+    <string name="choose_file">Datei auswählen</string>
+    <string name="choose_title">Umbenennen</string>
+    <string name="confirm">Bestätigung</string>
+    <string name="choose_filter">Filter auswählen</string>
+    <string name="choose_chooser">Dateibrowser öffnen</string>
+
+
     // Settings
 
     <string name="settings_prefApp">Über die App</string>
     <string name="settings_prefDir">Anwendungsverzeichnis</string>
     <string name="settings_prefEnc">Verschlüsselung</string>
-    <string name="settings_prefData">Metadaten</string>
+    <string name="settings_prefData">PDF Eigenschaften</string>
+    <string name="settings_prefMeta">Metadaten</string>
 
     <string name="pref_license">Lizenz</string>
     <string name="pref_license_summary">Die App ist komplett frei (Open Source) und unter der GPL3-Lizenz lizenziert.</string>
@@ -111,39 +122,33 @@
     <string name="pref_backup">Sicherung</string>
     <string name="pref_backup_summary">Sollen PDF-Dateien vor dem Bearbeiten (z.B.: Hinzufügen oder Löschen von Seiten) gesichert werden?</string>
 
-    <string name="pref_folderDef">Standardverzeichnis</string>
-    <string name="pref_folderDef_summary">Benutze das Standardverzeichnis: \"/Android/data/de.baumann.pdf/\".</string>
-
     <string name="pref_folder">Eigenes Verzeichnis</string>
-    <string name="pref_folder_summary">Ändere das Verzeichnis in dem neue PDF-Dateien und Sicherungen gespeichert werden. Gib den Pfad
+    <string name="pref_folder_summary">Leer lassen, um das Standardverzeichnis (\"/Android/data/de.baumann.pdf/\") zu nutzen.
+        Ändere das Verzeichnis in dem neue PDF-Dateien und Sicherungen gespeichert werden. Gib den Pfad
         zum gewünschten Verzeichnis auf deiner SD-Karte ein. Der eingegebene Pfad muss mit einem \"/\" anfangen und enden, wie
         z.B. \"/Download/PDF/\". Noch nicht vorhandene Verzeichnisse werden automatisch erstellt.</string>
-    <string name="pref_folder_hint" tools:ignore="TypographyEllipsis">/Download/PDF/...</string>
 
-    <string name="pref_pwUSER">Benutzerpasswort</string>
-    <string name="pref_pwUSER_summary">Setze das Benutzerpasswort um PDF-Dateien zu verschlüsseln.
-        Es wird später gebraucht um die verschlüsselte Datei zu öffnen. Nach der Entschlüsselung ist kopieren und drucken
-        erlaubt. Es kann im \"+text | …\"-Tab durch langes Drücken des Verschlüsselungsicons geändert werden.</string>
+    <string name="pref_pwOWNER_summary">Hier kannst du ein Besitzer- und Benutzerpasswort auswählen, um die PDF-Dateien zu
+        verschlüsseln. Wenn die Datei später bearbeitet werden soll, braucht man das Besitzerpasswort. Das Benutzerpasswort wird gebraucht,
+        um die verschlüsselte Datei zu öffnen. Kopieren und drucken ist dann ebenfalls erlaubt. Beide Passwörter können auch geändert
+        werden, indem du das Verschlüsselungsicon im \"+text | …\" Tab lange drückst.</string>
 
-    <string name="pref_pwOWNER">Besitzerpasswort</string>
-    <string name="pref_pwOWNER_summary">Setze das Besitzerpasswort. Wenn jemand später die PDF-Datei bearbeiten will
-        braucht er dieses Passwort.</string>
+    <string name="action_donate">Spenden</string>
+    <string name="action_donate_summary">Wenn dir die App gefällt, würde ich mich über eine Spende (Paypal) freuen.</string>
+
+    <string name="action_changelog">Änderungen</string>
+    <string name="action_changelog_summary">Was gibt es Neues … (wird eine Internetseite öffnen)</string>
+
+    <string name="pref_metaAuthor_summary">Hier kannst du die Metadaten des Dokuments ändern: Autor, Ersteller, Betreff und
+        Schlüsselwörter. Dies kannst du auch, indem du das \"Tag-icon\" im \"+text | …\" Tab lange drückst.</string>
 
     <string name="pref_metaAuthor">Autor</string>
-    <string name="pref_metaAuthor_summary">Wer ist der Autor der PDF-Datei? Du kannst z.B. deinen Namen eingeben:
-        \"Max Mustermann\". Kann durch langes Drücken des Tagicons im \"+text | …\"-Tab geändert werden.</string>
 
     <string name="pref_metaCreator">Ersteller</string>
-    <string name="pref_metaCreator_summary">Wer hat die PDF-Datei erstellt? Vielleicht diese App: \"PDF Creator using iText\".
-        Kann durch langes Drücken des Tagicons im \"+text | …\"-Tab geändert werden.</string>
 
     <string name="pref_metaKeywords">Schlüsselwörter</string>
-    <string name="pref_metaKeywords_summary">Benutze Schlüsselwörter für deine PDF-Dateien, durch Komma getrennt:
-        \"Metadata, iText, PDF\". Kann durch langes Drücken des Tagicons im \"+text | …\"-Tab geändert werden.</string>
 
     <string name="pref_metaSubject">Betreff</string>
-    <string name="pref_metaSubject_summary">Betreff deiner PDF-Datei: \"This example shows how to add metadata\".
-        Kann durch langes Drücken des Tagicons im \"+text | …\"-Tab geändert werden.</string>
 
     <string name="pref_rotate">Hochformat</string>
     <string name="pref_rotate_summary">Hochformat für PDF-Seiten benutzen. Du kannst einfach zwischen Hoch- und Querformat wechseln,

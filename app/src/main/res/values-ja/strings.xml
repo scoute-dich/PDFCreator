@@ -41,6 +41,8 @@
     <string name="toast_savedImage">しばらくお待ちください。画像の保存中。</string>
     <string name="toast_notAgain">今後表示しない</string>
     <string name="toast_extension">No supported file extension</string>
+    <string name="toast_edited">Image was edited. Saving?</string>
+    <string name="toast_no">No</string>
 
 
     // Main menu
@@ -67,15 +69,12 @@
     <string name="add_text_delete">ページを削除</string>
     <string name="add_text_delete_hint">どのページを残しますか?</string>
     <string name="add_text_hint_enterText">テキストを入力するか貼り付けてください</string>
-    <string name="add_text_PW">新しいユーザーパスワードを入力</string>
-    <string name="add_text_PW_hint">暗号化 PDF ファイルを開くために必要。</string>
 
 
     // Image fragment
 
     <string name="goal_gallery">ギャラリーから選択</string>
     <string name="goal_camera">写真を撮影</string>
-    <string name="goal_cancel">キャンセル</string>
 
 
     // Editor
@@ -93,12 +92,24 @@
     <string name="filter_10">レベル Min (Mid アジャスト)</string>
 
 
+    // Dialogs
+
+    <string name="dialog_encryption_hint_ownerPW">Owner password</string>
+    <string name="dialog_encryption_hint_userPW">User password</string>
+    <string name="choose_file">Choose file</string>
+    <string name="choose_title">Edit filename</string>
+    <string name="confirm">Confirmation</string>
+    <string name="choose_filter">Choose filter</string>
+    <string name="choose_chooser">Open file chooser</string>
+
+
     // Settings
 
     <string name="settings_prefApp">アプリについて</string>
     <string name="settings_prefDir">アプリ ディレクトリー</string>
     <string name="settings_prefEnc">暗号化</string>
     <string name="settings_prefData">文書データ</string>
+    <string name="settings_prefMeta">Metadata</string>
 
     <string name="pref_license">ライセンス</string>
     <string name="pref_license_summary">アプリは完全にオープンソースで GPL3 の下でライセンスされます。</string>
@@ -109,39 +120,33 @@
     <string name="pref_backup">バックアップ</string>
     <string name="pref_backup_summary">操作の前に PDF ファイルをバックアップしますか。例えば、ページの削除または追加?</string>
 
-    <string name="pref_folderDef">デフォルト ディレクトリー</string>
-    <string name="pref_folderDef_summary">デフォルトディレクトリー: \"/Android/data/de.baumann.pdf/\" を使用します。</string>
-
     <string name="pref_folder">カスタム ディレクトリー</string>
-    <string name="pref_folder_summary">新しい PDF ファイルやバックアップを保存するデフォルトのアプリディレクトリーを変更します。
+    <string name="pref_folder_summary">Let empty to use the default directory (\"/Android/data/de.baumann.pdf/\").
+        新しい PDF ファイルやバックアップを保存するデフォルトのアプリディレクトリーを変更します。
         SD カードの希望のフォルダーへのパスを入力してください。 パスは \"/Download/PDF/\" のように \"/\" で開始および終了する必要があります。
         希望のディレクトリーが存在しない場合は、自動的に作成されます。</string>
-    <string name="pref_folder_hint">/Download/PDF/…</string>
 
-    <string name="pref_pwUSER">ユーザー パスワード</string>
-    <string name="pref_pwUSER_summary">PDF ファイルのユーザーパスワードを設定します。 暗号化後に、PDF ファイルを開くために使用します。
-        復号化後にコピーおよび印刷することができます。 \"+テキスト | …\" タブの、暗号化アイコンを長押しして変更することができます。
-        </string>
+    <string name="pref_pwOWNER_summary">Set the owner and user password to encrypt PDF files. If somebody wants to edit the file
+        later, he needs the owner password. The user password is used to open the PDF file after encryption. Copy and printing is
+        still allowed after decryption. Both passwords can be changed by long pressing the encryption icon in the \"+text | …\"
+        tab.</string>
 
-    <string name="pref_pwOWNER">所有者パスワード</string>
-    <string name="pref_pwOWNER_summary">暗号化 PDF ファイルの所有者パスワードを設定します。 後でファイルを編集したい人は
-        このパスワードが必要になります。</string>
+    <string name="action_donate">Donate</string>
+    <string name="action_donate_summary">If you like the app, you can donate to me via Paypal.</string>
+
+    <string name="action_changelog">Changelog</string>
+    <string name="action_changelog_summary">See what\'s new … (will open a website)</string>
+
+    <string name="pref_metaAuthor_summary">Here you can edit the metadata of the document: author, creator, subject and keywords. It
+        can also be edited by long pressing the \"tag-icon\" in the \"+text | …\" tab.</string>
 
     <string name="pref_metaAuthor">著者</string>
-    <string name="pref_metaAuthor_summary">PDF の著者は誰ですか? 例えばあなたの名前を入力することができます:
-        \"Max Mustermann\"。 \"+テキスト | …\" タブの、タグアイコンを長押しして変更することができます。</string>
 
     <string name="pref_metaCreator">作成者</string>
-    <string name="pref_metaCreator_summary">PDF を作成したのは誰ですか? おそらくこのアプリ: \"PDF Creator using iText\"?
-        \"+テキスト | …\" タブの、タグアイコンを長押しして変更することができます。</string>
 
     <string name="pref_metaKeywords">キーワード</string>
-    <string name="pref_metaKeywords_summary">PDF のキーワードを、カンマ区切りで設定します: \"Metadata, iText, PDF\"。
-        \"+テキスト | …\" タブの、タグアイコンを長押しして変更することができます。</string>
 
     <string name="pref_metaSubject">主題</string>
-    <string name="pref_metaSubject_summary">PDF ファイルの主題: \"この例はメタデータの追加方法を示します\"。
-        \"+テキスト| …\" タブの、タグアイコンを長押しして変更することができます。</string>
 
     <string name="pref_rotate">縦向き</string>
     <string name="pref_rotate_summary">PDF ページに縦向き（ポートレート）形式を使用します。 画面下部の表示された PDF 名をクリックして、
