@@ -69,6 +69,8 @@
     <string name="add_text_delete">Delete pages</string>
     <string name="add_text_delete_hint">Which pages do you want to keep?</string>
     <string name="add_text_hint_enterText">Write or paste text</string>
+    <string name="add_text_meta_doc">Edit existing metadata</string>
+    <string name="add_text_meta_default">Create new metadata</string>
 
 
     // Image fragment
@@ -109,7 +111,6 @@
     <string name="settings_prefApp">About the app</string>
     <string name="settings_prefDir">App directory</string>
     <string name="settings_prefEnc">Encryption</string>
-    <string name="settings_prefData">Document data</string>
     <string name="settings_prefMeta">Metadata</string>
 
     <string name="pref_license">License</string>
@@ -122,15 +123,10 @@
     <string name="pref_backup_summary">Do you want to backup pdf files before manipulating, e.g. deleting or adding pages?</string>
 
     <string name="pref_folder">Custom directory</string>
-    <string name="pref_folder_summary">Let empty to use the default directory (\"/Android/data/de.baumann.pdf/\").
-        Change the default app directory, where new PDF files and backups will be saved. Enter the path
+    <string name="pref_folder_hint">Format: \"/Download/PDF/\"</string>
+    <string name="pref_folder_summary">Let empty to use the default directory (\"/Android/data/de.baumann.pdf/\"). Enter the path
         to your desired folder on your sdcard. The path must begin and end with \"/\" like \"/Download/PDF/\".
         If the desired directory does not exist, it will be generated automatically.</string>
-
-    <string name="pref_pwOWNER_summary">Set the owner and user password to encrypt PDF files. If somebody wants to edit the file
-        later, he needs the owner password. The user password is used to open the PDF file after encryption. Copy and printing is
-        still allowed after decryption. Both passwords can be changed by long pressing the encryption icon in the \"+text | …\"
-        tab.</string>
 
     <string name="action_donate">Donate</string>
     <string name="action_donate_summary">If you like the app, you can donate to me via Paypal.</string>
@@ -139,18 +135,11 @@
     <string name="action_changelog_summary">See what\'s new … (will open a website)</string>
 
     <string name="pref_metaAuthor">Author</string>
-    <string name="pref_metaAuthor_summary">Here you can edit the metadata of the document: author, creator, subject and keywords. It
-        can also be edited by long pressing the \"tag-icon\" in the \"+text | …\" tab.</string>
 
+    <string name="pref_metaTitle">Title</string>
     <string name="pref_metaCreator">Creator</string>
-
     <string name="pref_metaKeywords">Keywords</string>
-
     <string name="pref_metaSubject">Subject</string>
-
-    <string name="pref_rotate">Portrait</string>
-    <string name="pref_rotate_summary">Use portrait format for PDF pages. You can easily switch between portrait and landscape by
-        clicking the displayed pdf name at the bottom of the screen. The actual format is also shown.</string>
 
     <string name="pref_notShow_title">Help dialog</string>
     <string name="pref_notShow_title_summary">Show the help dialog on start.</string>

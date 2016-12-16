@@ -69,6 +69,8 @@
     <string name="add_text_delete">ページを削除</string>
     <string name="add_text_delete_hint">どのページを残しますか?</string>
     <string name="add_text_hint_enterText">テキストを入力するか貼り付けてください</string>
+    <string name="add_text_meta_doc">Edit existing metadata</string>
+    <string name="add_text_meta_default">Create new metadata</string>
 
 
     // Image fragment
@@ -108,7 +110,6 @@
     <string name="settings_prefApp">アプリについて</string>
     <string name="settings_prefDir">アプリ ディレクトリー</string>
     <string name="settings_prefEnc">暗号化</string>
-    <string name="settings_prefData">文書データ</string>
     <string name="settings_prefMeta">Metadata</string>
 
     <string name="pref_license">ライセンス</string>
@@ -121,15 +122,11 @@
     <string name="pref_backup_summary">操作の前に PDF ファイルをバックアップしますか。例えば、ページの削除または追加?</string>
 
     <string name="pref_folder">カスタム ディレクトリー</string>
+    <string name="pref_folder_hint">Format: \"/Download/PDF/\"</string>
     <string name="pref_folder_summary">Let empty to use the default directory (\"/Android/data/de.baumann.pdf/\").
         新しい PDF ファイルやバックアップを保存するデフォルトのアプリディレクトリーを変更します。
         SD カードの希望のフォルダーへのパスを入力してください。 パスは \"/Download/PDF/\" のように \"/\" で開始および終了する必要があります。
         希望のディレクトリーが存在しない場合は、自動的に作成されます。</string>
-
-    <string name="pref_pwOWNER_summary">Set the owner and user password to encrypt PDF files. If somebody wants to edit the file
-        later, he needs the owner password. The user password is used to open the PDF file after encryption. Copy and printing is
-        still allowed after decryption. Both passwords can be changed by long pressing the encryption icon in the \"+text | …\"
-        tab.</string>
 
     <string name="action_donate">Donate</string>
     <string name="action_donate_summary">If you like the app, you can donate to me via Paypal.</string>
@@ -137,20 +134,11 @@
     <string name="action_changelog">Changelog</string>
     <string name="action_changelog_summary">See what\'s new … (will open a website)</string>
 
-    <string name="pref_metaAuthor_summary">Here you can edit the metadata of the document: author, creator, subject and keywords. It
-        can also be edited by long pressing the \"tag-icon\" in the \"+text | …\" tab.</string>
-
+    <string name="pref_metaTitle">Title</string>
     <string name="pref_metaAuthor">著者</string>
-
     <string name="pref_metaCreator">作成者</string>
-
     <string name="pref_metaKeywords">キーワード</string>
-
     <string name="pref_metaSubject">主題</string>
-
-    <string name="pref_rotate">縦向き</string>
-    <string name="pref_rotate_summary">PDF ページに縦向き（ポートレート）形式を使用します。 画面下部の表示された PDF 名をクリックして、
-        縦向きと横向きを簡単に切り替えることができます。 実際の形式も表示されます。</string>
 
     <string name="pref_notShow_title">ヘルプ ダイアログ</string>
     <string name="pref_notShow_title_summary">開始時にヘルプダイアログを表示します。</string>

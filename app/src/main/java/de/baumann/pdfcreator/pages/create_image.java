@@ -20,7 +20,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -75,27 +74,7 @@ public class create_image extends Fragment {
 
         PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-        final String imgQuality = sharedPref.getString("imageQuality", "80");
-        imgquality_int = Integer.parseInt(imgQuality);
-
-        final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
-        assert swipeView != null;
-        swipeView.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent);
-        swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-                if(imgFile.exists()){
-                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                    img.setImageBitmap(myBitmap);
-                    swipeView.setRefreshing(false);
-                } else {
-                    img.setImageResource(R.drawable.image);
-                    swipeView.setRefreshing(false);
-                }
-            }
-        });
+        imgquality_int = Integer.parseInt(sharedPref.getString("imageQuality", "80"));
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -210,8 +189,7 @@ public class create_image extends Fragment {
                     }, 200);
 
                 } else {
-                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -238,8 +216,7 @@ public class create_image extends Fragment {
                     startActivity(intent);
                     getActivity().overridePendingTransition(0, 0);
                 } else {
-                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -260,8 +237,7 @@ public class create_image extends Fragment {
                     startActivity(intent);
                     getActivity().overridePendingTransition(0, 0);
                 } else {
-                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -353,8 +329,7 @@ public class create_image extends Fragment {
                         }
                     });
             snackbar.show();
-        } else Snackbar.make(img, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        } else Snackbar.make(img, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
     }
 
     private boolean convertToPdf(String jpgFilePath, String outputPdfPath) {
@@ -369,7 +344,7 @@ public class create_image extends Fragment {
             if (!outputFile.exists()) outputFile.createNewFile();
 
             Document document;
-            if (sharedPref.getBoolean ("rotate", false)) {
+            if (sharedPref.getString ("rotateString", "portrait").equals("portrait")) {
                 document = new Document(PageSize.A4);
             } else {
                 document = new Document(PageSize.A4.rotate());
@@ -379,7 +354,7 @@ public class create_image extends Fragment {
             document.open();
 
             Image image = Image.getInstance(jpgFilePath);
-            if (sharedPref.getBoolean ("rotate", false)) {
+            if (sharedPref.getString ("rotateString", "portrait").equals("portrait")) {
                 if (PageSize.A4.getWidth() - image.getWidth() < 0) {
                     image.scaleToFit(PageSize.A4.getWidth() - document.leftMargin() - document.rightMargin(),
                             PageSize.A4.getHeight() - document.topMargin() - document.bottomMargin());

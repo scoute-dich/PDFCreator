@@ -72,15 +72,15 @@
         &lt;b>Knöpfe&lt;/b>&lt;br>
         &lt;i>Von oben nach unten auf der rechten Seite.&lt;/i>&lt;br>&lt;br>
 
-        &#8226; &lt;i>Kamera:&lt;/i> du kannst ein Bild  aus der Galerie aussuchen oder ein neues mit der Kamera machen.&lt;br>
+        &#8226; &lt;i>Kamera:&lt;/i> du kannst ein Bild  aus der Galerie aussuchen, mit dem Dateimanager aussuchen oder ein
+        neues mit der Kamera machen.&lt;br>
         &#8226; &lt;i>Zuschneiden:&lt;/i> du kannst das Bild zuschneiden oder drehen.&lt;br>
         &#8226; &lt;i>Bearbeiten:&lt;/i> mache ein paar kleine Verbesserungen. Nachdem du einen Effekt angewendet hast, must du
-        jedesmal speichern. Nach dem Bearbeiten den FAB-Knopf drücken um zum Hauptschirm zurückzukehren.&lt;br>
-        &#8226; &lt;i>FAB (pink):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
+        jedesmal speichern.&lt;br>
+        &#8226; &lt;i>FAB (grün):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
-        Nachdem du ein Bild bearbeitet oder zugeschnitten hast, musst du auf dem Bild nach unten wischen, um die Ansicht zu
-        aktualisieren. Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
+        Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
         Wenn du dort klickst, kannst du schnell zwischen Hoch- und Querformat für eine neue PDF-Seite wechseln.
     </string>
 
@@ -95,16 +95,16 @@
         &lt;b>Knöpfe&lt;/b>&lt;br>
         &lt;i>Von oben nach unten auf der rechten Seite.&lt;/i>&lt;br>&lt;br>
 
-        &#8226; &lt;i>Kamera:&lt;/i> du kannst ein Bild  aus der Galerie aussuchen oder ein neues mit der Kamera machen.&lt;br>
+        &#8226; &lt;i>Kamera:&lt;/i> du kannst ein Bild  aus der Galerie aussuchen, mit dem Dateimanager aussuchen oder ein
+        neues mit der Kamera machen.&lt;br>
         &#8226; &lt;i>Zuschneiden:&lt;/i> du kannst das Bild zuschneiden oder drehen.&lt;br>
         &#8226; &lt;i>Bearbeiten:&lt;/i> mache ein paar kleine Verbesserungen. Nachdem du einen Effekt angewendet hast, must du
-        jedesmal speichern. Nach dem Bearbeiten den FAB-Knopf drücken um zum Hauptschirm zurückzukehren.&lt;br>
+        jedesmal speichern.&lt;br>
         &#8226; &lt;i>PDF:&lt;/i> suche dir eine PDF-Datei zum Bearbeiten aus.&lt;br>
-        &#8226; &lt;i>FAB (pink):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (grün):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
-        Nachdem du ein Bild bearbeitet oder zugeschnitten hast, musst du auf dem Bild nach unten wischen, um die Ansicht zu
-        aktualisieren. Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
+        Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
         Wenn du dort klickst, kannst du schnell zwischen Hoch- und Querformat für eine neue PDF-Seite wechseln.
     </string>
 
@@ -117,7 +117,7 @@
          Hier kannst du eine PDF-Datei mit Text als Inhalt erstellen.&lt;br>&lt;br>
 
         &lt;b>Knöpfe&lt;/b>&lt;br>
-        &#8226; &lt;i>FAB (pink):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (grün):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
         Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
@@ -141,10 +141,10 @@
         &#8226; &lt;i>Verschlüsseln:&lt;/i> verschlüssele eine PDF-Datei mit einem Passwort. Du kannst ein Besitzer und ein
         Benutzerpasswort vergeben. Beides kannst du in den Eistellungen oder indem du diesen Knopf lange drückst ändern.&lt;br>
         &#8226; &lt;i>Metadaten:&lt;/i> bearbeite die Metadaten einer PDF-Datei. Die Metadaten kannst du in den
-        Eistellungen oder indem du diesen Knopf lange drückst ändern.&lt;br>
+        Einstellungen oder indem du diesen Knopf lange drückst ändern.&lt;br>
         &#8226; &lt;i>Bild:&lt;/i> konvertiere eine PDF-Datei in Bilder.&lt;br>
         &#8226; &lt;i>PDF:&lt;/i> suche dir eine PDF-Datei zum Bearbeiten aus.&lt;br>
-        &#8226; &lt;i>FAB (pink):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (grün):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
         Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.

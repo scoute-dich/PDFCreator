@@ -19,7 +19,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,8 +29,6 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.pdf.PdfCopy;
-import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.File;
@@ -48,6 +45,7 @@ import de.baumann.pdfcreator.helper.helper_pdf;
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class add_image extends Fragment {
 
+    @SuppressWarnings("unused")
     private String title;
     private String folder;
 
@@ -71,24 +69,6 @@ public class add_image extends Fragment {
         final String imgQuality = sharedPref.getString("imageQuality", "80");
         imgquality_int = Integer.parseInt(imgQuality);
 
-        final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
-        assert swipeView != null;
-        swipeView.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent);
-        swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-                if(imgFile.exists()){
-                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                    img.setImageBitmap(myBitmap);
-                    swipeView.setRefreshing(false);
-                } else {
-                    img.setImageResource(R.drawable.image);
-                    swipeView.setRefreshing(false);
-                }
-            }
-        });
-
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setImageResource(R.drawable.ic_plus_white_48dp);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -106,19 +86,17 @@ public class add_image extends Fragment {
 
                         helper_pdf.pdf_backup(getActivity());
                         createPDF();
-                        mergePDF();
-                        success();
+                        helper_pdf.pdf_mergePDF(getActivity(), img);
+                        helper_pdf.pdf_success(getActivity(), img);
                         helper_pdf.pdf_deleteTemp_1(getActivity());
                         helper_pdf.pdf_deleteTemp_2(getActivity());
 
                     } else {
-                        Snackbar.make(img, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                        Snackbar.make(img, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG).show();
                     }
 
                 } else {
-                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -144,8 +122,7 @@ public class add_image extends Fragment {
                     startActivity(intent);
                     getActivity().overridePendingTransition(0, 0);
                 } else {
-                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -162,8 +139,7 @@ public class add_image extends Fragment {
                     startActivity(intent);
                     getActivity().overridePendingTransition(0, 0);
                 } else {
-                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(img, getString(R.string.toast_noImage), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -263,7 +239,7 @@ public class add_image extends Fragment {
             if (!outputFile.exists()) outputFile.createNewFile();
 
             Document document;
-            if (sharedPref.getBoolean ("rotate", false)) {
+            if (sharedPref.getString ("rotateString", "portrait").equals("portrait")) {
                 document = new Document(PageSize.A4);
             } else {
                 document = new Document(PageSize.A4.rotate());
@@ -273,7 +249,7 @@ public class add_image extends Fragment {
             document.open();
 
             Image image = Image.getInstance(jpgFilePath);
-            if (sharedPref.getBoolean ("rotate", false)) {
+            if (sharedPref.getString ("rotateString", "portrait").equals("portrait")) {
                 if (PageSize.A4.getWidth() - image.getWidth() < 0) {
                     image.scaleToFit(PageSize.A4.getWidth() - document.leftMargin() - document.rightMargin(),
                             PageSize.A4.getHeight() - document.topMargin() - document.bottomMargin());
@@ -307,57 +283,6 @@ public class add_image extends Fragment {
         }
 
         return false;
-    }
-
-    private void mergePDF() {
-
-        // Load existing PDF
-        title = sharedPref.getString("title2", null);
-        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-        String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                folder + title + ".pdf");
-
-        String path2 = Environment.getExternalStorageDirectory() +  "/" + "123456.pdf";
-
-        // Resulting pdf
-        String path3 = Environment.getExternalStorageDirectory() +  "/" + "1234567.pdf";
-
-        try {
-            String[] files = { path, path2 };
-            Document document = new Document();
-            PdfCopy copy = new PdfCopy(document, new FileOutputStream(path3));
-            document.open();
-            PdfReader ReadInputPDF;
-            int number_of_pages;
-            for (String file : files) {
-                ReadInputPDF = new PdfReader(file);
-                number_of_pages = ReadInputPDF.getNumberOfPages();
-                for (int page = 0; page < number_of_pages; ) {
-                    copy.addPage(copy.getImportedPage(ReadInputPDF, ++page));
-                }
-            }
-            document.close();
-        }
-        catch (Exception i)
-        {
-            Snackbar.make(img, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        }
-        helper_pdf.pdf_deleteTemp_1(getActivity());
-    }
-
-    private void success(){
-
-        Snackbar snackbar = Snackbar
-                .make(img, getString(R.string.toast_successfully), Snackbar.LENGTH_LONG)
-                .setAction(getString(R.string.toast_open), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        File file = new File(helper_pdf.actualPath(getActivity()));
-                        helper_main.openFile(getActivity(), file, "application/pdf", img);
-                    }
-                });
-        snackbar.show();
     }
 
     private void selectImage_1() {

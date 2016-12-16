@@ -4,14 +4,19 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import de.baumann.pdfcreator.MainActivity;
@@ -82,34 +87,53 @@ public class UserSettingsActivity extends AppCompatActivity {
             });
         }
 
-        private void addEncryptListener() {
-            Preference reset = findPreference("pwOWNER");
-
-            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                public boolean onPreferenceClick(Preference pref) {
-                    helper_dialogs.dialog_encryption(getActivity());
-                    return true;
-                }
-            });
-        }
-
-        private void addMetaListener() {
-            Preference reset = findPreference("metaAuthor");
-
-            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                public boolean onPreferenceClick(Preference pref) {
-                    helper_dialogs.dialog_metaTags(getActivity());
-                    return true;
-                }
-            });
-        }
-
         private void addPathListener() {
             Preference reset = findPreference("folder");
 
             reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference pref) {
-                    helper_dialogs.dialog_path(getActivity());
+
+                    PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
+                    final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+                    android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(getActivity());
+                    View dialogView = View.inflate(getActivity(), R.layout.dialog_path, null);
+
+                    final EditText path = (EditText) dialogView.findViewById(R.id.path);
+                    path.setText(sharedPref.getString("folder", ""));
+
+                    builder.setView(dialogView);
+                    builder.setTitle(R.string.settings_prefDir);
+                    builder.setPositiveButton(R.string.toast_yes, new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+
+                            String inputTag = path.getText().toString().trim();
+                            sharedPref.edit().putString("folder", inputTag).apply();
+
+                            if (inputTag.length() > 0) {
+                                sharedPref.edit().putBoolean("folderDef", false).apply();
+                            } else {
+                                sharedPref.edit().putBoolean("folderDef", true).apply();
+                            }
+                        }
+                    });
+                    builder.setNegativeButton(R.string.toast_cancel, new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    final android.support.v7.app.AlertDialog dialog2 = builder.create();
+                    // Display the custom alert dialog on interface
+                    dialog2.show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            helper_main.showKeyboard(getActivity(), path);
+                        }
+                    }, 200);
                     return true;
                 }
             });
@@ -148,8 +172,6 @@ public class UserSettingsActivity extends AppCompatActivity {
             addPreferencesFromResource(R.xml.user_settings);
             addLicenseListener();
             addOpenSettingsListener();
-            addEncryptListener();
-            addMetaListener();
             addPathListener();
             addChangelogListener();
             addDonateListListener();

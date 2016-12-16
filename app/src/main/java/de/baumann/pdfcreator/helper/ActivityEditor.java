@@ -149,7 +149,7 @@ public class ActivityEditor extends AppCompatActivity implements SeekBar.OnSeekB
     public void onBackPressed() {
         if (edited) {
             Snackbar snackbar = Snackbar
-                    .make(mGPUImageView, getString(R.string.toast_successfully), Snackbar.LENGTH_LONG)
+                    .make(mGPUImageView, getString(R.string.toast_edited), Snackbar.LENGTH_LONG)
                     .setAction(getString(R.string.toast_no), new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -202,7 +202,7 @@ public class ActivityEditor extends AppCompatActivity implements SeekBar.OnSeekB
         if (id == android.R.id.home) {
             if (edited) {
                 Snackbar snackbar = Snackbar
-                        .make(mGPUImageView, getString(R.string.toast_successfully), Snackbar.LENGTH_LONG)
+                        .make(mGPUImageView, getString(R.string.toast_edited), Snackbar.LENGTH_LONG)
                         .setAction(getString(R.string.toast_no), new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

@@ -75,8 +75,7 @@ public final class MainFragment extends Fragment
             @Override
             public void onClick(View view) {
 
-                Snackbar.make(mCropImageView, getString(R.string.toast_savedImage), Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Action", null).show();
+                Snackbar.make(mCropImageView, getString(R.string.toast_savedImage), Snackbar.LENGTH_INDEFINITE).show();
 
                 mCropImageView.getCroppedImageAsync();
                 Timer timer = new Timer();

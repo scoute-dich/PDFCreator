@@ -35,11 +35,11 @@ import org.vudroid.pdfdroid.codec.PdfContext;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Locale;
 
 import de.baumann.pdfcreator.R;
 import de.baumann.pdfcreator.filechooser.ChooserDialog;
-import de.baumann.pdfcreator.helper.helper_dialogs;
 import de.baumann.pdfcreator.helper.helper_main;
 import de.baumann.pdfcreator.helper.helper_pdf;
 
@@ -53,6 +53,8 @@ public class add_text extends Fragment {
     private String pages;
     private SharedPreferences sharedPref;
     private View rootView;
+
+    private HashMap<String, String> metaMap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,8 +77,7 @@ public class add_text extends Fragment {
                 String paragraph = edit.getText().toString().trim();
 
                 if (paragraph.isEmpty()) {
-                    Snackbar.make(edit, getString(R.string.toast_noText), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(edit, getString(R.string.toast_noText), Snackbar.LENGTH_LONG).show();
                 } else {
 
                     File pdfFile = new File(helper_pdf.actualPath(getActivity()));
@@ -86,14 +87,13 @@ public class add_text extends Fragment {
 
                         helper_pdf.pdf_backup(getActivity());
                         createPDF();
-                        mergePDF();
-                        success();
+                        helper_pdf.pdf_mergePDF(getActivity(), edit);
+                        helper_pdf.pdf_success(getActivity(), edit);
                         helper_pdf.pdf_deleteTemp_1(getActivity());
                         helper_pdf.pdf_deleteTemp_2(getActivity());
                         edit.setText("");
                     } else {
-                        Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                        Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG).show();
                     }
                 }
             }
@@ -122,10 +122,18 @@ public class add_text extends Fragment {
                         public void onClick(DialogInterface dialog, int whichButton) {
 
                             pages = pagesDelete.getText().toString().trim();
-                            sharedPref.edit()
-                                    .putString("deletePages", pages)
-                                    .apply();
-                            deletePage();
+
+                            try {
+                                // Load existing PDF
+                                PdfReader reader = new PdfReader(helper_pdf.actualPath(getActivity()));
+                                reader.selectPages(pages);
+
+                                PdfStamper pdfStamper = new PdfStamper(reader, new FileOutputStream(Environment.getExternalStorageDirectory() +  "/" + "123456.pdf"));
+                                pdfStamper.close();
+                                helper_pdf.pdf_success(getActivity(), edit);
+                            } catch (Exception e) {
+                                Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
+                            }
                             helper_pdf.pdf_deleteTemp_1(getActivity());
                         }
                     });
@@ -148,8 +156,7 @@ public class add_text extends Fragment {
                     }, 200);
 
                 } else {
-                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -162,7 +169,7 @@ public class add_text extends Fragment {
                 File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
                 if (pdfFile.exists()) {
-
+                    helper_pdf.pdf_backup(getActivity());
                     folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
 
                     new ChooserDialog().with(getActivity())
@@ -172,8 +179,6 @@ public class add_text extends Fragment {
                             .withChosenListener(new ChooserDialog.Result() {
                                 @Override
                                 public void onChoosePath(String path, final File pathFile) {
-
-                                    helper_pdf.pdf_backup(getActivity());
 
                                     // Load existing PDF
                                     title = sharedPref.getString("title2", null);
@@ -200,22 +205,18 @@ public class add_text extends Fragment {
                                             }
                                         }
                                         document.close();
-                                    }
-                                    catch (Exception i)
-                                    {
-                                        Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                                                .setAction("Action", null).show();
+                                    } catch (Exception i) {
+                                        Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
                                     }
                                     helper_pdf.pdf_deleteTemp_2(getActivity());
-                                    success();
+                                    helper_pdf.pdf_success(getActivity(), edit);
                                 }
                             })
                             .build()
                             .show();
 
                 } else {
-                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -225,32 +226,62 @@ public class add_text extends Fragment {
             @Override
             public void onClick(View view) {
 
-                File pdfFile = new File(helper_pdf.actualPath(getActivity()));
+                final File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
                 if (pdfFile.exists()) {
+
                     helper_pdf.pdf_backup(getActivity());
-                    encryptPDF();
-                    helper_pdf.pdf_deleteTemp_1(getActivity());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    View dialogView = View.inflate(getActivity(), R.layout.dialog_encrypt, null);
+
+                    final EditText pass_ownerPW = (EditText) dialogView.findViewById(R.id.pass_ownerPW);
+                    pass_ownerPW.setText(sharedPref.getString("pwOWNER", "OWNER"));
+                    final EditText pass_userPW = (EditText) dialogView.findViewById(R.id.pass_userPW);
+                    pass_userPW.setText(sharedPref.getString("pwUSER", "USER"));
+
+                    builder.setView(dialogView);
+                    builder.setTitle(R.string.settings_prefEnc);
+                    builder.setPositiveButton(R.string.toast_yes, new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+
+                            try {
+
+                                String inputTag = pass_ownerPW.getText().toString().trim();
+                                sharedPref.edit().putString("pwOWNER", inputTag).apply();
+                                String inputTag2 = pass_userPW.getText().toString().trim();
+                                sharedPref.edit().putString("pwUSER", inputTag2).apply();
+
+                                PdfReader reader = new PdfReader(pdfFile.getAbsolutePath());
+
+                                PdfStamper pdfStamper = new PdfStamper(reader, new FileOutputStream(Environment.getExternalStorageDirectory() +  "/" + "123456.pdf"));
+                                pdfStamper.setEncryption(inputTag2.getBytes(), inputTag.getBytes(),
+                                        ~(PdfWriter.ALLOW_COPY | PdfWriter.ALLOW_PRINTING), PdfWriter.STANDARD_ENCRYPTION_128);
+                                pdfStamper.close();
+                                reader.close();
+
+                                helper_pdf.pdf_success(getActivity(), edit);
+
+                            } catch (Exception e) {
+                                Snackbar.make(edit, getActivity().getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
+                            }
+                            helper_pdf.pdf_deleteTemp_1(getActivity());
+                        }
+                    });
+                    builder.setNegativeButton(R.string.toast_cancel, new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    final AlertDialog dialog2 = builder.create();
+                    // Display the custom alert dialog on interface
+                    dialog2.show();
+
                 } else {
-                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG).show();
                 }
-            }
-        });
-
-        fab_3.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-                File pdfFile = new File(helper_pdf.actualPath(getActivity()));
-
-                if (pdfFile.exists()) {
-                    helper_dialogs.dialog_encryption(getActivity());
-                } else {
-                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-                return false;
             }
         });
 
@@ -259,33 +290,184 @@ public class add_text extends Fragment {
             @Override
             public void onClick(View view) {
 
-                File pdfFile = new File(helper_pdf.actualPath(getActivity()));
+                final File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
                 if (pdfFile.exists()) {
-                    helper_pdf.pdf_backup(getActivity());
-                    addMeta();
-                    helper_pdf.pdf_deleteTemp_2(getActivity());
-                    success();
+
+                    final CharSequence[] options = {
+                            getString(R.string.add_text_meta_doc),
+                            getString(R.string.add_text_meta_default)};
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setItems(options, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int item) {
+
+                            if (options[item].equals(getString(R.string.add_text_meta_doc))) {
+
+                                helper_pdf.pdf_backup(getActivity());
+                                try {
+
+                                    PdfReader reader = new PdfReader(pdfFile.getAbsolutePath());
+                                    // Store pdf metadata in a HashMap
+                                    metaMap = reader.getInfo();
+                                    // Display pdf metadata in EditTexts
+
+                                    android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(getActivity());
+                                    View dialogView = View.inflate(getActivity(), R.layout.dialog_meta_title, null);
+
+                                    final EditText metaTitle = (EditText) dialogView.findViewById(R.id.metaTitle);
+                                    metaTitle.setText(metaMap.get("Title"));
+                                    final EditText metaAuthor = (EditText) dialogView.findViewById(R.id.metaAuthor);
+                                    metaAuthor.setText(metaMap.get("Author"));
+                                    final EditText metaCreator = (EditText) dialogView.findViewById(R.id.metaCreator);
+                                    metaCreator.setText(metaMap.get("Creator"));
+                                    final EditText metaSubject = (EditText) dialogView.findViewById(R.id.metaSubject);
+                                    metaSubject.setText(metaMap.get("Subject"));
+                                    final EditText metaKeywords = (EditText) dialogView.findViewById(R.id.metaKeywords);
+                                    metaKeywords.setText(metaMap.get("Keywords"));
+
+                                    builder.setView(dialogView);
+                                    builder.setTitle(R.string.settings_prefMeta);
+                                    builder.setPositiveButton(R.string.toast_yes, new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+
+                                            String inputTag0 = metaTitle.getText().toString().trim();
+                                            String inputTag1 = metaAuthor.getText().toString().trim();
+                                            String inputTag2 = metaCreator.getText().toString().trim();
+                                            String inputTag3 = metaSubject.getText().toString().trim();
+                                            String inputTag4 = metaKeywords.getText().toString().trim();
+
+                                            String path3 = Environment.getExternalStorageDirectory() +  "/" + "1234567.pdf";
+
+                                            try {
+                                                Document document = new Document();
+                                                PdfCopy copy = new PdfCopy(document, new FileOutputStream(path3));
+                                                document.open();
+                                                PdfReader ReadInputPDF;
+                                                int number_of_pages;
+                                                ReadInputPDF = new PdfReader(helper_pdf.actualPath(getActivity()));
+                                                number_of_pages = ReadInputPDF.getNumberOfPages();
+                                                for (int page = 0; page < number_of_pages; ) {
+                                                    copy.addPage(copy.getImportedPage(ReadInputPDF, ++page));
+                                                }
+                                                document.addTitle(inputTag0);
+                                                document.addAuthor(inputTag1);
+                                                document.addCreator(inputTag2);
+                                                document.addSubject(inputTag3);
+                                                document.addKeywords(inputTag4);
+                                                document.close();
+                                                helper_pdf.pdf_deleteTemp_2(getActivity());
+                                                helper_pdf.pdf_success(getActivity(), edit);
+                                            } catch (Exception i) {
+                                                Snackbar.make(edit, getActivity().getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    });
+                                    builder.setNegativeButton(R.string.toast_cancel, new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                                    final android.support.v7.app.AlertDialog dialog2 = builder.create();
+                                    // Display the custom alert dialog on interface
+                                    dialog2.show();
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                            } else if (options[item].equals(getString(R.string.add_text_meta_default))) {
+
+                                helper_pdf.pdf_backup(getActivity());
+                                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(getActivity());
+                                View dialogView = View.inflate(getActivity(), R.layout.dialog_meta_title, null);
+
+                                final EditText metaTitle = (EditText) dialogView.findViewById(R.id.metaTitle);
+                                metaTitle.setText(sharedPref.getString("title", ""));
+                                final EditText metaAuthor = (EditText) dialogView.findViewById(R.id.metaAuthor);
+                                metaAuthor.setText(sharedPref.getString("metaAuthor", ""));
+                                final EditText metaCreator = (EditText) dialogView.findViewById(R.id.metaCreator);
+                                metaCreator.setText(sharedPref.getString("metaCreator", "PDF Creator using iText"));
+                                final EditText metaSubject = (EditText) dialogView.findViewById(R.id.metaSubject);
+                                metaSubject.setText(sharedPref.getString("metaSubject", ""));
+                                final EditText metaKeywords = (EditText) dialogView.findViewById(R.id.metaKeywords);
+                                metaKeywords.setText(sharedPref.getString("metaKeywords", ""));
+
+                                builder.setView(dialogView);
+                                builder.setTitle(R.string.settings_prefMeta);
+                                builder.setPositiveButton(R.string.toast_yes, new DialogInterface.OnClickListener() {
+
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                                        String inputTag0 = metaTitle.getText().toString().trim();
+
+                                        String inputTag1 = metaAuthor.getText().toString().trim();
+                                        sharedPref.edit().putString("metaAuthor", inputTag1).apply();
+
+                                        String inputTag2 = metaCreator.getText().toString().trim();
+                                        sharedPref.edit().putString("metaCreator", inputTag2).apply();
+
+                                        String inputTag3 = metaSubject.getText().toString().trim();
+                                        sharedPref.edit().putString("metaSubject", inputTag3).apply();
+
+                                        String inputTag4 = metaKeywords.getText().toString().trim();
+                                        sharedPref.edit().putString("metaKeywords", inputTag4).apply();
+
+                                        String metaAuthor = sharedPref.getString("metaAuthor", "");
+                                        String metaCreator = sharedPref.getString("metaCreator", "PDF Creator using iText");
+                                        String metaSubject = sharedPref.getString("metaSubject", "");
+                                        String metaKeywords = sharedPref.getString("metaKeywords", "");
+
+                                        // Resulting pdf
+                                        String path3 = Environment.getExternalStorageDirectory() +  "/" + "1234567.pdf";
+
+                                        try {
+                                            Document document = new Document();
+                                            PdfCopy copy = new PdfCopy(document, new FileOutputStream(path3));
+                                            document.open();
+                                            PdfReader ReadInputPDF;
+                                            int number_of_pages;
+                                            ReadInputPDF = new PdfReader(helper_pdf.actualPath(getActivity()));
+                                            number_of_pages = ReadInputPDF.getNumberOfPages();
+                                            for (int page = 0; page < number_of_pages; ) {
+                                                copy.addPage(copy.getImportedPage(ReadInputPDF, ++page));
+                                            }
+                                            document.addTitle(inputTag0);
+                                            document.addAuthor(metaAuthor);
+                                            document.addSubject(metaSubject);
+                                            document.addKeywords(metaKeywords);
+                                            document.addCreator(metaCreator);
+                                            document.close();
+                                            helper_pdf.pdf_deleteTemp_2(getActivity());
+                                            helper_pdf.pdf_success(getActivity(), edit);
+                                        } catch (Exception i) {
+                                            Snackbar.make(edit, getActivity().getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
+                                builder.setNegativeButton(R.string.toast_cancel, new DialogInterface.OnClickListener() {
+
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                                final android.support.v7.app.AlertDialog dialog2 = builder.create();
+                                // Display the custom alert dialog on interface
+                                dialog2.show();
+                            }
+                        }
+                    });
+                    builder.setPositiveButton(getString(R.string.dialog_cancel), null);
+                    builder.show();
+
                 } else {
-                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG).show();
                 }
-            }
-        });
-
-        fab_4.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-                File pdfFile = new File(helper_pdf.actualPath(getActivity()));
-
-                if (pdfFile.exists()) {
-                    helper_dialogs.dialog_metaTags(getActivity());
-                } else {
-                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-                return false;
             }
         });
 
@@ -297,9 +479,8 @@ public class add_text extends Fragment {
                 File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
                 if (pdfFile.exists()) {
-                    Snackbar.make(edit, getString(R.string.toast_wait), Snackbar.LENGTH_INDEFINITE)
-                            .setAction("Action", null).show();
                     helper_pdf.pdf_backup(getActivity());
+
                     title = sharedPref.getString("title", null);
                     folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
 
@@ -339,8 +520,7 @@ public class add_text extends Fragment {
 
                             outputStream.close();
                         } catch (IOException e) {
-                            Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
+                            Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
                         }
                     }
 
@@ -355,8 +535,7 @@ public class add_text extends Fragment {
                             });
                     snackbar.show();
                 } else {
-                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -423,166 +602,12 @@ public class add_text extends Fragment {
     private void createPDF() {
         // Output file
         String outputPath = Environment.getExternalStorageDirectory() +  "/" + "123456.pdf";
-
         // Run conversion
         final boolean result = convertToPdf(outputPath);
-
         // Notify the UI
         if (result) {
-            success();
-        } else Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-    }
-
-    private void mergePDF() {
-
-        // Load existing PDF
-        title = sharedPref.getString("title2", null);
-        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-        String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                folder + title + ".pdf");
-
-        String path2 = Environment.getExternalStorageDirectory() +  "/" + "123456.pdf";
-
-        // Resulting pdf
-        String path3 = Environment.getExternalStorageDirectory() +  "/" + "1234567.pdf";
-
-        try {
-            String[] files = { path, path2 };
-            Document document = new Document();
-            PdfCopy copy = new PdfCopy(document, new FileOutputStream(path3));
-            document.open();
-            PdfReader ReadInputPDF;
-            int number_of_pages;
-            for (String file : files) {
-                ReadInputPDF = new PdfReader(file);
-                number_of_pages = ReadInputPDF.getNumberOfPages();
-                for (int page = 0; page < number_of_pages; ) {
-                    copy.addPage(copy.getImportedPage(ReadInputPDF, ++page));
-                }
-            }
-            document.close();
-        }
-        catch (Exception i)
-        {
-            Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        }
-        helper_pdf.pdf_deleteTemp_1(getActivity());
-    }
-
-    private void deletePage() {
-        try {
-
-            // Load existing PDF
-            title = sharedPref.getString("title", null);
-            folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-            pages = sharedPref.getString("deletePages", null);
-            String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                    folder + title + ".pdf");
-            PdfReader reader = new PdfReader(path);
-            reader.selectPages(pages);
-
-            PdfStamper pdfStamper = new PdfStamper(reader, new FileOutputStream(Environment.getExternalStorageDirectory() +  "/" + "123456.pdf"));
-            pdfStamper.close();
-            success();
-        }
-        catch (Exception e)
-        {
-            Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        }
-
-    }
-
-    private void encryptPDF() {
-        try {
-
-            // Load existing PDF
-            title = sharedPref.getString("title", null);
-            folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-
-            String user = sharedPref.getString("pwUSER", "USER");
-            String owner = sharedPref.getString("pwOWNER", "OWNER");
-
-            String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                    folder + title + ".pdf");
-
-            PdfReader reader = new PdfReader(path);
-
-            PdfStamper pdfStamper = new PdfStamper(reader, new FileOutputStream(Environment.getExternalStorageDirectory() +  "/" + "123456.pdf"));
-            pdfStamper.setEncryption(user.getBytes(), owner.getBytes(),
-                    ~(PdfWriter.ALLOW_COPY | PdfWriter.ALLOW_PRINTING), PdfWriter.STANDARD_ENCRYPTION_128);
-            pdfStamper.close();
-            reader.close();
-            success();
-
-        }
-        catch (Exception e)
-        {
-            Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        }
-
-    }
-
-    private void addMeta() {
-        try {
-
-            try {
-                String metaAuthor = sharedPref.getString("metaAuthor", "");
-                String metaCreator = sharedPref.getString("metaCreator", "");
-                String metaSubject = sharedPref.getString("metaSubject", "");
-                String metaKeywords = sharedPref.getString("metaKeywords", "");
-
-                // Load existing PDF
-                title = sharedPref.getString("title2", null);
-                folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                        folder + title + ".pdf");
-
-                // Resulting pdf
-                String path3 = Environment.getExternalStorageDirectory() +  "/" + "1234567.pdf";
-
-                try {
-                    Document document = new Document();
-                    PdfCopy copy = new PdfCopy(document, new FileOutputStream(path3));
-                    document.open();
-                    PdfReader ReadInputPDF;
-                    int number_of_pages;
-                    ReadInputPDF = new PdfReader(path);
-                    number_of_pages = ReadInputPDF.getNumberOfPages();
-                    for (int page = 0; page < number_of_pages; ) {
-                        copy.addPage(copy.getImportedPage(ReadInputPDF, ++page));
-                    }
-                    document.addTitle(title);
-                    document.addAuthor(metaAuthor);
-                    document.addSubject(metaSubject);
-                    document.addKeywords(metaKeywords);
-                    document.addCreator(metaCreator);
-                    document.close();
-                }
-                catch (Exception i)
-                {
-                    Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-                helper_pdf.pdf_deleteTemp_2(getActivity());
-                success();
-
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-
-        }
-        catch (Exception e)
-        {
-            Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        }
-
+            helper_pdf.pdf_success(getActivity(), edit);
+        } else Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
     }
 
     private boolean convertToPdf(String outputPdfPath) {
@@ -595,7 +620,7 @@ public class add_text extends Fragment {
             if (!outputFile.exists()) outputFile.createNewFile();
 
             Document document;
-            if (sharedPref.getBoolean ("rotate", false)) {
+            if (sharedPref.getString ("rotateString", "portrait").equals("portrait")) {
                 document = new Document(PageSize.A4);
             } else {
                 document = new Document(PageSize.A4.rotate());
@@ -608,27 +633,11 @@ public class add_text extends Fragment {
             document.close();
 
             return true;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return false;
-    }
-
-    private void success(){
-
-        Snackbar snackbar = Snackbar
-                .make(edit, getString(R.string.toast_successfully), Snackbar.LENGTH_LONG)
-                .setAction(getString(R.string.toast_open), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        File file = new File(helper_pdf.actualPath(getActivity()));
-                        helper_main.openFile(getActivity(), file, "application/pdf", edit);
-                    }
-                });
-        snackbar.show();
     }
 
     @Override

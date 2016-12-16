@@ -1,7 +1,8 @@
 ### v 2.3 (WIP)
 - improved: Ui (dialogs, theme, icon)
-- improved: settings screen
+- improved: simplified settings screen
 - added: automatically save edited pictures
+- added: read existing meta tags
 
 ### v 2.2
 - file chooser improvements

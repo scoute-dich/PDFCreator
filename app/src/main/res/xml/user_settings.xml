@@ -20,50 +20,17 @@
             android:key="backup"
             android:defaultValue="true" />
 
-        <CheckBoxPreference
-            android:title="@string/pref_rotate"
-            android:icon="@drawable/crop_portrait"
-            android:summary="@string/pref_rotate_summary"
-            android:key="rotate"
-            android:defaultValue="true" />
-
         <Preference
             android:title="@string/pref_folder"
             android:icon="@drawable/folder"
             android:summary="@string/pref_folder_summary"
             android:key="folder" />
 
-        <CheckBoxPreference
-            android:title="@string/pref_notShow_title"
-            android:icon="@drawable/information_outline"
-            android:summary="@string/pref_notShow_title_summary"
-            android:key="help_notShow"
-            android:defaultValue="true" />
-
         <Preference
             android:title="@string/action_openSettings"
             android:icon="@drawable/settings"
             android:summary="@string/action_openSettings_summary"
             android:key="settings" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/settings_prefData">
-
-        <Preference
-            android:title="@string/settings_prefEnc"
-            android:icon="@drawable/ic_security_white_48dp2"
-            android:summary="@string/pref_pwOWNER_summary"
-            android:defaultValue="OWNER"
-            android:key="pwOWNER" />
-
-        <Preference
-            android:title="@string/settings_prefMeta"
-            android:icon="@drawable/ic_pound_white_48dp2"
-            android:summary="@string/pref_metaAuthor_summary"
-            android:defaultValue=""
-            android:key="metaAuthor" />
 
     </PreferenceCategory>
 
@@ -87,6 +54,13 @@
             android:icon="@drawable/coin"
             android:summary="@string/action_donate_summary"
             android:key="donate" />
+
+        <CheckBoxPreference
+            android:title="@string/pref_notShow_title"
+            android:icon="@drawable/information_outline"
+            android:summary="@string/pref_notShow_title_summary"
+            android:key="help_notShow"
+            android:defaultValue="true" />
 
     </PreferenceCategory>
 

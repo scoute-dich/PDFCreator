@@ -70,6 +70,8 @@
     <string name="add_text_delete">Seiten löschen</string>
     <string name="add_text_delete_hint">Welche Seiten möchtest du behalten?</string>
     <string name="add_text_hint_enterText">Schreiben oder Text einfügen</string>
+    <string name="add_text_meta_doc">Bestehende Metadaten bearbeiten</string>
+    <string name="add_text_meta_default">Neue Metadaten einfügen</string>
 
 
     // Image fragment
@@ -110,7 +112,6 @@
     <string name="settings_prefApp">Über die App</string>
     <string name="settings_prefDir">Anwendungsverzeichnis</string>
     <string name="settings_prefEnc">Verschlüsselung</string>
-    <string name="settings_prefData">PDF Eigenschaften</string>
     <string name="settings_prefMeta">Metadaten</string>
 
     <string name="pref_license">Lizenz</string>
@@ -123,15 +124,10 @@
     <string name="pref_backup_summary">Sollen PDF-Dateien vor dem Bearbeiten (z.B.: Hinzufügen oder Löschen von Seiten) gesichert werden?</string>
 
     <string name="pref_folder">Eigenes Verzeichnis</string>
+    <string name="pref_folder_hint">Format: \"/Download/PDF/\"</string>
     <string name="pref_folder_summary">Leer lassen, um das Standardverzeichnis (\"/Android/data/de.baumann.pdf/\") zu nutzen.
-        Ändere das Verzeichnis in dem neue PDF-Dateien und Sicherungen gespeichert werden. Gib den Pfad
-        zum gewünschten Verzeichnis auf deiner SD-Karte ein. Der eingegebene Pfad muss mit einem \"/\" anfangen und enden, wie
-        z.B. \"/Download/PDF/\". Noch nicht vorhandene Verzeichnisse werden automatisch erstellt.</string>
-
-    <string name="pref_pwOWNER_summary">Hier kannst du ein Besitzer- und Benutzerpasswort auswählen, um die PDF-Dateien zu
-        verschlüsseln. Wenn die Datei später bearbeitet werden soll, braucht man das Besitzerpasswort. Das Benutzerpasswort wird gebraucht,
-        um die verschlüsselte Datei zu öffnen. Kopieren und drucken ist dann ebenfalls erlaubt. Beide Passwörter können auch geändert
-        werden, indem du das Verschlüsselungsicon im \"+text | …\" Tab lange drückst.</string>
+        Gib den Pfad zum gewünschten Verzeichnis auf deiner SD-Karte ein. Der eingegebene Pfad muss mit einem \"/\" anfangen und
+        enden, wie z.B. \"/Download/PDF/\". Noch nicht vorhandene Verzeichnisse werden automatisch erstellt.</string>
 
     <string name="action_donate">Spenden</string>
     <string name="action_donate_summary">Wenn dir die App gefällt, würde ich mich über eine Spende (Paypal) freuen.</string>
@@ -139,20 +135,11 @@
     <string name="action_changelog">Änderungen</string>
     <string name="action_changelog_summary">Was gibt es Neues … (wird eine Internetseite öffnen)</string>
 
-    <string name="pref_metaAuthor_summary">Hier kannst du die Metadaten des Dokuments ändern: Autor, Ersteller, Betreff und
-        Schlüsselwörter. Dies kannst du auch, indem du das \"Tag-icon\" im \"+text | …\" Tab lange drückst.</string>
-
+    <string name="pref_metaTitle">Titel</string>
     <string name="pref_metaAuthor">Autor</string>
-
     <string name="pref_metaCreator">Ersteller</string>
-
     <string name="pref_metaKeywords">Schlüsselwörter</string>
-
     <string name="pref_metaSubject">Betreff</string>
-
-    <string name="pref_rotate">Hochformat</string>
-    <string name="pref_rotate_summary">Hochformat für PDF-Seiten benutzen. Du kannst einfach zwischen Hoch- und Querformat wechseln,
-        indem du auf den PDF-Namen am unteren Bildschirmrand klickst. Das aktuell eingestellte Format wird ebenfalls angezeigt.</string>
 
     <string name="pref_notShow_title">Hilfe Dialog</string>
     <string name="pref_notShow_title_summary">Hilfe Dialog beim Start anzeigen.</string>

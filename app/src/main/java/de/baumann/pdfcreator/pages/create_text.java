@@ -68,8 +68,7 @@ public class create_text extends Fragment {
                 String paragraph = edit.getText().toString().trim();
 
                 if (paragraph.isEmpty()) {
-                    Snackbar.make(edit, getString(R.string.toast_noText), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(edit, getString(R.string.toast_noText), Snackbar.LENGTH_LONG).show();
                 } else {
                     folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
 
@@ -240,8 +239,7 @@ public class create_text extends Fragment {
                         }
                     });
             snackbar.show();
-        } else Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        } else Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
     }
 
     private boolean convertToPdf(String outputPdfPath) {
@@ -254,7 +252,7 @@ public class create_text extends Fragment {
             if (!outputFile.exists()) outputFile.createNewFile();
 
             Document document;
-            if (sharedPref.getBoolean ("rotate", false)) {
+            if (sharedPref.getString ("rotateString", "portrait").equals("portrait")) {
                 document = new Document(PageSize.A4);
             } else {
                 document = new Document(PageSize.A4.rotate());

@@ -72,14 +72,13 @@
         &lt;b>Buttons&lt;/b>&lt;br>
         &lt;i>From top to bottom on the right side.&lt;/i>&lt;br>&lt;br>
 
-        &#8226; &lt;i>Camera:&lt;/i> you can choose your picture. Nether from the gallery or take a new one with the camera.&lt;br>
-        &#8226; &lt;i>Crop:&lt;/i> Crop and rotate the image. After you applied a filter you must save every time. After editing click
-        the fab button to return to the main activity.&lt;br>
+        &#8226; &lt;i>Camera:&lt;/i> you can choose your picture. Nether from the gallery, the file chooser or take a new one with
+        the camera.&lt;br>
+        &#8226; &lt;i>Crop:&lt;/i> Crop and rotate the image. After you applied a filter you must save every time.&lt;br>
         &#8226; &lt;i>Edit:&lt;/i> make a few basic enhancements.&lt;br>
-        &#8226; &lt;i>FAB (pink):&lt;/i> create the PDF.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (green):&lt;/i> create the PDF.&lt;br>&lt;br>
 
         &lt;b>Nice to know:&lt;/b>&lt;br>
-        After editing or cropping an image you must swipe down on the image tu refresh the view.
         At the bottom you can see the name of the actual PDF and the format. By pressing this area you can switch between portrait
         and landscape format for your PDF page. After
     </string>
@@ -95,12 +94,12 @@
         &lt;b>Buttons&lt;/b>&lt;br>
         &lt;i>From top to bottom on the right side.&lt;/i>&lt;br>&lt;br>
 
-        &#8226; &lt;i>Camera:&lt;/i> you can choose your picture. Nether from the gallery or take a new one with the camera.&lt;br>
-        &#8226; &lt;i>Crop:&lt;/i> Crop and rotate the image.&lt;br>
-        &#8226; &lt;i>Edit:&lt;/i> make a few basic enhancements. After you applied a filter you must save every time. After editing click
-        the fab button to return to the main activity.&lt;br>
+        &#8226; &lt;i>Camera:&lt;/i> you can choose your picture. Nether from the gallery, the file chooser or take a new one with
+        the camera.&lt;br>
+        &#8226; &lt;i>Crop:&lt;/i> Crop and rotate the image. After you applied a filter you must save every time.&lt;br>
+        &#8226; &lt;i>Edit:&lt;/i> make a few basic enhancements.&lt;br>
         &#8226; &lt;i>PDF:&lt;/i> choose the PDF on which your new page will be added.&lt;br>
-        &#8226; &lt;i>FAB (pink):&lt;/i> create the PDF.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (green):&lt;/i> create the PDF.&lt;br>&lt;br>
 
         &lt;b>Nice to know:&lt;/b>&lt;br>
         At the bottom you can see the name of the actual PDF and the format. By pressing this area you can switch between portrait
@@ -116,7 +115,7 @@
          Here you can create a single PDF page from text. You have also several options to edit existing PDF files.&lt;br>&lt;br>
 
         &lt;b>Buttons&lt;/b>&lt;br>
-        &#8226; &lt;i>FAB (pink):&lt;/i> create the PDF.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (green):&lt;/i> create the PDF.&lt;br>&lt;br>
 
         &lt;b>Nice to know:&lt;/b>&lt;br>
         At the bottom you can see the name of the actual PDF and the format. By pressing this area you can switch between portrait
@@ -142,7 +141,7 @@
         long pressing this button.&lt;br>
         &#8226; &lt;i>Image:&lt;/i> convert PDF to images.&lt;br>
         &#8226; &lt;i>PDF:&lt;/i> choose the PDF which you will manipulate.&lt;br>
-        &#8226; &lt;i>FAB (pink):&lt;/i> create the PDF.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (green):&lt;/i> create the PDF.&lt;br>&lt;br>
 
         &lt;b>Nice to know:&lt;/b>&lt;br>
         At the bottom you can see the name of the actual PDF and the format. By pressing this area you can switch between portrait

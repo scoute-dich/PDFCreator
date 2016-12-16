@@ -12,29 +12,18 @@
         android:background="#e0e0e0"
         tools:context=".MainActivity">
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipe"
+        <ImageView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:id="@+id/imageView"
+            android:src="@drawable/image"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginTop="@dimen/fab_margin"
-            android:layout_above="@+id/textTitle">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/imageView"
-                android:src="@drawable/image"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentEnd="false"
-                android:scaleType="fitCenter"
-                tools:ignore="ContentDescription" />
-
-        </android.support.v4.widget.SwipeRefreshLayout>
-
+            android:layout_above="@+id/textTitle"
+            android:scaleType="fitCenter"
+            tools:ignore="ContentDescription" />
 
         <android.support.design.widget.FloatingActionButton
             app:fabSize="mini"
