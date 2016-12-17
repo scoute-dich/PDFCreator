@@ -44,26 +44,13 @@
                 <data android:mimeType="application/pdf" />
             </intent-filter>
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:scheme="file"
-                    android:host="*"
-                    android:mimeType="*/*" />
-                <data android:pathPattern=".*\\.pdf" />
-                <data android:pathPattern=".*\\..*\\.pdf" />
-                <data android:pathPattern=".*\\..*\\..*\\.pdf" />
-                <data android:pathPattern=".*\\..*\\..*\\..*\\.pdf" />
-            </intent-filter>
-
         </activity>
+
 
         <activity
             android:name=".helper.ActivityEditor"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
 
         <activity
             android:name=".helper.UserSettingsActivity" />

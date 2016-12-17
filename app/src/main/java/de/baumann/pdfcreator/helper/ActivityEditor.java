@@ -62,7 +62,6 @@ public class ActivityEditor extends AppCompatActivity implements SeekBar.OnSeekB
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
-        fab.setImageResource(R.drawable.ic_check_white_48dp);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

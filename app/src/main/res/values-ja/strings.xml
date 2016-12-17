@@ -143,6 +143,10 @@
     <string name="pref_notShow_title">ヘルプ ダイアログ</string>
     <string name="pref_notShow_title_summary">開始時にヘルプダイアログを表示します。</string>
 
+    <string name="action_openSettings">App info</string>
+    <string name="action_openSettings_summary">Open via the system settings the app info of the app. There you can,
+        depending on your Android version, manage several things (Storage, network traffic, permissions, …).</string>
+
     <string-array name="listArrayImage">
         <item>高 (100%)</item>
         <item>通常 (80%)</item>

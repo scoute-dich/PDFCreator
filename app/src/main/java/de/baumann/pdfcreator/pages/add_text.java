@@ -131,6 +131,8 @@ public class add_text extends Fragment {
                                 PdfStamper pdfStamper = new PdfStamper(reader, new FileOutputStream(Environment.getExternalStorageDirectory() +  "/" + "123456.pdf"));
                                 pdfStamper.close();
                                 helper_pdf.pdf_success(getActivity(), edit);
+                                helper_pdf.pdf_deleteTemp_1(getActivity());
+                                helper_pdf.pdf_deleteTemp_2(getActivity());
                             } catch (Exception e) {
                                 Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
                             }
@@ -205,11 +207,12 @@ public class add_text extends Fragment {
                                             }
                                         }
                                         document.close();
+                                        helper_pdf.pdf_success(getActivity(), edit);
+                                        helper_pdf.pdf_deleteTemp_1(getActivity());
+                                        helper_pdf.pdf_deleteTemp_2(getActivity());
                                     } catch (Exception i) {
                                         Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
                                     }
-                                    helper_pdf.pdf_deleteTemp_2(getActivity());
-                                    helper_pdf.pdf_success(getActivity(), edit);
                                 }
                             })
                             .build()
@@ -259,13 +262,13 @@ public class add_text extends Fragment {
                                         ~(PdfWriter.ALLOW_COPY | PdfWriter.ALLOW_PRINTING), PdfWriter.STANDARD_ENCRYPTION_128);
                                 pdfStamper.close();
                                 reader.close();
-
                                 helper_pdf.pdf_success(getActivity(), edit);
+                                helper_pdf.pdf_deleteTemp_1(getActivity());
+                                helper_pdf.pdf_deleteTemp_2(getActivity());
 
                             } catch (Exception e) {
                                 Snackbar.make(edit, getActivity().getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
                             }
-                            helper_pdf.pdf_deleteTemp_1(getActivity());
                         }
                     });
                     builder.setNegativeButton(R.string.toast_cancel, new DialogInterface.OnClickListener() {
@@ -358,8 +361,9 @@ public class add_text extends Fragment {
                                                 document.addSubject(inputTag3);
                                                 document.addKeywords(inputTag4);
                                                 document.close();
-                                                helper_pdf.pdf_deleteTemp_2(getActivity());
                                                 helper_pdf.pdf_success(getActivity(), edit);
+                                                helper_pdf.pdf_deleteTemp_1(getActivity());
+                                                helper_pdf.pdf_deleteTemp_2(getActivity());
                                             } catch (Exception i) {
                                                 Snackbar.make(edit, getActivity().getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
                                             }
@@ -442,8 +446,9 @@ public class add_text extends Fragment {
                                             document.addKeywords(metaKeywords);
                                             document.addCreator(metaCreator);
                                             document.close();
-                                            helper_pdf.pdf_deleteTemp_2(getActivity());
                                             helper_pdf.pdf_success(getActivity(), edit);
+                                            helper_pdf.pdf_deleteTemp_1(getActivity());
+                                            helper_pdf.pdf_deleteTemp_2(getActivity());
                                         } catch (Exception i) {
                                             Snackbar.make(edit, getActivity().getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
                                         }
@@ -476,64 +481,71 @@ public class add_text extends Fragment {
             @Override
             public void onClick(View view) {
 
-                File pdfFile = new File(helper_pdf.actualPath(getActivity()));
+                final File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
                 if (pdfFile.exists()) {
-                    helper_pdf.pdf_backup(getActivity());
+                    Snackbar.make(edit, getString(R.string.toast_savedImage), Snackbar.LENGTH_INDEFINITE).show();
 
-                    title = sharedPref.getString("title", null);
-                    folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            helper_pdf.pdf_backup(getActivity());
 
-                    String name = pdfFile.getName();
-                    int pos = name.lastIndexOf(".");
-                    if (pos > 0) {
-                        name = name.substring(0, pos);
-                    }
-                    String FileTitleWithOutExt = name.replaceFirst("[.][^.]+$", "");
-                    String folderOut = folder + FileTitleWithOutExt + "/";
+                            title = sharedPref.getString("title", null);
+                            folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
 
-                    DecodeServiceBase decodeService = new DecodeServiceBase(new PdfContext());
-                    decodeService.setContentResolver(getActivity().getContentResolver());
+                            String name = pdfFile.getName();
+                            int pos = name.lastIndexOf(".");
+                            if (pos > 0) {
+                                name = name.substring(0, pos);
+                            }
+                            String FileTitleWithOutExt = name.replaceFirst("[.][^.]+$", "");
+                            String folderOut = folder + FileTitleWithOutExt + "/";
 
-                    // a bit long running
-                    decodeService.open(Uri.fromFile(pdfFile));
-
-                    int pageCount = decodeService.getPageCount();
-                    for (int i = 0; i < pageCount; i++) {
-                        CodecPage page = decodeService.getPage(i);
-                        RectF rectF = new RectF(0, 0, 1, 1);
-
-                        // do a fit center to A4 Size image2 2480x3508
-                        int with = (page.getWidth()) * 2;
-                        int height = (page.getHeight()) * 2;
-
-                        // Long running
-                        Bitmap bitmap = page.renderBitmap(with, height, rectF);
-
-                        try {
-                            new File(Environment.getExternalStorageDirectory() + folderOut ).mkdirs();
-                            File outputFile = new File(Environment.getExternalStorageDirectory() + folderOut, FileTitleWithOutExt + "_" + String.format(Locale.GERMAN, "%03d", i + 1) + ".jpg");
-                            FileOutputStream outputStream = new FileOutputStream(outputFile);
+                            DecodeServiceBase decodeService = new DecodeServiceBase(new PdfContext());
+                            decodeService.setContentResolver(getActivity().getContentResolver());
 
                             // a bit long running
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                            decodeService.open(Uri.fromFile(pdfFile));
 
-                            outputStream.close();
-                        } catch (IOException e) {
-                            Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
-                        }
-                    }
+                            int pageCount = decodeService.getPageCount();
+                            for (int i = 0; i < pageCount; i++) {
+                                CodecPage page = decodeService.getPage(i);
+                                RectF rectF = new RectF(0, 0, 1, 1);
 
-                    Snackbar snackbar = Snackbar
-                            .make(edit, getString(R.string.toast_wait), Snackbar.LENGTH_LONG)
-                            .setAction(getString(R.string.toast_yes), new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    String folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                                    helper_main.openFilePicker(getActivity(), edit, Environment.getExternalStorageDirectory() + folder);
+                                // do a fit center to A4 Size image2 2480x3508
+                                int with = (page.getWidth()) * 2;
+                                int height = (page.getHeight()) * 2;
+
+                                // Long running
+                                Bitmap bitmap = page.renderBitmap(with, height, rectF);
+
+                                try {
+                                    new File(Environment.getExternalStorageDirectory() + folderOut ).mkdirs();
+                                    File outputFile = new File(Environment.getExternalStorageDirectory() + folderOut, FileTitleWithOutExt + "_" + String.format(Locale.GERMAN, "%03d", i + 1) + ".jpg");
+                                    FileOutputStream outputStream = new FileOutputStream(outputFile);
+
+                                    // a bit long running
+                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                                    outputStream.close();
+
+                                    Snackbar snackbar = Snackbar
+                                            .make(edit, getString(R.string.toast_wait), Snackbar.LENGTH_LONG)
+                                            .setAction(getString(R.string.toast_yes), new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    String folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
+                                                    helper_main.openFilePicker(getActivity(), edit, Environment.getExternalStorageDirectory() + folder);
+                                                }
+                                            });
+                                    snackbar.show();
+
+                                } catch (IOException e) {
+                                    Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
                                 }
-                            });
-                    snackbar.show();
+                            }
+                        }
+                    }, 200);
+
                 } else {
                     Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG).show();
                 }

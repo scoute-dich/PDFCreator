@@ -144,6 +144,11 @@
     <string name="pref_notShow_title">Hilfe Dialog</string>
     <string name="pref_notShow_title_summary">Hilfe Dialog beim Start anzeigen.</string>
 
+    <string name="action_openSettings">App Info</string>
+    <string name="action_openSettings_summary">Öffne über die Systemeinstellungen die App Info der App. Je nach Androidversion
+        kannst du dort verschiedene Einstellungen vornehmen (Speicherplatz, Netzwerkverkehr, Berechtigungen, …).</string>
+
+
     <string-array name="listArrayImage">
         <item>Hoch (100%)</item>
         <item>Normal (80%)</item>

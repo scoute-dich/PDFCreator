@@ -90,6 +90,7 @@ public class add_image extends Fragment {
                         helper_pdf.pdf_success(getActivity(), img);
                         helper_pdf.pdf_deleteTemp_1(getActivity());
                         helper_pdf.pdf_deleteTemp_2(getActivity());
+                        img.setImageResource(R.drawable.image);
 
                     } else {
                         Snackbar.make(img, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG).show();

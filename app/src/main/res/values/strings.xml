@@ -105,7 +105,6 @@
     <string name="choose_chooser">Open file chooser</string>
 
 
-
     // Settings
 
     <string name="settings_prefApp">About the app</string>
@@ -144,8 +143,8 @@
     <string name="pref_notShow_title">Help dialog</string>
     <string name="pref_notShow_title_summary">Show the help dialog on start.</string>
 
-    <string name="action_openSettings" translatable="false">App info</string>
-    <string name="action_openSettings_summary" translatable="false">Open via the system settings the app info of the app. There you can,
+    <string name="action_openSettings">App info</string>
+    <string name="action_openSettings_summary">Open via the system settings the app info of the app. There you can,
         depending on your Android version, manage several things (Storage, network traffic, permissions, …).</string>
 
     <string-array name="listArrayImage">

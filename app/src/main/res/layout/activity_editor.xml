@@ -63,6 +63,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="false"
         android:layout_marginBottom="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_check_white_48dp"
         tools:ignore="RelativeOverlap"
         android:layout_marginTop="@dimen/fab_margin" />
 

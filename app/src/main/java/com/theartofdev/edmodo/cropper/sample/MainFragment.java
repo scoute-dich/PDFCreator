@@ -33,8 +33,6 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import de.baumann.pdfcreator.R;
 
@@ -76,15 +74,7 @@ public final class MainFragment extends Fragment
             public void onClick(View view) {
 
                 Snackbar.make(mCropImageView, getString(R.string.toast_savedImage), Snackbar.LENGTH_INDEFINITE).show();
-
                 mCropImageView.getCroppedImageAsync();
-                Timer timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        getActivity().finish();
-                    }
-                }, 5000);
             }
         });
 
@@ -173,6 +163,7 @@ public final class MainFragment extends Fragment
                         : bitmap;
             }
             startActivity(intent);
+            getActivity().finish();
         } else {
             Log.e("AIC", "Failed to crop image2", error);
             Toast.makeText(getActivity(), "Image crop failed: " + error.getMessage(), Toast.LENGTH_LONG).show();
