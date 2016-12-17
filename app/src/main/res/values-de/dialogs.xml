@@ -77,7 +77,7 @@
         &#8226; &lt;i>Zuschneiden:&lt;/i> du kannst das Bild zuschneiden oder drehen.&lt;br>
         &#8226; &lt;i>Bearbeiten:&lt;/i> mache ein paar kleine Verbesserungen. Nachdem du einen Effekt angewendet hast, must du
         jedesmal speichern.&lt;br>
-        &#8226; &lt;i>FAB (grün):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (orange):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
         Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
@@ -101,7 +101,7 @@
         &#8226; &lt;i>Bearbeiten:&lt;/i> mache ein paar kleine Verbesserungen. Nachdem du einen Effekt angewendet hast, must du
         jedesmal speichern.&lt;br>
         &#8226; &lt;i>PDF:&lt;/i> suche dir eine PDF-Datei zum Bearbeiten aus.&lt;br>
-        &#8226; &lt;i>FAB (grün):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (orange):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
         Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
@@ -117,7 +117,7 @@
          Hier kannst du eine PDF-Datei mit Text als Inhalt erstellen.&lt;br>&lt;br>
 
         &lt;b>Knöpfe&lt;/b>&lt;br>
-        &#8226; &lt;i>FAB (grün):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (orange):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
         Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
@@ -138,13 +138,12 @@
 
         &#8226; &lt;i>Löschen:&lt;/i> lösche Seiten aus einer PDF-Datei.&lt;br>
         &#8226; &lt;i>Zusammenführen:&lt;/i> füge zwei PDF-Dateien zusammen.&lt;br>
-        &#8226; &lt;i>Verschlüsseln:&lt;/i> verschlüssele eine PDF-Datei mit einem Passwort. Du kannst ein Besitzer und ein
-        Benutzerpasswort vergeben. Beides kannst du in den Eistellungen oder indem du diesen Knopf lange drückst ändern.&lt;br>
-        &#8226; &lt;i>Metadaten:&lt;/i> bearbeite die Metadaten einer PDF-Datei. Die Metadaten kannst du in den
-        Einstellungen oder indem du diesen Knopf lange drückst ändern.&lt;br>
+        &#8226; &lt;i>Verschlüsseln:&lt;/i> verschlüssele eine PDF-Datei mit einem Passwort. Du kannst ein Besitzer-
+        (gebraucht um PDF Datei zu bearbeiten) und ein Benutzerpasswort (nur um die PDF Datei zu öffnen) vergeben.&lt;br>
+        &#8226; &lt;i>Metadaten:&lt;/i> bearbeite die Metadaten einer PDF-Datei.&lt;br>
         &#8226; &lt;i>Bild:&lt;/i> konvertiere eine PDF-Datei in Bilder.&lt;br>
         &#8226; &lt;i>PDF:&lt;/i> suche dir eine PDF-Datei zum Bearbeiten aus.&lt;br>
-        &#8226; &lt;i>FAB (grün):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
+        &#8226; &lt;i>FAB (orange):&lt;/i> erstelle die PDF-Datei.&lt;br>&lt;br>
 
         &lt;b>Gut zu wissen:&lt;/b>&lt;br>
         Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
