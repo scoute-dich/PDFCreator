@@ -1,8 +1,9 @@
 ### v 2.3 (WIP)
 - improved: Ui (dialogs, theme, icon)
 - improved: simplified settings screen
+- improved: snackbar notifications
 - added: automatically save edited pictures
-- added: read existing meta tags
+- added: read and edit existing meta tags
 
 ### v 2.2
 - file chooser improvements
