@@ -1,3 +1,6 @@
+### v 2.3.1
+- updated Japanese translation (Thanks to naofum)
+
 ### v 2.3
 - improved: Ui (dialogs, theme, icon)
 - improved: simplified settings screen
