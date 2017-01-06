@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.artifex.mupdfdemo.MuPDFActivity;
+
 import java.io.File;
 
 import de.baumann.pdfcreator.R;
@@ -57,7 +59,7 @@ public class helper_main {
                 .withStartFile(startDir)
                 .withChosenListener(new ChooserDialog.Result() {
                     @Override
-                    public void onChoosePath(String path, final File pathFile) {
+                    public void onChoosePath(final String path, final File pathFile) {
                         final String fileExtension = pathFile.getAbsolutePath().substring(pathFile.getAbsolutePath().lastIndexOf("."));
                         final String fileName = pathFile.getAbsolutePath().substring(pathFile.getAbsolutePath().lastIndexOf("/")+1);
                         final String  fileNameWE = fileName.substring(0, fileName.lastIndexOf("."));
@@ -85,7 +87,12 @@ public class helper_main {
                                             helper_main.openFile(activity, pathFile, "image/*", view);
                                             break;
                                         case ".pdf":
-                                            helper_main.openFile(activity, pathFile, "application/pdf", view);
+                                            Uri uri = Uri.parse(pathFile.getAbsolutePath());
+                                            Intent intent = new Intent(activity, MuPDFActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                            intent.setAction(Intent.ACTION_VIEW);
+                                            intent.setData(uri);
+                                            activity.startActivity(intent);
                                             break;
 
                                         default:
@@ -99,10 +106,12 @@ public class helper_main {
                                 if (options[item].equals(activity.getString(R.string.choose_menu_2))) {
 
                                     if (pathFile.exists()) {
+                                        String text = activity.getString(R.string.action_share_Text);
+
                                         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                                         sharingIntent.setType("image/png");
                                         sharingIntent.putExtra(Intent.EXTRA_SUBJECT, fileName);
-                                        sharingIntent.putExtra(Intent.EXTRA_TEXT, fileName);
+                                        sharingIntent.putExtra(Intent.EXTRA_TEXT, text + " " + fileName);
                                         Uri bmpUri = Uri.fromFile(pathFile);
                                         sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
                                         activity.startActivity(Intent.createChooser(sharingIntent, (activity.getString(R.string.app_share_file))));
@@ -119,6 +128,8 @@ public class helper_main {
 
                                         public void onClick(DialogInterface dialog, int whichButton) {
                                             pathFile.delete();
+                                            helper_pdf.toolbar(activity);
+                                            helper_pdf.pdf_textField(activity, view);
                                             new Handler().postDelayed(new Runnable() {
                                                 public void run() {
                                                     String dir = pathFile.getParentFile().getAbsolutePath();
@@ -164,6 +175,8 @@ public class helper_main {
 
                                             pathFile.renameTo(to);
                                             pathFile.delete();
+                                            helper_pdf.toolbar(activity);
+                                            helper_pdf.pdf_textField(activity, view);
 
                                             new Handler().postDelayed(new Runnable() {
                                                 public void run() {

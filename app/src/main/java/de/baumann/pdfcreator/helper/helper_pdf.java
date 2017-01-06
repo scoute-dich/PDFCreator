@@ -80,6 +80,24 @@ public class helper_pdf {
         }
     }
 
+    public static void toolbar (final Activity activity) {
+
+        String title;
+
+        PreferenceManager.setDefaultValues(activity, R.xml.user_settings, false);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
+        sharedPref.getString("rotateString", "portrait");
+
+        title = sharedPref.getString("title", null);
+        File pdfFile = new File(helper_pdf.actualPath(activity));
+
+        if (pdfFile.exists()) {
+            activity.setTitle(title);
+        } else {
+            activity.setTitle(R.string.app_name);
+        }
+    }
+
     public static void pdf_textField (final Activity activity, final View view) {
 
         String title;

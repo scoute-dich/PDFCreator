@@ -1,3 +1,6 @@
+### v 2.4 (WIP)
+- added: PDF viewer support (muPDF)
+
 ### v 2.3.1
 - updated Japanese translation (Thanks to naofum)
 
