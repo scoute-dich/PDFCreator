@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.artifex.mupdfdemo.MuPDFActivity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -236,7 +237,12 @@ public class add_image extends Fragment {
                         @Override
                         public void onClick(View view) {
                             File file = new File(helper_pdf.actualPath(getActivity()));
-                            helper_main.openFile(getActivity(), file, "application/pdf", img);
+
+                            Intent intent = new Intent(getActivity(), MuPDFActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            intent.setAction(Intent.ACTION_VIEW);
+                            intent.setData(Uri.fromFile(file));
+                            getActivity().startActivity(intent);
                         }
                     });
             snackbar.show();
@@ -515,7 +521,11 @@ public class add_image extends Fragment {
             case R.id.action_open:
 
                 if (pdfFile.exists()) {
-                    helper_main.openFile(getActivity(), pdfFile, "application/pdf", img);
+                    Intent intent = new Intent(getActivity(), MuPDFActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(Uri.fromFile(pdfFile));
+                    getActivity().startActivity(intent);
                 } else {
                     Snackbar.make(img, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
                 }
