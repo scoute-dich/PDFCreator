@@ -18,16 +18,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    /*  this stops gradle from making it's own Android.mk file */
-    sourceSets.main.jni.srcDirs = []
-
-    sourceSets {
-        main {
-            jniLibs {
-                srcDir 'src/main/libs'
-            }
-        }
-    }
+    return void
 }
 
 dependencies {
