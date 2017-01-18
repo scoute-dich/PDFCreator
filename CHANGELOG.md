@@ -1,4 +1,4 @@
-### v 2.5 (WIP)
+### v 2.5
 - added: Pdf title on toolbar
 - removed: PDF viewer support (muPDF)
 
