@@ -28,9 +28,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.artifex.mupdfdemo.MuPDFActivity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -146,14 +144,8 @@ public class create_image extends Fragment {
                                     .setAction(getString(R.string.toast_open), new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-
                                             File file = new File(helper_pdf.actualPath(getActivity()));
-
-                                            Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                                            intent.setAction(Intent.ACTION_VIEW);
-                                            intent.setData(Uri.fromFile(file));
-                                            getActivity().startActivity(intent);
+                                            helper_main.openFile(getActivity(), file, "application/pdf", img);
                                         }
                                     });
                             snackbar.show();
@@ -268,6 +260,8 @@ public class create_image extends Fragment {
         if (Intent.ACTION_SEND.equals(action) && type != null) {
             if (type.startsWith("image/")) {
                 handleSendImage(intent); // Handle single image being sent
+            } else if (type.startsWith("application/pdf")) {
+                handleSendPDF(intent); // Handle single image being sent
             }
         }
 
@@ -300,6 +294,16 @@ public class create_image extends Fragment {
         }
     }
 
+    private void handleSendPDF(Intent intent) {
+        Uri pdfUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+
+        String FilePath = pdfUri.getPath();
+        String FileTitle = FilePath.substring(FilePath.lastIndexOf("/")+1);
+        sharedPref.edit().putString("pathPDF", FilePath).apply();
+        sharedPref.edit().putString("title", FileTitle).apply();
+        helper_pdf.pdf_textField(getActivity(), rootView);
+    }
+
     private void createPDF() {
         // Input file
         String inputPath = Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg";
@@ -321,12 +325,7 @@ public class create_image extends Fragment {
                         @Override
                         public void onClick(View view) {
                             File file = new File(helper_pdf.actualPath(getActivity()));
-
-                            Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setData(Uri.fromFile(file));
-                            getActivity().startActivity(intent);
+                            helper_main.openFile(getActivity(), file, "application/pdf", img);
                         }
                     });
             snackbar.show();
@@ -553,8 +552,6 @@ public class create_image extends Fragment {
     public void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
         File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-        helper_pdf.pdf_textField(getActivity(), rootView);
-        helper_pdf.toolbar(getActivity());
         if(imgFile.exists()){
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             img.setImageBitmap(myBitmap);
@@ -566,7 +563,9 @@ public class create_image extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        String path = helper_pdf.actualPath(getActivity());
+        String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
+                folder + title + ".pdf");
+
         File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
         switch (item.getItemId()) {
@@ -602,15 +601,12 @@ public class create_image extends Fragment {
             case R.id.action_open:
 
                 if (pdfFile.exists()) {
-                    Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.setData(Uri.fromFile(pdfFile));
-                    getActivity().startActivity(intent);
+                    helper_main.openFile(getActivity(), pdfFile, "application/pdf", img);
                 } else {
                     Snackbar.make(img, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
                 }
                 return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

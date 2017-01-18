@@ -25,7 +25,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.artifex.mupdfdemo.MuPDFActivity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -185,38 +184,22 @@ public class add_image extends Fragment {
         String type = intent.getType();
 
         if (Intent.ACTION_SEND.equals(action) && type != null) {
-            if (type.startsWith("image/")) {
-                handleSendImage(intent); // Handle single image being sent
+            if (type.startsWith("application/pdf")) {
+                handleSendPDF(intent); // Handle single image being sent
             }
         }
 
         return rootView;
     }
 
-    private void handleSendImage(Intent intent) {
-        Uri imageUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
-        if (imageUri != null) {
-            // Update UI to reflect image being shared
-            img.setImageURI(imageUri);
+    private void handleSendPDF(Intent intent) {
+        Uri pdfUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
 
-            BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
-            Bitmap bitmap = drawable.getBitmap();
-
-            File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-
-            // Encode the file as a JPEG image.
-            FileOutputStream outStream;
-            try {
-
-                outStream = new FileOutputStream(imgFile);
-                bitmap.compress(Bitmap.CompressFormat.JPEG, imgquality_int, outStream);
-                outStream.flush();
-                outStream.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        String FilePath = pdfUri.getPath();
+        String FileTitle = FilePath.substring(FilePath.lastIndexOf("/")+1);
+        sharedPref.edit().putString("pathPDF", FilePath).apply();
+        sharedPref.edit().putString("title", FileTitle).apply();
+        helper_pdf.pdf_textField(getActivity(), rootView);
     }
 
     private void createPDF() {
@@ -237,12 +220,7 @@ public class add_image extends Fragment {
                         @Override
                         public void onClick(View view) {
                             File file = new File(helper_pdf.actualPath(getActivity()));
-
-                            Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setData(Uri.fromFile(file));
-                            getActivity().startActivity(intent);
+                            helper_main.openFile(getActivity(), file, "application/pdf", img);
                         }
                     });
             snackbar.show();
@@ -471,8 +449,6 @@ public class add_image extends Fragment {
     public void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
         File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-        helper_pdf.pdf_textField(getActivity(), rootView);
-        helper_pdf.toolbar(getActivity());
         if(imgFile.exists()){
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             img.setImageBitmap(myBitmap);
@@ -485,10 +461,10 @@ public class add_image extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         String path = helper_pdf.actualPath(getActivity());
+
         File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
         switch (item.getItemId()) {
-
             case R.id.action_help:
 
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
@@ -521,11 +497,7 @@ public class add_image extends Fragment {
             case R.id.action_open:
 
                 if (pdfFile.exists()) {
-                    Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.setData(Uri.fromFile(pdfFile));
-                    getActivity().startActivity(intent);
+                    helper_main.openFile(getActivity(), pdfFile, "application/pdf", img);
                 } else {
                     Snackbar.make(img, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
                 }

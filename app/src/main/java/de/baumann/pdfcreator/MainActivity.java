@@ -29,7 +29,6 @@ import java.util.List;
 
 import de.baumann.pdfcreator.helper.helper_main;
 import de.baumann.pdfcreator.helper.UserSettingsActivity;
-import de.baumann.pdfcreator.helper.helper_pdf;
 import de.baumann.pdfcreator.pages.add_text;
 import de.baumann.pdfcreator.pages.create_image;
 import de.baumann.pdfcreator.pages.add_image;
@@ -84,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        helper_pdf.toolbar(MainActivity.this);
 
         boolean show = sharedPref.getBoolean("help_notShow", true);
         if (show){
@@ -169,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        private ViewPagerAdapter(FragmentManager manager) {
+        public ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
 
@@ -183,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        private void addFragment(Fragment fragment, String title) {
+        public void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
