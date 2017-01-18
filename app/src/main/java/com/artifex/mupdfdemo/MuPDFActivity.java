@@ -1237,6 +1237,7 @@ public class MuPDFActivity extends AppCompatActivity implements FilePicker.FileP
 		String path = helper_pdf.actualPath(MuPDFActivity.this);
 		File pdfFile = new File(helper_pdf.actualPath(MuPDFActivity.this));
 
+
 		int id = item.getItemId();
 
 		if (id == R.id.action_share) {
