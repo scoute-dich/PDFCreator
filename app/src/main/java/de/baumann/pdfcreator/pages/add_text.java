@@ -585,8 +585,6 @@ public class add_text extends Fragment {
         if (Intent.ACTION_SEND.equals(action) && type != null) {
             if (type.startsWith("text/")) {
                 handleSendText(intent); // Handle single image2 being sent
-            } else if (type.startsWith("application/pdf")) {
-                handleSendPDF(intent); // Handle single image2 being sent
             }
         }
 
@@ -599,16 +597,6 @@ public class add_text extends Fragment {
             // Update UI to reflect text being shared
             edit.setText(sharedText);
         }
-    }
-
-    private void handleSendPDF(Intent intent) {
-        Uri pdfUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
-
-        String FilePath = pdfUri.getPath();
-        String FileTitle = FilePath.substring(FilePath.lastIndexOf("/")+1);
-        sharedPref.edit().putString("pathPDF", FilePath).apply();
-        sharedPref.edit().putString("title", FileTitle).apply();
-        helper_pdf.pdf_textField(getActivity(), rootView);
     }
 
     private void createPDF() {
@@ -650,6 +638,22 @@ public class add_text extends Fragment {
         }
 
         return false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        helper_pdf.pdf_textField(getActivity(), rootView);
+        helper_pdf.toolbar(getActivity());
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed()) {
+            helper_pdf.pdf_textField(getActivity(), rootView);
+            helper_pdf.toolbar(getActivity());
+        }
     }
 
     @Override

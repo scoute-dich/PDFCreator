@@ -184,22 +184,38 @@ public class add_image extends Fragment {
         String type = intent.getType();
 
         if (Intent.ACTION_SEND.equals(action) && type != null) {
-            if (type.startsWith("application/pdf")) {
-                handleSendPDF(intent); // Handle single image being sent
+            if (type.startsWith("image/")) {
+                handleSendImage(intent); // Handle single image being sent
             }
         }
 
         return rootView;
     }
 
-    private void handleSendPDF(Intent intent) {
-        Uri pdfUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+    private void handleSendImage(Intent intent) {
+        Uri imageUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (imageUri != null) {
+            // Update UI to reflect image being shared
+            img.setImageURI(imageUri);
 
-        String FilePath = pdfUri.getPath();
-        String FileTitle = FilePath.substring(FilePath.lastIndexOf("/")+1);
-        sharedPref.edit().putString("pathPDF", FilePath).apply();
-        sharedPref.edit().putString("title", FileTitle).apply();
-        helper_pdf.pdf_textField(getActivity(), rootView);
+            BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
+            Bitmap bitmap = drawable.getBitmap();
+
+            File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
+
+            // Encode the file as a JPEG image.
+            FileOutputStream outStream;
+            try {
+
+                outStream = new FileOutputStream(imgFile);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, imgquality_int, outStream);
+                outStream.flush();
+                outStream.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void createPDF() {
@@ -449,11 +465,29 @@ public class add_image extends Fragment {
     public void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
         File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
+        helper_pdf.pdf_textField(getActivity(), rootView);
+        helper_pdf.toolbar(getActivity());
         if(imgFile.exists()){
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             img.setImageBitmap(myBitmap);
         } else {
             img.setImageResource(R.drawable.image);
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed()) {
+            File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
+            helper_pdf.pdf_textField(getActivity(), rootView);
+            helper_pdf.toolbar(getActivity());
+            if(imgFile.exists()){
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                img.setImageBitmap(myBitmap);
+            } else {
+                img.setImageResource(R.drawable.image);
+            }
         }
     }
 
