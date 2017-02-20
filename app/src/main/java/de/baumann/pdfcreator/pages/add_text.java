@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.artifex.mupdfdemo.MuPDFActivity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
@@ -80,9 +81,10 @@ public class add_text extends Fragment {
                     Snackbar.make(edit, getString(R.string.toast_noText), Snackbar.LENGTH_LONG).show();
                 } else {
 
+                    final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
                     File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
-                    if (pdfFile.exists()) {
+                    if (pdfFile.exists() && fileExtension.equals(".pdf")) {
                         title = sharedPref.getString("title", null);
 
                         helper_pdf.pdf_backup(getActivity());
@@ -105,8 +107,9 @@ public class add_text extends Fragment {
             public void onClick(View view) {
 
                 File pdfFile = new File(helper_pdf.actualPath(getActivity()));
+                final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
 
-                if (pdfFile.exists()) {
+                if (pdfFile.exists() && fileExtension.equals(".pdf")) {
                     helper_pdf.pdf_backup(getActivity());
                     pages = sharedPref.getString("deletePages", null);
 
@@ -169,8 +172,9 @@ public class add_text extends Fragment {
             public void onClick(View view) {
 
                 File pdfFile = new File(helper_pdf.actualPath(getActivity()));
+                final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
 
-                if (pdfFile.exists()) {
+                if (pdfFile.exists() && fileExtension.equals(".pdf")) {
                     helper_pdf.pdf_backup(getActivity());
                     folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
 
@@ -230,8 +234,9 @@ public class add_text extends Fragment {
             public void onClick(View view) {
 
                 final File pdfFile = new File(helper_pdf.actualPath(getActivity()));
+                final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
 
-                if (pdfFile.exists()) {
+                if (pdfFile.exists() && fileExtension.equals(".pdf")) {
 
                     helper_pdf.pdf_backup(getActivity());
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -294,8 +299,9 @@ public class add_text extends Fragment {
             public void onClick(View view) {
 
                 final File pdfFile = new File(helper_pdf.actualPath(getActivity()));
+                final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
 
-                if (pdfFile.exists()) {
+                if (pdfFile.exists() && fileExtension.equals(".pdf")) {
 
                     final CharSequence[] options = {
                             getString(R.string.add_text_meta_doc),
@@ -482,8 +488,9 @@ public class add_text extends Fragment {
             public void onClick(View view) {
 
                 final File pdfFile = new File(helper_pdf.actualPath(getActivity()));
+                final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
 
-                if (pdfFile.exists()) {
+                if (pdfFile.exists() && fileExtension.equals(".pdf")) {
                     Snackbar.make(edit, getString(R.string.toast_savedImage), Snackbar.LENGTH_INDEFINITE).show();
 
                     new Handler().postDelayed(new Runnable() {
@@ -599,6 +606,22 @@ public class add_text extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        helper_pdf.pdf_textField(getActivity(), rootView);
+        helper_pdf.toolbar(getActivity());
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed()) {
+            helper_pdf.toolbar(getActivity());
+            helper_pdf.pdf_textField(getActivity(), rootView);
+        }
+    }
+
     private void createPDF() {
         // Output file
         String outputPath = Environment.getExternalStorageDirectory() +  "/" + "123456.pdf";
@@ -641,28 +664,9 @@ public class add_text extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        helper_pdf.pdf_textField(getActivity(), rootView);
-        helper_pdf.toolbar(getActivity());
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && isResumed()) {
-            helper_pdf.pdf_textField(getActivity(), rootView);
-            helper_pdf.toolbar(getActivity());
-        }
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        title = sharedPref.getString("title", null);
-        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
         String path = helper_pdf.actualPath(getActivity());
-
         File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
         switch (item.getItemId()) {
@@ -698,7 +702,11 @@ public class add_text extends Fragment {
             case R.id.action_open:
 
                 if (pdfFile.exists()) {
-                    helper_main.openFile(getActivity(), pdfFile, "application/pdf", edit);
+                    Intent intent = new Intent(getActivity(), MuPDFActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(Uri.fromFile(pdfFile));
+                    getActivity().startActivity(intent);
                 } else {
                     Snackbar.make(edit, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
                 }

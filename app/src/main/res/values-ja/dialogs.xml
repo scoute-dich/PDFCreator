@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //License Dialog
+
+    <string name="about_title">Copyright © 2016  by Gaukler Faun</string>
+    <string name="about_text">
+        &lt;i>詳細は github のプロジェクトサイトをご覧ください:&lt;br>
+        https://github.com/scoute-dich/PDFCreator&lt;/i>&lt;br>&lt;br>
+
+        このプログラムはフリーソフトウェアです。あなたはこれを、フリーソフ
+        トウェア財団によって発行されたGNU 一般公衆利用許諾書(バージョン3か、
+        それ以降のバージョンのうちどれか)が定める条件の下で再頒布または改変
+        することができます。
+
+        このプログラムは有用であることを願って頒布されますが、*全くの無保証
+        *です。商業可能性の保証や特定目的への適合性は、言外に示されたものも
+        含め、全く存在しません。詳しくはGNU 一般公衆利用許諾書をご覧ください。 
+
+        あなたはこのプログラムと共に、GNU 一般公衆利用許諾書のコピーを一部
+        受け取っているはずです。もし受け取っていなければ、以下をご覧ください
+        http://www.gnu.org/licenses.&lt;br>&lt;br>&lt;br>
+
+        &lt;b>使用したオープンソースプロジェクト:&lt;/b>&lt;br>&lt;br>
+
+        &lt;i>android-file-chooser&lt;/i>&lt;br>
+        https://github.com/hedzr/android-file-chooser&lt;br>&lt;br>
+
+        &lt;i>Android-Image-Cropper&lt;/i>&lt;br>
+        https://github.com/ArthurHub/Android-Image-Cropper&lt;br>&lt;br>
+
+        &lt;i>Android PDFView&lt;/i>&lt;br>
+        https://github.com/JoanZapata/android-pdfview&lt;br>&lt;br>
+
+        &lt;i>GPUImage for Android&lt;/i>&lt;br>
+        https://github.com/CyberAgent/android-gpuimage&lt;br>&lt;br>
+
+        &lt;i>iText&lt;/i>&lt;br>
+        https://github.com/itext/itextpdf&lt;br>&lt;br>
+
+        &lt;i>MaterialDesignIcons&lt;/i>&lt;br>
+        https://github.com/Templarian/MaterialDesign
+    </string>
+
+
+    //Help Dialog
+
+    <string name="dialog_help">
+        各タブの簡単なヘルプダイアログを表示するには、\"メニュー -> ヘルプ\" を押してください。&lt;br>&lt;br>
+
+        &lt;b>メニュー&lt;/b>&lt;br>
+
+        &lt;i>共有:&lt;/i> 最後に操作した PDF を共有できます。&lt;br>
+        &lt;i>PDF を開く:&lt;/i> 最後の PDF を PDF ビューアで開きます。&lt;br>
+        &lt;i>フォルダーを開く:&lt;/i> ファイルエクスプローラでアプリケーションディレクトリーを開きます。&lt;br>
+        &lt;i>設定:&lt;/i> 確認してください。&lt;br>
+        &lt;i>ヘルプ:&lt;/i> 各タブのヘルプダイアログを開きます。&lt;br>&lt;br>
+
+        &lt;b>知っておくといいこと:&lt;/b>&lt;br>
+        下部には、実際の PDF の名前と書式が表示されます。
+        この領域を押すと、PDF ページの縦向き、横向きの書式を切り替えることができます。
+    </string>
+
+
+    //Create image Dialog
+
+    <string name="dialog_createImage">
+
+        &lt;b>ここでできることは?&lt;/b>&lt;br>
+        ここで、画像から 1 ページの PDF を作成できます。&lt;br>&lt;br>
+
+        &lt;b>ボタン&lt;/b>&lt;br>
+        &lt;i>右側の上から下へ。&lt;/i>&lt;br>&lt;br>
+
+        &#8226; &lt;i>カメラ:&lt;/i> 写真を選ぶことができます。 ギャラリーから、またはカメラで新しく撮ってください。&lt;br>
+        &#8226; &lt;i>トリミング:&lt;/i> 画像をトリミングして回転します。 フィルターを適用した後は、毎回保存する必要があります。
+        編集後、fab ボタンをクリックしてメインアクティビティに戻ります。&lt;br>
+        &#8226; &lt;i>編集:&lt;/i> いくつかの基本的な拡張を行います。&lt;br>
+        &#8226; &lt;i>FAB (オレンジ):&lt;/i> PDF を作成します。&lt;br>&lt;br>
+
+        &lt;b>知っておくといいこと:&lt;/b>&lt;br>
+        画像を編集またはトリミングしたら、画像を下にスワイプして表示を更新する必要があります。
+        下部には、実際の PDF の名前と書式が表示されます。
+        この領域を押すと、PDF ページの縦向き、横向きの書式を切り替えることができます。
+    </string>
+
+
+    //Add image Dialog
+
+    <string name="dialog_addImage">
+
+        &lt;b>ここでできることは?&lt;/b>&lt;br>
+        ここで既存の PDF ファイルに画像を追加することができます。&lt;br>&lt;br>
+
+        &lt;b>ボタン&lt;/b>&lt;br>
+        &lt;i>右側の上から下へ。&lt;/i>&lt;br>&lt;br>
+
+        &#8226; &lt;i>カメラ:&lt;/i> 写真を選ぶことができます。 ギャラリーから、またはカメラで新しく撮ってください。&lt;br>
+        &#8226; &lt;i>トリミング:&lt;/i> 画像をトリミングして回転します。&lt;br>
+        &#8226; &lt;i>編集:&lt;/i> いくつかの基本的な拡張を行います。 フィルターを適用した後は、毎回保存する必要があります。
+        編集後、fab ボタンをクリックしてメインアクティビティに戻ります。&lt;br>
+        &#8226; &lt;i>PDF:&lt;/i> 新しいページを追加する PDF を選択します。&lt;br>
+        &#8226; &lt;i>FAB (オレンジ):&lt;/i> PDF を作成します。&lt;br>&lt;br>
+
+        &lt;b>知っておくといいこと:&lt;/b>&lt;br>
+        下部には、実際の PDF の名前と書式が表示されます。
+        この領域を押すと、PDF ページの縦向き、横向きの書式を切り替えることができます。
+    </string>
+
+
+    //Create text Dialog
+
+    <string name="dialog_createText">
+
+        &lt;b>ここでできることは?&lt;/b>&lt;br>
+        ここで、テキストから 1 ページの PDF を作成できます。 既存の PDF ファイルを編集するいくつかのオプションもあります。&lt;br>&lt;br>
+
+        &lt;b>ボタン&lt;/b>&lt;br>
+        &#8226; &lt;i>FAB (オレンジ):&lt;/i> PDF を作成します。&lt;br>&lt;br>
+
+        &lt;b>知っておくといいこと:&lt;/b>&lt;br>
+        下部には、実際の PDF の名前と書式が表示されます。
+        この領域を押すと、PDF ページの縦向き、横向きの書式を切り替えることができます。
+    </string>
+
+
+    //Add text Dialog
+
+    <string name="dialog_addText">
+
+        &lt;b>ここでできることは?&lt;/b>&lt;br>
+        ここで、既存の PDF ファイルにテキストのページを追加できます。&lt;br>&lt;br>
+
+        &lt;b>ボタン&lt;/b>&lt;br>
+        &lt;i>右側の上から下へ。&lt;/i>&lt;br>&lt;br>
+
+        &#8226; &lt;i>削除:&lt;/i> 既存の PDF からページを削除します。&lt;br>
+        &#8226; &lt;i>マージ:&lt;/i> 2 つの PDF ファイルをマージします。&lt;br>
+        &#8226; &lt;i>保護:&lt;/i> 既存の PDF をパスワードで保護します。 所有者とユーザーパスワードを設定できます。
+        設定で、またはこのボタンを長押しして、それを変更できます。&lt;br>
+        &#8226; &lt;i>メタデータ:&lt;/i> 既存の PDF のメタデータを編集します。
+        設定で、またはこのボタンを長押しして、メタデータを編集できます。&lt;br>
+        &#8226; &lt;i>画像:&lt;/i> PDF を画像に変換します。&lt;br>
+        &#8226; &lt;i>PDF:&lt;/i> 操作するPDFを選択します。&lt;br>
+        &#8226; &lt;i>FAB (オレンジ):&lt;/i> PDF を作成します。&lt;br>&lt;br>
+
+        &lt;b>知っておくといいこと:&lt;/b>&lt;br>
+        下部には、実際の PDF の名前と書式が表示されます。
+        この領域を押すと、PDF ページの縦向き、横向きの書式を切り替えることができます。
+    </string>
+
+</resources>

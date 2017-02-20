@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.artifex.mupdfdemo.MuPDFActivity;
+
 import java.io.File;
 
 import de.baumann.pdfcreator.R;
@@ -57,7 +59,7 @@ public class helper_main {
                 .withStartFile(startDir)
                 .withChosenListener(new ChooserDialog.Result() {
                     @Override
-                    public void onChoosePath(String path, final File pathFile) {
+                    public void onChoosePath(final String path, final File pathFile) {
                         final String fileExtension = pathFile.getAbsolutePath().substring(pathFile.getAbsolutePath().lastIndexOf("."));
                         final String fileName = pathFile.getAbsolutePath().substring(pathFile.getAbsolutePath().lastIndexOf("/")+1);
                         final String  fileNameWE = fileName.substring(0, fileName.lastIndexOf("."));
@@ -85,7 +87,12 @@ public class helper_main {
                                             helper_main.openFile(activity, pathFile, "image/*", view);
                                             break;
                                         case ".pdf":
-                                            helper_main.openFile(activity, pathFile, "application/pdf", view);
+                                            Uri uri = Uri.parse(pathFile.getAbsolutePath());
+                                            Intent intent = new Intent(activity, MuPDFActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                            intent.setAction(Intent.ACTION_VIEW);
+                                            intent.setData(uri);
+                                            activity.startActivity(intent);
                                             break;
 
                                         default:
@@ -99,10 +106,12 @@ public class helper_main {
                                 if (options[item].equals(activity.getString(R.string.choose_menu_2))) {
 
                                     if (pathFile.exists()) {
+                                        String text = activity.getString(R.string.action_share_Text);
+
                                         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                                         sharingIntent.setType("image/png");
                                         sharingIntent.putExtra(Intent.EXTRA_SUBJECT, fileName);
-                                        sharingIntent.putExtra(Intent.EXTRA_TEXT, fileName);
+                                        sharingIntent.putExtra(Intent.EXTRA_TEXT, text + " " + fileName);
                                         Uri bmpUri = Uri.fromFile(pathFile);
                                         sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
                                         activity.startActivity(Intent.createChooser(sharingIntent, (activity.getString(R.string.app_share_file))));
@@ -119,6 +128,8 @@ public class helper_main {
 
                                         public void onClick(DialogInterface dialog, int whichButton) {
                                             pathFile.delete();
+                                            helper_pdf.toolbar(activity);
+                                            helper_pdf.pdf_textField(activity, view);
                                             new Handler().postDelayed(new Runnable() {
                                                 public void run() {
                                                     String dir = pathFile.getParentFile().getAbsolutePath();
@@ -164,6 +175,184 @@ public class helper_main {
 
                                             pathFile.renameTo(to);
                                             pathFile.delete();
+                                            helper_pdf.toolbar(activity);
+                                            helper_pdf.pdf_textField(activity, view);
+
+                                            new Handler().postDelayed(new Runnable() {
+                                                public void run() {
+                                                    String dir = pathFile.getParentFile().getAbsolutePath();
+                                                    helper_main.openFilePicker(activity, view, dir);
+                                                }
+                                            }, 500);
+                                        }
+                                    });
+                                    builder.setNegativeButton(R.string.toast_cancel, new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                                    builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                        @Override
+                                        public void onCancel(DialogInterface dialog) {
+                                            // dialog dismiss without button press
+                                            String dir = pathFile.getParentFile().getAbsolutePath();
+                                            helper_main.openFilePicker(activity, view, dir);
+                                        }
+                                    });
+
+                                    final android.app.AlertDialog dialog2 = builder.create();
+                                    // Display the custom alert dialog on interface
+                                    dialog2.show();
+
+                                    new Handler().postDelayed(new Runnable() {
+                                        public void run() {
+                                            helper_main.showKeyboard(activity,edit_title);
+                                        }
+                                    }, 200);
+                                }
+                            }
+                        });
+                        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialog) {
+                                // dialog dismiss without button press
+                                String dir = pathFile.getParentFile().getAbsolutePath();
+                                helper_main.openFilePicker(activity, view, dir);
+                            }
+                        });
+                        dialog.setPositiveButton(activity.getString(R.string.dialog_cancel), null);
+                        dialog.show();
+                    }
+                })
+                .build()
+                .show();
+    }
+
+    public static void openFilePickerPDF (final Activity activity, final View view, final String startDir) {
+
+        new ChooserDialog().with(activity)
+                .withFilter(false, false, "jpg", "jpeg", "png", "pdf")
+                .withResources()
+                .withStartFile(startDir)
+                .withChosenListener(new ChooserDialog.Result() {
+                    @Override
+                    public void onChoosePath(final String path, final File pathFile) {
+                        final String fileExtension = pathFile.getAbsolutePath().substring(pathFile.getAbsolutePath().lastIndexOf("."));
+                        final String fileName = pathFile.getAbsolutePath().substring(pathFile.getAbsolutePath().lastIndexOf("/")+1);
+                        final String  fileNameWE = fileName.substring(0, fileName.lastIndexOf("."));
+
+                        final CharSequence[] options = {
+                                activity.getString(R.string.choose_menu_1),
+                                activity.getString(R.string.choose_menu_2),
+                                activity.getString(R.string.choose_menu_3),
+                                activity.getString(R.string.choose_menu_4)};
+
+                        final AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
+
+                        dialog.setItems(options, new DialogInterface.OnClickListener() {
+                            @SuppressWarnings("ResultOfMethodCallIgnored")
+                            @Override
+                            public void onClick(DialogInterface dialog, int item) {
+                                if (options[item].equals(activity.getString(R.string.choose_menu_1))) {
+
+                                    String text = (activity.getString(R.string.toast_extension) + ": " + fileExtension);
+
+                                    switch (fileExtension) {
+                                        case ".png":
+                                        case ".jpg":
+                                        case ".jpeg":
+                                            helper_main.openFile(activity, pathFile, "image/*", view);
+                                            break;
+                                        case ".pdf":
+                                            Uri uri = Uri.parse(pathFile.getAbsolutePath());
+                                            Intent intent = new Intent(activity, MuPDFActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                            intent.setAction(Intent.ACTION_VIEW);
+                                            intent.setData(uri);
+                                            activity.startActivity(intent);
+                                            break;
+
+                                        default:
+                                            Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+                                            break;
+                                    }
+
+                                    String dir = pathFile.getParentFile().getAbsolutePath();
+                                    helper_main.openFilePicker(activity, view, dir);
+                                }
+                                if (options[item].equals(activity.getString(R.string.choose_menu_2))) {
+
+                                    if (pathFile.exists()) {
+                                        String text = activity.getString(R.string.action_share_Text);
+
+                                        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                                        sharingIntent.setType("image/png");
+                                        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, fileName);
+                                        sharingIntent.putExtra(Intent.EXTRA_TEXT, text + " " + fileName);
+                                        Uri bmpUri = Uri.fromFile(pathFile);
+                                        sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                                        activity.startActivity(Intent.createChooser(sharingIntent, (activity.getString(R.string.app_share_file))));
+                                    }
+                                    String dir = pathFile.getParentFile().getAbsolutePath();
+                                    helper_main.openFilePicker(activity, view, dir);
+                                }
+                                if (options[item].equals(activity.getString(R.string.choose_menu_4))) {
+                                    final AlertDialog.Builder dialog2 = new AlertDialog.Builder(activity);
+
+                                    dialog2.setTitle(R.string.confirm);
+                                    dialog2.setMessage(activity.getString(R.string.choose_delete));
+                                    dialog2.setPositiveButton(R.string.toast_yes, new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            pathFile.delete();
+                                            helper_pdf.toolbar(activity);
+                                            new Handler().postDelayed(new Runnable() {
+                                                public void run() {
+                                                    String dir = pathFile.getParentFile().getAbsolutePath();
+                                                    helper_main.openFilePicker(activity, view, dir);
+                                                }
+                                            }, 500);
+                                        }
+                                    });
+                                    dialog2.setNegativeButton(R.string.toast_cancel, new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                                    dialog2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                        @Override
+                                        public void onCancel(DialogInterface dialog) {
+                                            // dialog dismiss without button press
+                                            String dir = pathFile.getParentFile().getAbsolutePath();
+                                            helper_main.openFilePicker(activity, view, dir);
+                                        }
+                                    });
+                                    dialog2.show();
+                                }
+                                if (options[item].equals(activity.getString(R.string.choose_menu_3))) {
+
+                                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
+                                    View dialogView = View.inflate(activity, R.layout.dialog_edit_file, null);
+
+                                    final EditText edit_title = (EditText) dialogView.findViewById(R.id.pass_title);
+                                    edit_title.setText(fileNameWE);
+
+                                    builder.setView(dialogView);
+                                    builder.setTitle(R.string.choose_title);
+                                    builder.setPositiveButton(R.string.toast_yes, new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+
+                                            String inputTag = edit_title.getText().toString().trim();
+
+                                            File dir = pathFile.getParentFile();
+                                            File to = new File(dir,inputTag + fileExtension);
+
+                                            pathFile.renameTo(to);
+                                            pathFile.delete();
+                                            helper_pdf.toolbar(activity);
 
                                             new Handler().postDelayed(new Runnable() {
                                                 public void run() {

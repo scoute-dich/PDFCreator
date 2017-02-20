@@ -1,0 +1,183 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    // App
+
+    <string name="app_name">PDF Creator</string>
+    <string name="app_permissions_title">使用するアクセス許可</string>
+    <string name="app_permissions">
+
+        &lt;i>ストレージのアクセス許可:&lt;/i>&lt;br>
+        SD カードからファイル (画像) を読み取り、pdf ファイルを保存するために使用します。&lt;br>&lt;br>
+
+        &lt;i>後でアクセス許可を付与する:&lt;/i>&lt;br>
+        今、これを許可しない場合は、後で行うことができます。 \"設定 -> アプリ情報\" を開いて、\"アクセス許可\" を選択してください。</string>
+    <string name="app_portrait">縦向き</string>
+    <string name="app_landscape">横向き</string>
+    <string name="app_share_file">ファイルを選択:</string>
+
+
+    // App titles
+
+    <string name="create_image">画像から PDF</string>
+    <string name="create_text">テキストから PDF</string>
+    <string name="add_image">+ 画像</string>
+    <string name="add_text">+ テキスト | …</string>
+    <string name="app_title_edit">画像を編集</string>
+    <string name="app_title_crop">画像をトリミング</string>
+
+
+    // Snackbar // Toasts
+
+    <string name="toast_yes">OK</string>
+    <string name="toast_cancel">キャンセル</string>
+    <string name="toast_successfully">PDF を正常に作成しました。</string>
+    <string name="toast_wait">画像を正常に作成しました。フォルダーを開きますか?</string>
+    <string name="toast_successfully_not">エラーが発生しました。</string>
+    <string name="toast_open">開きますか?</string>
+    <string name="toast_install_app">操作を実行するアプリをインストールしてください。</string>
+    <string name="toast_noImage">画像を選択してください。</string>
+    <string name="toast_noPDF">PDF ファイルを選択または作成してください。</string>
+    <string name="toast_noText">テキストを入力してください。</string>
+    <string name="toast_savedImage">しばらくお待ちください。画像の保存中。</string>
+    <string name="toast_notAgain">今後表示しない</string>
+    <string name="toast_extension">サポートされていないファイル拡張子</string>
+    <string name="toast_edited">画像は編集されています。保存しますか?</string>
+    <string name="toast_no">いいえ</string>
+
+
+    // Main menu
+
+    <string name="action_share">PDF を共有</string>
+    <string name="action_open">PDF を開く</string>
+    <string name="action_folder">アプリフォルダーを開く</string>
+    <string name="action_settings">設定</string>
+    <string name="action_save">保存</string>
+    <string name="action_share_with">次で PDF を共有:</string>
+    <string name="action_share_Text">添付に PDF ファイルがあります:</string>
+    <string name="action_help">ヘルプ</string>
+
+
+    // Fragments
+
+    <string name="app_title">タイトルを入力してください:</string>
+    <string name="app_title_date">日付</string>
+    <string name="app_hint" tools:ignore="TypographyEllipsis">自由に入力してください ...</string>
+
+
+    // Text fragment
+
+    <string name="add_text_delete">ページを削除</string>
+    <string name="add_text_delete_hint">どのページを残しますか?</string>
+    <string name="add_text_hint_enterText">テキストを入力するか貼り付けてください</string>
+    <string name="add_text_meta_doc">既存のメタデータを編集</string>
+    <string name="add_text_meta_default">新しいメタデータを作成</string>
+
+
+    // Image fragment
+
+    <string name="goal_gallery">ギャラリーから選択</string>
+    <string name="goal_camera">写真を撮影</string>
+
+
+    // Editor
+
+    <string name="filter_1">コントラスト</string>
+    <string name="filter_2">色相</string>
+    <string name="filter_3">輝度</string>
+    <string name="filter_4">シャープネス</string>
+    <string name="filter_5">彩度</string>
+
+    <string name="filter_6">露出</string>
+    <string name="filter_7">ハイライトシャドウ</string>
+    <string name="filter_8">ホワイトバランス</string>
+    <string name="filter_9">カラーバランス</string>
+    <string name="filter_10">レベル Min (Mid アジャスト)</string>
+
+
+    // Dialogs
+
+    <string name="dialog_encryption_hint_ownerPW">所有者パスワード</string>
+    <string name="dialog_encryption_hint_userPW">ユーザーパスワード</string>
+    <string name="choose_file">ファイルを選択</string>
+    <string name="choose_title">ファイル名を編集</string>
+    <string name="confirm">確認</string>
+    <string name="choose_filter">フィルターを選択</string>
+    <string name="choose_chooser">ファイル選択を開く</string>
+
+
+    // Settings
+
+    <string name="settings_prefApp">アプリについて</string>
+    <string name="settings_prefDir">アプリ ディレクトリー</string>
+    <string name="settings_prefEnc">暗号化</string>
+    <string name="settings_prefMeta">メタデータ</string>
+
+    <string name="pref_license">ライセンス</string>
+    <string name="pref_license_summary">アプリは完全にオープンソースで GPL3 の下でライセンスされます。</string>
+
+    <string name="pref_imageQuality">画像の品質</string>
+    <string name="pref_imageQuality_summary">画像の品質を設定します。 高品質にすると PDF サイズは大きくなります。</string>
+
+    <string name="pref_backup">バックアップ</string>
+    <string name="pref_backup_summary">操作の前に PDF ファイルをバックアップしますか。例えば、ページの削除または追加?</string>
+
+    <string name="pref_folder">カスタム ディレクトリー</string>
+    <string name="pref_folder_hint">形式: \"/Download/PDF/\"</string>
+    <string name="pref_folder_summary">デフォルトディレクトリーを使用する場合は空にしてください (\"/Android/data/de.baumann.pdf/\").
+        新しい PDF ファイルやバックアップを保存するデフォルトのアプリディレクトリーを変更します。
+        SD カードの希望のフォルダーへのパスを入力してください。 パスは \"/Download/PDF/\" のように \"/\" で開始および終了する必要があります。
+        希望のディレクトリーが存在しない場合は、自動的に作成されます。</string>
+
+    <string name="action_donate">寄付</string>
+    <string name="action_donate_summary">アプリを気に入っていただけた場合、Paypal で寄付することができます。</string>
+
+    <string name="action_changelog">変更履歴</string>
+    <string name="action_changelog_summary">新着情報をご覧ください … (Webサイトを開きます)</string>
+
+    <string name="pref_metaTitle">タイトル</string>
+    <string name="pref_metaAuthor">著者</string>
+    <string name="pref_metaCreator">作成者</string>
+    <string name="pref_metaKeywords">キーワード</string>
+    <string name="pref_metaSubject">サブジェクト</string>
+
+    <string name="pref_notShow_title">ヘルプ ダイアログ</string>
+    <string name="pref_notShow_title_summary">開始時にヘルプダイアログを表示します。</string>
+
+    <string name="action_openSettings">アプリ情報</string>
+    <string name="action_openSettings_summary">システムの設定で、アプリのアプリ情報を開きます。 Android
+        のバージョンによって、いくつかのもの (ストレージ、ネットワークトラフィック、アクセス許可など) が管理できます。</string>
+
+    <string-array name="listArrayImage">
+        <item>高 (100%)</item>
+        <item>通常 (80%)</item>
+        <item>低 (60%)</item>
+    </string-array>
+
+    <string-array name="listValuesImage">
+        <item>100</item>
+        <item>80</item>
+        <item>60</item>
+    </string-array>
+
+
+    //Image cropper
+
+    <string name="app_title_2">画像の保存中 …</string>
+    <string name="crop_image_menu_rotate_left">左に回転</string>
+    <string name="crop_image_menu_rotate_right">右に回転</string>
+
+
+    //File chooser
+
+    <string name="title_choose">選択</string>
+    <string name="dialog_cancel">キャンセル</string>
+
+    <string name="choose_menu_1">開く</string>
+    <string name="choose_menu_2">共有</string>
+    <string name="choose_menu_3">名前の変更</string>
+    <string name="choose_menu_4">削除</string>
+
+    <string name="choose_hint">新しいファイル名 (ファイル拡張子なし)</string>
+    <string name="choose_delete">このファイルを削除してもよろしいですか?</string>
+
+</resources>

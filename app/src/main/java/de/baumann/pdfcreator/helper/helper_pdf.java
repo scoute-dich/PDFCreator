@@ -1,7 +1,9 @@
 package de.baumann.pdfcreator.helper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.artifex.mupdfdemo.MuPDFActivity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfCopy;
 import com.itextpdf.text.pdf.PdfReader;
@@ -80,6 +83,7 @@ public class helper_pdf {
         }
     }
 
+
     public static void toolbar (final Activity activity) {
 
         String title;
@@ -138,7 +142,7 @@ public class helper_pdf {
         String text = title + " | " + textRotate;
         String text2 = activity.getString(R.string.toast_noPDF) + " | " + textRotate;
 
-        if (pdfFile.exists()) {
+        if (pdfFile.exists() && helper_pdf.actualPath(activity).contains(".pdf")) {
             textTitle.setText(text);
         } else {
             textTitle.setText(text2);
@@ -239,7 +243,12 @@ public class helper_pdf {
                     @Override
                     public void onClick(View view) {
                         File file = new File(helper_pdf.actualPath(activity));
-                        helper_main.openFile(activity, file, "application/pdf", view);
+
+                        Intent intent = new Intent(activity, MuPDFActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(Uri.fromFile(file));
+                        activity.startActivity(intent);
                     }
                 });
         snackbar.show();

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
+
+	<ViewAnimator
+		android:id="@+id/switcher"
+		android:layout_width="wrap_content"
+		android:layout_height="46dp"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true" >
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/colorDarkTrans" >
+
+			<TextView
+				android:id="@+id/docNameText"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toStartOf="@+id/linkButton"
+				android:layout_alignParentStart="true"
+				android:paddingStart="16dp"
+				android:maxLines="1"
+				android:textColor="#FFFFFF"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<ImageButton
+				android:id="@+id/sepsButton"
+				android:layout_width="wrap_content"
+				android:layout_height="fill_parent"
+				android:layout_centerVertical="true"
+				android:layout_alignParentEnd="true"
+				android:contentDescription="Separations"
+				android:background="@drawable/button"
+				android:onClick="OnSepsButtonClick"
+				android:src="@drawable/ic_sep"
+				tools:ignore="HardcodedText" />
+
+			<ImageButton
+				android:id="@+id/linkButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toStartOf="@+id/reflowButton"
+				android:contentDescription="@string/toggle_links"
+				android:background="@drawable/button"
+				app:srcCompat="@drawable/link_variant"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp"
+				android:scaleType="fitCenter" />
+
+			<ImageButton
+				android:id="@+id/reflowButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toStartOf="@+id/outlineButton"
+				android:contentDescription="@string/toggle_reflow_mode"
+				android:background="@drawable/button"
+				app:srcCompat="@drawable/pencil"
+				android:onClick="OnEditAnnotButtonClick"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp"
+				android:scaleType="fitCenter" />
+
+			<ImageButton
+				android:id="@+id/outlineButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toStartOf="@+id/searchButton"
+				android:contentDescription="@string/outline_title"
+				android:background="@drawable/button"
+				app:srcCompat="@drawable/format_list_bulleted"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp"
+				android:scaleType="fitCenter" />
+
+			<ImageButton
+				android:id="@+id/searchButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toStartOf="@+id/moreButton"
+				android:contentDescription="@string/search_document"
+				android:background="@drawable/button"
+				app:srcCompat="@drawable/magnify"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp"
+				android:scaleType="fitCenter" />
+
+			<ImageButton
+				android:id="@+id/moreButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentEnd="true"
+				android:contentDescription="@string/more"
+				android:background="@drawable/button"
+				android:onClick="OnCopyTextButtonClick"
+				app:srcCompat="@drawable/content_copy"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp"
+				android:scaleType="fitCenter" />
+
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/colorDarkTrans" >
+
+			<ImageButton
+				android:id="@+id/cancelSearch"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentStart="true"
+				android:contentDescription="@string/cancel"
+				android:background="@drawable/button"
+				android:onClick="OnCancelSearchButtonClick"
+				app:srcCompat="@drawable/close"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp"
+				android:scaleType="fitCenter" />
+
+			<EditText
+				android:id="@+id/searchText"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toEndOf="@+id/cancelSearch"
+				android:layout_toStartOf="@+id/searchBack"
+				android:inputType="text"
+				android:hint="@string/search"
+				android:maxLines="1"
+				android:textColorHint="@color/text_normalTrans"
+				android:textColor="@color/text_normal" />
+
+			<ImageButton
+				android:id="@+id/searchBack"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toStartOf="@+id/searchForward"
+				android:contentDescription="@string/search_backwards"
+				android:background="@drawable/button"
+				app:srcCompat="@drawable/arrow_left"
+				android:scaleType="fitCenter"
+				android:layout_marginBottom="2dp"
+				android:layout_marginTop="2dp" />
+
+			<ImageButton
+				android:id="@+id/searchForward"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentEnd="true"
+				android:contentDescription="@string/search_forwards"
+				android:background="@drawable/button"
+				app:srcCompat="@drawable/arrow_right"
+				android:scaleType="fitCenter"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp" />
+
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/colorDarkTrans" >
+
+			<ImageButton
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentStart="true"
+				android:contentDescription="@string/cancel"
+				android:background="@drawable/button"
+				android:onClick="OnCancelMoreButtonClick"
+				app:srcCompat="@drawable/close"
+				android:scaleType="fitCenter"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp" />
+
+			<ImageButton
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toStartOf="@+id/underlineButton"
+				android:contentDescription="@string/highlight"
+				android:background="@drawable/button"
+				android:onClick="OnHighlightButtonClick"
+				app:srcCompat="@drawable/format_color_fill"
+				android:scaleType="fitCenter"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp" />
+
+			<ImageButton
+				android:id="@+id/underlineButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toStartOf="@+id/strikeOutButton"
+				android:contentDescription="@string/underline"
+				android:background="@drawable/button"
+				android:onClick="OnUnderlineButtonClick"
+				app:srcCompat="@drawable/format_underline"
+				android:scaleType="fitCenter"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp" />
+
+			<ImageButton
+				android:id="@+id/strikeOutButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toStartOf="@+id/inkButton"
+				android:contentDescription="@string/strike_out"
+				android:background="@drawable/button"
+				android:onClick="OnStrikeOutButtonClick"
+				app:srcCompat="@drawable/format_strikethrough"
+				android:scaleType="fitCenter"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp" />
+
+			<ImageButton
+				android:id="@+id/inkButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentEnd="true"
+				android:contentDescription="@string/ink"
+				android:background="@drawable/button"
+				android:onClick="OnInkButtonClick"
+				app:srcCompat="@drawable/pencil"
+				android:scaleType="fitCenter"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp" />
+
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/colorDarkTrans" >
+
+			<ImageButton
+				android:id="@+id/cancelDeleteButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentStart="true"
+				android:contentDescription="@string/cancel"
+				android:background="@drawable/button"
+				android:onClick="OnCancelDeleteButtonClick"
+				app:srcCompat="@drawable/close"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp"
+				android:scaleType="fitCenter" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toEndOf="@+id/cancelDeleteButton"
+				android:layout_toStartOf="@+id/deleteButton"
+				android:gravity="center"
+				android:maxLines="1"
+				android:textColor="#FFFFFF"
+				android:text="@string/delete"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<ImageButton
+				android:id="@+id/deleteButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentEnd="true"
+				android:contentDescription="@string/delete"
+				android:background="@drawable/button"
+				android:onClick="OnDeleteButtonClick"
+				app:srcCompat="@drawable/ic_delete_white_48dp"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp"
+				android:scaleType="fitCenter" />
+
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/colorDarkTrans" >
+
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/colorDarkTrans" >
+
+			<ImageButton
+				android:id="@+id/cancelAcceptButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentStart="true"
+				android:contentDescription="@string/cancel"
+				android:background="@drawable/button"
+				android:onClick="OnCancelAcceptButtonClick"
+				app:srcCompat="@drawable/close"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp"
+				android:scaleType="fitCenter" />
+
+			<TextView
+				android:id="@+id/annotType"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toEndOf="@+id/cancelAcceptButton"
+				android:layout_toStartOf="@+id/acceptButton"
+				android:gravity="center"
+				android:maxLines="1"
+				android:textColor="#FFFFFF"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<ImageButton
+				android:id="@+id/acceptButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentEnd="true"
+				android:contentDescription="@string/accept"
+				android:background="@drawable/button"
+				android:onClick="OnAcceptButtonClick"
+				app:srcCompat="@drawable/ic_check_white_48dp"
+				android:layout_marginTop="2dp"
+				android:layout_marginBottom="2dp"
+				android:scaleType="fitCenter" />
+		</RelativeLayout>
+		</ViewAnimator>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true" >
+
+		<SeekBar
+			android:id="@+id/pageSlider"
+			android:layout_width="match_parent"
+			android:layout_height="46dp"
+			android:layout_alignParentBottom="true"
+			android:paddingStart="16dp"
+			android:paddingEnd="16dp"
+			android:paddingTop="12dp"
+			android:paddingBottom="8dp"
+			android:background="@color/colorDarkTrans"
+			android:layout_toStartOf="@+id/pageNumber"
+			android:progressBackgroundTint="@color/text_normal"
+			android:progressBackgroundTintMode="src_over" />
+
+		<TextView
+			android:id="@+id/pageNumber"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@color/colorDarkTrans"
+			android:textColor="#FFFFFF"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentEnd="true"
+			android:layout_alignTop="@+id/pageSlider"
+			android:gravity="center_vertical"
+			android:paddingEnd="16dp" />
+
+	</RelativeLayout>
+
+</RelativeLayout>

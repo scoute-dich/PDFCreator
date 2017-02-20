@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.artifex.mupdfdemo.MuPDFActivity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
@@ -204,6 +205,22 @@ public class create_text extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        helper_pdf.pdf_textField(getActivity(), rootView);
+        helper_pdf.toolbar(getActivity());
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed()) {
+            helper_pdf.toolbar(getActivity());
+            helper_pdf.pdf_textField(getActivity(), rootView);
+        }
+    }
+
     private void createPDF() {
 
         // Output file
@@ -223,7 +240,12 @@ public class create_text extends Fragment {
                         @Override
                         public void onClick(View view) {
                             File file = new File(helper_pdf.actualPath(getActivity()));
-                            helper_main.openFile(getActivity(), file, "application/pdf", edit);
+
+                            Intent intent = new Intent(getActivity(), MuPDFActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            intent.setAction(Intent.ACTION_VIEW);
+                            intent.setData(Uri.fromFile(file));
+                            getActivity().startActivity(intent);
                         }
                     });
             snackbar.show();
@@ -263,27 +285,9 @@ public class create_text extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        helper_pdf.pdf_textField(getActivity(), rootView);
-        helper_pdf.toolbar(getActivity());
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && isResumed()) {
-            helper_pdf.pdf_textField(getActivity(), rootView);
-            helper_pdf.toolbar(getActivity());
-        }
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                folder + title + ".pdf");
-
+        String path = helper_pdf.actualPath(getActivity());
         File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
         switch (item.getItemId()) {
@@ -319,7 +323,11 @@ public class create_text extends Fragment {
             case R.id.action_open:
 
                 if (pdfFile.exists()) {
-                    helper_main.openFile(getActivity(), pdfFile, "application/pdf", edit);
+                    Intent intent = new Intent(getActivity(), MuPDFActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(Uri.fromFile(pdfFile));
+                    getActivity().startActivity(intent);
                 } else {
                     Snackbar.make(edit, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
                 }
