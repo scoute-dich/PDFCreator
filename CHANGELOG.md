@@ -1,3 +1,6 @@
+### v 2.6
+- fixed: f-droid buid error
+
 ### v 2.5
 - added: Pdf title on toolbar
 - removed: PDF viewer support (muPDF)
