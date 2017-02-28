@@ -18,16 +18,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    /*  this stops gradle from making it's own Android.mk file */
-    sourceSets.main.jni.srcDirs = []
-
-    sourceSets {
-        main {
-            jniLibs {
-                srcDir 'src/main/libs'
-            }
-        }
-    }
 
     lintOptions {
         checkReleaseBuilds false
@@ -42,4 +32,5 @@ dependencies {
     compile 'com.itextpdf:itextpdf:5.5.10'
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

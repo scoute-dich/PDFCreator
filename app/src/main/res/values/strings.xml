@@ -43,6 +43,11 @@
     <string name="toast_extension">No supported file extension</string>
     <string name="toast_edited">Image was edited. Saving?</string>
     <string name="toast_no">No</string>
+    <string name="toast_remove_confirmation">Entry will be removed. OK?</string>
+    <string name="toast_directory">Can\'t open Directory.</string>
+    <string name="toast_files">No files in directory.</string>
+    <string name="toast_picFile">Please choose image file.</string>
+    <string name="toast_pdfFile">Please choose PDF file.</string>
 
 
     // Main menu
@@ -98,9 +103,7 @@
 
     <string name="dialog_encryption_hint_ownerPW">Owner password</string>
     <string name="dialog_encryption_hint_userPW">User password</string>
-    <string name="choose_file">Choose file</string>
     <string name="choose_title">Edit filename</string>
-    <string name="confirm">Confirmation</string>
     <string name="choose_filter">Choose filter</string>
     <string name="choose_chooser">Open file chooser</string>
 
@@ -169,63 +172,32 @@
 
     //File chooser
 
-    <string name="title_choose">Choose</string>
     <string name="dialog_cancel">Cancel</string>
 
-    <string name="choose_menu_1">Open</string>
     <string name="choose_menu_2">Share</string>
     <string name="choose_menu_3">Rename</string>
     <string name="choose_menu_4">Delete</string>
 
     <string name="choose_hint">New filename (without file extension)</string>
-    <string name="choose_delete">Do you really want to delete the file?</string>
 
+    <string name="action_sort">Sort entries</string>
+    <string name="action_sort_title">Sort by title</string>
+    <string name="action_sort_create">Sort by date</string>
+    <string name="action_sort_ext">Sort by extension</string>
 
-    <string name="no_media_warning">Storage media not present</string>
-    <string name="no_media_hint">Sharing the storage media with a PC can make it inaccessible</string>
-    <string name="cancel">Cancel</string>
-    <string name="search_backwards">Search backwards</string>
-    <string name="search_forwards">Search forwards</string>
-    <string name="search_document">Search document</string>
-    <string name="picker_title_App_Ver_Dir">%1$s %2$s: %3$s</string>
-    <string name="outline_title">Table of Contents</string>
-    <string name="enter_password">Enter password</string>
-    <string name="text_not_found">Text not found</string>
-    <string name="searching_">Searching&#8230;</string>
-    <string name="toggle_links">Highlight and enable links</string>
-    <string name="no_further_occurrences_found">No further occurrences found</string>
-    <string name="search">Search</string>
-    <string name="strike_out">Strike-out</string>
-    <string name="delete">Delete</string>
-    <string name="highlight">Highlight</string>
-    <string name="underline">Underline</string>
-    <string name="ink">Ink</string>
-    <string name="dismiss">Dismiss</string>
-    <string name="parent_directory">[Up one level]</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="print_failed">Print failed</string>
-    <string name="select_text">Select text</string>
-    <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="no_text_selected">No text selected</string>
-    <string name="draw_annotation">Draw annotation</string>
-    <string name="nothing_to_save">Nothing to save</string>
-    <string name="document_has_changes_save_them_">Document has changes. Save them?</string>
-    <string name="cannot_open_document">Cannot open document</string>
-    <string name="cannot_open_document_Reason">Cannot open document: %1$s</string>
-    <string name="cannot_open_file_Path">Cannot open file: %1$s</string>
-    <string name="cannot_open_buffer">Cannot open buffer</string>
-    <string name="fill_out_text_field">Fill out text field</string>
-    <string name="okay">Okay</string>
-    <string name="choose_value">Choose value</string>
-    <string name="not_supported">Not supported</string>
-    <string name="more">More</string>
-    <string name="accept">Accept</string>
-    <string name="copy_text">copy text</string>
-    <string name="toggle_reflow_mode" translatable="false">Toggle reflow mode</string>
-    <string name="version" translatable="false">1.9</string>
-    <string name="action_edit">Edit</string>
-    <string name="action_folderPDF">Open folder</string>
-    <string name="action_folderPDF_toast">No correct path. Open app folder?</string>
+    <string name="action_filter_title">Search in titles</string>
+    <string name="action_filter_create">Search in creation dates</string>
+    <string name="action_filter_ext">Search in extensions</string>
+
+    <string name="filter_today">Today</string>
+    <string name="filter_yesterday">Yesterday</string>
+    <string name="filter_before">Day before yesterday</string>
+    <string name="filter_month">This month</string>
+    <string name="filter_own">Own search</string>
+    <string name="filter_clear">Cancel search</string>
+
+    <string name="choose_titleMain">Files</string>
+    <string name="title_hint">Title</string>
+
 
 </resources>

@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.artifex.mupdfdemo.MuPDFActivity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
@@ -40,7 +39,8 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import de.baumann.pdfcreator.R;
-import de.baumann.pdfcreator.filechooser.ChooserDialog;
+import de.baumann.pdfcreator.file_manager.Activity_files;
+import de.baumann.pdfcreator.file_manager.Activity_files_intent;
 import de.baumann.pdfcreator.helper.helper_main;
 import de.baumann.pdfcreator.helper.helper_pdf;
 
@@ -81,10 +81,9 @@ public class add_text extends Fragment {
                     Snackbar.make(edit, getString(R.string.toast_noText), Snackbar.LENGTH_LONG).show();
                 } else {
 
-                    final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
                     File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
-                    if (pdfFile.exists() && fileExtension.equals(".pdf")) {
+                    if (pdfFile.exists()) {
                         title = sharedPref.getString("title", null);
 
                         helper_pdf.pdf_backup(getActivity());
@@ -107,9 +106,8 @@ public class add_text extends Fragment {
             public void onClick(View view) {
 
                 File pdfFile = new File(helper_pdf.actualPath(getActivity()));
-                final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
 
-                if (pdfFile.exists() && fileExtension.equals(".pdf")) {
+                if (pdfFile.exists()) {
                     helper_pdf.pdf_backup(getActivity());
                     pages = sharedPref.getString("deletePages", null);
 
@@ -172,58 +170,53 @@ public class add_text extends Fragment {
             public void onClick(View view) {
 
                 File pdfFile = new File(helper_pdf.actualPath(getActivity()));
-                final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
+                File mergedFile = new File(sharedPref.getString("file_chooseSecondPDF", ""));
 
-                if (pdfFile.exists() && fileExtension.equals(".pdf")) {
-                    helper_pdf.pdf_backup(getActivity());
-                    folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
+                if (pdfFile.exists()) {
 
-                    new ChooserDialog().with(getActivity())
-                            .withFilter(false, false, "pdf")
-                            .withResources()
-                            .withStartFile(Environment.getExternalStorageDirectory() + folder)
-                            .withChosenListener(new ChooserDialog.Result() {
-                                @Override
-                                public void onChoosePath(String path, final File pathFile) {
+                    if (mergedFile.exists()) {
 
-                                    // Load existing PDF
-                                    title = sharedPref.getString("title2", null);
-                                    folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
+                        helper_pdf.pdf_backup(getActivity());
+                        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
 
-                                    String existingPDF = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                                            folder + title + ".pdf");
+                        // Load existing PDF
+                        title = sharedPref.getString("title2", null);
+                        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
 
-                                    // Resulting pdf
-                                    String path3 = Environment.getExternalStorageDirectory() +  "/" + "1234567.pdf";
+                        String existingPDF = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
+                                folder + title + ".pdf");
 
-                                    try {
-                                        String[] files = { existingPDF, pathFile.getAbsolutePath() };
-                                        Document document = new Document();
-                                        PdfCopy copy = new PdfCopy(document, new FileOutputStream(path3));
-                                        document.open();
-                                        PdfReader ReadInputPDF;
-                                        int number_of_pages;
-                                        for (String file : files) {
-                                            ReadInputPDF = new PdfReader(file);
-                                            number_of_pages = ReadInputPDF.getNumberOfPages();
-                                            for (int page = 0; page < number_of_pages; ) {
-                                                copy.addPage(copy.getImportedPage(ReadInputPDF, ++page));
-                                            }
-                                        }
-                                        document.close();
-                                        helper_pdf.pdf_success(getActivity(), edit);
-                                        helper_pdf.pdf_deleteTemp_1(getActivity());
-                                        helper_pdf.pdf_deleteTemp_2(getActivity());
-                                    } catch (Exception i) {
-                                        Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
-                                    }
+                        // Resulting pdf
+                        String path3 = Environment.getExternalStorageDirectory() + "/" + "1234567.pdf";
+
+                        try {
+                            String[] files = {existingPDF, mergedFile.getAbsolutePath()};
+                            Document document = new Document();
+                            PdfCopy copy = new PdfCopy(document, new FileOutputStream(path3));
+                            document.open();
+                            PdfReader ReadInputPDF;
+                            int number_of_pages;
+                            for (String file : files) {
+                                ReadInputPDF = new PdfReader(file);
+                                number_of_pages = ReadInputPDF.getNumberOfPages();
+                                for (int page = 0; page < number_of_pages; ) {
+                                    copy.addPage(copy.getImportedPage(ReadInputPDF, ++page));
                                 }
-                            })
-                            .build()
-                            .show();
-
-                } else {
-                    Snackbar.make(edit, getString(R.string.toast_noPDF), Snackbar.LENGTH_LONG).show();
+                            }
+                            document.close();
+                            helper_pdf.pdf_success(getActivity(), edit);
+                            helper_pdf.pdf_deleteTemp_1(getActivity());
+                            helper_pdf.pdf_deleteTemp_2(getActivity());
+                            sharedPref.edit().putString("file_chooseSecondPDF", "").apply();
+                        } catch (Exception i) {
+                            Snackbar.make(edit, getString(R.string.toast_successfully_not), Snackbar.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Intent intent = new Intent(getActivity(), Activity_files_intent.class);
+                        intent.setAction("file_chooseSecondPDF");
+                        startActivity(intent);
+                        getActivity().overridePendingTransition(0, 0);
+                    }
                 }
             }
         });
@@ -234,9 +227,8 @@ public class add_text extends Fragment {
             public void onClick(View view) {
 
                 final File pdfFile = new File(helper_pdf.actualPath(getActivity()));
-                final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
 
-                if (pdfFile.exists() && fileExtension.equals(".pdf")) {
+                if (pdfFile.exists()) {
 
                     helper_pdf.pdf_backup(getActivity());
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -299,9 +291,8 @@ public class add_text extends Fragment {
             public void onClick(View view) {
 
                 final File pdfFile = new File(helper_pdf.actualPath(getActivity()));
-                final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
 
-                if (pdfFile.exists() && fileExtension.equals(".pdf")) {
+                if (pdfFile.exists()) {
 
                     final CharSequence[] options = {
                             getString(R.string.add_text_meta_doc),
@@ -488,9 +479,8 @@ public class add_text extends Fragment {
             public void onClick(View view) {
 
                 final File pdfFile = new File(helper_pdf.actualPath(getActivity()));
-                final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
 
-                if (pdfFile.exists() && fileExtension.equals(".pdf")) {
+                if (pdfFile.exists()) {
                     Snackbar.make(edit, getString(R.string.toast_savedImage), Snackbar.LENGTH_INDEFINITE).show();
 
                     new Handler().postDelayed(new Runnable() {
@@ -540,8 +530,9 @@ public class add_text extends Fragment {
                                             .setAction(getString(R.string.toast_yes), new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View view) {
-                                                    String folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-                                                    helper_main.openFilePicker(getActivity(), edit, Environment.getExternalStorageDirectory() + folder);
+                                                    Intent intent = new Intent(getActivity(), Activity_files.class);
+                                                    startActivity(intent);
+                                                    getActivity().overridePendingTransition(0, 0);
                                                 }
                                             });
                                     snackbar.show();
@@ -563,25 +554,10 @@ public class add_text extends Fragment {
         fab_6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-
-                new ChooserDialog().with(getActivity())
-                        .withFilter(false, false, "pdf")
-                        .withResources()
-                        .withStartFile(Environment.getExternalStorageDirectory() + folder)
-                        .withChosenListener(new ChooserDialog.Result() {
-                            @Override
-                            public void onChoosePath(String path, final File pathFile) {
-
-                                final String fileName = pathFile.getAbsolutePath().substring(pathFile.getAbsolutePath().lastIndexOf("/")+1);
-                                sharedPref.edit().putString("pathPDF", pathFile.getAbsolutePath()).apply();
-                                sharedPref.edit().putString("title", fileName).apply();
-                                helper_pdf.pdf_textField(getActivity(), rootView);
-                            }
-                        })
-                        .build()
-                        .show();
+                Intent intent = new Intent(getActivity(), Activity_files_intent.class);
+                intent.setAction("file_choosePDF");
+                startActivity(intent);
+                getActivity().overridePendingTransition(0, 0);
             }
         });
 
@@ -603,22 +579,6 @@ public class add_text extends Fragment {
         if (sharedText != null) {
             // Update UI to reflect text being shared
             edit.setText(sharedText);
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        helper_pdf.pdf_textField(getActivity(), rootView);
-        helper_pdf.toolbar(getActivity());
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && isResumed()) {
-            helper_pdf.toolbar(getActivity());
-            helper_pdf.pdf_textField(getActivity(), rootView);
         }
     }
 
@@ -664,9 +624,28 @@ public class add_text extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        helper_pdf.pdf_textField(getActivity(), rootView);
+        helper_pdf.toolbar(getActivity());
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed()) {
+            helper_pdf.pdf_textField(getActivity(), rootView);
+            helper_pdf.toolbar(getActivity());
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        title = sharedPref.getString("title", null);
+        folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
         String path = helper_pdf.actualPath(getActivity());
+
         File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
         switch (item.getItemId()) {
@@ -702,11 +681,7 @@ public class add_text extends Fragment {
             case R.id.action_open:
 
                 if (pdfFile.exists()) {
-                    Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.setData(Uri.fromFile(pdfFile));
-                    getActivity().startActivity(intent);
+                    helper_main.openFile(getActivity(), pdfFile, "application/pdf", edit);
                 } else {
                     Snackbar.make(edit, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
                 }

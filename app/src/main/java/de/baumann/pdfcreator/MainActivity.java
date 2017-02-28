@@ -27,9 +27,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.baumann.pdfcreator.file_manager.Activity_files;
 import de.baumann.pdfcreator.helper.helper_main;
 import de.baumann.pdfcreator.helper.UserSettingsActivity;
-import de.baumann.pdfcreator.helper.helper_pdf;
 import de.baumann.pdfcreator.pages.add_text;
 import de.baumann.pdfcreator.pages.create_image;
 import de.baumann.pdfcreator.pages.add_image;
@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
-    private ViewPager viewPager;
     private SharedPreferences sharedPref;
 
     @Override
@@ -70,11 +69,13 @@ public class MainActivity extends AppCompatActivity {
                     sharedPref.edit().putInt("startFragment", 0).apply();
                 } if (type.startsWith("text/")) {
                     sharedPref.edit().putInt("startFragment", 1).apply();
+                } else if (type.startsWith("application/pdf")) {
+                    sharedPref.edit().putInt("startFragment", 3).apply();
                 }
             }
         }
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         assert tabLayout != null;
@@ -82,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        helper_pdf.toolbar(MainActivity.this);
 
         boolean show = sharedPref.getBoolean("help_notShow", true);
         if (show){
@@ -167,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        private ViewPagerAdapter(FragmentManager manager) {
+        ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
 
@@ -181,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        private void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
@@ -205,8 +204,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_folder) {
-            String folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-            helper_main.openFilePicker(MainActivity.this, viewPager, Environment.getExternalStorageDirectory() + folder);
+            Intent intent = new Intent(this, Activity_files.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
         }
 
         if (id == R.id.action_settings) {

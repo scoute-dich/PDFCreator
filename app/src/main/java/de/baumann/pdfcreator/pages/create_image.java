@@ -28,9 +28,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.artifex.mupdfdemo.MuPDFActivity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -47,7 +45,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import de.baumann.pdfcreator.filechooser.ChooserDialog;
+import de.baumann.pdfcreator.file_manager.Activity_files_intent;
 import de.baumann.pdfcreator.helper.ActivityEditor;
 import de.baumann.pdfcreator.R;
 import de.baumann.pdfcreator.helper.helper_main;
@@ -146,14 +144,8 @@ public class create_image extends Fragment {
                                     .setAction(getString(R.string.toast_open), new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-
                                             File file = new File(helper_pdf.actualPath(getActivity()));
-
-                                            Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                                            intent.setAction(Intent.ACTION_VIEW);
-                                            intent.setData(Uri.fromFile(file));
-                                            getActivity().startActivity(intent);
+                                            helper_main.openFile(getActivity(), file, "application/pdf", img);
                                         }
                                     });
                             snackbar.show();
@@ -321,12 +313,7 @@ public class create_image extends Fragment {
                         @Override
                         public void onClick(View view) {
                             File file = new File(helper_pdf.actualPath(getActivity()));
-
-                            Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setData(Uri.fromFile(file));
-                            getActivity().startActivity(intent);
+                            helper_main.openFile(getActivity(), file, "application/pdf", img);
                         }
                     });
             snackbar.show();
@@ -424,39 +411,10 @@ public class create_image extends Fragment {
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, 2);
                 } else if (options[item].equals(getString(R.string.choose_chooser))) {
-                    folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-
-                    new ChooserDialog().with(getActivity())
-                            .withFilter(false, false, "jpg", "jpeg", "png", "pdf")
-                            .withResources()
-                            .withStartFile(Environment.getExternalStorageDirectory() + folder)
-                            .withChosenListener(new ChooserDialog.Result() {
-                                @Override
-                                public void onChoosePath(String path, final File pathFile) {
-
-                                    img.setImageURI(Uri.fromFile(pathFile));
-
-                                    BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
-                                    Bitmap bitmap = drawable.getBitmap();
-
-                                    File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-
-                                    // Encode the file as a JPEG image.
-                                    FileOutputStream outStream;
-                                    try {
-
-                                        outStream = new FileOutputStream(imgFile);
-                                        bitmap.compress(Bitmap.CompressFormat.JPEG, imgquality_int, outStream);
-                                        outStream.flush();
-                                        outStream.close();
-
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            })
-                            .build()
-                            .show();
+                    Intent intent = new Intent(getActivity(), Activity_files_intent.class);
+                    intent.setAction("file_chooseImage");
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(0, 0);
                 }
             }
         });
@@ -582,7 +540,9 @@ public class create_image extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        String path = helper_pdf.actualPath(getActivity());
+        String path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
+                folder + title + ".pdf");
+
         File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
         switch (item.getItemId()) {
@@ -618,15 +578,12 @@ public class create_image extends Fragment {
             case R.id.action_open:
 
                 if (pdfFile.exists()) {
-                    Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.setData(Uri.fromFile(pdfFile));
-                    getActivity().startActivity(intent);
+                    helper_main.openFile(getActivity(), pdfFile, "application/pdf", img);
                 } else {
                     Snackbar.make(img, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
                 }
                 return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

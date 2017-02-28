@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:orderInCategory="100"
+        android:title="@string/action_sort"
+        android:icon="@drawable/magnify"
+        app:showAsAction="ifRoom" >
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/filter_title"
+                android:title="@string/action_filter_title" />
+            <item android:id="@+id/filter_ext"
+                android:title="@string/action_filter_ext" />
+            <item
+                android:orderInCategory="100"
+                android:title="@string/action_filter_create"
+                app:showAsAction="ifRoom" >
+                <!-- "file" submenu -->
+                <menu>
+                    <item android:id="@+id/filter_clear"
+                        android:title="@string/filter_clear" />
+                    <item android:id="@+id/filter_own"
+                        android:title="@string/filter_own" />
+                    <item android:id="@+id/filter_month"
+                        android:title="@string/filter_month" />
+                    <item android:id="@+id/filter_before"
+                        android:title="@string/filter_before" />
+                    <item android:id="@+id/filter_yesterday"
+                        android:title="@string/filter_yesterday" />
+                    <item android:id="@+id/filter_today"
+                        android:title="@string/filter_today" />
+                </menu>
+            </item>
+        </menu>
+    </item>
+
+    <item
+        android:orderInCategory="100"
+        android:title="@string/action_sort"
+        android:icon="@drawable/sort_descending"
+        app:showAsAction="ifRoom" >
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/sort_title"
+                android:title="@string/action_sort_title" />
+            <item android:id="@+id/sort_ext"
+                android:title="@string/action_sort_ext" />
+            <item android:id="@+id/sort_creation"
+                android:title="@string/action_sort_create" />
+        </menu>
+    </item>
+
+</menu>

@@ -98,9 +98,7 @@
 
     <string name="dialog_encryption_hint_ownerPW">所有者パスワード</string>
     <string name="dialog_encryption_hint_userPW">ユーザーパスワード</string>
-    <string name="choose_file">ファイルを選択</string>
     <string name="choose_title">ファイル名を編集</string>
-    <string name="confirm">確認</string>
     <string name="choose_filter">フィルターを選択</string>
     <string name="choose_chooser">ファイル選択を開く</string>
 
@@ -169,15 +167,12 @@
 
     //File chooser
 
-    <string name="title_choose">選択</string>
     <string name="dialog_cancel">キャンセル</string>
 
-    <string name="choose_menu_1">開く</string>
     <string name="choose_menu_2">共有</string>
     <string name="choose_menu_3">名前の変更</string>
     <string name="choose_menu_4">削除</string>
 
     <string name="choose_hint">新しいファイル名 (ファイル拡張子なし)</string>
-    <string name="choose_delete">このファイルを削除してもよろしいですか?</string>
 
 </resources>

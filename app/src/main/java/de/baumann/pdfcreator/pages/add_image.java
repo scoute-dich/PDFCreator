@@ -25,7 +25,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.artifex.mupdfdemo.MuPDFActivity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -36,7 +35,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import de.baumann.pdfcreator.filechooser.ChooserDialog;
+import de.baumann.pdfcreator.file_manager.Activity_files_intent;
 import de.baumann.pdfcreator.helper.ActivityEditor;
 import de.baumann.pdfcreator.R;
 import de.baumann.pdfcreator.helper.helper_main;
@@ -48,7 +47,6 @@ public class add_image extends Fragment {
 
     @SuppressWarnings("unused")
     private String title;
-    private String folder;
 
     private ImageView img;
     private int imgquality_int;
@@ -80,9 +78,8 @@ public class add_image extends Fragment {
                 if(imgFile.exists()){
                     
                     File pdfFile = new File(helper_pdf.actualPath(getActivity()));
-                    final String fileExtension = helper_pdf.actualPath(getActivity()).substring(helper_pdf.actualPath(getActivity()).lastIndexOf("."));
 
-                    if (pdfFile.exists() && fileExtension.equals(".pdf")) {
+                    if (pdfFile.exists()) {
 
                         title = sharedPref.getString("title", null);
 
@@ -151,25 +148,10 @@ public class add_image extends Fragment {
         fab_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-
-                new ChooserDialog().with(getActivity())
-                        .withFilter(false, false, "pdf")
-                        .withResources()
-                        .withStartFile(Environment.getExternalStorageDirectory() + folder)
-                        .withChosenListener(new ChooserDialog.Result() {
-                            @Override
-                            public void onChoosePath(String path, final File pathFile) {
-
-                                final String fileName = pathFile.getAbsolutePath().substring(pathFile.getAbsolutePath().lastIndexOf("/")+1);
-                                sharedPref.edit().putString("pathPDF", pathFile.getAbsolutePath()).apply();
-                                sharedPref.edit().putString("title", fileName).apply();
-                                helper_pdf.pdf_textField(getActivity(), rootView);
-                            }
-                        })
-                        .build()
-                        .show();
+                Intent intent = new Intent(getActivity(), Activity_files_intent.class);
+                intent.setAction("file_choosePDF");
+                startActivity(intent);
+                getActivity().overridePendingTransition(0, 0);
             }
         });
 
@@ -238,12 +220,7 @@ public class add_image extends Fragment {
                         @Override
                         public void onClick(View view) {
                             File file = new File(helper_pdf.actualPath(getActivity()));
-
-                            Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setData(Uri.fromFile(file));
-                            getActivity().startActivity(intent);
+                            helper_main.openFile(getActivity(), file, "application/pdf", img);
                         }
                     });
             snackbar.show();
@@ -343,39 +320,10 @@ public class add_image extends Fragment {
                     startActivityForResult(intent, 2);
 
                 } else if (options[item].equals(getString(R.string.choose_chooser))) {
-                    folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
-
-                    new ChooserDialog().with(getActivity())
-                            .withFilter(false, false, "jpg", "jpeg", "png", "pdf")
-                            .withResources()
-                            .withStartFile(Environment.getExternalStorageDirectory() + folder)
-                            .withChosenListener(new ChooserDialog.Result() {
-                                @Override
-                                public void onChoosePath(String path, final File pathFile) {
-
-                                    img.setImageURI(Uri.fromFile(pathFile));
-
-                                    BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
-                                    Bitmap bitmap = drawable.getBitmap();
-
-                                    File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-
-                                    // Encode the file as a JPEG image.
-                                    FileOutputStream outStream;
-                                    try {
-
-                                        outStream = new FileOutputStream(imgFile);
-                                        bitmap.compress(Bitmap.CompressFormat.JPEG, imgquality_int, outStream);
-                                        outStream.flush();
-                                        outStream.close();
-
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            })
-                            .build()
-                            .show();
+                    Intent intent = new Intent(getActivity(), Activity_files_intent.class);
+                    intent.setAction("file_chooseImage");
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(0, 0);
                 }
             }
         });
@@ -502,10 +450,10 @@ public class add_image extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         String path = helper_pdf.actualPath(getActivity());
+
         File pdfFile = new File(helper_pdf.actualPath(getActivity()));
 
         switch (item.getItemId()) {
-
             case R.id.action_help:
 
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
@@ -538,11 +486,7 @@ public class add_image extends Fragment {
             case R.id.action_open:
 
                 if (pdfFile.exists()) {
-                    Intent intent = new Intent(getActivity(), MuPDFActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.setData(Uri.fromFile(pdfFile));
-                    getActivity().startActivity(intent);
+                    helper_main.openFile(getActivity(), pdfFile, "application/pdf", img);
                 } else {
                     Snackbar.make(img, R.string.toast_noPDF, Snackbar.LENGTH_LONG).show();
                 }
