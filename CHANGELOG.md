@@ -1,3 +1,6 @@
+### v 2.7 (WIP)
+- new file mamager
+
 ### v 2.6
 - fixed: f-droid buid error
 

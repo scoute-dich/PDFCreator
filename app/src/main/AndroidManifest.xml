@@ -46,7 +46,6 @@
 
         </activity>
 
-
         <activity
             android:name=".helper.ActivityEditor"
             android:theme="@style/AppTheme.NoActionBar">
