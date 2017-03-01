@@ -568,6 +568,18 @@ public class add_text extends Fragment {
         if (Intent.ACTION_SEND.equals(action) && type != null) {
             if (type.startsWith("text/")) {
                 handleSendText(intent); // Handle single image2 being sent
+            } else if (type.startsWith("application/pdf")) {
+
+                Uri uri = (Uri) intent.getExtras().get(Intent.EXTRA_STREAM);
+
+                assert uri != null;
+                String pathToEdit = uri.getPath();
+                final String fileName = pathToEdit.substring(pathToEdit.lastIndexOf("/")+1);
+
+                sharedPref.edit().putString("pathPDF", pathToEdit).apply();
+                sharedPref.edit().putString("title", fileName).apply();
+
+                helper_pdf.pdf_textField(getActivity(), rootView);
             }
         }
 

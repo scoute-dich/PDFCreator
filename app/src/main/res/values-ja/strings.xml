@@ -43,6 +43,11 @@
     <string name="toast_extension">サポートされていないファイル拡張子</string>
     <string name="toast_edited">画像は編集されています。保存しますか?</string>
     <string name="toast_no">いいえ</string>
+    <string name="toast_remove_confirmation">Entry will be removed. OK?</string>
+    <string name="toast_directory">Can\'t open Directory.</string>
+    <string name="toast_files">No files in directory.</string>
+    <string name="toast_picFile">Please choose image file.</string>
+    <string name="toast_pdfFile">Please choose PDF file.</string>
 
 
     // Main menu
@@ -173,6 +178,29 @@
     <string name="choose_menu_3">名前の変更</string>
     <string name="choose_menu_4">削除</string>
 
-    <string name="choose_hint">新しいファイル名 (ファイル拡張子なし)</string>
+    <string name="choose_hint">新しいファイル名</string>
+
+    <string name="action_sort">Sort entries</string>
+    <string name="action_sort_title">Sort by title</string>
+    <string name="action_sort_create">Sort by date</string>
+    <string name="action_sort_ext">Sort by extension</string>
+
+    <string name="action_filter_title">Search in titles</string>
+    <string name="action_filter_create">Search in creation dates</string>
+    <string name="action_filter_ext">Search in extensions</string>
+
+    <string name="filter_today">Today</string>
+    <string name="filter_yesterday">Yesterday</string>
+    <string name="filter_before">Day before yesterday</string>
+    <string name="filter_month">This month</string>
+    <string name="filter_own">Own search</string>
+    <string name="filter_clear">Cancel search</string>
+
+    <string name="sort_title">title</string>
+    <string name="sort_date">date</string>
+    <string name="sort_extension">extension</string>
+
+    <string name="choose_titleMain">Files</string>
+    <string name="title_hint">Title</string>
 
 </resources>

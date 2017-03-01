@@ -70,6 +70,7 @@ public class create_image extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_image, container, false);
 
         helper_pdf.pdf_textField(getActivity(), rootView);
+        helper_pdf.toolbar(getActivity());
         setHasOptionsMenu(true);
 
         PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);

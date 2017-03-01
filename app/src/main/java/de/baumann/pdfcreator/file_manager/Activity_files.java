@@ -126,7 +126,18 @@ public class Activity_files extends AppCompatActivity {
         db = new DbAdapter_Files(this);
         db.open();
 
+        setTitle();
         setFilesList();
+    }
+
+    private void setTitle() {
+        if (sharedPref.getString("sortDBF", "title").equals("title")) {
+            setTitle(getString(R.string.choose_titleMain) + " | " + getString(R.string.sort_title));
+        } else if (sharedPref.getString("sortDBF", "title").equals("file_ext")) {
+            setTitle(getString(R.string.choose_titleMain) + " | " + getString(R.string.sort_extension));
+        } else {
+            setTitle(getString(R.string.choose_titleMain) + " | " + getString(R.string.sort_date));
+        }
     }
 
     private void setFilesList() {
@@ -272,6 +283,7 @@ public class Activity_files extends AppCompatActivity {
                 Cursor row2 = (Cursor) listView.getItemAtPosition(position);
                 final String files_icon = row2.getString(row2.getColumnIndexOrThrow("files_icon"));
                 final String files_attachment = row2.getString(row2.getColumnIndexOrThrow("files_attachment"));
+                final String files_title = row2.getString(row2.getColumnIndexOrThrow("files_title"));
 
                 final File pathFile = new File(files_attachment);
 
@@ -291,7 +303,11 @@ public class Activity_files extends AppCompatActivity {
                     } catch (Exception e) {
                         Snackbar.make(listView, R.string.toast_directory, Snackbar.LENGTH_LONG).show();
                     }
-                } else {
+                }  else if (files_icon.equals(".pdf")) {
+                    sharedPref.edit().putString("pathPDF", files_attachment).apply();
+                    sharedPref.edit().putString("title", files_title).apply();
+                    helper_main.open(files_icon, Activity_files.this, pathFile, listView);
+                }else {
                     helper_main.open(files_icon, Activity_files.this, pathFile, listView);
                 }
             }
@@ -526,14 +542,17 @@ public class Activity_files extends AppCompatActivity {
 
             case R.id.sort_title:
                 sharedPref.edit().putString("sortDBF", "title").apply();
+                setTitle();
                 setFilesList();
                 return true;
             case R.id.sort_ext:
                 sharedPref.edit().putString("sortDBF", "file_ext").apply();
+                setTitle();
                 setFilesList();
                 return true;
             case R.id.sort_creation:
                 sharedPref.edit().putString("sortDBF", "file_date").apply();
+                setTitle();
                 setFilesList();
                 return true;
 

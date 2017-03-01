@@ -128,8 +128,19 @@ public class Activity_files_intent extends AppCompatActivity {
         db = new DbAdapter_Files(this);
         db.open();
 
+        setTitle();
         setFilesList();
         onNewIntent(getIntent());
+    }
+
+    private void setTitle() {
+        if (sharedPref.getString("sortDBF", "title").equals("title")) {
+            setTitle(getString(R.string.choose_titleMain) + " | " + getString(R.string.sort_title));
+        } else if (sharedPref.getString("sortDBF", "title").equals("file_ext")) {
+            setTitle(getString(R.string.choose_titleMain) + " | " + getString(R.string.sort_extension));
+        } else {
+            setTitle(getString(R.string.choose_titleMain) + " | " + getString(R.string.sort_date));
+        }
     }
 
     protected void onNewIntent(final Intent intent) {
@@ -399,17 +410,6 @@ public class Activity_files_intent extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    private void deleteRecursive(File fileOrDirectory) {
-
-        if (fileOrDirectory.isDirectory()) {
-            for (File child : fileOrDirectory.listFiles()) {
-                deleteRecursive(child);
-            }
-        }
-        fileOrDirectory.delete();
-    }
-
     private static String getReadableFileSize(long size) {
         final int BYTES_IN_KILOBYTES = 1024;
         final DecimalFormat dec = new DecimalFormat("###.#");
@@ -520,14 +520,17 @@ public class Activity_files_intent extends AppCompatActivity {
 
             case R.id.sort_title:
                 sharedPref.edit().putString("sortDBF", "title").apply();
+                setTitle();
                 setFilesList();
                 return true;
             case R.id.sort_ext:
                 sharedPref.edit().putString("sortDBF", "file_ext").apply();
+                setTitle();
                 setFilesList();
                 return true;
             case R.id.sort_creation:
                 sharedPref.edit().putString("sortDBF", "file_date").apply();
+                setTitle();
                 setFilesList();
                 return true;
 

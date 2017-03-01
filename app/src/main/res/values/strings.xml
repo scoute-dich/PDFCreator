@@ -178,7 +178,7 @@
     <string name="choose_menu_3">Rename</string>
     <string name="choose_menu_4">Delete</string>
 
-    <string name="choose_hint">New filename (without file extension)</string>
+    <string name="choose_hint">New filename</string>
 
     <string name="action_sort">Sort entries</string>
     <string name="action_sort_title">Sort by title</string>
@@ -195,6 +195,10 @@
     <string name="filter_month">This month</string>
     <string name="filter_own">Own search</string>
     <string name="filter_clear">Cancel search</string>
+
+    <string name="sort_title">title</string>
+    <string name="sort_date">date</string>
+    <string name="sort_extension">extension</string>
 
     <string name="choose_titleMain">Files</string>
     <string name="title_hint">Title</string>

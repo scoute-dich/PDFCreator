@@ -67,11 +67,15 @@ public class MainActivity extends AppCompatActivity {
             if (Intent.ACTION_SEND.equals(action) && type != null) {
                 if (type.startsWith("image2/")) {
                     sharedPref.edit().putInt("startFragment", 0).apply();
-                } if (type.startsWith("text/")) {
+                } else if (type.startsWith("text/")) {
                     sharedPref.edit().putInt("startFragment", 1).apply();
                 } else if (type.startsWith("application/pdf")) {
                     sharedPref.edit().putInt("startFragment", 3).apply();
                 }
+            } else if ("pdf_openFolder".equals(action)) {
+                Intent intent2 = new Intent(this, Activity_files.class);
+                startActivity(intent2);
+                overridePendingTransition(0, 0);
             }
         }
 

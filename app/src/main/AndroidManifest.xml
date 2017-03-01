@@ -44,6 +44,10 @@
                 <data android:mimeType="application/pdf" />
             </intent-filter>
 
+            <intent-filter>
+                <action android:name="pdf_openFolder" />
+            </intent-filter>
+
         </activity>
 
         <activity

@@ -180,7 +180,7 @@
     <string name="choose_menu_3">Umbenennen</string>
     <string name="choose_menu_4">Löschen</string>
 
-    <string name="choose_hint">Neuer Dateiname (ohne Dateiendung)</string>
+    <string name="choose_hint">Neuer Dateiname</string>
 
     <string name="action_sort">Einträge sortieren</string>
     <string name="action_sort_title">Sortiere nach Titel</string>
@@ -197,6 +197,10 @@
     <string name="filter_month">Dieser Monat</string>
     <string name="filter_own">Eigene Suche</string>
     <string name="filter_clear">Suche abbrechen</string>
+
+    <string name="sort_title">Titel</string>
+    <string name="sort_date">Datum</string>
+    <string name="sort_extension">Erweiterung</string>
 
     <string name="choose_titleMain">Dateien</string>
     <string name="title_hint">Titel</string>
