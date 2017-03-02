@@ -32,7 +32,6 @@ public class helper_main {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             Uri contentUri = FileProvider.getUriForFile(activity, activity.getApplicationContext().getPackageName() + ".provider", file);
             intent.setDataAndType(contentUri,string);
-
         } else {
             intent.setDataAndType(Uri.fromFile(file),string);
         }

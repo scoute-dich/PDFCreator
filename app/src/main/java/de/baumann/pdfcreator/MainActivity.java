@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(this, Activity_files.class);
                 startActivity(intent2);
                 overridePendingTransition(0, 0);
+                finish();
             }
         }
 
@@ -211,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, Activity_files.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
+            finish();
         }
 
         if (id == R.id.action_settings) {

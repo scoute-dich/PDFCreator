@@ -64,6 +64,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import de.baumann.pdfcreator.MainActivity;
 import de.baumann.pdfcreator.R;
 import de.baumann.pdfcreator.helper.helper_main;
 
@@ -557,6 +558,9 @@ public class Activity_files extends AppCompatActivity {
                 return true;
 
             case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 finish();
                 return true;
         }
