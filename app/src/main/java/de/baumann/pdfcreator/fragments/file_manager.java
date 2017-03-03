@@ -35,6 +35,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -208,7 +210,12 @@ public class file_manager extends Fragment {
                     switch (files_icon) {
                         case ".gif":case ".bmp":case ".tiff":case ".svg":
                         case ".png":case ".jpg":case ".JPG":case ".jpeg":
-
+                            try {
+                                Uri uri = Uri.fromFile(pathFile);
+                                Picasso.with(getActivity()).load(uri).resize(76, 76).centerCrop().into(iv);
+                            } catch (Exception e) {
+                                Log.w("HHS_Moodle", "Error Load image", e);
+                            }
                             break;
                         case ".pdf":
                             iv.setImageResource(R.drawable.file_pdf);
@@ -282,6 +289,11 @@ public class file_manager extends Fragment {
                     } else if (files_icon.equals(".pdf")) {
                         sharedPref.edit().putString("pathPDF", files_attachment).apply();
                         sharedPref.edit().putString("title", files_title).apply();
+
+
+
+
+
                         helper_main.open(files_icon, getActivity(), pathFile, listView);
                     }else {
                         helper_main.open(files_icon, getActivity(), pathFile, listView);
@@ -484,11 +496,7 @@ public class file_manager extends Fragment {
                                 AlertDialog dialog2 = builder.create();
                                 // Display the custom alert dialog on interface
                                 dialog2.show();
-                                new Handler().postDelayed(new Runnable() {
-                                    public void run() {
-                                        helper_main.showKeyboard(getActivity(), edit_title);
-                                    }
-                                }, 200);
+                                helper_main.showKeyboard(getActivity(),edit_title);
                             }
                         }
                     });
@@ -560,15 +568,6 @@ public class file_manager extends Fragment {
                 filter_layout.setVisibility(View.VISIBLE);
                 filter.setText("");
                 filter.setHint(R.string.action_filter_title);
-                filter.requestFocus();
-                helper_main.showKeyboard(getActivity(), filter);
-                return true;
-            case R.id.filter_ext:
-                sharedPref.edit().putString("filter_filesBY", "files_icon").apply();
-                setFilesList();
-                filter_layout.setVisibility(View.VISIBLE);
-                filter.setText("");
-                filter.setHint(R.string.action_filter_ext);
                 filter.requestFocus();
                 helper_main.showKeyboard(getActivity(), filter);
                 return true;

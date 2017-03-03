@@ -177,7 +177,6 @@
     <string name="action_filter">Suche in Einträgen</string>
     <string name="action_filter_title">Suche in Titeln</string>
     <string name="action_filter_create">Suche nach Datum</string>
-    <string name="action_filter_ext">Suche nach Erweiterung</string>
 
     <string name="filter_today">Heute</string>
     <string name="filter_yesterday">Gestern</string>
@@ -199,7 +198,7 @@
     <string name="about_settings">… und andere Dinge</string>
     <string name="about_settings_text">Changelog, Hilfe, Lizenz, benutzte Bibliotheken und noch mehr.</string>
 
-    <string name="about_title_main">Über</string>
+    <string name="about_title_main">Über PDF Creator</string>
     <string name="about_title_dev">Entwickler</string>
     <string name="about_title_libs">Benutzte Open Source Bibliotheken</string>
     <string name="about_title_ext">Erweiterung</string>

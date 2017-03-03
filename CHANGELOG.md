@@ -1,4 +1,4 @@
-### v 2.7 (WIP)
+### v 2.7
 - new: file manager
 - new: intro screen
 - new: about screen
