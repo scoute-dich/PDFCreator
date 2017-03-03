@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="#e0e0e0"
+    android:background="@color/colorBG"
     tools:keep="@layout/activity_crop"
     tools:ignore="Overdraw">
 

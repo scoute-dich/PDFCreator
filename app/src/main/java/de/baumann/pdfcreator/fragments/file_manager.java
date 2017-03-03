@@ -35,8 +35,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 
-import com.squareup.picasso.Picasso;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -210,12 +208,7 @@ public class file_manager extends Fragment {
                     switch (files_icon) {
                         case ".gif":case ".bmp":case ".tiff":case ".svg":
                         case ".png":case ".jpg":case ".JPG":case ".jpeg":
-                            try {
-                                Uri uri = Uri.fromFile(pathFile);
-                                Picasso.with(getActivity()).load(uri).resize(76, 76).centerCrop().into(iv);
-                            } catch (Exception e) {
-                                Log.w("HHS_Moodle", "Error Load image", e);
-                            }
+
                             break;
                         case ".pdf":
                             iv.setImageResource(R.drawable.file_pdf);
@@ -491,7 +484,11 @@ public class file_manager extends Fragment {
                                 AlertDialog dialog2 = builder.create();
                                 // Display the custom alert dialog on interface
                                 dialog2.show();
-                                helper_main.showKeyboard(getActivity(),edit_title);
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        helper_main.showKeyboard(getActivity(), edit_title);
+                                    }
+                                }, 200);
                             }
                         }
                     });

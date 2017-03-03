@@ -1,7 +1,6 @@
 package de.baumann.pdfcreator.helper;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,14 +12,13 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import de.baumann.pdfcreator.Activity_Main;
 import de.baumann.pdfcreator.R;
+import de.baumann.pdfcreator.about.About_activity;
 
 public class Activity_Settings extends AppCompatActivity {
 
@@ -70,17 +68,9 @@ public class Activity_Settings extends AppCompatActivity {
             reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference pref) {
 
-                    final AlertDialog d = new AlertDialog.Builder(getActivity())
-                            .setTitle(R.string.about_title)
-                            .setMessage(helper_main.textSpannable(getString(R.string.about_text)))
-                            .setPositiveButton(getString(R.string.toast_yes),
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                        }
-                                    }).show();
-                    d.show();
-                    ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+                    Intent intent = new Intent(getActivity(), About_activity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(0, 0);
 
                     return true;
                 }
@@ -139,32 +129,6 @@ public class Activity_Settings extends AppCompatActivity {
             });
         }
 
-        private void addDonateListListener() {
-
-            Preference reset = findPreference("donate");
-            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                public boolean onPreferenceClick(Preference pref) {
-                    Uri uri = Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NP6TGYDYP9SHY"); // missing 'http://' will cause crashed
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
-                    return true;
-                }
-            });
-        }
-
-        private void addChangelogListener() {
-
-            Preference reset = findPreference("changelog");
-            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                public boolean onPreferenceClick(Preference pref) {
-                    Uri uri = Uri.parse("https://github.com/scoute-dich/PDFCreator/blob/master/CHANGELOG.md"); // missing 'http://' will cause crashed
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
-                    return true;
-                }
-            });
-        }
-
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -173,8 +137,6 @@ public class Activity_Settings extends AppCompatActivity {
             addLicenseListener();
             addOpenSettingsListener();
             addPathListener();
-            addChangelogListener();
-            addDonateListListener();
         }
     }
 

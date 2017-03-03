@@ -19,44 +19,11 @@
         GNU General Public License for more details.
 
         You should have received a copy of the GNU General Public License
-        along with this program.  If not, see http://www.gnu.org/licenses.&lt;br>&lt;br>&lt;br>
-
-        &lt;b>Benutzte open source Projekte:&lt;/b>&lt;br>&lt;br>
-
-        &lt;i>Android-Image-Cropper&lt;/i>&lt;br>
-        https://github.com/ArthurHub/Android-Image-Cropper&lt;br>&lt;br>
-
-        &lt;i>Android PDFView&lt;/i>&lt;br>
-        https://github.com/JoanZapata/android-pdfview&lt;br>&lt;br>
-
-        &lt;i>GPUImage for Android&lt;/i>&lt;br>
-        https://github.com/CyberAgent/android-gpuimage&lt;br>&lt;br>
-
-        &lt;i>iText&lt;/i>&lt;br>
-        https://github.com/itext/itextpdf&lt;br>&lt;br>
-
-        &lt;i>MaterialDesignIcons&lt;/i>&lt;br>
-        https://github.com/Templarian/MaterialDesign
+        along with this program.  If not, see http://www.gnu.org/licenses.
     </string>
 
 
     //Help Dialog
-
-    <string name="dialog_help">
-        Du erreichst einen Hilfe Dialog in jedem Tab, indem du \"Menu -> Hilfe\" drückst.&lt;br>&lt;br>
-
-        &lt;b>Menu&lt;/b>&lt;br>
-
-        &lt;i>Teilen:&lt;/i> du kannst die letzte bearbeitete PDF-Datei teilen.&lt;br>
-        &lt;i>PDF öffnen:&lt;/i> öffne die letzte PDF-Datei.&lt;br>
-        &lt;i>Ordner öffnen:&lt;/i> öffne das Anwendungsverzeichnis mit einem Dateimanager.&lt;br>
-        &lt;i>Einstellungen:&lt;/i> probiere es aus.&lt;br>
-        &lt;i>Hilfe:&lt;/i> öffne für jeden Tab den Hilfedialog.&lt;br>&lt;br>
-
-        &lt;b>Gut zu wissen:&lt;/b>&lt;br>
-        Am unteren Rand des Bildschirms siehst du den Namen der aktuellen PDF-Datei, sowie das eingestellte Format.
-        Wenn du dort klickst, kannst du schnell zwischen Hoch- und Querformat für eine neue PDF-Seite wechseln.
-    </string>
 
 
     //Create image Dialog

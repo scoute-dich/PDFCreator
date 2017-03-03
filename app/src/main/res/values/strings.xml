@@ -114,9 +114,6 @@
     <string name="settings_prefEnc">Encryption</string>
     <string name="settings_prefMeta">Metadata</string>
 
-    <string name="pref_license">License</string>
-    <string name="pref_license_summary">The app is completely open source and licensed under GPL3.</string>
-
     <string name="pref_imageQuality">Image quality</string>
     <string name="pref_imageQuality_summary">Set the image quality. Higher quality results in (much) bigger PDF sizes.</string>
 
@@ -129,21 +126,12 @@
         to your desired folder on your sdcard. The path must begin and end with \"/\" like \"/Download/PDF/\".
         If the desired directory does not exist, it will be generated automatically.</string>
 
-    <string name="action_donate">Donate</string>
-    <string name="action_donate_summary">If you like the app, you can donate to me via Paypal.</string>
-
-    <string name="action_changelog">Changelog</string>
-    <string name="action_changelog_summary">See what\'s new … (will open a website)</string>
-
     <string name="pref_metaAuthor">Author</string>
 
     <string name="pref_metaTitle">Title</string>
     <string name="pref_metaCreator">Creator</string>
     <string name="pref_metaKeywords">Keywords</string>
     <string name="pref_metaSubject">Subject</string>
-
-    <string name="pref_notShow_title">Help dialog</string>
-    <string name="pref_notShow_title_summary">Show the help dialog on start.</string>
 
     <string name="action_openSettings">App info</string>
     <string name="action_openSettings_summary">Open via the system settings the app info of the app. There you can,
@@ -203,5 +191,62 @@
     <string name="choose_titleMain">Files</string>
     <string name="title_hint">Title</string>
 
+
+    // About
+
+    <string name="about_settings">… and other things</string>
+    <string name="about_settings_text">Changelog, help, license, used libraries and more.</string>
+
+    <string name="about_title_main">About</string>
+    <string name="about_title_dev">Developer</string>
+    <string name="about_title_libs">Used open source libraries</string>
+    <string name="about_title_ext">Extension</string>
+
+    <string name="about_changelog">Changelog</string>
+    <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>
+
+    <string name="about_license">License</string>
+    <string name="about_license_summary">The app is licensed under GPL and completely open source and free (as in freedom).</string>
+
+    <string name="about_dev">Gaukler Faun</string>
+    <string name="about_dev_summary">Open my profile on Github (needs internet connection).</string>
+
+    <string name="about_ext">PDF Viewer</string>
+    <string name="about_ext_summary">Is a PDF Viewer based on MuPDF and optimized to work together with PDF Creator. You can
+    download and install the APK file on the Github site (just click). Since there are precompiled libraries included I can not publish
+    PDF Viewer on F-Droid.</string>
+
+    <string name="about_intro">Intro</string>
+    <string name="about_intro_summary">Show the intro screen one more time.</string>
+
+    <string name="about_donate">Donate</string>
+    <string name="about_donate_summary">If you like the app, you can donate to me via Paypal (needs internet connection).</string>
+
+    <string name="about_license_2">Used to crop and rotate images.</string>
+    <string name="about_license_3">Used to build the intro screen.</string>
+    <string name="about_license_4">Used to enhance and manipulate pictures.</string>
+    <string name="about_license_5">Used to create and manipulate PDF files.</string>
+    <string name="about_license_6">Used to convert PDF files to images.</string>
+    <string name="about_license_7">Used to create the \"About screen\".</string>
+    <string name="about_license_8">The source of nearly all icons.</string>
+    <string name="about_license_9">A powerful image downloading and caching library for Android.</string>
+
+
+    // Intro
+
+    <string name="intro_skip">Skip</string>
+    <string name="intro_finish">Let\'s start.</string>
+
+    <string name="intro1_title">PDF Creator</string>
+    <string name="intro1_text">Thank you for choosing \"PDF Creator\". It\'s fully open source and still in development.
+        You can reach a short help dialog on every tab by pressing \"menu -> help\" …</string>
+
+    <string name="intro2_title">The tabs</string>
+    <string name="intro2_text">You have a build in file explorer. You can either create new PDF files from an image or from text or
+        manipulate existing PDFs.</string>
+
+    <string name="intro3_title">Nice to know:</string>
+    <string name="intro3_text">At the bottom you can see the name of the actual PDF and the format. By pressing this area
+        you can switch between portrait and landscape format for your PDF page.</string>
 
 </resources>

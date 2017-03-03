@@ -37,7 +37,7 @@ public class helper_pdf {
         title = sharedPref.getString("title", null);
         folder = sharedPref.getString("folder", "/Android/data/de.baumann.pdf/");
         path = sharedPref.getString("pathPDF", Environment.getExternalStorageDirectory() +
-                folder + title + ".pdf");
+                folder + title);
 
         return path;
     }
@@ -62,7 +62,7 @@ public class helper_pdf {
 
                 in = new FileInputStream(helper_pdf.actualPath(activity));
                 out = new FileOutputStream(Environment.getExternalStorageDirectory() +
-                        folder + "pdf_backups/" + title + ".pdf");
+                        folder + "pdf_backups/" + title);
 
                 byte[] buffer = new byte[1024];
                 int read;

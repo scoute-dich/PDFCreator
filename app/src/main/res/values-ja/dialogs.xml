@@ -19,44 +19,11 @@
 
         あなたはこのプログラムと共に、GNU 一般公衆利用許諾書のコピーを一部
         受け取っているはずです。もし受け取っていなければ、以下をご覧ください
-        http://www.gnu.org/licenses.&lt;br>&lt;br>&lt;br>
-
-        &lt;b>使用したオープンソースプロジェクト:&lt;/b>&lt;br>&lt;br>
-
-        &lt;i>Android-Image-Cropper&lt;/i>&lt;br>
-        https://github.com/ArthurHub/Android-Image-Cropper&lt;br>&lt;br>
-
-        &lt;i>Android PDFView&lt;/i>&lt;br>
-        https://github.com/JoanZapata/android-pdfview&lt;br>&lt;br>
-
-        &lt;i>GPUImage for Android&lt;/i>&lt;br>
-        https://github.com/CyberAgent/android-gpuimage&lt;br>&lt;br>
-
-        &lt;i>iText&lt;/i>&lt;br>
-        https://github.com/itext/itextpdf&lt;br>&lt;br>
-
-        &lt;i>MaterialDesignIcons&lt;/i>&lt;br>
-        https://github.com/Templarian/MaterialDesign
+        http://www.gnu.org/licenses.
     </string>
 
 
     //Help Dialog
-
-    <string name="dialog_help">
-        各タブの簡単なヘルプダイアログを表示するには、\"メニュー -> ヘルプ\" を押してください。&lt;br>&lt;br>
-
-        &lt;b>メニュー&lt;/b>&lt;br>
-
-        &lt;i>共有:&lt;/i> 最後に操作した PDF を共有できます。&lt;br>
-        &lt;i>PDF を開く:&lt;/i> 最後の PDF を PDF ビューアで開きます。&lt;br>
-        &lt;i>フォルダーを開く:&lt;/i> ファイルエクスプローラでアプリケーションディレクトリーを開きます。&lt;br>
-        &lt;i>設定:&lt;/i> 確認してください。&lt;br>
-        &lt;i>ヘルプ:&lt;/i> 各タブのヘルプダイアログを開きます。&lt;br>&lt;br>
-
-        &lt;b>知っておくといいこと:&lt;/b>&lt;br>
-        下部には、実際の PDF の名前と書式が表示されます。
-        この領域を押すと、PDF ページの縦向き、横向きの書式を切り替えることができます。
-    </string>
 
 
     //Create image Dialog

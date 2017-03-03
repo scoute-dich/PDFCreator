@@ -10,7 +10,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#e0e0e0"
+        android:background="@color/colorBG"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".Activity_Main">
 

@@ -32,5 +32,7 @@ dependencies {
     compile 'com.itextpdf:itextpdf:5.5.10'
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+    compile 'com.github.chyrta:AndroidOnboarder:0.6'
+    compile 'com.github.daniel-stoneuk:material-about-library:1.7.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
 }

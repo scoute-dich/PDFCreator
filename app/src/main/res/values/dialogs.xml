@@ -19,44 +19,11 @@
         GNU General Public License for more details.
 
         You should have received a copy of the GNU General Public License
-        along with this program.  If not, see http://www.gnu.org/licenses.&lt;br>&lt;br>&lt;br>
-
-        &lt;b>Used open source projects:&lt;/b>&lt;br>&lt;br>
-
-        &lt;i>Android-Image-Cropper&lt;/i>&lt;br>
-        https://github.com/ArthurHub/Android-Image-Cropper&lt;br>&lt;br>
-
-        &lt;i>Android PDFView&lt;/i>&lt;br>
-        https://github.com/JoanZapata/android-pdfview&lt;br>&lt;br>
-
-        &lt;i>GPUImage for Android&lt;/i>&lt;br>
-        https://github.com/CyberAgent/android-gpuimage&lt;br>&lt;br>
-
-        &lt;i>iText&lt;/i>&lt;br>
-        https://github.com/itext/itextpdf&lt;br>&lt;br>
-
-        &lt;i>MaterialDesignIcons&lt;/i>&lt;br>
-        https://github.com/Templarian/MaterialDesign
+        along with this program.  If not, see http://www.gnu.org/licenses.
     </string>
 
 
     //Help Dialog
-
-    <string name="dialog_help">
-        You can reach a short help dialog on every tab by pressing \"menu -> help\".&lt;br>&lt;br>
-
-        &lt;b>Menu&lt;/b>&lt;br>
-
-        &lt;i>Share:&lt;/i> you can share the last manipulated PDF.&lt;br>
-        &lt;i>Open PDF:&lt;/i> open the last PDF with a PDF viewer.&lt;br>
-        &lt;i>Open Folder:&lt;/i> open the application directory with a file explorer.&lt;br>
-        &lt;i>Settings:&lt;/i> check it out.&lt;br>
-        &lt;i>Help:&lt;/i> open the help dialog for each tab.&lt;br>&lt;br>
-
-        &lt;b>Nice to know:&lt;/b>&lt;br>
-        At the bottom you can see the name of the actual PDF and the format. By pressing this area you can switch between portrait
-        and landscape format for your PDF page.
-    </string>
 
 
     //Create image Dialog

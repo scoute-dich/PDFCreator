@@ -114,9 +114,6 @@
     <string name="settings_prefEnc">暗号化</string>
     <string name="settings_prefMeta">メタデータ</string>
 
-    <string name="pref_license">ライセンス</string>
-    <string name="pref_license_summary">アプリは完全にオープンソースで GPL3 の下でライセンスされます。</string>
-
     <string name="pref_imageQuality">画像の品質</string>
     <string name="pref_imageQuality_summary">画像の品質を設定します。 高品質にすると PDF サイズは大きくなります。</string>
 
@@ -130,20 +127,11 @@
         SD カードの希望のフォルダーへのパスを入力してください。 パスは \"/Download/PDF/\" のように \"/\" で開始および終了する必要があります。
         希望のディレクトリーが存在しない場合は、自動的に作成されます。</string>
 
-    <string name="action_donate">寄付</string>
-    <string name="action_donate_summary">アプリを気に入っていただけた場合、Paypal で寄付することができます。</string>
-
-    <string name="action_changelog">変更履歴</string>
-    <string name="action_changelog_summary">新着情報をご覧ください … (Webサイトを開きます)</string>
-
     <string name="pref_metaTitle">タイトル</string>
     <string name="pref_metaAuthor">著者</string>
     <string name="pref_metaCreator">作成者</string>
     <string name="pref_metaKeywords">キーワード</string>
     <string name="pref_metaSubject">サブジェクト</string>
-
-    <string name="pref_notShow_title">ヘルプ ダイアログ</string>
-    <string name="pref_notShow_title_summary">開始時にヘルプダイアログを表示します。</string>
 
     <string name="action_openSettings">アプリ情報</string>
     <string name="action_openSettings_summary">システムの設定で、アプリのアプリ情報を開きます。 Android
@@ -202,5 +190,63 @@
 
     <string name="choose_titleMain">Files</string>
     <string name="title_hint">Title</string>
+
+
+    // About
+
+    <string name="about_settings">… and other things</string>
+    <string name="about_settings_text">Changelog, help, license, used libraries and more.</string>
+
+    <string name="about_title_main">About</string>
+    <string name="about_title_dev">Developer</string>
+    <string name="about_title_libs">Used open source libraries</string>
+    <string name="about_title_ext">Extension</string>
+
+    <string name="about_changelog">Changelog</string>
+    <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>
+
+    <string name="about_license">License</string>
+    <string name="about_license_summary">The app is licensed under GPL and completely open source and free (as in freedom).</string>
+
+    <string name="about_dev">Gaukler Faun</string>
+    <string name="about_dev_summary">Open my profile on Github (needs internet connection).</string>
+
+    <string name="about_ext">PDF Viewer</string>
+    <string name="about_ext_summary">Is a PDF Viewer based on MuPDF and optimized to work together with PDF Creator. You can
+    download and install the APK file on the Github site (just click). Since there are precompiled libraries included I can not publish
+    PDF Viewer on F-Droid.</string>
+
+    <string name="about_intro">Intro</string>
+    <string name="about_intro_summary">Show the intro screen one more time.</string>
+
+    <string name="about_donate">Donate</string>
+    <string name="about_donate_summary">If you like the app, you can donate to me via Paypal (needs internet connection).</string>
+
+    <string name="about_license_2">Used to crop and rotate images.</string>
+    <string name="about_license_3">Used to build the intro screen.</string>
+    <string name="about_license_4">Used to enhance and manipulate pictures.</string>
+    <string name="about_license_5">Used to create and manipulate PDF files.</string>
+    <string name="about_license_6">Used to convert PDF files to images.</string>
+    <string name="about_license_7">Used to create the \"About screen\".</string>
+    <string name="about_license_8">The source of nearly all icons.</string>
+    <string name="about_license_9">A powerful image downloading and caching library for Android.</string>
+
+
+    // Intro
+
+    <string name="intro_skip">Skip</string>
+    <string name="intro_finish">Let\'s start.</string>
+
+    <string name="intro1_title">PDF Creator</string>
+    <string name="intro1_text">Thank you for choosing \"PDF Creator\". It\'s fully open source and still in development.
+        You can reach a short help dialog on every tab by pressing \"menu -> help\" …</string>
+
+    <string name="intro2_title">The tabs</string>
+    <string name="intro2_text">You have a build in file explorer. You can either create new PDF files from an image or from text or
+        manipulate existing PDFs.</string>
+
+    <string name="intro3_title">Nice to know:</string>
+    <string name="intro3_text">At the bottom you can see the name of the actual PDF and the format. By pressing this area
+        you can switch between portrait and landscape format for your PDF page.</string>
 
 </resources>

@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.baumann.pdfcreator.helper.Activity_Settings;
+import de.baumann.pdfcreator.helper.Activity_intro;
 import de.baumann.pdfcreator.helper.helper_main;
 import de.baumann.pdfcreator.fragments.add_text;
 import de.baumann.pdfcreator.fragments.create_image;
@@ -73,6 +75,18 @@ public class Activity_Main extends AppCompatActivity {
                 } else if (type.startsWith("application/pdf")) {
                     sharedPref.edit().putInt("startFragment", 4).apply();
                 }
+            } else if ("pdf_openFolder".equals(action)) {
+
+                String path = intent.getStringExtra("path");
+                String name = intent.getStringExtra("name");
+
+                if (path == null || name == null) {
+                    sharedPref.edit().putString("menu", "no").apply();
+                } else {
+                    setTitle(name);
+                    sharedPref.edit().putString("pathPDF", path).apply();
+                    sharedPref.edit().putString("title", name).apply();
+                }
             }
         }
 
@@ -88,17 +102,33 @@ public class Activity_Main extends AppCompatActivity {
                     file_manager.setTitle();
                     file_manager.setFilesList();
                 } else if (position == 1){
-                    create_image create_image = (create_image) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
-                    create_image.onResume();
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            create_image create_image = (create_image) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+                            create_image.onResume();
+                        }
+                    }, 200);
                 } else if (position == 2){
-                    create_text create_text = (create_text) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
-                    create_text.onResume();
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            create_text create_text = (create_text) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+                            create_text.onResume();
+                        }
+                    }, 200);
                 } else if (position == 3){
-                    add_image add_image = (add_image) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
-                    add_image.onResume();
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            add_image add_image = (add_image) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+                            add_image.onResume();
+                        }
+                    }, 200);
                 } else if (position == 4){
-                    add_text add_text = (add_text) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
-                    add_text.onResume();
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            add_text add_text = (add_text) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+                            add_text.onResume();
+                        }
+                    }, 200);
                 }
             }
         });
@@ -110,20 +140,12 @@ public class Activity_Main extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        boolean show = sharedPref.getBoolean("help_notShow", true);
+        boolean show = sharedPref.getBoolean("introShowDo_notShow", true);
+
         if (show){
-            final AlertDialog.Builder dialog = new AlertDialog.Builder(Activity_Main.this)
-                    .setTitle(R.string.app_name)
-                    .setMessage(helper_main.textSpannable(getString(R.string.dialog_help)))
-                    .setPositiveButton(getString(R.string.toast_yes), null)
-                    .setNegativeButton(getString(R.string.toast_notAgain), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                            sharedPref.edit().putBoolean("help_notShow", false).apply();
-                        }
-                    });
-            dialog.show();
+            Intent intent2 = new Intent(Activity_Main.this, Activity_intro.class);
+            startActivity(intent2);
+            overridePendingTransition(0, 0);
         }
 
         if (android.os.Build.VERSION.SDK_INT >= 23) {
