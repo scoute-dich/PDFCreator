@@ -54,7 +54,6 @@
 
     <string name="action_share">PDF を共有</string>
     <string name="action_open">PDF を開く</string>
-    <string name="action_folder">アプリフォルダーを開く</string>
     <string name="action_settings">設定</string>
     <string name="action_save">保存</string>
     <string name="action_share_with">次で PDF を共有:</string>
@@ -185,6 +184,7 @@
     <string name="action_sort_create">Sort by date</string>
     <string name="action_sort_ext">Sort by extension</string>
 
+    <string name="action_filter">Search in entries</string>
     <string name="action_filter_title">Search in titles</string>
     <string name="action_filter_create">Search in creation dates</string>
     <string name="action_filter_ext">Search in extensions</string>

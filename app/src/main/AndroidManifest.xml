@@ -18,7 +18,7 @@
 
         <activity
             android:launchMode="singleInstance"
-            android:name=".MainActivity"
+            android:name=".Activity_Main"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -53,30 +53,13 @@
 
         <activity
             android:launchMode="singleInstance"
-            android:name=".helper.ActivityEditor"
+            android:name=".helper.Activity_Editor"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
             android:launchMode="singleInstance"
-            android:name=".file_manager.Activity_files"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-        <activity
-            android:launchMode="singleInstance"
-            android:name=".file_manager.Activity_files_intent"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="file_chooseImage" />
-                <action android:name="file_choosePDF" />
-                <action android:name="file_chooseSecondPDF" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:launchMode="singleInstance"
-            android:name=".helper.UserSettingsActivity" />
+            android:name=".helper.Activity_Settings" />
 
         <activity
             android:launchMode="singleInstance"

@@ -2,7 +2,7 @@
 
     // App
 
-    <string name="app_name">PDF</string>
+    <string name="app_name">PDF Creator</string>
     <string name="app_permissions_title">Used permissions</string>
     <string name="app_permissions">
 
@@ -54,7 +54,6 @@
 
     <string name="action_share">Share PDF</string>
     <string name="action_open">Open PDF</string>
-    <string name="action_folder">Open app folder</string>
     <string name="action_settings">Settings</string>
     <string name="action_save">Save</string>
     <string name="action_share_with">Share PDF with:</string>
@@ -185,6 +184,7 @@
     <string name="action_sort_create">Sort by date</string>
     <string name="action_sort_ext">Sort by extension</string>
 
+    <string name="action_filter">Search in entries</string>
     <string name="action_filter_title">Search in titles</string>
     <string name="action_filter_create">Search in creation dates</string>
     <string name="action_filter_ext">Search in extensions</string>

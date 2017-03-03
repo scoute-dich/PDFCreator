@@ -25,6 +25,8 @@ public class helper_main {
     public static void openFile (Activity activity, File file, String string, View view) {
 
         Intent intent = new Intent();
+        intent.putExtra("path", file.getAbsolutePath());
+        intent.putExtra("name", file.getName());
         intent.setAction(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 

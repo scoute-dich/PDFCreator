@@ -2,7 +2,7 @@
 
     // App
 
-    <string name="app_name">PDF</string>
+    <string name="app_name">PDF Creator</string>
     <string name="app_permissions_title">Verlangte Berechtigungen</string>
     <string name="app_permissions">
 
@@ -55,7 +55,6 @@
 
     <string name="action_share">PDF teilen</string>
     <string name="action_open">PDF öffnen</string>
-    <string name="action_folder">Öffne Anwendungsordner</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_save">Speichern</string>
     <string name="action_share_with">PDF teilen mit:</string>
@@ -187,6 +186,7 @@
     <string name="action_sort_create">Sortiere nach Datum</string>
     <string name="action_sort_ext">Sortiere nach Erweiterung</string>
 
+    <string name="action_filter">Suche in Einträgen</string>
     <string name="action_filter_title">Suche in Titeln</string>
     <string name="action_filter_create">Suche nach Datum</string>
     <string name="action_filter_ext">Suche nach Erweiterung</string>

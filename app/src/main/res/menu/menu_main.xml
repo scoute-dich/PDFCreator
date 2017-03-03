@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="de.baumann.pdfcreator.MainActivity">
+    tools:context="de.baumann.pdfcreator.Activity_Main">
 
     <item
         android:id="@+id/action_share"
@@ -15,13 +15,6 @@
         android:orderInCategory="100"
         android:title="@string/action_open"
         android:icon="@drawable/ic_open_in_new_white_48dp"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_folder"
-        android:orderInCategory="100"
-        android:title="@string/action_folder"
-        android:icon="@drawable/folder_light"
         app:showAsAction="ifRoom" />
 
     <item

@@ -4,7 +4,7 @@
 
     <item
         android:orderInCategory="100"
-        android:title="@string/action_sort"
+        android:title="@string/action_filter"
         android:icon="@drawable/magnify"
         app:showAsAction="ifRoom" >
         <!-- "file" submenu -->
