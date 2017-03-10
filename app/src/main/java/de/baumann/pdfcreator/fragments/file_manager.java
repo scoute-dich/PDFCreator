@@ -415,6 +415,7 @@ public class file_manager extends Fragment {
                             .setAction(R.string.toast_yes, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                    sharedPref.edit().putString("files_startFolder", pathFile.getParent()).apply();
                                     deleteRecursive(pathFile);
                                     setFilesList();
                                 }

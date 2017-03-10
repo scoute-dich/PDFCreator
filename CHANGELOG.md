@@ -1,3 +1,7 @@
+### v 2.8: (WIP)
+- fix: delete directories
+- fix: removed unwanted permission (internet access)
+
 ### v 2.7
 - new: file manager
 - new: intro screen
