@@ -1,4 +1,5 @@
-### v 2.8: (WIP)
+### v 2.8
+- fix: force close (permission not granted)
 - fix: delete directories
 - fix: removed unwanted permission (internet access)
 

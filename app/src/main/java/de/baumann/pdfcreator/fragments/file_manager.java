@@ -1,10 +1,12 @@
 package de.baumann.pdfcreator.fragments;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -47,6 +49,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import de.baumann.pdfcreator.Activity_Main;
 import de.baumann.pdfcreator.R;
 import de.baumann.pdfcreator.helper.Class_DbAdapter_Files;
 import de.baumann.pdfcreator.helper.helper_main;
@@ -106,7 +109,15 @@ public class file_manager extends Fragment {
         db.open();
 
         setTitle();
-        setFilesList();
+
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            int hasWRITE_EXTERNAL_STORAGE = getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (hasWRITE_EXTERNAL_STORAGE == PackageManager.PERMISSION_GRANTED) {
+                setFilesList();
+            }
+        } else {
+            setFilesList();
+        }
         
         return rootView;
     }
