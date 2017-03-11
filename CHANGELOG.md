@@ -1,3 +1,6 @@
+### v 2.9
+- fix:force close when changing tab
+
 ### v 2.8
 - fix: force close (permission not granted)
 - fix: delete directories

@@ -102,33 +102,17 @@ public class Activity_Main extends AppCompatActivity {
                     file_manager.setTitle();
                     file_manager.setFilesList();
                 } else if (position == 1){
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            create_image create_image = (create_image) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
-                            create_image.onResume();
-                        }
-                    }, 200);
+                    create_image create_image = (create_image) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+                    create_image.onResume();
                 } else if (position == 2){
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            create_text create_text = (create_text) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
-                            create_text.onResume();
-                        }
-                    }, 200);
+                    create_text create_text = (create_text) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+                    create_text.onResume();
                 } else if (position == 3){
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            add_image add_image = (add_image) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
-                            add_image.onResume();
-                        }
-                    }, 200);
+                    add_image add_image = (add_image) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+                    add_image.onResume();
                 } else if (position == 4){
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            add_text add_text = (add_text) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
-                            add_text.onResume();
-                        }
-                    }, 200);
+                    add_text add_text = (add_text) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+                    add_text.onResume();
                 }
             }
         });
@@ -211,7 +195,7 @@ public class Activity_Main extends AppCompatActivity {
         viewPager.setCurrentItem(startFragment);
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
