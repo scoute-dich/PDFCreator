@@ -45,11 +45,12 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
-import de.baumann.pdfcreator.Activity_Main;
 import de.baumann.pdfcreator.R;
 import de.baumann.pdfcreator.helper.Class_DbAdapter_Files;
 import de.baumann.pdfcreator.helper.helper_main;
@@ -141,6 +142,25 @@ public class file_manager extends Fragment {
         File f = new File(sharedPref.getString("files_startFolder",
                 folder));
         final File[] files = f.listFiles();
+
+        Arrays.sort(files, new Comparator<File>() {
+            @Override
+            public int compare(File file1, File file2) {
+                if(file1.isDirectory()){
+                    if (file2.isDirectory()){
+                        return String.valueOf(file1.getName().toLowerCase()).compareTo(file2.getName().toLowerCase());
+                    }else{
+                        return -1;
+                    }
+                }else {
+                    if (file2.isDirectory()){
+                        return 1;
+                    }else{
+                        return String.valueOf(file1.getName().toLowerCase()).compareTo(file2.getName().toLowerCase());
+                    }
+                }
+            }
+        });
 
         if (files.length == 0) {
             Snackbar.make(listView, R.string.toast_files, Snackbar.LENGTH_LONG).show();

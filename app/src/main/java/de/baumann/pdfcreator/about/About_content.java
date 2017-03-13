@@ -105,9 +105,19 @@ class About_content {
                 .build());
 
         MaterialAboutCard.Builder authorCardBuilder2 = new MaterialAboutCard.Builder();
-        authorCardBuilder2.title(R.string.about_title_ext);
+        authorCardBuilder2.title(R.string.about_title_con);
 
         authorCardBuilder2.addItem(new MaterialAboutActionItem.Builder()
+                .text("Neofaum")
+                .subText(R.string.about_title_con1)
+                .icon(R.drawable.github_circle)
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/scoute-dich/QuitSmoking/releases")))
+                .build());
+
+        MaterialAboutCard.Builder authorCardBuilder3 = new MaterialAboutCard.Builder();
+        authorCardBuilder3.title(R.string.about_title_ext);
+
+        authorCardBuilder3.addItem(new MaterialAboutActionItem.Builder()
                 .text(R.string.about_ext)
                 .subText(R.string.about_ext_summary)
                 .icon(R.drawable.gaukler_faun)
@@ -174,7 +184,7 @@ class About_content {
                 .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Picasso", "https://github.com/square/picasso", true, false))
                 .build());
         
-        return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), authorCardBuilder2.build(), convenienceCardBuilder.build());
+        return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), authorCardBuilder2.build(), authorCardBuilder3.build(), convenienceCardBuilder.build());
     }
 
 }

@@ -1,3 +1,7 @@
+### v 3.0 (WIP)
+- improved: sorting of files
+- new: contributors in about screen
+
 ### v 2.9
 - fix:force close when changing tab
 

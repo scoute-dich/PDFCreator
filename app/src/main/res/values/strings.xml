@@ -201,6 +201,9 @@
     <string name="about_title_libs">Used open source libraries</string>
     <string name="about_title_ext">Extension</string>
 
+    <string name="about_title_con">Contributors</string>
+    <string name="about_title_con1">Japanese translation</string>
+
     <string name="about_changelog">Changelog</string>
     <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>
 
