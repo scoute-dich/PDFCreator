@@ -74,6 +74,12 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
 
         <activity
+            android:name=".helper.Activity_images"
+            android:noHistory="true"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".about.About_activity"
             android:launchMode="singleTask"
             android:configChanges="orientation|screenSize"

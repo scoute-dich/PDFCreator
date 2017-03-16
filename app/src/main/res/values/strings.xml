@@ -59,6 +59,7 @@
     <string name="action_share_with">Share PDF with:</string>
     <string name="action_share_Text">In the attachment you can find the PDF file:</string>
     <string name="action_help">Help</string>
+    <string name="action_imageLoad">Choose image</string>
 
 
     // Fragments
@@ -79,7 +80,6 @@
 
     // Image fragment
 
-    <string name="goal_gallery">Choose from gallery</string>
     <string name="goal_camera">Take photo</string>
 
 
@@ -104,7 +104,6 @@
     <string name="dialog_encryption_hint_userPW">User password</string>
     <string name="choose_title">Edit filename</string>
     <string name="choose_filter">Choose filter</string>
-    <string name="choose_chooser">Open file chooser</string>
 
 
     // Settings

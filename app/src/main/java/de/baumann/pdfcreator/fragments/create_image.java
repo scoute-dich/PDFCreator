@@ -20,7 +20,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -30,6 +29,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
@@ -48,6 +49,7 @@ import java.util.Locale;
 
 import de.baumann.pdfcreator.helper.Activity_Editor;
 import de.baumann.pdfcreator.R;
+import de.baumann.pdfcreator.helper.Activity_images;
 import de.baumann.pdfcreator.helper.helper_main;
 import de.baumann.pdfcreator.helper.helper_pdf;
 
@@ -251,8 +253,12 @@ public class create_image extends Fragment {
         img=(ImageView)rootView.findViewById(R.id.imageView);
         File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
         if(imgFile.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            img.setImageBitmap(myBitmap);
+            Glide.with(getActivity())
+                    .load(imgFile)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .fitCenter()
+                    .into(img); //imageView to set thumbnail to
         }
 
         // Get intent, action and MIME type
@@ -385,8 +391,7 @@ public class create_image extends Fragment {
 
         final CharSequence[] options = {
                 getString(R.string.goal_camera),
-                getString(R.string.goal_gallery),
-                getString(R.string.choose_chooser)};
+                getString(R.string.action_imageLoad)};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -410,14 +415,10 @@ public class create_image extends Fragment {
                         Snackbar.make(img, R.string.toast_install_app, Snackbar.LENGTH_LONG).show();
                     }
 
-                } else if (options[item].equals(getString(R.string.goal_gallery))) {
-                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent, 2);
-                } else if (options[item].equals(getString(R.string.choose_chooser))) {
-                    sharedPref.edit().putInt("fileManager", 1).apply();
-                    sharedPref.edit().putInt("startFragment", 1).apply();
-                    ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
-                    viewPager.setCurrentItem(0);
+                } else if (options[item].equals(getString(R.string.action_imageLoad))) {
+                    Intent intent = new Intent(getActivity(), Activity_images.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(0, 0);
                 }
             }
         });
@@ -454,58 +455,6 @@ public class create_image extends Fragment {
                     }
                     img.setImageBitmap(bitmap);
                 }
-
-            } else if (requestCode == 2) {
-                Uri selectedImage = data.getData();
-                img.setImageURI(selectedImage);
-
-                BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
-                Bitmap bitmap = drawable.getBitmap();
-
-                File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-
-                // Encode the file as a JPEG image.
-                FileOutputStream outStream;
-                try {
-
-                    outStream = new FileOutputStream(imgFile);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, imgquality_int, outStream);
-                    outStream.flush();
-                    outStream.close();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            int PIC_CROP = 1;
-            if (requestCode == PIC_CROP) {
-                if (data != null) {
-                    // get the returned data
-                    Bundle extras = data.getExtras();
-                    // get the cropped bitmap
-                    Bitmap selectedBitmap = extras.getParcelable("data");
-
-                    img.setImageBitmap(selectedBitmap);
-
-                    BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
-                    Bitmap bitmap = drawable.getBitmap();
-
-                    File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-
-                    // Encode the file as a PNG image.++
-                    FileOutputStream outStream;
-                    try {
-
-                        outStream = new FileOutputStream(imgFile);
-                        bitmap.compress(Bitmap.CompressFormat.PNG, imgquality_int, outStream);
-                        outStream.flush();
-                        outStream.close();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
         }
     }
@@ -517,8 +466,12 @@ public class create_image extends Fragment {
         helper_pdf.pdf_textField(getActivity(), rootView);
         helper_pdf.toolbar(getActivity());
         if(imgFile.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            img.setImageBitmap(myBitmap);
+            Glide.with(getActivity())
+                    .load(imgFile)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .fitCenter()
+                    .into(img); //imageView to set thumbnail to
         } else {
             img.setImageResource(R.drawable.image);
         }
@@ -532,8 +485,12 @@ public class create_image extends Fragment {
             helper_pdf.pdf_textField(getActivity(), rootView);
             helper_pdf.toolbar(getActivity());
             if(imgFile.exists()){
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                img.setImageBitmap(myBitmap);
+                Glide.with(getActivity())
+                        .load(imgFile)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
+                        .fitCenter()
+                        .into(img); //imageView to set thumbnail to
             } else {
                 img.setImageResource(R.drawable.image);
             }

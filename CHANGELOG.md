@@ -1,6 +1,7 @@
-### v 3.0 (WIP)
+### v 3.0
 - improved: sorting of files
 - new: contributors in about screen
+- new: build in image chooser
 
 ### v 2.9
 - fix:force close when changing tab

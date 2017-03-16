@@ -37,7 +37,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -242,8 +243,13 @@ public class file_manager extends Fragment {
                         case ".gif":case ".bmp":case ".tiff":case ".svg":
                         case ".png":case ".jpg":case ".JPG":case ".jpeg":
                             try {
-                                Uri uri = Uri.fromFile(pathFile);
-                                Picasso.with(getActivity()).load(uri).resize(76, 76).centerCrop().into(iv);
+                                Glide.with(getActivity())
+                                        .load(pathFile) // or URI/path
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .skipMemoryCache(true)
+                                        .override(76, 76)
+                                        .centerCrop()
+                                        .into(iv); //imageView to set thumbnail to
                             } catch (Exception e) {
                                 Log.w("HHS_Moodle", "Error Load image", e);
                             }

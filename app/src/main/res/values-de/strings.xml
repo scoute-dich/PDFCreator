@@ -60,6 +60,7 @@
     <string name="action_share_with">PDF teilen mit:</string>
     <string name="action_share_Text">Folgende Datei ist dem Anhang beigefügt:</string>
     <string name="action_help">Hilfe</string>
+    <string name="action_imageLoad">Bild aussuchen</string>
 
 
     // Fragments
@@ -80,8 +81,6 @@
 
     // Image fragment
 
-
-    <string name="goal_gallery">Aus der Galerie aussuchen</string>
     <string name="goal_camera">Foto aufnehmen</string>
 
 
@@ -106,7 +105,6 @@
     <string name="dialog_encryption_hint_userPW">Benutzerpasswort</string>
     <string name="choose_title">Umbenennen</string>
     <string name="choose_filter">Filter auswählen</string>
-    <string name="choose_chooser">Dateibrowser öffnen</string>
 
 
     // Settings

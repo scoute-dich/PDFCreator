@@ -79,7 +79,6 @@
 
     // Image fragment
 
-    <string name="goal_gallery">ギャラリーから選択</string>
     <string name="goal_camera">写真を撮影</string>
 
 
@@ -104,7 +103,6 @@
     <string name="dialog_encryption_hint_userPW">ユーザーパスワード</string>
     <string name="choose_title">ファイル名を編集</string>
     <string name="choose_filter">フィルターを選択</string>
-    <string name="choose_chooser">ファイル選択を開く</string>
 
 
     // Settings
@@ -175,6 +173,7 @@
     <string name="action_filter">Search in entries</string>
     <string name="action_filter_title">Search in titles</string>
     <string name="action_filter_create">Search in creation dates</string>
+    <string name="action_imageLoad">Choose image</string>
 
     <string name="filter_today">Today</string>
     <string name="filter_yesterday">Yesterday</string>
