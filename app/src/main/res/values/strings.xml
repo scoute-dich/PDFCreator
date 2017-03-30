@@ -59,7 +59,6 @@
     <string name="action_share_with">Share PDF with:</string>
     <string name="action_share_Text">In the attachment you can find the PDF file:</string>
     <string name="action_help">Help</string>
-    <string name="action_imageLoad">Choose image</string>
 
 
     // Fragments
@@ -76,11 +75,6 @@
     <string name="add_text_hint_enterText">Write or paste text</string>
     <string name="add_text_meta_doc">Edit existing metadata</string>
     <string name="add_text_meta_default">Create new metadata</string>
-
-
-    // Image fragment
-
-    <string name="goal_camera">Take photo</string>
 
 
     // Editor
@@ -231,6 +225,7 @@
     <string name="about_license_7">Used to create the \"About screen\".</string>
     <string name="about_license_8">The source of nearly all icons.</string>
     <string name="about_license_9">A powerful image downloading and caching library for Android.</string>
+    <string name="about_license_1">Android library to easily pick an image from gallery or camera app.</string>
 
 
     // Intro

@@ -77,11 +77,6 @@
     <string name="add_text_meta_default">新しいメタデータを作成</string>
 
 
-    // Image fragment
-
-    <string name="goal_camera">写真を撮影</string>
-
-
     // Editor
 
     <string name="filter_1">コントラスト</string>
@@ -173,7 +168,6 @@
     <string name="action_filter">Search in entries</string>
     <string name="action_filter_title">Search in titles</string>
     <string name="action_filter_create">Search in creation dates</string>
-    <string name="action_imageLoad">Choose image</string>
 
     <string name="filter_today">Today</string>
     <string name="filter_yesterday">Yesterday</string>

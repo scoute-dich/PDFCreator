@@ -158,9 +158,16 @@ class About_content {
 
         convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("GPUImage for Android")
-                .subText(R.string.about_license_4)
+                .subText(R.string.about_license_1)
                 .icon(R.drawable.github_circle)
                 .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "GPUImage for Android", "https://github.com/CyberAgent/android-gpuimage", true, false))
+                .build());
+
+        convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("Image Picker")
+                .subText(R.string.about_license_4)
+                .icon(R.drawable.github_circle)
+                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Image Picker", "https://github.com/Mariovc/ImagePicker", true, false))
                 .build());
 
         convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()

@@ -1,24 +1,17 @@
 package de.baumann.pdfcreator.fragments;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.FileProvider;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -33,14 +26,15 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.mvc.imagepicker.ImagePicker;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import de.baumann.pdfcreator.helper.Activity_Editor;
 import de.baumann.pdfcreator.R;
-import de.baumann.pdfcreator.helper.Activity_images;
 import de.baumann.pdfcreator.helper.helper_main;
 import de.baumann.pdfcreator.helper.helper_pdf;
 
@@ -110,7 +104,7 @@ public class add_image extends Fragment {
         fab_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectImage_1();
+                onPickImage();
             }
         });
 
@@ -295,77 +289,42 @@ public class add_image extends Fragment {
         return false;
     }
 
-    private void selectImage_1() {
-
-        final CharSequence[] options = {
-                getString(R.string.goal_camera),
-                getString(R.string.action_imageLoad)};
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-
-                if (options[item].equals(getString(R.string.goal_camera))) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    File f = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        Uri contentUri = FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", f);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
-                    } else {
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-                    }
-
-                    try {
-                        startActivityForResult(intent, 1);
-                    } catch (ActivityNotFoundException e) {
-                        Snackbar.make(img, R.string.toast_install_app, Snackbar.LENGTH_LONG).show();
-                    }
-
-                } else if (options[item].equals(getString(R.string.action_imageLoad))) {
-                    Intent intent = new Intent(getActivity(), Activity_images.class);
-                    startActivity(intent);
-                    getActivity().overridePendingTransition(0, 0);
-                }
-            }
-        });
-        builder.setPositiveButton(getString(R.string.dialog_cancel), null);
-        builder.show();
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == 1) {
 
-                File imgFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
-                if(imgFile.exists()){
+        Bitmap bitmap = ImagePicker.getImageFromResult(getActivity(), requestCode, resultCode, data);
+        try {
 
-                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                    img.setImageBitmap(myBitmap);
+            //create a file to write bitmap data
+            File f = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
+            f.createNewFile();
 
-                    BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
-                    Bitmap bitmap = drawable.getBitmap();
+            //Convert bitmap to byte array
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+            byte[] bitmapdata = bos.toByteArray();
 
-                    // Encode the file as a JPEG image.
-                    FileOutputStream outStream;
-                    try {
+            //write the bytes in file
+            FileOutputStream fos = new FileOutputStream(f);
+            fos.write(bitmapdata);
+            fos.flush();
+            fos.close();
 
-                        outStream = new FileOutputStream(imgFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, imgquality_int, outStream);
-                        outStream.flush();
-                        outStream.close();
+            Glide.with(getActivity())
+                    .load(f)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .fitCenter()
+                    .into(img); //imageView to set thumbnail to
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    img.setImageBitmap(bitmap);
-                }
-
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    private void onPickImage() {
+        // Click on image button
+        ImagePicker.pickImage(this, "Select your image:");
     }
 
     @Override

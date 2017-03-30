@@ -60,7 +60,6 @@
     <string name="action_share_with">PDF teilen mit:</string>
     <string name="action_share_Text">Folgende Datei ist dem Anhang beigefügt:</string>
     <string name="action_help">Hilfe</string>
-    <string name="action_imageLoad">Bild aussuchen</string>
 
 
     // Fragments
@@ -77,11 +76,6 @@
     <string name="add_text_hint_enterText">Schreiben oder Text einfügen</string>
     <string name="add_text_meta_doc">Bestehende Metadaten bearbeiten</string>
     <string name="add_text_meta_default">Neue Metadaten einfügen</string>
-
-
-    // Image fragment
-
-    <string name="goal_camera">Foto aufnehmen</string>
 
 
     // Editor
@@ -232,6 +226,7 @@
     <string name="about_license_4">Gebraucht um Bilder zu verbessern und bearbeiten.</string>
     <string name="about_license_5">Gebraucht um PDF Dateien zu erstellen und zu bearbeiten.</string>
     <string name="about_license_6">Gebraucht um PDF Dateien in Bilder zu konvertieren.</string>
+    <string name="about_license_1">Android Bibliothek um Bilder zu machen oder auszuwählen.</string>
 
 
     // Intro

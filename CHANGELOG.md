@@ -1,3 +1,6 @@
+### v 3.1
+- improved: image chooser
+
 ### v 3.0
 - improved: sorting of files
 - new: contributors in about screen
@@ -17,7 +20,7 @@
 - new: about screen
 
 ### v 2.6
-- fixed: f-droid buid error
+- fixed: f-droid build error
 
 ### v 2.5
 - added: Pdf title on toolbar
