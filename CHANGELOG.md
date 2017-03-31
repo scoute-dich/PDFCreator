@@ -1,4 +1,8 @@
-### v 3.1 (WIP)
+### v 3.2
+- fix: link in about screen
+- fix: description in about screen
+
+### v 3.1
 - improved: image chooser
 - fix: possible crash an Android < Lollipop when opening settings
 
