@@ -1,5 +1,6 @@
-### v 3.1
+### v 3.1 (WIP)
 - improved: image chooser
+- fix: possible crash an Android < Lollipop when opening settings
 
 ### v 3.0
 - improved: sorting of files

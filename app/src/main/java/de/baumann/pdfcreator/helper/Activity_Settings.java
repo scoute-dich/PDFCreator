@@ -12,6 +12,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -32,6 +33,8 @@ public class Activity_Settings extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             setTitle(R.string.action_settings);
         }
+
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         // Display the fragment as the activity_screen_main content
         getFragmentManager().beginTransaction()
