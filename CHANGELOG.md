@@ -1,3 +1,6 @@
+### v 3.5
+- improved: file manager
+
 ### v 3.2 - v.3.4
 - fix: link in about screen
 - fix: description in about screen
