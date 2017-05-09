@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //License Dialog
+
+    <string name="about_title">Copyright © 2016  by Gaukler Faun</string>
+    <string name="about_text">
+        &lt;i>For more informations visit the project site on github:&lt;br>
+        https://github.com/scoute-dich/PDFCreator&lt;/i>&lt;br>&lt;br>
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program.  If not, see http://www.gnu.org/licenses.
+    </string>
+
+
+    //Help Dialog
+
+
+    //Create image Dialog
+
+    <string name="dialog_createImage">
+
+        &lt;b>What can I do here?&lt;/b>&lt;br>
+        Here you can create a single PDF page from a picture.&lt;br>&lt;br>
+
+        &lt;b>Buttons&lt;/b>&lt;br>
+        &lt;i>From top to bottom on the right side.&lt;/i>&lt;br>&lt;br>
+
+        &#8226; &lt;i>Camera:&lt;/i> you can choose your picture. Nether from the gallery, the file chooser or take a new one with
+        the camera.&lt;br>
+        &#8226; &lt;i>Crop:&lt;/i> Crop and rotate the image. After you applied a filter you must save every time.&lt;br>
+        &#8226; &lt;i>Edit:&lt;/i> make a few basic enhancements.&lt;br>
+        &#8226; &lt;i>FAB (orange):&lt;/i> create the PDF.&lt;br>&lt;br>
+
+        &lt;b>Nice to know:&lt;/b>&lt;br>
+        At the bottom you can see the name of the actual PDF and the format. By pressing this area you can switch between portrait
+        and landscape format for your PDF page. After
+    </string>
+
+
+    //Add image Dialog
+
+    <string name="dialog_addImage">
+
+        &lt;b>What can I do here?&lt;/b>&lt;br>
+        Here you can images to an existing PDF file.&lt;br>&lt;br>
+
+        &lt;b>Buttons&lt;/b>&lt;br>
+        &lt;i>From top to bottom on the right side.&lt;/i>&lt;br>&lt;br>
+
+        &#8226; &lt;i>Camera:&lt;/i> you can choose your picture. Nether from the gallery, the file chooser or take a new one with
+        the camera.&lt;br>
+        &#8226; &lt;i>Crop:&lt;/i> Crop and rotate the image. After you applied a filter you must save every time.&lt;br>
+        &#8226; &lt;i>Edit:&lt;/i> make a few basic enhancements.&lt;br>
+        &#8226; &lt;i>PDF:&lt;/i> choose the PDF on which your new page will be added.&lt;br>
+        &#8226; &lt;i>FAB (orange):&lt;/i> create the PDF.&lt;br>&lt;br>
+
+        &lt;b>Nice to know:&lt;/b>&lt;br>
+        At the bottom you can see the name of the actual PDF and the format. By pressing this area you can switch between portrait
+        and landscape format for your PDF page.
+    </string>
+
+
+    //Create text Dialog
+
+    <string name="dialog_createText">
+
+        &lt;b>What can I do here?&lt;/b>&lt;br>
+         Here you can create a single PDF page from text. You have also several options to edit existing PDF files.&lt;br>&lt;br>
+
+        &lt;b>Buttons&lt;/b>&lt;br>
+        &#8226; &lt;i>FAB (orange):&lt;/i> create the PDF.&lt;br>&lt;br>
+
+        &lt;b>Nice to know:&lt;/b>&lt;br>
+        At the bottom you can see the name of the actual PDF and the format. By pressing this area you can switch between portrait
+        and landscape format for your PDF page.
+    </string>
+
+
+    //Add text Dialog
+
+    <string name="dialog_addText">
+
+        &lt;b>What can I do here?&lt;/b>&lt;br>
+        Here you can add a page with text to an existing PDF file.&lt;br>&lt;br>
+
+        &lt;b>Buttons&lt;/b>&lt;br>
+        &lt;i>From top to bottom on the right side.&lt;/i>&lt;br>&lt;br>
+
+        &#8226; &lt;i>Delete:&lt;/i> delete pages from an existing PDF.&lt;br>
+        &#8226; &lt;i>Merge:&lt;/i> merge two PDF files.&lt;br>
+        &#8226; &lt;i>Protect:&lt;/i> protect an existing PDF with a password. You can set an owner (needed to edit PDF file) and
+        an user password (needed only to open PDF file).&lt;br>
+        &#8226; &lt;i>Meta data:&lt;/i> edit the meta data of an existing PDF.&lt;br>
+        &#8226; &lt;i>Image:&lt;/i> convert PDF to images.&lt;br>
+        &#8226; &lt;i>PDF:&lt;/i> choose the PDF which you will manipulate.&lt;br>
+        &#8226; &lt;i>FAB (orange):&lt;/i> create the PDF.&lt;br>&lt;br>
+
+        &lt;b>Nice to know:&lt;/b>&lt;br>
+        At the bottom you can see the name of the actual PDF and the format. By pressing this area you can switch between portrait
+        and landscape format for your PDF page.
+    </string>
+
+</resources>
