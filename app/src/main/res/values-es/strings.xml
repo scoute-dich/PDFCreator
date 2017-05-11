@@ -3,137 +3,137 @@
     // App
 
     <string name="app_name">PDF Creator</string>
-    <string name="app_permissions_title">Used permissions</string>
+    <string name="app_permissions_title">Permisos usados</string>
     <string name="app_permissions">
 
-        &lt;i>Access Storage Permission:&lt;/i>&lt;br>
-        Used to read files (images) from sd-card and save pdf-files.&lt;br>&lt;br>
+        &lt;i>Permido de acceso a espacio de almacenamiento:&lt;/i>&lt;br>
+        Usado para leer archivos (imagénes) desde la tarjeta SD y guardar archivos PDF.&lt;br>&lt;br>
 
-        &lt;i>Grant permission later:&lt;/i>&lt;br>
-        If you don\'t permit this now, you can do it later. Please open then \"Settings -> App info\" and choose \"Permissions\".</string>
-    <string name="app_landscape">Landscape</string>
-    <string name="app_share_file">Choose file with:</string>
+        &lt;i>Conceder permiso más tarde:&lt;/i>&lt;br>
+        Si no lo permite ahora, puede hacerlo más tarde. Por favor abra \"Ajustes -> Información de la aplicación\" y seleccione \"Permisos\".</string>
+    <string name="app_landscape">Horizontal</string>
+    <string name="app_share_file">Elija el archivo con:</string>
 
 
     // App titles
 
-    <string name="create_image">Image to PDF</string>
-    <string name="create_text">Text to PDF</string>
-    <string name="add_image">+ image</string>
-    <string name="add_text">+ text | …</string>
-    <string name="app_title_edit">Edit image</string>
-    <string name="app_title_crop">Crop image</string>
-    <string name="app_portrait">Portrait</string>
+    <string name="create_image">Imagen a PDF</string>
+    <string name="create_text">Texto a PDF</string>
+    <string name="add_image">+ imagen</string>
+    <string name="add_text">+ texto | …</string>
+    <string name="app_title_edit">Editar imagen</string>
+    <string name="app_title_crop">Recortar imagen</string>
+    <string name="app_portrait">Vertical</string>
 
 
     // Snackbar // Toasts
 
     <string name="toast_yes">OK</string>
-    <string name="toast_cancel">Cancel</string>
-    <string name="toast_successfully">PDF successfully created.</string>
-    <string name="toast_wait">Images successfully created. Open folder?</string>
-    <string name="toast_successfully_not">An error occurred.</string>
-    <string name="toast_open">Open?</string>
-    <string name="toast_install_app">Please install an app to perform action.</string>
-    <string name="toast_noImage">Please choose an image.</string>
-    <string name="toast_noPDF">Choose or create a PDF file.</string>
-    <string name="toast_noText">Please enter text.</string>
-    <string name="toast_savedImage">Please wait. Saving image.</string>
-    <string name="toast_notAgain">Do not show again</string>
-    <string name="toast_extension">No supported file extension</string>
-    <string name="toast_edited">Image was edited. Saving?</string>
+    <string name="toast_cancel">Cancelar</string>
+    <string name="toast_successfully">PDF creado correctamente.</string>
+    <string name="toast_wait">Imagénes creadas correctamente. Abrir carpeta?</string>
+    <string name="toast_successfully_not">Ocurrió un error.</string>
+    <string name="toast_open">Abrir?</string>
+    <string name="toast_install_app">Por favor instala una aplicación para realizar una acción.</string>
+    <string name="toast_noImage">Por favor elija una imagen.</string>
+    <string name="toast_noPDF">Escoja o cree un archivo PDF.</string>
+    <string name="toast_noText">Por favor ingrese el texto.</string>
+    <string name="toast_savedImage">Por favor espere. Guardando imagen.</string>
+    <string name="toast_notAgain">No mostrar de nuevo</string>
+    <string name="toast_extension">Extensión de archivo no soportada</string>
+    <string name="toast_edited">La imagen fue editada. Guardar?</string>
     <string name="toast_no">No</string>
-    <string name="toast_remove_confirmation">Entry will be removed. OK?</string>
-    <string name="toast_directory">Can\'t open Directory.</string>
-    <string name="toast_files">No files in directory.</string>
-    <string name="toast_picFile">Please choose image file.</string>
-    <string name="toast_pdfFile">Please choose PDF file.</string>
+    <string name="toast_remove_confirmation">La entrada se eliminará. OK?</string>
+    <string name="toast_directory">No se puede abrir el directorio.</string>
+    <string name="toast_files">No hay archivos en el directorio.</string>
+    <string name="toast_picFile">Por favor, elija el archivo imagen.</string>
+    <string name="toast_pdfFile">Por favor, elija el archivo PDF.</string>
 
 
     // Main menu
 
-    <string name="action_share">Share PDF</string>
-    <string name="action_open">Open PDF</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_save">Save</string>
-    <string name="action_share_with">Share PDF with:</string>
-    <string name="action_share_Text">In the attachment you can find the PDF file:</string>
-    <string name="action_help">Help</string>
+    <string name="action_share">Compartir PDF</string>
+    <string name="action_open">Abrir PDF</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_share_with">Compartir PDF con:</string>
+    <string name="action_share_Text">En el archivo adjunto puede encontrar el archivo PDF:</string>
+    <string name="action_help">Ayuda</string>
 
 
     // Fragments
 
-    <string name="app_title">Please enter title:</string>
-    <string name="app_title_date">Date</string>
-    <string name="app_hint" tools:ignore="TypographyEllipsis">Whatever you want ...</string>
+    <string name="app_title">Por favor ingrese el título:</string>
+    <string name="app_title_date">Fecha</string>
+    <string name="app_hint" tools:ignore="TypographyEllipsis">El que usted desee...</string>
 
 
     // Text fragment
 
-    <string name="add_text_delete">Delete pages</string>
-    <string name="add_text_delete_hint">Which pages do you want to keep?</string>
-    <string name="add_text_hint_enterText">Write or paste text</string>
-    <string name="add_text_meta_doc">Edit existing metadata</string>
-    <string name="add_text_meta_default">Create new metadata</string>
+    <string name="add_text_delete">Eliminar páginas</string>
+    <string name="add_text_delete_hint">Qué páginas quieres conservar?</string>
+    <string name="add_text_hint_enterText">Escribir o pegar texto</string>
+    <string name="add_text_meta_doc">Editar metadatos existentes</string>
+    <string name="add_text_meta_default">Crear nuevos metadatos</string>
 
 
     // Editor
 
-    <string name="filter_1">Contrast</string>
-    <string name="filter_2">Hue</string>
-    <string name="filter_3">Brightness</string>
-    <string name="filter_4">Sharpness</string>
-    <string name="filter_5">Saturation</string>
+    <string name="filter_1">Contraste</string>
+    <string name="filter_2">Matiz</string>
+    <string name="filter_3">Brillo</string>
+    <string name="filter_4">Nitidez</string>
+    <string name="filter_5">Saturación</string>
 
-    <string name="filter_6">Exposure</string>
-    <string name="filter_7">Highlight Shadow</string>
-    <string name="filter_8">White Balance</string>
-    <string name="filter_9">Color Balance</string>
-    <string name="filter_10">Levels Min (Mid Adjust)</string>
+    <string name="filter_6">Exposición</string>
+    <string name="filter_7">Resaltar la sombra/string>
+    <string name="filter_8">Balance de blancos</string>
+    <string name="filter_9">Balance de color</string>
+    <string name="filter_10">Niveles Mín (Ajuste medio)</string>
 
 
     // Dialogs
 
-    <string name="dialog_encryption_hint_ownerPW">Owner password</string>
-    <string name="dialog_encryption_hint_userPW">User password</string>
-    <string name="choose_title">Edit filename</string>
-    <string name="choose_filter">Choose filter</string>
+    <string name="dialog_encryption_hint_ownerPW">Contraseña del propietario</string>
+    <string name="dialog_encryption_hint_userPW">Contraseña de usuario</string>
+    <string name="choose_title">Editar nombre del archivo</string>
+    <string name="choose_filter">Elegir filtro</string>
 
 
     // Settings
 
-    <string name="settings_prefApp">About the app</string>
-    <string name="settings_prefDir">App directory</string>
-    <string name="settings_prefEnc">Encryption</string>
-    <string name="settings_prefMeta">Metadata</string>
+    <string name="settings_prefApp">Acerca de la aplicación</string>
+    <string name="settings_prefDir">Directorio de la aplicación</string>
+    <string name="settings_prefEnc">Cifrado</string>
+    <string name="settings_prefMeta">Metadatos</string>
 
-    <string name="pref_imageQuality">Image quality</string>
-    <string name="pref_imageQuality_summary">Set the image quality. Higher quality results in (much) bigger PDF sizes.</string>
+    <string name="pref_imageQuality">Calidad de la imagen</string>
+    <string name="pref_imageQuality_summary">Ajuste la calidad de la imagen. Una mayor calidad produce tamaños de PDF mucho más grandes.</string>
 
-    <string name="pref_backup">Backup</string>
-    <string name="pref_backup_summary">Do you want to backup pdf files before manipulating, e.g. deleting or adding pages?</string>
+    <string name="pref_backup">Copia de seguridad </string>
+    <string name="pref_backup_summary">Desea respaldar los arhivos pdf antes de manipularlos, es decir, antes de eliminarlos o agregarles páginas?</string>
 
-    <string name="pref_folder">Custom directory</string>
-    <string name="pref_folder_hint">Format: \"/Download/PDF/\"</string>
-    <string name="pref_folder_summary">Let empty to use the default directory (\"/Android/data/de.baumann.pdf/\"). Enter the path
-        to your desired folder on your sdcard. The path must begin and end with \"/\" like \"/Download/PDF/\".
-        If the desired directory does not exist, it will be generated automatically.</string>
+    <string name="pref_folder">Directorio personalizado</string>
+    <string name="pref_folder_hint">Formato: \"/Download/PDF/\"</string>
+    <string name="pref_folder_summary">Dejar vacío para usar el directorio predeterminado (\"/Android/data/de.baumann.pdf/\"). Ingrese la ruta
+        a la carpeta deseada en su tarjeta SD. La ruta debe comenzar y terminar con \"/\" como \"/Download/PDF/\".
+        Si el directorio deseado no existe, se generará automáticamente.</string>
 
-    <string name="pref_metaAuthor">Author</string>
+    <string name="pref_metaAuthor">Autor</string>
 
-    <string name="pref_metaTitle">Title</string>
-    <string name="pref_metaCreator">Creator</string>
-    <string name="pref_metaKeywords">Keywords</string>
-    <string name="pref_metaSubject">Subject</string>
+    <string name="pref_metaTitle">Título</string>
+    <string name="pref_metaCreator">Creador</string>
+    <string name="pref_metaKeywords">Palabras claves</string>
+    <string name="pref_metaSubject">Tema</string>
 
-    <string name="action_openSettings">App info</string>
-    <string name="action_openSettings_summary">Open via the system settings the app info of the app. There you can,
-        depending on your Android version, manage several things (Storage, network traffic, permissions, …).</string>
+    <string name="action_openSettings">Información de la aplicación</string>
+    <string name="action_openSettings_summary">Abrir a través de la configuración del sistema la información de la aplicación. Aquí puede,
+        dependiendo de su versión Android, gestionar varias cosas (Almacenamiento, tráfico de red, permisos…).</string>
 
     <string-array name="listArrayImage">
-        <item>High (100%)</item>
+        <item>Alta (100%)</item>
         <item>Normal (80%)</item>
-        <item>Low (60%)</item>
+        <item>Baja (60%)</item>
     </string-array>
 
     <string-array name="listValuesImage">
@@ -145,103 +145,103 @@
 
     //Image cropper
 
-    <string name="app_title_2">Saving picture …</string>
-    <string name="crop_image_menu_rotate_left">Rotate left</string>
-    <string name="crop_image_menu_rotate_right">Rotate right</string>
+    <string name="app_title_2">Guardando imagen…</string>
+    <string name="crop_image_menu_rotate_left">Girar a la izquierda</string>
+    <string name="crop_image_menu_rotate_right">Girar a la derecha</string>
 
 
     //File chooser
 
-    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_cancel">Cancelar</string>
 
-    <string name="choose_menu_2">Share</string>
-    <string name="choose_menu_3">Rename</string>
-    <string name="choose_menu_4">Delete</string>
+    <string name="choose_menu_2">Compartir</string>
+    <string name="choose_menu_3">Renombrar</string>
+    <string name="choose_menu_4">Eliminar</string>
 
-    <string name="choose_hint">New filename</string>
+    <string name="choose_hint">Nuevo nombre de archivo/string>
 
-    <string name="action_sort">Sort entries</string>
-    <string name="action_sort_title">Sort by title</string>
-    <string name="action_sort_create">Sort by date</string>
-    <string name="action_sort_ext">Sort by extension</string>
+    <string name="action_sort">Organizar entradas</string>
+    <string name="action_sort_title">Organizar por título</string>
+    <string name="action_sort_create">Organizar por fecha</string>
+    <string name="action_sort_ext">Organizar por extensión</string>
 
-    <string name="action_filter">Search in entries</string>
-    <string name="action_filter_title">Search in titles</string>
-    <string name="action_filter_create">Search in creation dates</string>
+    <string name="action_filter">Buscar en entradas</string>
+    <string name="action_filter_title">Buscar en títulos</string>
+    <string name="action_filter_create">Buscar en fechas de creación</string>
 
-    <string name="filter_today">Today</string>
-    <string name="filter_yesterday">Yesterday</string>
-    <string name="filter_before">Day before yesterday</string>
-    <string name="filter_month">This month</string>
-    <string name="filter_own">Own search</string>
-    <string name="filter_clear">Cancel search</string>
+    <string name="filter_today">Hoy</string>
+    <string name="filter_yesterday">Ayer</string>
+    <string name="filter_before">Anteayer</string>
+    <string name="filter_month">Este mes</string>
+    <string name="filter_own">Búsqueda propia</string>
+    <string name="filter_clear">Cancelar búsqueda</string>
 
-    <string name="sort_title">title</string>
-    <string name="sort_date">date</string>
-    <string name="sort_extension">extension</string>
+    <string name="sort_title">título</string>
+    <string name="sort_date">fecha</string>
+    <string name="sort_extension">extensión</string>
 
-    <string name="choose_titleMain">Files</string>
-    <string name="title_hint">Title</string>
+    <string name="choose_titleMain">Archivos/string>
+    <string name="title_hint">Títulos</string>
 
 
     // About
 
-    <string name="about_settings">… and other things</string>
-    <string name="about_settings_text">Changelog, help, license, used libraries and more.</string>
+    <string name="about_settings">… y otras cosas</string>
+    <string name="about_settings_text">Registro de cambios, ayuda, licencia, librerías usadas y más.</string>
 
-    <string name="about_title_main">About PDF Creator</string>
-    <string name="about_title_dev">Developer</string>
-    <string name="about_title_libs">Used open source libraries</string>
-    <string name="about_title_ext">Extension</string>
+    <string name="about_title_main">Acerca de PDF Creator</string>
+    <string name="about_title_dev">Desarrollador</string>
+    <string name="about_title_libs">Librerías de código abierto usadas</string>
+    <string name="about_title_ext">Extensión</string>
 
-    <string name="about_title_con">Contributors</string>
-    <string name="about_title_con1">Japanese translation</string>
+    <string name="about_title_con">Colaboradores</string>
+    <string name="about_title_con1">Traducción al japonés</string>
 
-    <string name="about_changelog">Changelog</string>
-    <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>
+    <string name="about_changelog">Registro de cambios</string>
+    <string name="about_changelog_summary">Abrir el sitio en GitHub y mira que hay de nuevo… (necesita conexión a internet)</string>
 
-    <string name="about_license">License</string>
-    <string name="about_license_summary">The app is licensed under GPL and completely open source and free (as in freedom).</string>
+    <string name="about_license">Licencia</string>
+    <string name="about_license_summary">La aplicación está licenciada bajo GPL y completamente código abierto y gratuito (como en la libertad).</string>
 
     <string name="about_dev">Gaukler Faun</string>
-    <string name="about_dev_summary">Open my profile on Github (needs internet connection).</string>
+    <string name="about_dev_summary">Abrir mi perfil en Github (necesita conexión a internet).</string>
 
     <string name="about_ext">PDF Viewer</string>
-    <string name="about_ext_summary">Is a PDF Viewer based on MuPDF and optimized to work together with PDF Creator. You can
-    download and install the APK file on the Github site (just click). Since there are precompiled libraries included I can not publish
-    PDF Viewer on F-Droid.</string>
+    <string name="about_ext_summary">Es un visor PDF basado en MuPDF y optimizado para trabajar con PDF Creator. Puede
+    descargar e instalar el archivo APK en el sitio GitHub (haz clic aquí). Ya que hay librerías precompiladas incluidas no puedo publicar
+    PDF Viewer en F-Droid.</string>
 
     <string name="about_intro">Intro</string>
-    <string name="about_intro_summary">Show the intro screen one more time.</string>
+    <string name="about_intro_summary">Mostrar la pantalla Intro una vez más.</string>
 
-    <string name="about_donate">Donate</string>
-    <string name="about_donate_summary">If you like the app, you can donate to me via Paypal (needs internet connection).</string>
+    <string name="about_donate">Donar</string>
+    <string name="about_donate_summary">Si te gusta la aplicación, puedes donarme a través de Paypal (necesita conexión a Internet).</string>
 
-    <string name="about_license_2">Used to crop and rotate images.</string>
-    <string name="about_license_3">Used to build the intro screen.</string>
-    <string name="about_license_4">Used to enhance and manipulate pictures.</string>
-    <string name="about_license_5">Used to create and manipulate PDF files.</string>
-    <string name="about_license_6">Used to convert PDF files to images.</string>
-    <string name="about_license_7">Used to create the \"About screen\".</string>
-    <string name="about_license_8">The source of nearly all icons.</string>
-    <string name="about_license_9">A powerful image downloading and caching library for Android.</string>
-    <string name="about_license_1">Android library to easily pick an image from gallery or camera app.</string>
+    <string name="about_license_2">Usada para cortar y rotar imagénes.</string>
+    <string name="about_license_3">Usada para construir la pantalla Intro.</string>
+    <string name="about_license_4">Usada para mejorar y manipular imágenes.</string>
+    <string name="about_license_5">Usada para crear y manipular archivos PDF.</string>
+    <string name="about_license_6">Usada para convertir archivos PDF a imágenes.</string>
+    <string name="about_license_7">Usada para crear \"About screen\".</string>
+    <string name="about_license_8">La fuente de casi todos los iconos.</string>
+    <string name="about_license_9">Una poderosa librería de descarga y almacenamiento de imágenes para Android.</string>
+    <string name="about_license_1">Librería de Android para elegir fácilmente una imagen de una aplicación de galería o cámara.</string>
 
 
     // Intro
 
-    <string name="intro_skip">Skip</string>
-    <string name="intro_finish">Let\'s start.</string>
+    <string name="intro_skip">Omitir</string>
+    <string name="intro_finish">Iniciemos</string>
 
     <string name="intro1_title">PDF Creator</string>
-    <string name="intro1_text">Thank you for choosing \"PDF Creator\". It\'s fully open source and still in development.
-        You can reach a short help dialog on every tab by pressing \"menu -> help\" …</string>
+    <string name="intro1_text">Gracias por escoger \"PDF Creator\". Es completamente libre y todavía está en desarrollo.
+        Puede acceder a un diálogo de ayuda corto en cada ficha presionando \"menú -> ayuda\"…</string>
 
-    <string name="intro2_title">The tabs</string>
-    <string name="intro2_text">You have a build in file explorer. You can either create new PDF files from an image or from text or
-        manipulate existing PDFs.</string>
+    <string name="intro2_title">Las pestañas</string>
+    <string name="intro2_text">Tienes un copilador en el explorador de archivos. Puede crear nuevos archivos PDF desde una imagen o desde un texto o
+        manipular archivos PDF existentes.</string>
 
-    <string name="intro3_title">Nice to know:</string>
-    <string name="intro3_text">At the bottom you can see the name of the actual PDF and the format. By pressing this area
-        you can switch between portrait and landscape format for your PDF page.</string>
+    <string name="intro3_title">Es bueno saber:</string>
+    <string name="intro3_text">En la parte inferior se puede ver el nombre actual del PDF y el formato. Presionando en esta área
+        puede cambiar entre el formato vertical y horizontal para su página PDF.</string>
 </resources>
