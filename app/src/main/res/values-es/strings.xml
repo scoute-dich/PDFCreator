@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     // App
 
     <string name="app_name">PDF Creator</string>
@@ -86,7 +86,7 @@
     <string name="filter_5">Saturación</string>
 
     <string name="filter_6">Exposición</string>
-    <string name="filter_7">Resaltar la sombra/string>
+    <string name="filter_7">Resaltar la sombra</string>
     <string name="filter_8">Balance de blancos</string>
     <string name="filter_9">Balance de color</string>
     <string name="filter_10">Niveles Mín (Ajuste medio)</string>
@@ -158,7 +158,7 @@
     <string name="choose_menu_3">Renombrar</string>
     <string name="choose_menu_4">Eliminar</string>
 
-    <string name="choose_hint">Nuevo nombre de archivo/string>
+    <string name="choose_hint">Nuevo nombre de archivo</string>
 
     <string name="action_sort">Organizar entradas</string>
     <string name="action_sort_title">Organizar por título</string>
@@ -180,7 +180,7 @@
     <string name="sort_date">fecha</string>
     <string name="sort_extension">extensión</string>
 
-    <string name="choose_titleMain">Archivos/string>
+    <string name="choose_titleMain">Archivos</string>
     <string name="title_hint">Títulos</string>
 
 

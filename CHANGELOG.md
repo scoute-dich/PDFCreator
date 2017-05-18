@@ -1,3 +1,6 @@
+### v 3.6
+- updated: Japanese translation
+
 ### v 3.5
 - improved: file manager
 
