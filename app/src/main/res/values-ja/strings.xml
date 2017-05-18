@@ -43,11 +43,11 @@
     <string name="toast_extension">サポートされていないファイル拡張子</string>
     <string name="toast_edited">画像は編集されています。保存しますか?</string>
     <string name="toast_no">いいえ</string>
-    <string name="toast_remove_confirmation">Entry will be removed. OK?</string>
-    <string name="toast_directory">Can\'t open Directory.</string>
-    <string name="toast_files">No files in directory.</string>
-    <string name="toast_picFile">Please choose image file.</string>
-    <string name="toast_pdfFile">Please choose PDF file.</string>
+    <string name="toast_remove_confirmation">エントリは削除されます。 OK?</string>
+    <string name="toast_directory">ディレクトリーを開くことができません。</string>
+    <string name="toast_files">ディレクトリーにファイルはありません。</string>
+    <string name="toast_picFile">画像ファイルを選択してください。</string>
+    <string name="toast_pdfFile">PDF ファイルを選択してください。</string>
 
 
     // Main menu
@@ -160,87 +160,87 @@
 
     <string name="choose_hint">新しいファイル名</string>
 
-    <string name="action_sort">Sort entries</string>
-    <string name="action_sort_title">Sort by title</string>
-    <string name="action_sort_create">Sort by date</string>
-    <string name="action_sort_ext">Sort by extension</string>
+    <string name="action_sort">エントリの並び替え</string>
+    <string name="action_sort_title">タイトル順に並び替え</string>
+    <string name="action_sort_create">日付順に並び替え</string>
+    <string name="action_sort_ext">拡張子順に並び替え</string>
 
-    <string name="action_filter">Search in entries</string>
-    <string name="action_filter_title">Search in titles</string>
-    <string name="action_filter_create">Search in creation dates</string>
+    <string name="action_filter">エントリで検索</string>
+    <string name="action_filter_title">タイトルで検索</string>
+    <string name="action_filter_create">作成日で検索</string>
 
-    <string name="filter_today">Today</string>
-    <string name="filter_yesterday">Yesterday</string>
-    <string name="filter_before">Day before yesterday</string>
-    <string name="filter_month">This month</string>
-    <string name="filter_own">Own search</string>
-    <string name="filter_clear">Cancel search</string>
+    <string name="filter_today">今日</string>
+    <string name="filter_yesterday">昨日</string>
+    <string name="filter_before">一昨日</string>
+    <string name="filter_month">今月</string>
+    <string name="filter_own">独自検索</string>
+    <string name="filter_clear">検索をキャンセル</string>
 
-    <string name="sort_title">title</string>
-    <string name="sort_date">date</string>
-    <string name="sort_extension">extension</string>
+    <string name="sort_title">タイトル</string>
+    <string name="sort_date">日付</string>
+    <string name="sort_extension">拡張子</string>
 
-    <string name="choose_titleMain">Files</string>
-    <string name="title_hint">Title</string>
+    <string name="choose_titleMain">ファイル</string>
+    <string name="title_hint">タイトル</string>
 
 
     // About
 
-    <string name="about_settings">… and other things</string>
-    <string name="about_settings_text">Changelog, help, license, used libraries and more.</string>
+    <string name="about_settings">… 他のこと</string>
+    <string name="about_settings_text">変更履歴、ヘルプ、ライセンス、使用ライブラリーその他。</string>
 
-    <string name="about_title_main">About PDF Creator</string>
-    <string name="about_title_dev">Developer</string>
-    <string name="about_title_libs">Used open source libraries</string>
-    <string name="about_title_ext">Extension</string>
-    <string name="about_title_con">Contributors</string>
-    <string name="about_title_con1">Japanese translation</string>
+    <string name="about_title_main">PDF Creator について</string>
+    <string name="about_title_dev">開発者</string>
+    <string name="about_title_libs">使用したオープンソースライブラリー</string>
+    <string name="about_title_ext">拡張子</string>
+    <string name="about_title_con">貢献者</string>
+    <string name="about_title_con1">日本語翻訳</string>
 
-    <string name="about_changelog">Changelog</string>
-    <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>
+    <string name="about_changelog">変更履歴</string>
+    <string name="about_changelog_summary">Github サイトを開いて what\'s new を参照してください … (インターネット接続が必要です)</string>
 
-    <string name="about_license">License</string>
-    <string name="about_license_summary">The app is licensed under GPL and completely open source and free (as in freedom).</string>
+    <string name="about_license">ライセンス</string>
+    <string name="about_license_summary">アプリは GPL の下でライセンスされます。 そして完全にオープンソースでフリーです (自由の意味で)。</string>
 
     <string name="about_dev">Gaukler Faun</string>
-    <string name="about_dev_summary">Open my profile on Github (needs internet connection).</string>
+    <string name="about_dev_summary">Github でプロフィールをご覧ください (インターネット接続が必要です)。</string>
 
     <string name="about_ext">PDF Viewer</string>
-    <string name="about_ext_summary">Is a PDF Viewer based on MuPDF and optimized to work together with PDF Creator. You can
-    download and install the APK file on the Github site (just click). Since there are precompiled libraries included I can not publish
-    PDF Viewer on F-Droid.</string>
+    <string name="about_ext_summary">MuPDF ベースの PDF ビューアで、PDF Creator と連携するように最適化されています。
+    Github サイトで APK ファイルをダウンロードしてインストールすることができます（クリックするだけです）。
+    プリコンパイルされたライブラリーが含まれているので、F-Droid に PDF ビューアを公開することはできません。</string>
 
-    <string name="about_intro">Intro</string>
-    <string name="about_intro_summary">Show the intro screen one more time.</string>
+    <string name="about_intro">はじめに</string>
+    <string name="about_intro_summary">はじめに画面をもう一度表示します。</string>
 
-    <string name="about_donate">Donate</string>
-    <string name="about_donate_summary">If you like the app, you can donate to me via Paypal (needs internet connection).</string>
+    <string name="about_donate">寄付</string>
+    <string name="about_donate_summary">アプリを気に入っていただけたら、Paypal で寄付することができます (インターネット接続が必要です)。</string>
 
-    <string name="about_license_2">Used to crop and rotate images.</string>
-    <string name="about_license_3">Used to build the intro screen.</string>
-    <string name="about_license_4">Used to enhance and manipulate pictures.</string>
-    <string name="about_license_5">Used to create and manipulate PDF files.</string>
-    <string name="about_license_6">Used to convert PDF files to images.</string>
-    <string name="about_license_7">Used to create the \"About screen\".</string>
-    <string name="about_license_8">The source of nearly all icons.</string>
-    <string name="about_license_9">A powerful image downloading and caching library for Android.</string>
+    <string name="about_license_2">画像のトリミングと回転に使用されます。</string>
+    <string name="about_license_3">はじめに画面を構築するために使用されます。</string>
+    <string name="about_license_4">画像の強調や操作に使用されます。</string>
+    <string name="about_license_5">PDF ファイルの作成や操作に使用されます。</string>
+    <string name="about_license_6">PDF ファイルを画像に変換するために使用されます。</string>
+    <string name="about_license_7">\"アプリについて画面\" を作成するために使用されます。</string>
+    <string name="about_license_8">ほぼすべてのアイコンのソース。</string>
+    <string name="about_license_9">Android 用の強力な画像ダウンロードおよびキャッシングライブラリー。</string>
 
 
     // Intro
 
-    <string name="intro_skip">Skip</string>
-    <string name="intro_finish">Let\'s start.</string>
+    <string name="intro_skip">スキップ</string>
+    <string name="intro_finish">始めましょう。</string>
 
     <string name="intro1_title">PDF Creator</string>
-    <string name="intro1_text">Thank you for choosing \"PDF Creator\". It\'s fully open source and still in development.
-        You can reach a short help dialog on every tab by pressing \"menu -> help\" …</string>
+    <string name="intro1_text">\"PDF Creator\" をご利用いただきありがとうございます。 完全にオープンソースで、まだ開発中です。
+        簡単なヘルプはそれぞれのタブで \"メニュー -> ヘルプ\" を押してください …</string>
 
-    <string name="intro2_title">The tabs</string>
-    <string name="intro2_text">You have a build in file explorer. You can either create new PDF files from an image or from text or
-        manipulate existing PDFs.</string>
+    <string name="intro2_title">タブ</string>
+    <string name="intro2_text">ファイルエクスプローラーにビルドがあります。 画像やテキストから新しい PDF ファイルを作成したり、
+        既存の PDF を操作したりすることができます。</string>
 
-    <string name="intro3_title">Nice to know:</string>
-    <string name="intro3_text">At the bottom you can see the name of the actual PDF and the format. By pressing this area
-        you can switch between portrait and landscape format for your PDF page.</string>
+    <string name="intro3_title">知っておくと便利なこと:</string>
+    <string name="intro3_text">下部に、実際の PDF の名前と書式が表示されます。 この領域を押すと、
+        PDF ページの縦向きと横向きの書式を切り替えることができます。</string>
 
 </resources>
