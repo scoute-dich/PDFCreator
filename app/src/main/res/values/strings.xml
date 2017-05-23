@@ -196,6 +196,7 @@
 
     <string name="about_title_con">Contributors</string>
     <string name="about_title_con1">Japanese translation</string>
+    <string name="about_title_con2">Spanish translation</string>
 
     <string name="about_changelog">Changelog</string>
     <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>

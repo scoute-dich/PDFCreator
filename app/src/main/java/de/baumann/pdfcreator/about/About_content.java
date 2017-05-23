@@ -114,6 +114,13 @@ class About_content {
                 .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/naofum")))
                 .build());
 
+        authorCardBuilder2.addItem(new MaterialAboutActionItem.Builder()
+                .text("sebastian05067")
+                .subText(R.string.about_title_con2)
+                .icon(R.drawable.github_circle)
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/sebastian05067")))
+                .build());
+
         MaterialAboutCard.Builder authorCardBuilder3 = new MaterialAboutCard.Builder();
         authorCardBuilder3.title(R.string.about_title_ext);
 

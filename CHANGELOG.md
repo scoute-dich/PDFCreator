@@ -1,3 +1,6 @@
+### v 3.7
+- new: Spanish translation (@sebastian05067)
+
 ### v 3.6
 - updated: Japanese translation
 

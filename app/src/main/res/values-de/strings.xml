@@ -196,6 +196,7 @@
     <string name="about_title_ext">Erweiterung</string>
     <string name="about_title_con">Beteiligte</string>
     <string name="about_title_con1">Japanische Übersetzung</string>
+    <string name="about_title_con2">Spanische Übersetzung</string>
 
     <string name="about_changelog">Änderungen</string>
     <string name="about_changelog_summary">Öffne die Github Seite und schaue, was es Neues gibt … (braucht eine Internetverbindung)</string>
