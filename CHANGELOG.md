@@ -1,3 +1,7 @@
+### v 3.8 (WIP)
+- fix: open directories
+- fix: name of backuped files
+
 ### v 3.7
 - new: Spanish translation (@sebastian05067)
 

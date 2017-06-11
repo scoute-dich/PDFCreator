@@ -46,9 +46,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
@@ -162,7 +160,11 @@ public class file_manager extends Fragment {
             if (file.isDirectory()) {
                 file_ext = ".";
             } else {
-                file_ext = file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf("."));
+                try {
+                    file_ext = file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf("."));
+                } catch (Exception e) {
+                    file_ext = ".";
+                }
             }
 
             db.open();
@@ -239,7 +241,7 @@ public class file_manager extends Fragment {
                             iv.setImageResource(R.drawable.file_pdf);
                             break;
                         default:
-                            iv.setImageResource(R.drawable.arrow_up_dark);
+                            iv.setImageResource(R.drawable.file);
                             break;
                     }
                 }
@@ -307,11 +309,6 @@ public class file_manager extends Fragment {
                     } else if (files_icon.equals(".pdf")) {
                         sharedPref.edit().putString("pathPDF", files_attachment).apply();
                         sharedPref.edit().putString("title", files_title).apply();
-
-
-
-
-
                         helper_main.open(files_icon, getActivity(), pathFile, listView);
                     }else {
                         helper_main.open(files_icon, getActivity(), pathFile, listView);
