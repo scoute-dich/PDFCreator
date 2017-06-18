@@ -48,6 +48,7 @@
     <string name="toast_files">No files in directory.</string>
     <string name="toast_picFile">Please choose image file.</string>
     <string name="toast_pdfFile">Please choose PDF file.</string>
+    <string name="toast_permission">Grant permission. Open settings?</string>
 
 
     // Main menu

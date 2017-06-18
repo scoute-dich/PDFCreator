@@ -6,10 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 
 import java.io.File;
@@ -99,7 +103,28 @@ public class Activity_Main extends AppCompatActivity {
                 if (position == 0){
                     file_manager file_manager = (file_manager) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
                     file_manager.setTitle();
-                    file_manager.setFilesList();
+                    if (android.os.Build.VERSION.SDK_INT >= 23) {
+                        int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                        if (hasWRITE_EXTERNAL_STORAGE == PackageManager.PERMISSION_GRANTED) {
+                            file_manager.setFilesList();
+                        } else {
+                            Snackbar snackbar = Snackbar
+                                    .make(viewPager, R.string.toast_permission, Snackbar.LENGTH_LONG)
+                                    .setAction(R.string.toast_yes, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent();
+                                            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                            Uri uri = Uri.fromParts("package", getPackageName(), null);
+                                            intent.setData(uri);
+                                            startActivity(intent);
+                                        }
+                                    });
+                            snackbar.show();
+                        }
+                    } else {
+                        file_manager.setFilesList();
+                    }
                 } else if (position == 1){
                     create_image create_image = (create_image) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
                     create_image.onResume();

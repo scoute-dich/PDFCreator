@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.mvc.imagepicker.ImagePicker;
 
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -371,11 +372,9 @@ public class create_image extends Fragment {
             if(imgFile.exists()){
                 imgFile.delete();
             }
-
             return true;
-        }
-        catch (Exception e)
-        {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -385,7 +384,9 @@ public class create_image extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        Bitmap bitmap = ImagePicker.getImageFromResult(getActivity(), requestCode, resultCode, data);
+        InputStream inputStream = ImagePicker.getInputStreamFromResult(getActivity(), requestCode, resultCode, data);
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+        Bitmap bitmap = BitmapFactory.decodeStream(bufferedInputStream);
 
         if (bitmap != null) {
             try {
@@ -393,16 +394,10 @@ public class create_image extends Fragment {
                 File f = new File(Environment.getExternalStorageDirectory() + "/Pictures/.pdf_temp/pdf_temp.jpg");
                 f.createNewFile();
 
-                //Convert bitmap to byte array
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                byte[] bitmapdata = bos.toByteArray();
-
-                //write the bytes in file
-                FileOutputStream fos = new FileOutputStream(f);
-                fos.write(bitmapdata);
-                fos.flush();
-                fos.close();
+                OutputStream outStream = new FileOutputStream(f);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, imgquality_int, outStream);
+                outStream.flush();
+                outStream.close();
 
                 Glide.with(getActivity())
                         .load(f)

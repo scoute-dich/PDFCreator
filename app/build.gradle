@@ -9,8 +9,8 @@ android {
         vectorDrawables.useSupportLibrary = true
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 24
-        versionName "3.7"
+        versionCode 25
+        versionName "3.8"
     }
     buildTypes {
         release {
@@ -37,5 +37,5 @@ dependencies {
     compile 'com.github.chyrta:AndroidOnboarder:0.6'
     compile 'com.github.daniel-stoneuk:material-about-library:1.7.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.github.Mariovc:ImagePicker:1.0.5'
+    compile 'com.github.Mariovc:ImagePicker:1.1.1'
 }

@@ -1,6 +1,8 @@
-### v 3.8 (WIP)
+### v 3.8
 - fix: open directories
 - fix: name of backuped files
+- fix: problem with image quality
+- fix: crash if permissions not granted
 
 ### v 3.7
 - new: Spanish translation (@sebastian05067)

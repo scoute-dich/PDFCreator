@@ -49,6 +49,7 @@
     <string name="toast_files">Keine Dateien im Verzeichnis.</string>
     <string name="toast_picFile">Bitte Bilddatei auswählen.</string>
     <string name="toast_pdfFile">Bitte PDF-Datei auswählen.</string>
+    <string name="toast_permission">Berechtigung erteilen. Einstellungen öffnen?</string>
 
 
     // Main menu
