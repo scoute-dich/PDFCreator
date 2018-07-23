@@ -1,0 +1,250 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    // App
+
+    <string name="app_name">PDF Creator</string>
+    <string name="app_permissions_title">Gebruikte machtigingen</string>
+    <string name="app_permissions">
+
+        &lt;i>Toegang tot opslag:&lt;/i>&lt;br>
+        Wordt gebruikt om bestanden (afbeeldingen) uit te lezen van de SD-kaart en om PDF-bestanden op te slaan.&lt;br>&lt;br>
+
+        &lt;i>Machtiging later verlenen:&lt;/i>&lt;br>
+        Als je de machtiging nu niet verleent, dan kan dit later alsnog. Open \"Instellingen -> App-informatie\" en kies \"Machtigingen\".</string>
+    <string name="app_landscape">Landschap</string>
+    <string name="app_share_file">Bestand kiezen met:</string>
+
+
+    // App titles
+
+    <string name="create_image">Afbeelding naar PDF</string>
+    <string name="create_text">Tekst naar PDF</string>
+    <string name="add_image">+ afbeelding</string>
+    <string name="add_text">+ tekst | …</string>
+    <string name="app_title_edit">Afbeelding bewerken</string>
+    <string name="app_title_crop">Afbeelding bijsnijden</string>
+    <string name="app_portrait">Portret</string>
+
+
+    // Snackbar // Toasts
+
+    <string name="toast_yes">Oké</string>
+    <string name="toast_cancel">Annuleren</string>
+    <string name="toast_successfully">Het PDF-bestand is gecreëerd.</string>
+    <string name="toast_wait">De afbeeldingen zijn gecreëerd. Wil je de map openen?</string>
+    <string name="toast_successfully_not">Er is een fout opgetreden.</string>
+    <string name="toast_open">Openen?</string>
+    <string name="toast_install_app">Installeer een app om deze actie uit te voeren.</string>
+    <string name="toast_noImage">Kies een afbeelding.</string>
+    <string name="toast_noPDF">Kies of creëer een PDF-bestand.</string>
+    <string name="toast_noText">Voer een tekst in.</string>
+    <string name="toast_savedImage">De afbeelding wordt opgeslagen, even geduld...</string>
+    <string name="toast_notAgain">Niet meer tonen</string>
+    <string name="toast_extension">Geen ondersteunde bestandsextensie</string>
+    <string name="toast_edited">De afbeelding is bewerkt. Wil je deze opslaan?</string>
+    <string name="toast_no">Nee</string>
+    <string name="toast_remove_confirmation">Het item wordt verwijderd. Wil je doorgaan?</string>
+    <string name="toast_directory">De map kan niet worden geopend.</string>
+    <string name="toast_files">Geen bestanden in de map.</string>
+    <string name="toast_picFile">Kies een afbeeldingsbestand.</string>
+    <string name="toast_pdfFile">Kies een PDF-bestand.</string>
+    <string name="toast_permission">Machtiging benodigd. Wil je de instellingen openen?</string>
+
+
+    // Main menu
+
+    <string name="action_share">PDF-bestand delen</string>
+    <string name="action_open">PDF-bestand openen</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="action_save">Opslaan</string>
+    <string name="action_share_with">PDF-bestand delen met:</string>
+    <string name="action_share_Text">Je vindt het PDF-bestand in de bijlage:</string>
+    <string name="action_help">Hulp</string>
+
+
+    // Fragments
+
+    <string name="app_title">Voer een titel in:</string>
+    <string name="app_title_date">Datum</string>
+    <string name="app_hint" tools:ignore="TypographyEllipsis">Wat jij maar wilt...</string>
+
+
+    // Text fragment
+
+    <string name="add_text_delete">Pagina's verwijderen</string>
+    <string name="add_text_delete_hint">Welke pagina's wil je behouden?</string>
+    <string name="add_text_hint_enterText">Schrijf of plak tekst</string>
+    <string name="add_text_meta_doc">Bestaande metagegevens bewerken</string>
+    <string name="add_text_meta_default">Nieuwe metagegevens creëren</string>
+
+
+    // Editor
+
+    <string name="filter_1">Contrast</string>
+    <string name="filter_2">Tint</string>
+    <string name="filter_3">Helderheid</string>
+    <string name="filter_4">Scherpte</string>
+    <string name="filter_5">Verzadiging</string>
+
+    <string name="filter_6">Belichting</string>
+    <string name="filter_7">Schaduw benadrukken</string>
+    <string name="filter_8">Witbalans</string>
+    <string name="filter_9">Kleurbalans</string>
+    <string name="filter_10">Min. niveaus</string>
+
+
+    // Dialogs
+
+    <string name="dialog_encryption_hint_ownerPW">Eigenaarswachtwoord</string>
+    <string name="dialog_encryption_hint_userPW">Gebruikerswachtwoord</string>
+    <string name="choose_title">Bestandsnaam wijzigen</string>
+    <string name="choose_filter">Kies een filter</string>
+
+
+    // Settings
+
+    <string name="settings_prefApp">Over de app</string>
+    <string name="settings_prefDir">App-map</string>
+    <string name="settings_prefEnc">Versleuteling</string>
+    <string name="settings_prefMeta">Metagegevens</string>
+
+    <string name="pref_imageQuality">Afbeeldingskwaliteit</string>
+    <string name="pref_imageQuality_summary">Stel de afbeeldingskwaliteit in. Een hogere kwaliteit produceert (veel) grotere PDF-bestanden.</string>
+
+    <string name="pref_backup">Back-up</string>
+    <string name="pref_backup_summary">Wil je PFD-bestanden back-upp alvorens ze te bewerken (bijv.: toevoegen of verwijderen van pagina's)?</string>
+
+    <string name="pref_folder">Aangepaste map</string>
+    <string name="pref_folder_hint">Opmaak: \"/Downloads/PDF/\"</string>
+    <string name="pref_folder_summary">Laat leeg om de standaardmap te gebruiken ((\"/Android/data/de.baumann.pdf/\"). Voer het pad
+        in van de gewenste map op de SD-kaart. Het pad moet beginnen en eindigen met \"/\". Voorbeeld: \"/Downloads/PDF/\".
+        Als de gewenste map niet bestaat, dan wordt deze automatisch gecreëerd.</string>
+
+    <string name="pref_metaAuthor">Auteur</string>
+
+    <string name="pref_metaTitle">Titel</string>
+    <string name="pref_metaCreator">Auteur</string>
+    <string name="pref_metaKeywords">Sleutelwoorden</string>
+    <string name="pref_metaSubject">Onderwerp</string>
+
+    <string name="action_openSettings">App-informatie</string>
+    <string name="action_openSettings_summary">Open de app-informatie. Daar kun je,
+        afhankelijk van je Android-versie, bepaalde dingen beheren (opslag, netwerkverkeer, machtigingen, …).</string>
+
+    <string-array name="listArrayImage">
+        <item>Hoog (100%)</item>
+        <item>Normaal (80%)</item>
+        <item>Laag (60%)</item>
+    </string-array>
+
+    <string-array name="listValuesImage">
+        <item>100</item>
+        <item>80</item>
+        <item>60</item>
+    </string-array>
+
+
+    //Image cropper
+
+    <string name="app_title_2">Bezig met opslaan van afbeelding…</string>
+    <string name="crop_image_menu_rotate_left">Naar links draaien</string>
+    <string name="crop_image_menu_rotate_right">Naar rechts draaien</string>
+
+
+    //File chooser
+
+    <string name="dialog_cancel">Annuleren</string>
+
+    <string name="choose_menu_2">Delen</string>
+    <string name="choose_menu_3">Naam wijzigen</string>
+    <string name="choose_menu_4">Verwijderen</string>
+
+    <string name="choose_hint">Nieuwe bestandsnaam</string>
+
+    <string name="action_sort">Items sorteren</string>
+    <string name="action_sort_title">Sorteren op titel</string>
+    <string name="action_sort_create">Sorteren op datum</string>
+    <string name="action_sort_ext">Sorteren op extensie</string>
+
+    <string name="action_filter">Items doorzoeken</string>
+    <string name="action_filter_title">Titels doorzoeken</string>
+    <string name="action_filter_create">Creatiedatums doorzoeken</string>
+
+    <string name="filter_today">Vandaag</string>
+    <string name="filter_yesterday">Gisteren</string>
+    <string name="filter_before">Eergisteren</string>
+    <string name="filter_month">Deze maand</string>
+    <string name="filter_own">Eigen zoekopdracht</string>
+    <string name="filter_clear">Zoekopdracht annuleren</string>
+
+    <string name="sort_title">titel</string>
+    <string name="sort_date">datum</string>
+    <string name="sort_extension">extensie</string>
+
+    <string name="choose_titleMain">Bestanden</string>
+    <string name="title_hint">Titel</string>
+
+
+    // About
+
+    <string name="about_settings">… en andere dingen</string>
+    <string name="about_settings_text">Wijzigingslog, hulp, licentie, gebruikte bibliotheken en meer.</string>
+
+    <string name="about_title_main">Over PDF Creator</string>
+    <string name="about_title_dev">Ontwikkelaar</string>
+    <string name="about_title_libs">Gebruikte open-bron-bibliotheken</string>
+    <string name="about_title_ext">Extensie</string>
+
+    <string name="about_title_con">Bijdragers</string>
+    <string name="about_title_con1">Japanse vertaling</string>
+    <string name="about_title_con2">Spaanse vertaling</string>
+
+    <string name="about_changelog">Wijzigingslog</string>
+    <string name="about_changelog_summary">Open de GitHub-site en bekijk de wijzigingen… (internetverbinding vereist)</string>
+
+    <string name="about_license">Licentie</string>
+    <string name="about_license_summary">De app is uitgebracht onder de GPL-licentie en volledig open source en vrij (als in 'vrijheid').</string>
+
+    <string name="about_dev">Gaukler Faun</string>
+    <string name="about_dev_summary">Open mijn profile op GitHub (internetverbinding vereist).</string>
+
+    <string name="about_ext">PDF Viewer</string>
+    <string name="about_ext_summary">Is een PDF-viewer, gebaseerd op MuPDF en geoptimaliseerd om samen te werken met PDF Creator. Je kunt het
+    APK-bestand downloaden en installeren op de GitHub-site (druk erop). Omdat er voorgecompileerde bibliotheken worden meegeleverd, kan ik PDF Viewer niet
+    publiceren op F-Droid.</string>
+
+    <string name="about_intro">Introductie</string>
+    <string name="about_intro_summary">Nóg een keer het introductiescherm tonen.</string>
+
+    <string name="about_donate">Doneren</string>
+    <string name="about_donate_summary">Als je de app waardeert, dan kun je aan me doneren via Paypal (internetverbinding vereist).</string>
+
+    <string name="about_license_2">Wordt gebruikt om afbeeldingen te draaien en bij te snijden.</string>
+    <string name="about_license_3">Wordt gebruikt voor het introductiescherm.</string>
+    <string name="about_license_4">Wordt gebruikt om afbeeldingen te bewerken en verbeteren.</string>
+    <string name="about_license_5">Wordt gebruikt om PDF-bestanden te creëren en bewerken.</string>
+    <string name="about_license_6">Wordt gebruikt om afbeeldingen te converteren naar PDF-bestanden.</string>
+    <string name="about_license_7">Wordt gebruikt voor het \"Over-scherm\".</string>
+    <string name="about_license_8">De bron van bijna alle pictogrammen.</string>
+    <string name="about_license_9">Een krachtige bibliotheek voor Android voor het downloaden en cachen van afbeeldingen.</string>
+    <string name="about_license_1">Android-bibliotheek om gemakkelijk een afbeelding te kiezen uit de galerij of de camera-app.</string>
+
+
+    // Intro
+
+    <string name="intro_skip">Overslaan</string>
+    <string name="intro_finish">Laten we beginnen.</string>
+
+    <string name="intro1_title">PDF Creator</string>
+    <string name="intro1_text">Bedankt voor het kiezen voor \"PDF Creator\". De app is volledig open source en nog volop in ontwikkeling.
+        Je kunt een kort hulpvenster openen op elk tabblad door te drukken op \"menu -> hulp\" …</string>
+
+    <string name="intro2_title">De tabbladen</string>
+    <string name="intro2_text">Je hebt een ingebouwde bestandsbeheerder. Je kunt nieuwe PDF-bestanden creëren uit een afbeelding of tekst of
+        bestaande PDF-bestanden bewerken.</string>
+
+    <string name="intro3_title">Handig om te weten:</string>
+    <string name="intro3_text">Onderaan kun je de naam van het huidige PDF-bestand zien en het formaat. Door daarop te drukken kun je
+        schakelen tussen portret- en landschapsmodus.</string>
+
+</resources>
