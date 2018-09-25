@@ -240,7 +240,7 @@
         You can reach a short help dialog on every tab by pressing \"menu -> help\" …</string>
 
     <string name="intro2_title">The tabs</string>
-    <string name="intro2_text">You have a build in file explorer. You can either create new PDF files from an image or from text or
+    <string name="intro2_text">You have a built in file explorer. You can either create new PDF files from an image or from text or
         manipulate existing PDFs.</string>
 
     <string name="intro3_title">Nice to know:</string>
